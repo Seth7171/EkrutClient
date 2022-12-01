@@ -73,12 +73,11 @@ public class SucscriberEditController implements Initializable {
 		this.txtEmailaddress.setText(s.getEmailaddress());
 		this.txtCreditcardnumber.setText(s.getCreditcardnumber());
 		this.txtSubscribernumber.setText(s.getSubscribernumber());		
-		//this.cmbFaculty.setValue(s.getFc().getFName());
 	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {	
-		//setFacultyComboBox();		
+		
 	}
 	
 	public void Closebtn(ActionEvent event) throws Exception {
@@ -105,7 +104,7 @@ public class SucscriberEditController implements Initializable {
 
 		
 		//ClientUI.chat.accept("1," + this.txtID.getText() + "," + this.txtName.getText() + "," + this.txtSurname.getText() + "," + (String)cmbFaculty.getValue());
-		ClientUI.chat.accept("updateUser " + this.txtFirstname.getText() + " " + this.txtLastname.getText() + " " + this.txtId.getText() + " " + this.txtCreditcardnumber.getText()+ " " + this.txtSubscribernumber.getText() + " ");
+		ClientUI.chat.accept("updateUser " + this.txtId.getText() + " " + this.txtCreditcardnumber.getText()+ " " + this.txtSubscribernumber.getText() + " ");
 		if (ChatClient.s1.getId().equals("Error")) {
 			System.out.println("Subscriber ID Not Found");
 
