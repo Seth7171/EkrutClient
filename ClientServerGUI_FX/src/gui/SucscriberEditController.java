@@ -18,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -34,31 +36,34 @@ public class SucscriberEditController implements Initializable {
 	private Label lblFaculty;
 	
 	@FXML
-	private TextField txtFirstname;
+	private TableColumn<Subscriber,String> txtFirstname;
 	
 	@FXML
-	private TextField txtLastname;
+	private TableColumn<Subscriber,String> txtLastname;
 	
 	@FXML
-	private TextField txtId;
+	private TableColumn<Subscriber,String> txtId;
 	
 	@FXML
-	private TextField txtPhonenumber;
+	private TableColumn<Subscriber,String> txtPhonenumber;
 	
 	@FXML
-	private TextField txtEmailaddress;
+	private TableColumn<Subscriber,String> txtEmailaddress;
 	
 	@FXML
-	private TextField txtCreditcardnumber;
+	private TableColumn<Subscriber,String> txtCreditcardnumber;
 	
 	@FXML
-	private TextField txtSubscribernumber;
+	private TableColumn<Subscriber,String> txtSubscribernumber;
 	
 	@FXML
 	private Button btnclose=null;
 	
 	@FXML
 	private Button btnSave=null;
+	
+	 @FXML
+	  private TableView<Subscriber> Table;
 	
 	
 	
@@ -77,6 +82,14 @@ public class SucscriberEditController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {	
+		ClientUI.chat.accept("login");
+		System.out.println(ChatClient.subs.get(0));
+	   /* if (ChatClient.subs != null) {
+	        ObservableList<Subscriber> Subs = FXCollections.observableArrayList(ChatClient.subs);
+	        this.TableView.setItems(Subs);*/
+		//for (int i  = 0 ; i<ChatClient.subs.size() ; i++) {	
+			//loadSubscriber(ChatClient.subs.get(0));
+		//}
 		
 	}
 	
