@@ -2,7 +2,6 @@ package client;
 import javafx.application.Application;
 
 import javafx.stage.Stage;
-import logic.Faculty;
 import logic.Subscriber;
 
 import java.util.Vector;

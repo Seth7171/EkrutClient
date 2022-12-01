@@ -65,7 +65,7 @@ public  class SubscriberFinderController   {
 				Stage primaryStage = new Stage();
 				Pane root = loader.load(getClass().getResource("/gui/SucscriberEdit.fxml").openStream());
 				SucscriberEditController studentFormController = loader.getController();		
-				studentFormController.loadStudent(ChatClient.s1);
+				studentFormController.loadSubscriber(ChatClient.s1);
 			
 				Scene scene = new Scene(root);			
 				scene.getStylesheets().add(getClass().getResource("/gui/SucscriberEdit.css").toExternalForm());
@@ -93,8 +93,8 @@ public  class SubscriberFinderController   {
 		System.exit(0);	//ADDED : NITSAN : EXIT THE FRAME WITH EXIT BUTTON
 	}
 	
-	public void loadStudent(Student s1) {
-		this.sfc.loadStudent(s1);
+	public void loadSubscriber(Subscriber s1) {
+		this.sfc.loadSubscriber(s1);
 	}	
 	
 	public  void display(String message) {
