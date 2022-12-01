@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SucscriberEditController">
+   <children>
+      <Button fx:id="btnclose" layoutX="430.0" layoutY="344.0" mnemonicParsing="false" onAction="#Closebtn" text="Close" />
+      <Button fx:id="btnSave" layoutX="108.0" layoutY="344.0" mnemonicParsing="false" onAction="#Savebtn" text="Update" />
+      <TableView layoutX="21.0" layoutY="129.0" prefHeight="200.0" prefWidth="600.0">
+        <columns>
+          <TableColumn prefWidth="84.0" text="Sub. ID" />
+            <TableColumn prefWidth="84.0" text="Name" />
+            <TableColumn prefWidth="84.0" text="Surname" />
+            <TableColumn prefWidth="84.0" text="Phone num." />
+            <TableColumn prefWidth="84.0" text="Email add." />
+            <TableColumn prefWidth="103.0" text="CreditCard num." />
+            <TableColumn prefWidth="76.0" text="Sub. num.:" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
