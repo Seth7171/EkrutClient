@@ -36,7 +36,7 @@ public  class SubscriberFinderController   {
 	private TextField idtxt;
 	
 	private String getID() {
-		return idtxt.getText();
+		return idtxt.getText();//
 	}
 	
 	public void Send(ActionEvent event) throws Exception {
