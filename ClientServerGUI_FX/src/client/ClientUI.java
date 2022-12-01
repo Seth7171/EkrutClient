@@ -3,7 +3,6 @@ import javafx.application.Application;
 
 import javafx.stage.Stage;
 import logic.Subscriber;
-
 import java.util.Vector;
 import gui.SubscriberFinderController;
 import gui.ClientConnectorController;

@@ -68,10 +68,13 @@ public class ChatClient extends AbstractClient
 	  
 	  ArrayList fromserver = new ArrayList();
 	  String[] result = st.split("\\s");
-	  s1.setId(result[0]);
-	  s1.setPName(result[1]);
-	  s1.setLName(result[2]);
-	  s1.setFc(new Faculty (result[3],result[4]));
+	  s1.setFirstname(result[0]);
+	  s1.setLastname(result[1]);
+	  s1.setId(result[2]);
+	  s1.setPhonenumber(result[3]);
+	  s1.setEmailaddress(result[4]);
+	  s1.setCreditcardnumber(result[5]);
+	  s1.setSubscribernumber(result[6]);
 	 
   }
 
