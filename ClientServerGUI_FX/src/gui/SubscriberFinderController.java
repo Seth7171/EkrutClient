@@ -36,7 +36,7 @@ public  class SubscriberFinderController   {
 	private TextField idtxt;
 	
 	private String getID() {
-		return idtxt.getText();//
+		return idtxt.getText();
 	}
 	
 	public void Send(ActionEvent event) throws Exception {
@@ -64,8 +64,8 @@ public  class SubscriberFinderController   {
 				((Node)event.getSource()).getScene().getWindow().hide(); //hiding primary window
 				Stage primaryStage = new Stage();
 				Pane root = loader.load(getClass().getResource("/gui/SucscriberEdit.fxml").openStream());
-				SucscriberEditController studentFormController = loader.getController();		
-				studentFormController.loadSubscriber(ChatClient.s1);
+				SucscriberEditController SucscriberEditController = loader.getController();		
+				SucscriberEditController.loadSubscriber(ChatClient.s1);
 			
 				Scene scene = new Scene(root);			
 				scene.getStylesheets().add(getClass().getResource("/gui/SucscriberEdit.css").toExternalForm());

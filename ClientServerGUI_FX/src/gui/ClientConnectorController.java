@@ -71,7 +71,7 @@ public class ClientConnectorController {
 		
 			Scene scene = new Scene(root);			
 			scene.getStylesheets().add(getClass().getResource("/gui/SucscriberEdit.css").toExternalForm());
-			primaryStage.setTitle("Student Managment Tool");
+			primaryStage.setTitle("Client Editor");
 
 			primaryStage.setScene(scene);		
 			primaryStage.show();
