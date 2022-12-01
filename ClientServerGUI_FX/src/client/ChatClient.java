@@ -31,6 +31,7 @@ public class ChatClient extends AbstractClient
    */
   ChatIF clientUI; 
   public static Subscriber  s1 = new Subscriber(null,null,null,null,null,null,null);
+  public static ArrayList<Subscriber> subs = new ArrayList<>();
   public static boolean awaitResponse = false;
 
   //Constructors ****************************************************
@@ -60,22 +61,24 @@ public class ChatClient extends AbstractClient
    */
   public void handleMessageFromServer(Object msg) 
   {
+	  System.out.println(msg);
 	  System.out.println("--> handleMessageFromServer");
      
 	  awaitResponse = false;
 	  String st;
 	  st=msg.toString();
-	  
-	  ArrayList fromserver = new ArrayList();
-	  String[] result = st.split("\\s");
-	  s1.setFirstname(result[0]);
-	  s1.setLastname(result[1]);
-	  s1.setId(result[2]);
-	  s1.setPhonenumber(result[3]);
-	  s1.setEmailaddress(result[4]);
-	  s1.setCreditcardnumber(result[5]);
-	  s1.setSubscribernumber(result[6]);
-	 
+	  String[] lines = st.split(System.getProperty("line.separator"));
+	  for (int i = 0 ; i<lines.length ; i++) {
+		  String[] result = lines[i].split("\\s");
+		  s1.setFirstname(result[0]);
+		  s1.setLastname(result[1]);
+		  s1.setId(result[2]);
+		  s1.setPhonenumber(result[3]);
+		  s1.setEmailaddress(result[4]);
+		  s1.setCreditcardnumber(result[5]);
+		  s1.setSubscribernumber(result[6]);
+		  subs.add(s1);
+	  }
   }
 
   /**
