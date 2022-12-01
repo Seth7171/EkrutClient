@@ -7,10 +7,10 @@ package client;
 import ocsf.client.*;
 import client.*;
 import common.ChatIF;
-import logic.Faculty;
-import logic.Student;
+import logic.Subscriber;
 
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * This class overrides some of the methods defined in the abstract
@@ -30,7 +30,7 @@ public class ChatClient extends AbstractClient
    * the display method in the client.
    */
   ChatIF clientUI; 
-  public static Student  s1 = new Student(null,null,null,new Faculty(null,null));
+  public static Subscriber  s1 = new Subscriber(null,null,null,null,null,null,null);
   public static boolean awaitResponse = false;
 
   //Constructors ****************************************************
@@ -65,6 +65,8 @@ public class ChatClient extends AbstractClient
 	  awaitResponse = false;
 	  String st;
 	  st=msg.toString();
+	  
+	  ArrayList fromserver = new ArrayList();
 	  String[] result = st.split("\\s");
 	  s1.setId(result[0]);
 	  s1.setPName(result[1]);

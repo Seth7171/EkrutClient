@@ -1,6 +1,6 @@
 package logic;
 
-public class subscriber {
+public class Subscriber {
 
 	// CLASS VARIABLES ***********************************************
 	private String firstname;
@@ -13,7 +13,7 @@ public class subscriber {
 	//                 ***********************************************
 
 	// CLASS Constructors ********************************************
-	public subscriber(String firstname, String lastname, String id, String phonenumber, String emailaddress,
+	public Subscriber(String firstname, String lastname, String id, String phonenumber, String emailaddress,
 			String creditcardnumber, String subscribernumber) {
 		this.firstname = firstname;
 		this.lastname = lastname;

@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import logic.Student;
+import logic.Subscriber;
 
 
 public  class SubscriberFinderController   {

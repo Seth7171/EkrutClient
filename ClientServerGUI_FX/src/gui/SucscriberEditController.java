@@ -21,11 +21,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import logic.Faculty;
-import logic.Student;
+import logic.Subscriber;
 
 public class SucscriberEditController implements Initializable {
-	private Student s;
+	private Subscriber s;
 		
 	@FXML
 	private Label lblName;
@@ -35,13 +34,25 @@ public class SucscriberEditController implements Initializable {
 	private Label lblFaculty;
 	
 	@FXML
-	private TextField txtID;
+	private TextField txtFirstname;
 	
 	@FXML
-	private TextField txtName;
+	private TextField txtLastname;
 	
 	@FXML
-	private TextField txtSurname;
+	private TextField txtId;
+	
+	@FXML
+	private TextField txtPhonenumber;
+	
+	@FXML
+	private TextField txtEmailaddress;
+	
+	@FXML
+	private TextField txtCreditcardnumber;
+	
+	@FXML
+	private TextField txtSubscribernumber;
 	
 	@FXML
 	private Button btnclose=null;
@@ -53,11 +64,15 @@ public class SucscriberEditController implements Initializable {
 	
 	ObservableList<String> list;
 		
-	public void loadStudent(Student s1) {
+	public void loadSubscriber(Subscriber s1) {
 		this.s=s1;
-		this.txtID.setText(s.getId());
-		this.txtName.setText(s.getPName());
-		this.txtSurname.setText(s.getLName());		
+		this.txtFirstname.setText(s.getFirstname());
+		this.txtLastname.setText(s.getLastname());
+		this.txtId.setText(s.getId());
+		this.txtPhonenumber.setText(s.getPhonenumber());
+		this.txtEmailaddress.setText(s.getEmailaddress());
+		this.txtCreditcardnumber.setText(s.getCreditcardnumber());
+		this.txtSubscribernumber.setText(s.getSubscribernumber());		
 		//this.cmbFaculty.setValue(s.getFc().getFName());
 	}
 	
@@ -79,18 +94,23 @@ public class SucscriberEditController implements Initializable {
 	}
 	
 	public void Savebtn(ActionEvent event) throws Exception {
-		Student s1 = new Student(null, null, null, null);
-		s1.setId(txtID.getText());
-		s1.setPName(txtName.getText());
-		s1.setLName(txtSurname.getText());
+		Subscriber s1 = new Subscriber(null, null, null, null, null, null, null);
+		s1.setFirstname(txtFirstname.getText());
+		s1.setLastname(txtLastname.getText());
+		s1.setId(txtId.getText());
+		s1.setPhonenumber(txtPhonenumber.getText());
+		s1.setEmailaddress(txtEmailaddress.getText());
+		s1.setCreditcardnumber(txtCreditcardnumber.getText());
+		s1.setSubscribernumber(txtSubscribernumber.getText());
 
+		
 		//ClientUI.chat.accept("1," + this.txtID.getText() + "," + this.txtName.getText() + "," + this.txtSurname.getText() + "," + (String)cmbFaculty.getValue());
-		ClientUI.chat.accept("updateUser " + this.txtID.getText() + " " + this.txtName.getText() + " " + this.txtSurname.getText() + " " + " ");
+		ClientUI.chat.accept("updateUser " + this.txtFirstname.getText() + " " + this.txtLastname.getText() + " " + this.txtId.getText() + " " + this.txtCreditcardnumber.getText()+ " " + this.txtSubscribernumber.getText() + " ");
 		if (ChatClient.s1.getId().equals("Error")) {
-			System.out.println("Student ID Not Found");
+			System.out.println("Subscriber ID Not Found");
 
 		} else {
-			System.out.println("Student ID Updated");
+			System.out.println("Subscriber ID Updated");
 		}
 	}
 	
