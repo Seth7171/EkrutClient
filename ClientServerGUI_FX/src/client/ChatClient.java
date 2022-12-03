@@ -33,6 +33,7 @@ public class ChatClient extends AbstractClient
   public static Subscriber  s1 = new Subscriber(null,null,null,null,null,null,null);
   public static ArrayList<Subscriber> subs = new ArrayList<>();
   public static boolean awaitResponse = false;
+  public static String servermsg = new String();
 
   //Constructors ****************************************************
   
@@ -67,7 +68,6 @@ public class ChatClient extends AbstractClient
 	  awaitResponse = false;
 	  String st;
 	  st=msg.toString();
-	  System.out.println("aaaa"+st);
 	  BufferedReader bufReader = new BufferedReader(new StringReader(st));
 	  //String[] lines = st.split(System.getProperty("line.separator"));
 	  //System.out.println("bbbbbbbb " + lines);
@@ -94,6 +94,14 @@ public class ChatClient extends AbstractClient
 	 // for (String line : lines) {
 
 	 // }
+  }
+  
+  public void handleMessageFromServer(String msg) 
+  {
+	  System.out.println(msg);
+	  System.out.println("--> handleMessageFromServer");
+	  servermsg = msg.toString();
+	  awaitResponse = false;
   }
 
   /**

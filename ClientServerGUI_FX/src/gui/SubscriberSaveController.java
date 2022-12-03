@@ -41,7 +41,9 @@ public class SubscriberSaveController implements Initializable {
 	@FXML
 	private Label lblSurname;
 	@FXML
-	private Label lblFaculty;
+	private Label lblsuccess;
+	@FXML
+	private Label lblFailed;
 	
 	@FXML
 	private TextField txtID;
@@ -89,11 +91,13 @@ public class SubscriberSaveController implements Initializable {
 		s1.setSubscribernumber(txtSubNumber.getText());
 		System.out.println("updateUser " + this.txtID.getText() + " " + this.txtCreditCardNumber.getText() + " " + this.txtSubNumber.getText());
 		ClientUI.chat.accept("updateUser " + this.txtID.getText() + " " + this.txtCreditCardNumber.getText() + " " + this.txtSubNumber.getText());
-		if (ChatClient.equals("Error")) {
+		if (ChatClient.servermsg.equals("true")) {
 			System.out.println("Subscriber Save Failed");
+			lblFailed.setVisible(true);
 
 		} else {
 			System.out.println("Subscriber Save Succeed");
+			lblsuccess.setVisible(true);
 		}
 	}
 	

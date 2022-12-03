@@ -113,6 +113,7 @@ public class SubscriberEditController implements Initializable {
 	}
 	
 	public void Closebtn(ActionEvent event) throws Exception {
+		ClientUI.chat.accept("disconnect");
         ((Node)event.getSource()).getScene().getWindow().hide();
         
         Stage primaryStage = new Stage();
