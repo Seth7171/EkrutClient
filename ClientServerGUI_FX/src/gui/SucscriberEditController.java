@@ -125,31 +125,30 @@ public class SucscriberEditController implements Initializable {
 	}
 	
 	public void Savebtn(ActionEvent event) throws Exception {
-		if (Table.getSelectionModel().getSelectedItem() != null) {
-		      Subscriber selectedsub = Table.getSelectionModel().getSelectedItem();
-		      ((Node)event.getSource()).getScene().getWindow().hide();
-		      FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ClientConnector.fxml"));
-		      Parent root = loader.<Parent>load();
-		      Stage primaryStage = new Stage();
-		      Scene scene = new Scene(root);
-		      scene.getStylesheets().add(getClass().getResource("/gui/ClientConnector.css").toExternalForm());
-		     // SubscriberSaveController subscribersavecontroller = loader.<SubscriberSaveController>getController();
-		     // subscribersavecontroller.loadSubscriber(selectedsub);
-		      primaryStage.setTitle("Save Subscriber Details");
-		      primaryStage.setScene(scene);
-		      primaryStage.setResizable(false);
-		      primaryStage.show();
+        if (Table.getSelectionModel().getSelectedItem() != null) {
+            Subscriber selectedsub = Table.getSelectionModel().getSelectedItem();
+            Stage primaryStage = new Stage();
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/SubscriberSave.fxml"));
+            Parent root = loader.<Parent>load();
+            Scene scene = new Scene(root);
+            SubscriberSaveController subscribersavecontroller = loader.<SubscriberSaveController>getController();
+            subscribersavecontroller.loadSubscriber(selectedsub);
+            primaryStage.setTitle("Save Subscriber Details");
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
+            primaryStage.show();
 		 } 
 
 		
 		//ClientUI.chat.accept("1," + this.txtID.getText() + "," + this.txtName.getText() + "," + this.txtSurname.getText() + "," + (String)cmbFaculty.getValue());
-		ClientUI.chat.accept("updateUser " + this.txtId.getText() + " " + this.txtCreditcardnumber.getText()+ " " + this.txtSubscribernumber.getText() + " ");
+		/*ClientUI.chat.accept("updateUser " + this.txtId.getText() + " " + this.txtCreditcardnumber.getText()+ " " + this.txtSubscribernumber.getText() + " ");
 		if (ChatClient.s1.getId().equals("Error")) {
 			System.out.println("Subscriber ID Not Found");
 
 		} else {
 			System.out.println("Subscriber ID Updated");
-		}
+		}*/
 	}
 	
 }
