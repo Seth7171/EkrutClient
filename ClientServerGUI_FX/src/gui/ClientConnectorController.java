@@ -55,11 +55,6 @@ public class ClientConnectorController {
 			System.out.println("You must enter a ip number");
 					
 		}
-		
-		/*if (ClientUI.chat.display()) {
-			System.out.println("Worng ip or server down cannot connect");
-			return;
-		}*/
 		else
 		{
 			try {

@@ -15,3 +15,8 @@
     -fx-background-insets: 0;
     -fx-text-fill: white;
 }
+
+#btnRefresh {
+    background-image: url("@logo.png");
+	background-repeat: no-repeat;
+}
