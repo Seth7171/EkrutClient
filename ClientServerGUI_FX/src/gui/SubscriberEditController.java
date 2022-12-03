@@ -72,13 +72,16 @@ public class SubscriberEditController implements Initializable {
 	private Button btnUpdate=null;
 	
 	@FXML
+	private Button btnRefresh=null;
+	
+	@FXML
 	 private TableView<Subscriber> Table;
 	
 	
 	private ObservableList<Subscriber> observablesubs = FXCollections.observableArrayList();
 	ObservableList<String> list;
 		
-	public void loadSubscriber(Subscriber s1) {
+	public void loadSubscriber() {
 		ClientUI.chat.accept("login");
 		Table.getItems().clear();
 		
@@ -108,7 +111,7 @@ public class SubscriberEditController implements Initializable {
 		txtCreditcardnumber.setCellValueFactory(new PropertyValueFactory<>("Creditcardnumber"));
 		txtSubscribernumber.setCellValueFactory(new PropertyValueFactory<>("Subscribernumber"));
 		Table.setItems(observablesubs);
-		loadSubscriber(s);
+		loadSubscriber();
 		
 	}
 	
