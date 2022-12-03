@@ -1,18 +1,9 @@
 package gui;
 
-import java.awt.print.Book;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.ResourceBundle;
-
 import client.ChatClient;
-import client.ClientController;
 import client.ClientUI;
-import javafx.application.Application;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,26 +14,21 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import logic.Subscriber;
 
 public class SubscriberEditController implements Initializable {
-	private Subscriber s;
 		
 	@FXML
 	private Label lblName;
 	@FXML
 	private Label lblSurname;
 	@FXML
-	private Label lblFaculty;
+	private Label lblselect;
 	
 	@FXML
 	private TableColumn<Subscriber, String>  txtFirstname;
@@ -139,12 +125,16 @@ public class SubscriberEditController implements Initializable {
             Scene scene = new Scene(root);
             SubscriberSaveController subscribersavecontroller = loader.<SubscriberSaveController>getController();
             subscribersavecontroller.loadSubscriber(selectedsub);
-            scene.getStylesheets().add(getClass().getResource("/gui/ClientConnector.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/gui/SubscriberSave.css").toExternalForm());
             primaryStage.setTitle("Save Subscriber Details");
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.show();
+            lblselect.setVisible(false);
 		 } 
+        else {
+        	lblselect.setVisible(true);
+        }
 	}
 	
 }
