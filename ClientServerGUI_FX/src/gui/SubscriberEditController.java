@@ -80,7 +80,7 @@ public class SubscriberEditController implements Initializable {
 		
 	public void loadSubscriber(Subscriber s1) {
 		ClientUI.chat.accept("login");
-		Table.getItems().removeAll();
+		Table.getItems().clear();
 		
         for(Subscriber s : ChatClient.subs){
             if (s.toString().equals("null"))
@@ -99,7 +99,7 @@ public class SubscriberEditController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {	
-		System.out.println(ChatClient.subs);
+		System.out.println();
 		txtFirstname.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
 		txtLastname.setCellValueFactory(new PropertyValueFactory<>("Lastname"));
 		txtId.setCellValueFactory(new PropertyValueFactory<>("Id"));
@@ -131,10 +131,12 @@ public class SubscriberEditController implements Initializable {
             Stage primaryStage = new Stage();
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/SubscriberSave.fxml"));
+            
             Parent root = loader.<Parent>load();
             Scene scene = new Scene(root);
             SubscriberSaveController subscribersavecontroller = loader.<SubscriberSaveController>getController();
             subscribersavecontroller.loadSubscriber(selectedsub);
+            scene.getStylesheets().add(getClass().getResource("/gui/ClientConnector.css").toExternalForm());
             primaryStage.setTitle("Save Subscriber Details");
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
