@@ -7,6 +7,7 @@ package client;
 import ocsf.client.*;
 import client.*;
 import common.ChatIF;
+import javafx.scene.control.Alert;
 import logic.Subscriber;
 
 import java.io.*;
@@ -62,8 +63,9 @@ public class ChatClient extends AbstractClient
    */
   public void handleMessageFromServer(Object msg) 
   {
-	  System.out.println(msg);
+	  subs = new ArrayList<>();
 	  System.out.println("--> handleMessageFromServer");
+	  System.out.println(msg);
      
 	  awaitResponse = false;
 	  String st;
@@ -75,7 +77,6 @@ public class ChatClient extends AbstractClient
 	  try {
 		while( (line=bufReader.readLine()) != null )
 		  {
-			System.out.println(line);
 			s1 = new Subscriber(null,null,null,null,null,null,null);
 			  String[] result = line.split("\\s");
 			  s1.setFirstname(result[0]);
@@ -98,8 +99,8 @@ public class ChatClient extends AbstractClient
   
   public void handleMessageFromServer(String msg) 
   {
-	  System.out.println(msg);
 	  System.out.println("--> handleMessageFromServer");
+	  System.out.println(msg);
 	  servermsg = msg.toString();
 	  awaitResponse = false;
   }
@@ -129,12 +130,9 @@ public class ChatClient extends AbstractClient
     catch(IOException e)
     {
     	e.printStackTrace();
-      clientUI.display("Could not send message to server: Terminating client."+ e);
       quit();
     }
   }
-
-  
   /**
    * This method terminates the client.
    */
