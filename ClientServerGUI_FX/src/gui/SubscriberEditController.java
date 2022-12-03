@@ -34,7 +34,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import logic.Subscriber;
 
-public class SucscriberEditController implements Initializable {
+public class SubscriberEditController implements Initializable {
 	private Subscriber s;
 		
 	@FXML
@@ -139,16 +139,6 @@ public class SucscriberEditController implements Initializable {
             primaryStage.setResizable(false);
             primaryStage.show();
 		 } 
-
-		
-		//ClientUI.chat.accept("1," + this.txtID.getText() + "," + this.txtName.getText() + "," + this.txtSurname.getText() + "," + (String)cmbFaculty.getValue());
-		/*ClientUI.chat.accept("updateUser " + this.txtId.getText() + " " + this.txtCreditcardnumber.getText()+ " " + this.txtSubscribernumber.getText() + " ");
-		if (ChatClient.s1.getId().equals("Error")) {
-			System.out.println("Subscriber ID Not Found");
-
-		} else {
-			System.out.println("Subscriber ID Updated");
-		}*/
 	}
 	
 }

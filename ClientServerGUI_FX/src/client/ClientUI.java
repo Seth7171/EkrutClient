@@ -6,7 +6,7 @@ import logic.Subscriber;
 import java.util.Vector;
 import gui.SubscriberSaveController;
 import gui.ClientConnectorController;
-import gui.SucscriberEditController;
+import gui.SubscriberEditController;
 import client.ClientController;
 
 public class ClientUI extends Application {

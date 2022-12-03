@@ -67,10 +67,10 @@ public class ClientConnectorController {
 			ClientUI.chat.getClient().openConnection();
 			((Node)event.getSource()).getScene().getWindow().hide(); //hiding primary window
 			Stage primaryStage = new Stage();
-			Pane root = loader.load(getClass().getResource("/gui/SucscriberEdit.fxml").openStream());	
+			Pane root = loader.load(getClass().getResource("/gui/SubscriberEdit.fxml").openStream());	
 		
 			Scene scene = new Scene(root);			
-			scene.getStylesheets().add(getClass().getResource("/gui/SucscriberEdit.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/gui/SubscriberEdit.css").toExternalForm());
 			primaryStage.setTitle("Client Editor");
 
 			primaryStage.setScene(scene);		
