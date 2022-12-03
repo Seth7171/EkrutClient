@@ -14,8 +14,8 @@
       <TextField id="lblName" fx:id="txtFisrtName" editable="false" layoutX="104.0" layoutY="102.0" opacity="0.3" />
       <TextField id="lblSurname" fx:id="txtLastNameame" editable="false" layoutX="104.0" layoutY="160.0" opacity="0.3" />
       <TextField id="lblName" fx:id="txtID" editable="false" layoutX="103.0" layoutY="50.0" opacity="0.3" />
-      <Button fx:id="btnclose" layoutX="198.0" layoutY="310.0" mnemonicParsing="false" onAction="#Closebtn" style="-fx-background-color: blue;" text="Close" />
-      <Button fx:id="btnSave" layoutX="92.0" layoutY="310.0" mnemonicParsing="false" onAction="#Savebtn" style="-fx-background-color: blue;" text="Save" />
+      <Button fx:id="btnclose" layoutX="198.0" layoutY="310.0" mnemonicParsing="false" onAction="#Closebtn" text="Close" />
+      <Button fx:id="btnSave" layoutX="92.0" layoutY="310.0" mnemonicParsing="false" onAction="#Savebtn" text="Save" />
       <Label id="lblName" layoutX="11.0" layoutY="209.0" text="Credit.CardNumber:" />
       <Label id="lblName" layoutX="23.0" layoutY="248.0" text="Sub.Number" />
       <TextField id="lblSurname" fx:id="txtCreditCardNumber" layoutX="137.0" layoutY="205.0" />

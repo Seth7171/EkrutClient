@@ -69,7 +69,7 @@ public class SubscriberEditController implements Initializable {
 	private Button btnclose=null;
 	
 	@FXML
-	private Button btnSave=null;
+	private Button btnUpdate=null;
 	
 	@FXML
 	 private TableView<Subscriber> Table;
@@ -124,7 +124,7 @@ public class SubscriberEditController implements Initializable {
         primaryStage.show();
 	}
 	
-	public void Savebtn(ActionEvent event) throws Exception {
+	public void Updatebtn(ActionEvent event) throws Exception {
         if (Table.getSelectionModel().getSelectedItem() != null) {
             Subscriber selectedsub = Table.getSelectionModel().getSelectedItem();
             Stage primaryStage = new Stage();

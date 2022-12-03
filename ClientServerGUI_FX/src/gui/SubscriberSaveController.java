@@ -80,14 +80,6 @@ public class SubscriberSaveController implements Initializable {
 	
 	public void Closebtn(ActionEvent event) throws Exception {
         ((Node)event.getSource()).getScene().getWindow().hide();
-        
-        Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/AcademicFrame.fxml"));
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/gui/AcademicFrame.css").toExternalForm());
-        primaryStage.setTitle("Academic Managment Tool");
-        primaryStage.setScene(scene);
-        primaryStage.show();
 	}
 	
 	public void Savebtn(ActionEvent event) throws Exception {
@@ -95,14 +87,13 @@ public class SubscriberSaveController implements Initializable {
 		s1.setId(txtID.getText());
 		s1.setCreditcardnumber(txtCreditCardNumber.getText());
 		s1.setSubscribernumber(txtSubNumber.getText());
-
-		//ClientUI.chat.accept("1," + this.txtID.getText() + "," + this.txtName.getText() + "," + this.txtSurname.getText() + "," + (String)cmbFaculty.getValue());
-		ClientUI.chat.accept("change " + this.txtID.getText() + " " + this.txtCreditCardNumber.getText() + " " + this.txtSubNumber.getText());
-		if (ChatClient.s1.getId().equals("Error")) {
-			System.out.println("Student ID Not Found");
+		System.out.println("updateUser " + this.txtID.getText() + " " + this.txtCreditCardNumber.getText() + " " + this.txtSubNumber.getText());
+		ClientUI.chat.accept("updateUser " + this.txtID.getText() + " " + this.txtCreditCardNumber.getText() + " " + this.txtSubNumber.getText());
+		if (ChatClient.equals("Error")) {
+			System.out.println("Subscriber Save Failed");
 
 		} else {
-			System.out.println("Student ID Updated");
+			System.out.println("Subscriber Save Succeed");
 		}
 	}
 	
