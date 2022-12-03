@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SucscriberEditController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SubscriberEditController">
    <children>
       <Button fx:id="btnclose" layoutX="430.0" layoutY="344.0" mnemonicParsing="false" onAction="#Closebtn" text="Close" />
       <Button fx:id="btnSave" layoutX="108.0" layoutY="344.0" mnemonicParsing="false" onAction="#Savebtn" text="Update" />
