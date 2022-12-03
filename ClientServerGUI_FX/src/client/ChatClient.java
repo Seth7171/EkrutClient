@@ -67,18 +67,33 @@ public class ChatClient extends AbstractClient
 	  awaitResponse = false;
 	  String st;
 	  st=msg.toString();
-	  String[] lines = st.split(System.getProperty("line.separator"));
-	  for (int i = 0 ; i<lines.length ; i++) {
-		  String[] result = lines[i].split("\\s");
-		  s1.setFirstname(result[0]);
-		  s1.setLastname(result[1]);
-		  s1.setId(result[2]);
-		  s1.setPhonenumber(result[3]);
-		  s1.setEmailaddress(result[4]);
-		  s1.setCreditcardnumber(result[5]);
-		  s1.setSubscribernumber(result[6]);
-		  subs.add(s1);
-	  }
+	  System.out.println("aaaa"+st);
+	  BufferedReader bufReader = new BufferedReader(new StringReader(st));
+	  //String[] lines = st.split(System.getProperty("line.separator"));
+	  //System.out.println("bbbbbbbb " + lines);
+	  String line=null;
+	  try {
+		while( (line=bufReader.readLine()) != null )
+		  {
+			System.out.println(line);
+			s1 = new Subscriber(null,null,null,null,null,null,null);
+			  String[] result = line.split("\\s");
+			  s1.setFirstname(result[0]);
+			  s1.setLastname(result[1]);
+			  s1.setId(result[2]);
+			  s1.setPhonenumber(result[3]);
+			  s1.setEmailaddress(result[4]);
+			  s1.setCreditcardnumber(result[5]);
+			  s1.setSubscribernumber(result[6]);
+			  subs.add(s1);
+		  }
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	 // for (String line : lines) {
+
+	 // }
   }
 
   /**
