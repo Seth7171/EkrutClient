@@ -47,10 +47,16 @@ public class SubscriberSaveController implements Initializable {
 	private TextField txtID;
 	
 	@FXML
-	private TextField txtName;
+	private TextField txtFisrtName;
 	
 	@FXML
-	private TextField txtSurname;
+	private TextField txtLastNameame;
+	
+	@FXML
+	private TextField txtCreditCardNumber;
+	
+	@FXML
+	private TextField txtSubNumber;
 	
 	@FXML
 	private Button btnclose=null;
@@ -61,8 +67,10 @@ public class SubscriberSaveController implements Initializable {
 	public void loadSubscriber(Subscriber s1) {
 		s=s1;
 		txtID.setText(s.getId());
-		this.txtName.setText(s.getFirstname());
-		this.txtSurname.setText(s.getLastname());		
+		txtFisrtName.setText(s.getFirstname());
+		txtLastNameame.setText(s.getLastname());		
+		txtCreditCardNumber.setText(s.getCreditcardnumber());
+		txtSubNumber.setText(s.getSubscribernumber());
 	}
 
 	@Override
@@ -85,11 +93,11 @@ public class SubscriberSaveController implements Initializable {
 	public void Savebtn(ActionEvent event) throws Exception {
 		Subscriber s1 = new Subscriber(null, null, null, null, null, null, null);
 		s1.setId(txtID.getText());
-		s1.setCreditcardnumber(txtName.getText());
-		s1.setSubscribernumber(txtSurname.getText());
+		s1.setCreditcardnumber(txtCreditCardNumber.getText());
+		s1.setSubscribernumber(txtSubNumber.getText());
 
 		//ClientUI.chat.accept("1," + this.txtID.getText() + "," + this.txtName.getText() + "," + this.txtSurname.getText() + "," + (String)cmbFaculty.getValue());
-		ClientUI.chat.accept("change " + this.txtID.getText() + " " + this.txtName.getText() + " " + this.txtSurname.getText() + " " + "");
+		ClientUI.chat.accept("change " + this.txtID.getText() + " " + this.txtCreditCardNumber.getText() + " " + this.txtSubNumber.getText());
 		if (ChatClient.s1.getId().equals("Error")) {
 			System.out.println("Student ID Not Found");
 
