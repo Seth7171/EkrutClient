@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import client.ChatClient;
 import client.ClientController;
 import client.ClientUI;
+import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -78,19 +79,10 @@ public class SucscriberEditController implements Initializable {
 	ObservableList<String> list;
 		
 	public void loadSubscriber(Subscriber s1) {
-		/*this.s=s1;
-		this.txtFirstname.setText(s.getFirstname());
-		this.txtLastname.setText(s.getLastname());
-		this.txtId.setText(s.getId());
-		this.txtPhonenumber.setText(s.getPhonenumber());
-		this.txtEmailaddress.setText(s.getEmailaddress());
-		this.txtCreditcardnumber.setText(s.getCreditcardnumber());
-		this.txtSubscribernumber.setText(s.getSubscribernumber());		*/
 		ClientUI.chat.accept("login");
 		Table.getItems().removeAll();
 		
         for(Subscriber s : ChatClient.subs){
-            // TODO: REDO this part the to string ios not very optimal
             if (s.toString().equals("null"))
                 continue;
             Subscriber subsData = new Subscriber("", "" ,"","","","","");
@@ -108,39 +100,15 @@ public class SucscriberEditController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {	
 		System.out.println(ChatClient.subs);
-		/*ObservableList<List<StringProperty>> data = FXCollections.observableArrayList();
-		List<StringProperty> firstRow = new ArrayList<>();
-		firstRow.add(0, new SimpleStringProperty(ChatClient.subs.get(0).getId()));
-		Table.setItems(data);*/
-		//for (Subscriber s : ChatClient.subs) {
-			txtFirstname.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
-			txtLastname.setCellValueFactory(new PropertyValueFactory<>("Lastname"));
-			txtId.setCellValueFactory(new PropertyValueFactory<>("Id"));
-			txtPhonenumber.setCellValueFactory(new PropertyValueFactory<>("Phonenumber"));
-			txtEmailaddress.setCellValueFactory(new PropertyValueFactory<>("Emailaddress"));
-			txtCreditcardnumber.setCellValueFactory(new PropertyValueFactory<>("Creditcardnumber"));
-			txtSubscribernumber.setCellValueFactory(new PropertyValueFactory<>("Subscribernumber"));
-		//}
+		txtFirstname.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
+		txtLastname.setCellValueFactory(new PropertyValueFactory<>("Lastname"));
+		txtId.setCellValueFactory(new PropertyValueFactory<>("Id"));
+		txtPhonenumber.setCellValueFactory(new PropertyValueFactory<>("Phonenumber"));
+		txtEmailaddress.setCellValueFactory(new PropertyValueFactory<>("Emailaddress"));
+		txtCreditcardnumber.setCellValueFactory(new PropertyValueFactory<>("Creditcardnumber"));
+		txtSubscribernumber.setCellValueFactory(new PropertyValueFactory<>("Subscribernumber"));
 		Table.setItems(observablesubs);
 		loadSubscriber(s);
-	    /*txtFirstname.setCellValueFactory(new PropertyValueFactory<>("txtFirstname"));
-	    txtLastname.setCellValueFactory(new PropertyValueFactory<>("txtLastname"));
-	    txtId.setCellValueFactory(new PropertyValueFactory<>("txtId"));
-	    txtPhonenumber.setCellValueFactory(new PropertyValueFactory<>("txtPhonenumber"));
-	    txtEmailaddress.setCellValueFactory(new PropertyValueFactory<>("txtEmailaddress"));
-	    txtCreditcardnumber.setCellValueFactory(new PropertyValueFactory<>("txtCreditcardnumber"));
-	    txtSubscribernumber.setCellValueFactory(new PropertyValueFactory<>("txtSubscribernumber"));
-	    if (ChatClient.subs != null) {
-	      ObservableList<Subscriber> subsshow = FXCollections.observableArrayList(ChatClient.subs);
-	      Table.setItems(subsshow);
-	    } 
-		System.out.println(ChatClient.subs.get(0));
-	   /* if (ChatClient.subs != null) {
-	        ObservableList<Subscriber> Subs = FXCollections.observableArrayList(ChatClient.subs);
-	        this.TableView.setItems(Subs);*/
-		//for (int i  = 0 ; i<ChatClient.subs.size() ; i++) {	
-			//loadSubscriber(ChatClient.subs.get(0));
-		//}
 		
 	}
 	
@@ -157,14 +125,21 @@ public class SucscriberEditController implements Initializable {
 	}
 	
 	public void Savebtn(ActionEvent event) throws Exception {
-		Subscriber s1 = new Subscriber(null, null, null, null, null, null, null);
-		s1.setFirstname(txtFirstname.getText());
-		s1.setLastname(txtLastname.getText());
-		s1.setId(txtId.getText());
-		s1.setPhonenumber(txtPhonenumber.getText());
-		s1.setEmailaddress(txtEmailaddress.getText());
-		s1.setCreditcardnumber(txtCreditcardnumber.getText());
-		s1.setSubscribernumber(txtSubscribernumber.getText());
+		if (Table.getSelectionModel().getSelectedItem() != null) {
+		      Subscriber selectedsub = Table.getSelectionModel().getSelectedItem();
+		      ((Node)event.getSource()).getScene().getWindow().hide();
+		      FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ClientConnector.fxml"));
+		      Parent root = loader.<Parent>load();
+		      Stage primaryStage = new Stage();
+		      Scene scene = new Scene(root);
+		      scene.getStylesheets().add(getClass().getResource("/gui/ClientConnector.css").toExternalForm());
+		     // SubscriberSaveController subscribersavecontroller = loader.<SubscriberSaveController>getController();
+		     // subscribersavecontroller.loadSubscriber(selectedsub);
+		      primaryStage.setTitle("Save Subscriber Details");
+		      primaryStage.setScene(scene);
+		      primaryStage.setResizable(false);
+		      primaryStage.show();
+		 } 
 
 		
 		//ClientUI.chat.accept("1," + this.txtID.getText() + "," + this.txtName.getText() + "," + this.txtSurname.getText() + "," + (String)cmbFaculty.getValue());
