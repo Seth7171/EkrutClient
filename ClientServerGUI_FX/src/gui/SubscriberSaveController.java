@@ -3,8 +3,9 @@ package gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import client.ChatClient;
-import client.ClientUI;
+import application.client.ChatClient;
+import application.client.ClientUI;
+import data.UserData.Subscriber;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +13,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import logic.Subscriber;
 
 public class SubscriberSaveController implements Initializable {
 	private Subscriber s;

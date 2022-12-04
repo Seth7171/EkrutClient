@@ -2,8 +2,10 @@ package gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import client.ChatClient;
-import client.ClientUI;
+
+import application.client.ChatClient;
+import application.client.ClientUI;
+import data.UserData.Subscriber;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,7 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import logic.Subscriber;
+import javafx.stage.StageStyle;
 
 public class SubscriberEditController implements Initializable {
 		
@@ -66,7 +68,8 @@ public class SubscriberEditController implements Initializable {
 	
 	private ObservableList<Subscriber> observablesubs = FXCollections.observableArrayList();
 	ObservableList<String> list;
-		
+	double xoffset;
+	double yoffset;
 	public void loadSubscriber() {
 		ClientUI.chat.accept("login");
 		Table.getItems().clear();
@@ -109,6 +112,17 @@ public class SubscriberEditController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/gui/ClientConnector.fxml"));
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/gui/ClientConnector.css").toExternalForm());
+        root.setOnMousePressed(event1 -> {
+            xoffset = event1.getSceneX();
+            yoffset = event1.getSceneY();
+        });
+
+        // event handler for when the mouse is pressed AND dragged to move the window
+        root.setOnMouseDragged(event1 -> {
+            primaryStage.setX(event1.getScreenX()-xoffset);
+            primaryStage.setY(event1.getScreenY()-yoffset);
+        });
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("Academic Managment Tool");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -126,6 +140,17 @@ public class SubscriberEditController implements Initializable {
             SubscriberSaveController subscribersavecontroller = loader.<SubscriberSaveController>getController();
             subscribersavecontroller.loadSubscriber(selectedsub);
             scene.getStylesheets().add(getClass().getResource("/gui/SubscriberSave.css").toExternalForm());
+            root.setOnMousePressed(event1 -> {
+                xoffset = event1.getSceneX();
+                yoffset = event1.getSceneY();
+            });
+
+            // event handler for when the mouse is pressed AND dragged to move the window
+            root.setOnMouseDragged(event1 -> {
+                primaryStage.setX(event1.getScreenX()-xoffset);
+                primaryStage.setY(event1.getScreenY()-yoffset);
+            });
+            primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setTitle("Save Subscriber Details");
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
