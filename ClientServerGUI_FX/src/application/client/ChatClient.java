@@ -2,16 +2,17 @@
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com 
 
-package client;
+package application.client;
 
 import ocsf.client.*;
-import client.*;
 import common.ChatIF;
+import data.UserData.Subscriber;
 import javafx.scene.control.Alert;
-import logic.Subscriber;
 
 import java.io.*;
 import java.util.ArrayList;
+
+import application.client.*;
 
 /**
  * This class overrides some of the methods defined in the abstract

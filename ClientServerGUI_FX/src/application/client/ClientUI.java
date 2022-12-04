@@ -1,13 +1,16 @@
-package client;
+package application.client;
 import javafx.application.Application;
 
 import javafx.stage.Stage;
-import logic.Subscriber;
+import javafx.stage.StageStyle;
+
 import java.util.Vector;
+
+import application.client.ClientController;
+import data.UserData.Subscriber;
 import gui.SubscriberSaveController;
 import gui.ClientConnectorController;
 import gui.SubscriberEditController;
-import client.ClientController;
 
 public class ClientUI extends Application {
 	public static ClientController chat; //only one instance
@@ -19,7 +22,7 @@ public class ClientUI extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		ClientConnectorController aFrame = new ClientConnectorController(); // create StudentFrame
-		 
+		primaryStage.initStyle(StageStyle.UNDECORATED);
 		aFrame.start(primaryStage);
 	}
 	

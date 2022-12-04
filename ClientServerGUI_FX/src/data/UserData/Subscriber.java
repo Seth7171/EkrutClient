@@ -1,4 +1,4 @@
-package logic;
+package data.UserData;
 
 public class Subscriber {
 
