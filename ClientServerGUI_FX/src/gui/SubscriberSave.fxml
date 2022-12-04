@@ -27,9 +27,9 @@
             <Label id="lblName" layoutX="26.0" layoutY="4.0" text="Sub. ID" />
             <Label id="lblName" layoutX="23.0" layoutY="57.0" text="First.Name:" />
             <Label id="lblSurname" layoutX="23.0" layoutY="115.0" text="Last.name:" />
-            <TextField id="lblName" fx:id="txtFisrtName" editable="false" layoutX="93.0" layoutY="52.0" opacity="0.5" />
-            <TextField id="lblSurname" fx:id="txtLastNameame" editable="false" layoutX="93.0" layoutY="110.0" opacity="0.5" />
-            <TextField id="lblName" fx:id="txtID" editable="false" layoutX="92.0" opacity="0.5" />
+            <TextField id="lblName" fx:id="txtFisrtName" editable="false" layoutX="93.0" layoutY="52.0" opacity="0.7" />
+            <TextField id="lblSurname" fx:id="txtLastNameame" editable="false" layoutX="93.0" layoutY="110.0" opacity="0.7" />
+            <TextField id="lblName" fx:id="txtID" editable="false" layoutX="92.0" opacity="0.7" />
             <Label id="lblName" layoutY="159.0" text="Credit.CardNumber:" />
             <Label id="lblName" layoutX="12.0" layoutY="198.0" text="Sub.Number" />
             <TextField id="lblSurname" fx:id="txtCreditCardNumber" layoutX="126.0" layoutY="155.0" />

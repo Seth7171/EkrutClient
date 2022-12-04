@@ -69,10 +69,20 @@ public class SubscriberSaveController implements Initializable {
 		s1.setId(txtID.getText());
 		s1.setCreditcardnumber(txtCreditCardNumber.getText());
 		s1.setSubscribernumber(txtSubNumber.getText());
-		if (s1.getCreditcardnumber().isBlank()) {
+		if (s1.getCreditcardnumber().contains(" ")) {
+			txtCreditCardNumber.clear();
+			txtCreditCardNumber.setPromptText("Please no Spaces");
+			return;
+		}
+		if (s1.getSubscribernumber().contains(" ")) {
+			txtSubNumber.clear();
+			txtSubNumber.setPromptText("Please no Spaces");
+			return;
+		}
+		if (s1.getCreditcardnumber().trim().isEmpty() || s1.getSubscribernumber() == null) {
 			s1.setCreditcardnumber("null");
 		}
-		if (s1.getSubscribernumber().isBlank()) {
+		if (s1.getSubscribernumber().trim().isEmpty()  || s1.getCreditcardnumber() == null) {
 			s1.setSubscribernumber("null");
 		}
 		System.out.println("updateUser " + s1.getId() + " " + s1.getCreditcardnumber() + " " + s1.getSubscribernumber());

@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -154,7 +155,8 @@ public class SubscriberEditController implements Initializable {
             primaryStage.setTitle("Save Subscriber Details");
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
-            primaryStage.show();
+            primaryStage.initModality(Modality.APPLICATION_MODAL);
+            primaryStage.showAndWait();
             lblselect.setVisible(false);
 		 } 
         else {
