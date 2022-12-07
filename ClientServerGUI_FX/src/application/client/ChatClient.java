@@ -67,6 +67,7 @@ public class ChatClient extends AbstractClient
 	  subs = new ArrayList<>();
 	  System.out.println("--> handleMessageFromServer");
 	  System.out.println(msg);
+	  servermsg = msg.toString();
      
 	  awaitResponse = false;
 	  String st;
@@ -102,7 +103,6 @@ public class ChatClient extends AbstractClient
   {
 	  System.out.println("--> handleMessageFromServer");
 	  System.out.println(msg);
-	  servermsg = msg.toString();
 	  awaitResponse = false;
   }
 
