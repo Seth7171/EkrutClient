@@ -87,7 +87,7 @@ public class SubscriberSaveController implements Initializable {
 		}
 		System.out.println("updateUser " + s1.getId() + " " + s1.getCreditcardnumber() + " " + s1.getSubscribernumber());
 		ClientUI.chat.accept("updateUser " + s1.getId() + " " + s1.getCreditcardnumber() + " " + s1.getSubscribernumber());
-		if (ChatClient.servermsg.equals("true")) {
+		if (!ChatClient.servermsg.equals("true")) {
 			System.out.println("Subscriber Save Failed");
 			lblFailed.setVisible(true);
 
