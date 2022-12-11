@@ -4,8 +4,8 @@
 package application.client;
 import java.io.*;
 
-import application.client.*;
-import common.ChatIF;
+
+import common.connectivity.ChatIF;
 
 
 /**
