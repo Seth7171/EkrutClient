@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import application.client.ChatClient;
 import application.client.ClientUI;
-import data.UserData.Subscriber;
+import common.connectivity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,25 +34,25 @@ public class SubscriberEditController implements Initializable {
 	private Label lblselect;
 	
 	@FXML
-	private TableColumn<Subscriber, String>  txtFirstname;
+	private TableColumn<User, String>  txtFirstname;
 	
 	@FXML
-	private TableColumn<Subscriber, String>   txtLastname;
+	private TableColumn<User, String>   txtLastname;
 	
 	@FXML
-	private TableColumn<Subscriber, String>   txtId;
+	private TableColumn<User, String>   txtId;
 	
 	@FXML
-	private TableColumn<Subscriber, String>   txtPhonenumber;
+	private TableColumn<User, String>   txtPhonenumber;
 	
 	@FXML
-	private TableColumn<Subscriber, String>   txtEmailaddress;
+	private TableColumn<User, String>   txtEmailaddress;
 	
 	@FXML
-	private TableColumn<Subscriber, String>  txtCreditcardnumber;
+	private TableColumn<User, String>  txtCreditcardnumber;
 	
 	@FXML
-	private TableColumn<Subscriber, String>  txtSubscribernumber;
+	private TableColumn<User, String>  txtSubscribernumber;
 	
 	@FXML
 	private Button btnclose=null;
@@ -64,10 +64,10 @@ public class SubscriberEditController implements Initializable {
 	private Button btnRefresh=null;
 	
 	@FXML
-	 private TableView<Subscriber> Table;
+	 private TableView<User> Table;
 	
 	
-	private ObservableList<Subscriber> observablesubs = FXCollections.observableArrayList();
+	private ObservableList<User> observablesubs = FXCollections.observableArrayList();
 	ObservableList<String> list;
 	double xoffset;
 	double yoffset;
@@ -75,10 +75,10 @@ public class SubscriberEditController implements Initializable {
 		ClientUI.chat.accept("login");
 		Table.getItems().clear();
 		
-        for(Subscriber s : ChatClient.subs){
+        for(User s : ChatClient.subs){
             if (s.toString().equals("null"))
                 continue;
-            Subscriber subsData = new Subscriber("", "" ,"","","","","");
+            User subsData = new User("", "" ,"","","","","");
             subsData.setFirstname(s.getFirstname());
             subsData.setLastname(s.getLastname());
             subsData.setId(s.getId());
@@ -131,7 +131,7 @@ public class SubscriberEditController implements Initializable {
 	
 	public void Updatebtn(ActionEvent event) throws Exception {
         if (Table.getSelectionModel().getSelectedItem() != null) {
-            Subscriber selectedsub = Table.getSelectionModel().getSelectedItem();
+        	User selectedsub = Table.getSelectionModel().getSelectedItem();
             Stage primaryStage = new Stage();
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/SubscriberSave.fxml"));

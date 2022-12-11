@@ -7,7 +7,7 @@ import javafx.stage.StageStyle;
 import java.util.Vector;
 
 import application.client.ClientController;
-import data.UserData.Subscriber;
+import common.connectivity.User;
 import gui.SubscriberSaveController;
 import gui.ClientConnectorController;
 import gui.SubscriberEditController;

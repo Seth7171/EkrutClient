@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import application.client.ChatClient;
 import application.client.ClientUI;
-import data.UserData.Subscriber;
+import common.connectivity.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class SubscriberSaveController implements Initializable {
-	private Subscriber s;
+	private User s;
 	@FXML
 	private Label lblName;
 	@FXML
@@ -46,7 +46,7 @@ public class SubscriberSaveController implements Initializable {
 	@FXML
 	private Button btnSave=null;
 		
-	public void loadSubscriber(Subscriber s1) {
+	public void loadSubscriber(User s1) {
 		s=s1;
 		txtID.setText(s.getId());
 		txtFisrtName.setText(s.getFirstname());
@@ -65,7 +65,7 @@ public class SubscriberSaveController implements Initializable {
 	}
 	
 	public void Savebtn(ActionEvent event) throws Exception {
-		Subscriber s1 = new Subscriber(null, null, null, null, null, null, null);
+		User s1 = new User(null, null, null, null, null, null, null);
 		s1.setId(txtID.getText());
 		s1.setCreditcardnumber(txtCreditCardNumber.getText());
 		s1.setSubscribernumber(txtSubNumber.getText());

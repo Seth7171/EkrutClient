@@ -5,8 +5,8 @@
 package application.client;
 
 import ocsf.client.*;
-import common.ChatIF;
-import data.UserData.Subscriber;
+import common.connectivity.ChatIF;
+import common.connectivity.User;
 import javafx.scene.control.Alert;
 
 import java.io.*;
@@ -32,8 +32,8 @@ public class ChatClient extends AbstractClient
    * the display method in the client.
    */
   ChatIF clientUI; 
-  public static Subscriber  s1 = new Subscriber(null,null,null,null,null,null,null);
-  public static ArrayList<Subscriber> subs = new ArrayList<>();
+  public static User  s1 = new User(null,null,null,null,null,null,null);
+  public static ArrayList<User> subs = new ArrayList<>();
   public static boolean awaitResponse = false;
   public static String servermsg = new String();
 
@@ -79,7 +79,7 @@ public class ChatClient extends AbstractClient
 	  try {
 		while( (line=bufReader.readLine()) != null )
 		  {
-			s1 = new Subscriber(null,null,null,null,null,null,null);
+			s1 = new User(null,null,null,null,null,null,null);
 			  String[] result = line.split("\\s");
 			  s1.setFirstname(result[0]);
 			  s1.setLastname(result[1]);
