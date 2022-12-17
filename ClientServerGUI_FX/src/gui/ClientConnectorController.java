@@ -2,6 +2,8 @@ package gui;
 
 import application.client.ClientController;
 import application.client.ClientUI;
+import common.connectivity.Message;
+import common.connectivity.MessageFromClient;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -56,6 +58,7 @@ public class ClientConnectorController {
 		}
 		catch (Exception e) {
 			System.out.printf("Exception 1");
+			e.printStackTrace();
 			return;
 		}
 		Parent root = null;
@@ -109,7 +112,6 @@ public class ClientConnectorController {
 	
 	public void getExitBtn(ActionEvent event) throws Exception {
 		System.out.println("exit EkrutClient");
-		
 		System.exit(0);			
 	}
 }

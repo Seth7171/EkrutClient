@@ -15,6 +15,7 @@ public class User implements Serializable{
 	private String emailaddress;
 	private String isLoggedIn;
 	private String department;
+	private String status;
 
 
 //****************************************************************
@@ -28,9 +29,10 @@ public class User implements Serializable{
 		this.emailaddress = null;
 		this.password 	  = null;
 		this.username 	  = null;
+		this.status		  = null;
 	}
 	public User(String username, String password, String firstname,String lastname, String id,
-				String phonenumber, String emailaddress, String isLoggedIn, String department) {
+				String phonenumber, String emailaddress, String isLoggedIn, String department, String status) {
 		this.username 	  = username;
 		this.password 	  = password;
 		this.firstname 	  = firstname;
@@ -40,6 +42,7 @@ public class User implements Serializable{
 		this.emailaddress = emailaddress;
 		this.isLoggedIn   = isLoggedIn;
 		this.department   = department;
+		this.status 	  = status;
 	}
 	//  **************************************************************
 
@@ -113,6 +116,14 @@ public class User implements Serializable{
 
 	public void setDepartment(String department) {
 		this.department = department;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	//  **************************************************************
