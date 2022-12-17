@@ -39,7 +39,7 @@
          <font>
             <Font size="15.0" />
          </font></Text>
-      <Text fx:id="errorMessage" fill="RED" layoutX="12.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="264.0">
+      <Text fx:id="errorMessage" fill="RED" layoutX="12.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="264.0">
          <font>
             <Font size="17.0" />
          </font>

@@ -5,6 +5,7 @@ import java.io.Serializable;
 public enum MessageFromServer implements Serializable {
     ERROR_IMPORTING_ALL_MACHINE_PRODUCTS,   // V
     IMPORT_MACHINE_PRODUCTS_SUCCESSFUL,     // V
+    LOG_IN_ERROR_USER_DOES_NOT_EXIST,       // V
     ERROR_IMPORTING_MACHINE_PRODUCTS,       // V
     IMPORT_ORDER_TABLE_UNSUCCESSFUL,        // TODO
     LOGIN_FAILED_ALREADY_LOGGED_IN,         // V
