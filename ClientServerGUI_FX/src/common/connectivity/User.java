@@ -4,37 +4,45 @@ import java.io.Serializable;
 
 public class User implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	// CLASS FIELDS ***********************************************
+	private String username;
+	private String password;
 	private String firstname;
 	private String lastname;
 	private String id;
 	private String phonenumber;
 	private String emailaddress;
-	private String creditcardnumber;
-	private String subscribernumber;
 	private String isLoggedIn;
-	//                 ***********************************************
+	private String department;
+
+
+//****************************************************************
 
 	// CLASS Constructors ********************************************
 	public User() {
-
+		this.firstname 	  = null;
+		this.lastname 	  = null;
+		this.id 		  = null;
+		this.phonenumber  = null;
+		this.emailaddress = null;
+		this.password 	  = null;
+		this.username 	  = null;
 	}
-	public User(String firstname, String lastname, String id, String phonenumber, String emailaddress,
-				String creditcardnumber, String subscribernumber) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.id = id;
-		this.phonenumber = phonenumber;
+	public User(String username, String password, String firstname,String lastname, String id,
+				String phonenumber, String emailaddress, String isLoggedIn, String department) {
+		this.username 	  = username;
+		this.password 	  = password;
+		this.firstname 	  = firstname;
+		this.lastname 	  = lastname;
+		this.id 		  = id;
+		this.phonenumber  = phonenumber;
 		this.emailaddress = emailaddress;
-		this.creditcardnumber = creditcardnumber;
-		this.subscribernumber = subscribernumber;
+		this.isLoggedIn   = isLoggedIn;
+		this.department   = department;
 	}
-    //  **************************************************************
-	
+	//  **************************************************************
+
 	// CLASS GETTERS/SETTERS *****************************************
 	public String getFirstname() {
 		return firstname;
@@ -76,21 +84,6 @@ public class User implements Serializable{
 		this.emailaddress = emailaddress;
 	}
 
-	public String getCreditcardnumber() {
-		return creditcardnumber;
-	}
-
-	public void setCreditcardnumber(String creditcardnumber) {
-		this.creditcardnumber = creditcardnumber;
-	}
-
-	public String getSubscribernumber() {
-		return subscribernumber;
-	}
-
-	public void setSubscribernumber(String subscribernumber) {
-		this.subscribernumber = subscribernumber;
-	}
 
 	public String getIsLoggedIn() {
 		return isLoggedIn;
@@ -99,13 +92,37 @@ public class User implements Serializable{
 	public void setIsLoggedIn(String isLoggedIn) {
 		this.isLoggedIn = isLoggedIn;
 	}
-    //  **************************************************************
-	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	//  **************************************************************
+
 	// CLASS TO-STRING ***********************************************
 	@Override
 	public String toString(){
-		return String.format("%s %s %s %s %s %s %s\n",firstname,lastname,id,phonenumber,
-				emailaddress,creditcardnumber,subscribernumber.toString());
+		return String.format("%s, %s, %s, %s, %s, %s, %s, %s, %s\n"
+				,username, password, firstname, lastname, id, phonenumber,
+				emailaddress, isLoggedIn, department);
 	}
-    //  **************************************************************
+	//  **************************************************************
 }

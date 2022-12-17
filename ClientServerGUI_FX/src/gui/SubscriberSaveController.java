@@ -51,8 +51,7 @@ public class SubscriberSaveController implements Initializable {
 		txtID.setText(s.getId());
 		txtFisrtName.setText(s.getFirstname());
 		txtLastNameame.setText(s.getLastname());		
-		txtCreditCardNumber.setText(s.getCreditcardnumber());
-		txtSubNumber.setText(s.getSubscribernumber());
+
 	}
 
 	@Override
@@ -64,38 +63,38 @@ public class SubscriberSaveController implements Initializable {
         ((Node)event.getSource()).getScene().getWindow().hide();
 	}
 	
-	public void Savebtn(ActionEvent event) throws Exception {
-		User s1 = new User(null, null, null, null, null, null, null);
-		s1.setId(txtID.getText());
-		s1.setCreditcardnumber(txtCreditCardNumber.getText());
-		s1.setSubscribernumber(txtSubNumber.getText());
-		if (s1.getCreditcardnumber().contains(" ")) {
-			txtCreditCardNumber.clear();
-			txtCreditCardNumber.setPromptText("Please no Spaces");
-			return;
-		}
-		if (s1.getSubscribernumber().contains(" ")) {
-			txtSubNumber.clear();
-			txtSubNumber.setPromptText("Please no Spaces");
-			return;
-		}
-		if (s1.getCreditcardnumber().trim().isEmpty() || s1.getSubscribernumber() == null) {
-			s1.setCreditcardnumber("null");
-		}
-		if (s1.getSubscribernumber().trim().isEmpty()  || s1.getCreditcardnumber() == null) {
-			s1.setSubscribernumber("null");
-		}
-		System.out.println("updateUser " + s1.getId() + " " + s1.getCreditcardnumber() + " " + s1.getSubscribernumber());
-		ClientUI.chat.accept("updateUser " + s1.getId() + " " + s1.getCreditcardnumber() + " " + s1.getSubscribernumber());
-		if (!ChatClient.servermsg.equals("true")) {
-			System.out.println("Subscriber Save Failed");
-			lblFailed.setVisible(true);
-
-		} else {
-			System.out.println("Subscriber Save Succeed");
-			lblsuccess.setVisible(true);
-		}
-	}
+//	public void Savebtn(ActionEvent event) throws Exception {
+//		User s1 = new User(null, null, null, null, null, null, null);
+//		s1.setId(txtID.getText());
+//		s1.setCreditcardnumber(txtCreditCardNumber.getText());
+//		s1.setSubscribernumber(txtSubNumber.getText());
+//		if (s1.getCreditcardnumber().contains(" ")) {
+//			txtCreditCardNumber.clear();
+//			txtCreditCardNumber.setPromptText("Please no Spaces");
+//			return;
+//		}
+//		if (s1.getSubscribernumber().contains(" ")) {
+//			txtSubNumber.clear();
+//			txtSubNumber.setPromptText("Please no Spaces");
+//			return;
+//		}
+//		if (s1.getCreditcardnumber().trim().isEmpty() || s1.getSubscribernumber() == null) {
+//			s1.setCreditcardnumber("null");
+//		}
+//		if (s1.getSubscribernumber().trim().isEmpty()  || s1.getCreditcardnumber() == null) {
+//			s1.setSubscribernumber("null");
+//		}
+//		System.out.println("updateUser " + s1.getId() + " " + s1.getCreditcardnumber() + " " + s1.getSubscribernumber());
+//		ClientUI.chat.accept("updateUser " + s1.getId() + " " + s1.getCreditcardnumber() + " " + s1.getSubscribernumber());
+//		if (!ChatClient.servermsg.equals("true")) {
+//			System.out.println("Subscriber Save Failed");
+//			lblFailed.setVisible(true);
+//
+//		} else {
+//			System.out.println("Subscriber Save Succeed");
+//			lblsuccess.setVisible(true);
+//		}
+//	}
 	
 	
 }

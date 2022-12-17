@@ -5,6 +5,9 @@ import java.util.ResourceBundle;
 
 import application.client.ChatClient;
 import application.client.ClientUI;
+import common.connectivity.Message;
+import common.connectivity.MessageFromClient;
+import common.connectivity.MessageFromServer;
 import common.connectivity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -72,20 +75,19 @@ public class SubscriberEditController implements Initializable {
 	double xoffset;
 	double yoffset;
 	public void loadSubscriber() {
-		ClientUI.chat.accept("login");
+//		ClientUI.chat.accept("login"); TODO: here was the request for the Subscriber table. commented out because server does not support yet.
 		Table.getItems().clear();
 		
         for(User s : ChatClient.subs){
             if (s.toString().equals("null"))
                 continue;
-            User subsData = new User("", "" ,"","","","","");
+            User subsData = new User();
             subsData.setFirstname(s.getFirstname());
             subsData.setLastname(s.getLastname());
             subsData.setId(s.getId());
             subsData.setPhonenumber(s.getPhonenumber());
             subsData.setEmailaddress(s.getEmailaddress());
-            subsData.setCreditcardnumber(s.getCreditcardnumber());
-            subsData.setSubscribernumber(s.getSubscribernumber());
+
             Table.getItems().add(subsData);
         }
 	}
@@ -106,7 +108,7 @@ public class SubscriberEditController implements Initializable {
 	}
 	
 	public void Closebtn(ActionEvent event) throws Exception {
-		ClientUI.chat.accept("disconnect");
+		ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_DISCONNECT_CLIENT));
         ((Node)event.getSource()).getScene().getWindow().hide();
         
         Stage primaryStage = new Stage();

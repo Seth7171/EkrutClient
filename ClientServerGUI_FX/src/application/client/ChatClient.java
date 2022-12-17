@@ -4,6 +4,10 @@
 
 package application.client;
 
+import application.user.UserController;
+import common.connectivity.Message;
+import common.connectivity.MessageFromClient;
+import common.orders.Product;
 import ocsf.client.*;
 import common.connectivity.ChatIF;
 import common.connectivity.User;
@@ -32,10 +36,11 @@ public class ChatClient extends AbstractClient
    * the display method in the client.
    */
   ChatIF clientUI; 
-  public static User  s1 = new User(null,null,null,null,null,null,null);
+  public static User  s1 = new User();
   public static ArrayList<User> subs = new ArrayList<>();
   public static boolean awaitResponse = false;
   public static String servermsg = new String();
+//  private UserController userController  = UserController.getUserInstance();
 
   //Constructors ****************************************************
   
@@ -56,47 +61,26 @@ public class ChatClient extends AbstractClient
   }
 
   //Instance methods ************************************************
-    
   /**
    * This method handles all data that comes in from the server.
    *
-   * @param msg The message from the server.
+   * @param serverMessage The message from the server.
    */
-  public void handleMessageFromServer(Object msg) 
-  {
+  public void handleMessageFromServer(Object serverMessage) {
 	  subs = new ArrayList<>();
 	  System.out.println("--> handleMessageFromServer");
-	  System.out.println(msg);
-	  servermsg = msg.toString();
+	  System.out.println(serverMessage);
+	  servermsg = serverMessage.toString();
      
 	  awaitResponse = false;
-	  String st;
-	  st=msg.toString();
-	  BufferedReader bufReader = new BufferedReader(new StringReader(st));
-	  //String[] lines = st.split(System.getProperty("line.separator"));
-	  //System.out.println("bbbbbbbb " + lines);
-	  String line=null;
-	  try {
-		while( (line=bufReader.readLine()) != null )
-		  {
-			s1 = new User(null,null,null,null,null,null,null);
-			  String[] result = line.split("\\s");
-			  s1.setFirstname(result[0]);
-			  s1.setLastname(result[1]);
-			  s1.setId(result[2]);
-			  s1.setPhonenumber(result[3]);
-			  s1.setEmailaddress(result[4]);
-			  s1.setCreditcardnumber(result[5]);
-			  s1.setSubscribernumber(result[6]);
-			  subs.add(s1);
-		  }
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	 // for (String line : lines) {
+      Message message = (Message) serverMessage;
 
-	 // }
+      switch (message.getAnswer().name()) {
+          case "LOGIN_SUCCESSFUL":
+              UserController.setCurrentuser((User)message.getData());
+              System.out.println("message");
+              break;
+      }
   }
   
   public void handleMessageFromServer(String msg) 
@@ -112,10 +96,8 @@ public class ChatClient extends AbstractClient
    * @param message The message from the UI.    
    */
   
-  public void handleMessageFromClientUI(String message)  
-  {
-    try
-    {
+  public void handleMessageFromClientUI(Object message) { // TODO: fix client message sending
+    try {
     	openConnection();//in order to send more than one message
        	awaitResponse = true;
     	sendToServer(message);
