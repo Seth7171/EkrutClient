@@ -12,6 +12,8 @@ public enum MessageFromClient implements Serializable {
     REQUEST_DELETE_USER,            // V
     REQUEST_TABLE_USER,             // TODO
     REQUEST_ADD_USER,               // TODO
+    REQUEST_DISCONNECT,             // V
     REQUEST_LOGOUT,                 // V
     REQUEST_LOGIN,                  // V
+
 }

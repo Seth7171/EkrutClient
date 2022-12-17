@@ -22,5 +22,5 @@ public enum MessageFromServer implements Serializable {
     LOGIN_SUCCESSFUL,                       // V
     LOGOUT_ERROR,                           // V
     LOGIN_ERROR,                            // V
-    UNKNOWN_TASK                            // V
+    UNKNOWN_TASK,                           // V
 }
