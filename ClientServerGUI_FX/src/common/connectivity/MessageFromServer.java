@@ -3,22 +3,23 @@ package common.connectivity;
 import java.io.Serializable;
 
 public enum MessageFromServer implements Serializable {
-    IMPORT_ORDER_TABLE_UNSUCCESSFUL,
-    LOGIN_FAILED_ALREADY_LOGGED_IN,
-    IMPORT_USER_TABLE_SUCCESSFUL,
-    IMPORT_ORDER_TABLE_COMPLETE,
-    LOGOUT_ERROR_NOT_LOGGED_IN,
-    DELETE_USER_UNSUCCESSFUL,
-    IMPORT_USER_UNSUCCESSFUL,
-    DELETE_USER_SUCCESSFUL,
-    ADD_USER_UNSUCCESSFUL,
-    UPDATE_UNSUCCESSFUL,
-    ADD_USER_SUCCESSFUL,
-    UPDATE_SUCCESSFUL,
-    LOGOUT_SUCCESSFUL,
-    LOGIN_SUCCESSFUL,
-    LOGOUT_ERROR,
-    USER_EXISTS,
-    LOGIN_ERROR,
-    UNKNOWN_TASK
+    ERROR_IMPORTING_ALL_MACHINE_PRODUCTS,   // V
+    IMPORT_MACHINE_PRODUCTS_SUCCESSFUL,     // V
+    ERROR_IMPORTING_MACHINE_PRODUCTS,       // V
+    IMPORT_ORDER_TABLE_UNSUCCESSFUL,        // TODO
+    LOGIN_FAILED_ALREADY_LOGGED_IN,         // V
+    ERROR_GETTING_MACHINE_PRODUCTS,         // V
+    IMPORT_USER_TABLE_SUCCESSFUL,           // TODO
+    LOGOUT_FAILED_NOT_LOGGED_IN,            // V
+    IMPORT_ORDER_TABLE_COMPLETE,            // TODO
+    ERROR_ADDING_USER_EXISTS,               // V
+    USER_ADDED_SUCCESSFULLY,                // V
+    DELETE_USER_SUCCESSFUL,                 // V
+    ERROR_DELETING_USER,                    // V
+    ERROR_ADDING_USER,                      // V
+    LOGOUT_SUCCESSFUL,                      // V
+    LOGIN_SUCCESSFUL,                       // V
+    LOGOUT_ERROR,                           // V
+    LOGIN_ERROR,                            // V
+    UNKNOWN_TASK                            // V
 }
