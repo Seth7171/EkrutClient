@@ -16,7 +16,7 @@
       </ImageView>
       <Button fx:id="newOrderButton" layoutX="78.0" layoutY="192.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="128.0" text="New order" />
       <Button fx:id="grabOrderButton" layoutX="78.0" layoutY="261.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="128.0" text="Grab order" />
-      <Button fx:id="LogOutButton" layoutX="19.0" layoutY="351.0" mnemonicParsing="false" text="Log Out" />
+      <Button fx:id="LogOutButton" layoutX="19.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#logOut" text="Log Out" />
       <Text fx:id="welcomeBackText" layoutX="14.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Back $Fname!">
          <font>
             <Font size="24.0" />
