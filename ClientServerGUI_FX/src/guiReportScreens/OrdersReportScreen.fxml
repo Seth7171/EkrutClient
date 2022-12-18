@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="396.0" stylesheets="@../gui/Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="77.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+         <image>
+            <Image url="@../../../../OneDrive%20-%20ort%20braude%20college%20of%20engineering/שולחן%20העבודה/logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="169.0" layoutY="83.0" text="Orders Report" />
+      <BarChart layoutX="25.0" layoutY="67.0" prefHeight="313.0" prefWidth="343.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" upperBound="300.0">
+               <tickLabelFont>
+                  <Font size="11.0" />
+               </tickLabelFont>
+            </NumberAxis>
+        </yAxis>
+      </BarChart>
+      <ImageView fitHeight="400.0" fitWidth="582.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../OneDrive%20-%20ort%20braude%20college%20of%20engineering/שולחן%20העבודה/bckgrnd.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="162.0" layoutY="49.0" text="Orders report" underline="true">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Button layoutX="5.0" layoutY="373.0" mnemonicParsing="false" text="Back" />
+      <Button layoutX="370.0" layoutY="1.0" mnemonicParsing="false" styleClass="ExitButton" text="X" />
+   </children>
+</AnchorPane>
