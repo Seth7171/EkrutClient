@@ -35,7 +35,7 @@
 
 
 /****************************combo box style*************************************************/
-.combo-box{
+.choice-box{
 	-fx-text-box-border: transparent;
 	-fx-background-color: #ffffff;
 	-fx-text-fill: black;
