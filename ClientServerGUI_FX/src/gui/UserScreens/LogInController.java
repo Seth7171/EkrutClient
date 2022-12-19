@@ -48,7 +48,7 @@ public class LogInController {
     }
 
     @FXML
-    private void logIn(MouseEvent event) throws IOException {
+    private void logIn(MouseEvent event){
         ArrayList<String> credentials = getUsernameAndPassword();
         if(credentials == null)
             return;
@@ -59,15 +59,23 @@ public class LogInController {
         }
 
         Parent root = null;
-        // TODO: expand next screen switch case
-        switch (UserController.getCurrentuser().getDepartment()){
-            case "MEMBER":
-                root = FXMLLoader.load(getClass().getResource("UserMainScreen.fxml"));
-                break;
+        try {
+            // TODO: expand next screen switch case
+            switch (UserController.getCurrentuser().getDepartment()) {
+                case "MEMBER":
+                    root = FXMLLoader.load(getClass().getResource("UserMainScreen.fxml"));
+                    break;
 
-            case"CUSTOMER_SERVICE":
-                root = FXMLLoader.load(getClass().getResource("/gui/CustomerServiceEmployeeScreens/CustomerServiceEmployeeScreen.fxml"));
-                break;
+                case "CUSTOMER_SERVICE":
+                    root = FXMLLoader.load(getClass().getResource("/gui/CustomerServiceEmployeeScreens/CustomerServiceEmployeeScreen.fxml"));
+                    break;
+
+                default:
+                    System.out.println("Unknown!");
+                    // TODO: maybe add UnknownScreenException later??
+            }
+        }catch (IOException exception){
+            exception.printStackTrace();
         }
 
         Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
