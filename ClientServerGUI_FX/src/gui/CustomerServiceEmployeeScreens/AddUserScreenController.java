@@ -7,9 +7,11 @@ import common.connectivity.MessageFromClient;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -17,12 +19,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class AddUserScreenController {
+public class AddUserScreenController implements Initializable {
 
     @FXML
-    private ComboBox<?> departmentField;
+    private ChoiceBox<String> departmentField;
 
     @FXML
     private TextField emailAddressField;
@@ -52,11 +56,17 @@ public class AddUserScreenController {
     private double yoffset;
     @FXML
     void addUser(MouseEvent event) {
+        if (userNameField.getText().equals("") || passwordField.getText().equals("") || firstNameField.getText().equals("")
+         || lastNameField.getText().equals("") || idField.getText().equals("") || phoneNumberField.getText().equals("")
+         || emailAddressField.getText().equals("") || departmentField.getValue().equals("")){
+            this.errorMessage.setText("All fields MUST be filled.");
+            return;
+        }
 
     }
 
     @FXML
-    void exit(MouseEvent event) {
+    protected void exit(MouseEvent event) {
         ArrayList<String> cred = new ArrayList<String>();
         cred.add(UserController.getCurrentuser().getUsername());
         ClientUI.chat.accept("disconnect");
@@ -66,7 +76,7 @@ public class AddUserScreenController {
     }
 
     @FXML
-    void goBack(MouseEvent event) {
+    protected void goBack(MouseEvent event) {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("CustomerServiceEmployeeScreen.fxml"));
@@ -74,7 +84,6 @@ public class AddUserScreenController {
             throw new RuntimeException(e);
         }
         switchScreen(event, root);
-
     }
 
 
@@ -99,4 +108,9 @@ public class AddUserScreenController {
         primaryStage.show();
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        // departmentField
+    }
 }

@@ -43,7 +43,7 @@ public class CustomerServiceEmployeeScreenController implements Initializable {
     }
 
     @FXML
-    void openAddUserScreen(MouseEvent event) {
+    protected void openAddUserScreen(MouseEvent event) {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/gui/CustomerServiceEmployeeScreens/AddUserScreen.fxml"));
@@ -54,7 +54,7 @@ public class CustomerServiceEmployeeScreenController implements Initializable {
     }
 
     @FXML
-    void exit(MouseEvent event) {
+    protected void exit(MouseEvent event) {
         ArrayList<String> cred = new ArrayList<String>();
         cred.add(UserController.getCurrentuser().getUsername());
         ClientUI.chat.accept("disconnect");
@@ -64,7 +64,7 @@ public class CustomerServiceEmployeeScreenController implements Initializable {
     }
 
     @FXML
-    void logOut(MouseEvent event) {
+    protected void logOut(MouseEvent event) {
         ArrayList<String> cred = new ArrayList<String>();
         cred.add(UserController.getCurrentuser().getUsername());
         ClientUI.chat.accept(new Message(cred, MessageFromClient.REQUEST_LOGOUT));
@@ -78,8 +78,10 @@ public class CustomerServiceEmployeeScreenController implements Initializable {
         switchScreen(event, root);
     }
 
+
+    // TODO: here tarek should add his customer management screen.
     @FXML
-    void openManageUsersScreen(MouseEvent event) {
+    protected void openManageUsersScreen(MouseEvent event) {
     }
 
 
