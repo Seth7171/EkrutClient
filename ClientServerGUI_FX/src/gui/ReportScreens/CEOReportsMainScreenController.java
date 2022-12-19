@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 
 
 public class CEOReportsMainScreenController extends Application implements Initializable{
-
+	int MachineIDFlag=0; // MachineID ComboBox:  1=open|0-close
 	@FXML
     private ComboBox<String> MachineID;
 
@@ -66,6 +66,8 @@ public class CEOReportsMainScreenController extends Application implements Initi
 	public void initialize(URL arg0, ResourceBundle arg1) {
     	//welcomeReportsLabel.setText("Welcome Back, " + UserController.getCurrentuser().getFirstname());
     	
+		MachineID.setVisible(false);//set machineID combobox unvisible
+		
     	// Fill years and months in combo boxes
     	Year y = Year.now();
 		for (int i = y.getValue(); i > 2010; i--)
@@ -103,7 +105,16 @@ public class CEOReportsMainScreenController extends Application implements Initi
 	
     }
 	
-	
+	@FXML
+	void clickOnType(ActionEvent event) {
+			if(Type.getValue().equals("Inventory"))
+			{
+				MachineID.setVisible(true);
+				MachineIDFlag=1;//MachineID comboBox is open
+			}
+			else MachineID.setVisible(false);
+	    }
+
 	@FXML
     void clickShowReport(ActionEvent event) {
 		String reportType;
@@ -121,7 +132,7 @@ public class CEOReportsMainScreenController extends Application implements Initi
 			errorLabel.setText("You didn't choose Report Type!");
 			return;
 		}
-		if (MachineID.getValue() == null) {
+		if (MachineID.getValue() == null && MachineIDFlag==1) {
 			errorLabel.setText("You didn't choose Machine ID!");
 			return;
 		}
@@ -129,9 +140,9 @@ public class CEOReportsMainScreenController extends Application implements Initi
 		reportType = Type.getValue();
 
 
-		// ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_MACHINE_IDS));
-		// ArrayList<String> arrstr =  (ArrayList<String>) MessageHandler.getData();
-
+		 ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_MACHINE_IDS));
+		  ArrayList<String> arrstr =  (ArrayList<String>) MessageHandler.getData();
+  
 
 	}
 	
