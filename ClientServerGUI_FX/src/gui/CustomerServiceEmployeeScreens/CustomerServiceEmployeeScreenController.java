@@ -75,24 +75,7 @@ public class CustomerServiceEmployeeScreenController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-
-        root.setOnMousePressed(event1 -> {
-            xoffset = event1.getSceneX();
-            yoffset = event1.getSceneY();
-        });
-
-        // event handler for when the mouse is pressed AND dragged to move the window
-        root.setOnMouseDragged(event1 -> {
-            primaryStage.setX(event1.getScreenX()-xoffset);
-            primaryStage.setY(event1.getScreenY()-yoffset);
-        });
-        primaryStage.setTitle("Client Editor");
-
-        primaryStage.setScene(scene);
-
-        primaryStage.show();
+        switchScreen(event, root);
     }
 
     @FXML
