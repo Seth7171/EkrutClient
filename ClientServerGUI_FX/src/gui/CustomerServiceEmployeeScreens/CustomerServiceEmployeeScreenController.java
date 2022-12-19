@@ -57,8 +57,8 @@ public class CustomerServiceEmployeeScreenController implements Initializable {
     protected void exit(MouseEvent event) {
         ArrayList<String> cred = new ArrayList<String>();
         cred.add(UserController.getCurrentuser().getUsername());
-        ClientUI.chat.accept("disconnect");
         ClientUI.chat.accept(new Message(cred, MessageFromClient.REQUEST_LOGOUT));
+        ClientUI.chat.accept("disconnect");
         Platform.exit();
         System.exit(0);
     }
