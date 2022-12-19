@@ -107,6 +107,7 @@ public class AddUserScreenController implements Initializable {
             return;
         }
 
+        // create user
         User user = new User();
         user.setUsername(userNameField.getText());
         user.setPassword(passwordField.getText());
