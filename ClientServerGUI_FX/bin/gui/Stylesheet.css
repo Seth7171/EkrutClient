@@ -21,3 +21,24 @@
 }
 
 
+/****************************text field style*************************************************/
+.text-field{
+	-fx-text-box-border: transparent;
+	-fx-background-color: #ffffff;
+	-fx-text-fill: black;
+	-fx-prompt-text-fill: #707070;
+}
+/*.text-field: disabled{*/
+/*	-fx-opacity: 60%;*/
+/*}*/
+/********************************************************************************************/
+
+
+/****************************combo box style*************************************************/
+.choice-box{
+	-fx-text-box-border: transparent;
+	-fx-background-color: #ffffff;
+	-fx-text-fill: black;
+	-fx-prompt-text-fill: #707070;
+}
+/********************************************************************************************/
