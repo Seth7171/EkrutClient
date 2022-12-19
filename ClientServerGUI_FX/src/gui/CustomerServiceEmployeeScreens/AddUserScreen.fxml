@@ -16,7 +16,7 @@
             <Image url="@../logo.png" />
          </image>
       </ImageView>
-      <Text layoutX="237.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add user">
+      <Text layoutX="240.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add user">
          <font>
             <Font size="30.0" />
          </font>
