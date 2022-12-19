@@ -1,6 +1,7 @@
 package gui.CustomerServiceEmployeeScreens;
 
 import application.client.ClientUI;
+import application.client.MessageHandler;
 import application.user.UserController;
 import common.Departments;
 import common.connectivity.Message;
@@ -75,7 +76,11 @@ public class AddUserScreenController implements Initializable {
         Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
         Matcher matcher = pattern.matcher(emailAddressField.getText());
         if (!matcher.matches()){
-            this.errorMessage.setText("invalid email address");
+            this.errorMessage.setText("invalid email address format");
+            return;
+        }
+        if (emailAddressField.getText().contains(" ")){
+            this.errorMessage.setText("email address MUST NOT contain spaces");
             return;
         }
 
@@ -94,21 +99,28 @@ public class AddUserScreenController implements Initializable {
             this.errorMessage.setText("ID too long");
             return;
         }
-        this.errorMessage.setText("");
+
+        // check phone number
+        matcher = pattern.matcher(phoneNumberField.getText());
+        if (!matcher.matches()){
+            this.errorMessage.setText("phone number MUST only contain numbers");
+            return;
+        }
 
         User user = new User();
         user.setUsername(userNameField.getText());
         user.setPassword(passwordField.getText());
         user.setFirstname(firstNameField.getText());
         user.setLastname(lastNameField.getText());
-        user.setId(phoneNumberField.getText());
+        user.setId(idField.getText());
         user.setPhonenumber(phoneNumberField.getText());
-        user.setDepartment(departmentField.getValue());
+        user.setDepartment(departmentField.getValue().replace(" ", "_"));
 
         ClientUI.chat.accept(new Message(user, MessageFromClient.REQUEST_ADD_USER));
 
-        errorMessage.setText("user added successfully!");
-        errorMessage.setFill(Color.GREEN);
+        errorMessage.setText(MessageHandler.getMessage());
+        if (MessageHandler.getMessage().contains("successfully"))
+            errorMessage.setFill(Color.GREEN);
     }
 
     @FXML

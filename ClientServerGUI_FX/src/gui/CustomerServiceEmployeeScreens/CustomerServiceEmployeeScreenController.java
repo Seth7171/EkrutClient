@@ -78,7 +78,6 @@ public class CustomerServiceEmployeeScreenController implements Initializable {
         switchScreen(event, root);
     }
 
-
     // TODO: here tarek should add his customer management screen.
     @FXML
     protected void openManageUsersScreen(MouseEvent event) {
