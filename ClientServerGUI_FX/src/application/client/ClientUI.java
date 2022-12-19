@@ -4,13 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.util.Vector;
-
-import application.client.ClientController;
-import common.connectivity.User;
-import gui.SubscriberSaveController;
-import gui.ClientConnectorController;
-import gui.SubscriberEditController;
+import gui.ConnectionScreens.ClientConnectorController;
 
 public class ClientUI extends Application {
 	public static ClientController chat; //only one instance

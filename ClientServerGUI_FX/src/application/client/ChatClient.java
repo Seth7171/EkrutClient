@@ -82,9 +82,6 @@ public class ChatClient extends AbstractClient
           case "LOGIN_FAILED_ALREADY_LOGGED_IN":
               UserController.setMessage("already logged in");
               break;
-          case "LOGIN_ERROR":
-              UserController.setMessage("error logging in");
-              break;
           case"LOG_IN_ERROR_USER_DOES_NOT_EXIST":
               UserController.setMessage("user does not exist");
               break;
@@ -111,6 +108,8 @@ public class ChatClient extends AbstractClient
     try {
     	openConnection();//in order to send more than one message
        	awaitResponse = true;
+
+
     	sendToServer(message);
 		// wait for response
 		while (awaitResponse) {
