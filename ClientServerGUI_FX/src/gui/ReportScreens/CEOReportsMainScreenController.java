@@ -93,6 +93,8 @@ public class CEOReportsMainScreenController extends Application implements Initi
 //		MachineID.getSelectionModel().clearSelection();
 //		MachineID.getItems().clear();
 		
+		 ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_MACHINE_IDS));
+		  ArrayList<String> arrstr =  (ArrayList<String>) MessageHandler.getData();
 		
 		
 	}
@@ -140,8 +142,7 @@ public class CEOReportsMainScreenController extends Application implements Initi
 		reportType = Type.getValue();
 
 
-		 ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_MACHINE_IDS));
-		  ArrayList<String> arrstr =  (ArrayList<String>) MessageHandler.getData();
+		
   
 
 	}
