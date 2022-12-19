@@ -96,6 +96,8 @@ public class ChatClient extends AbstractClient
           case "USER_ADDED_SUCCESSFULLY":
               MessageHandler.setMessage("user user added successfully!");
               break;
+//          case"IMPORT_MACHINE_ID_SUCCESSFUL":
+//              MessageHandler.setData(message.getData());
 
       }
   }

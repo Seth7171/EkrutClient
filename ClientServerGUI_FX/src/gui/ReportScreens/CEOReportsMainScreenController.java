@@ -1,8 +1,14 @@
 package gui.ReportScreens;
 import java.time.Year;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import application.client.ClientUI;
+import application.client.MessageHandler;
+import application.user.UserController;
+import common.connectivity.Message;
+import common.connectivity.MessageFromClient;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -121,8 +127,13 @@ public class CEOReportsMainScreenController extends Application implements Initi
 		}
 		
 		reportType = Type.getValue();
-		
-    }
+
+
+		// ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_MACHINE_IDS));
+		// ArrayList<String> arrstr =  (ArrayList<String>) MessageHandler.getData();
+
+
+	}
 	
 	 public static void main(String[] args) {
 	        launch(args);
