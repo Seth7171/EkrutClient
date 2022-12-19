@@ -80,12 +80,11 @@ public class ChatClient extends AbstractClient
               UserController.setCurrentuser((User)message.getData());
               break;
           case "LOGIN_FAILED_ALREADY_LOGGED_IN":
-              UserController.setMessage("already logged in");
+              MessageHandler.setMessage("already logged in");
               break;
           case"LOG_IN_ERROR_USER_DOES_NOT_EXIST":
-              UserController.setMessage("user does not exist");
+              MessageHandler.setMessage("user does not exist");
               break;
-
 
 
       }

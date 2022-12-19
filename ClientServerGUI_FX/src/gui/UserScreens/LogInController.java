@@ -1,6 +1,7 @@
 package gui.UserScreens;
 
 import application.client.ClientUI;
+import application.client.MessageHandler;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
@@ -54,7 +55,8 @@ public class LogInController {
             return;
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN));
         if(!UserController.isLogged()){
-            errorMessage.setText(UserController.getMessage());
+            //errorMessage.setText(UserController.getMessage());
+            errorMessage.setText(MessageHandler.getMessage());
             return;
         }
 
@@ -62,11 +64,11 @@ public class LogInController {
         try {
             // TODO: expand next screen switch case
             switch (UserController.getCurrentuser().getDepartment()) {
-                case "MEMBER":
+                case "member":
                     root = FXMLLoader.load(getClass().getResource("UserMainScreen.fxml"));
                     break;
 
-                case "CUSTOMER_SERVICE":
+                case "customer_service":
                     root = FXMLLoader.load(getClass().getResource("/gui/CustomerServiceEmployeeScreens/CustomerServiceEmployeeScreen.fxml"));
                     break;
 
