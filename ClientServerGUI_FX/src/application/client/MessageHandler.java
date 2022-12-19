@@ -6,9 +6,7 @@ public class MessageHandler {
     public static String getMessage() {
         return message;
     }
-
     public static void setMessage(String message) {
         MessageHandler.message = message;
     }
-
 }
