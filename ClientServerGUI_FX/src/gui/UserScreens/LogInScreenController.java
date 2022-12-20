@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LogInController {
+public class LogInScreenController {
     @FXML
     private TextField userNameField;
     @FXML
@@ -64,7 +64,7 @@ public class LogInController {
         try {
             // TODO: expand next screen switch case
             switch (UserController.getCurrentuser().getDepartment()) {
-                case "member":
+                case "MEMBER":
                     root = FXMLLoader.load(getClass().getResource("UserMainScreen.fxml"));
                     break;
 
