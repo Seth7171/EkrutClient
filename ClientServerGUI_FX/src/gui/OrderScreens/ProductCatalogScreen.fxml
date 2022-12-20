@@ -55,22 +55,36 @@
             <Font size="33.0" />
          </font>
       </Label>
-      <TabPane fx:id="tabPane" layoutX="-1.0" layoutY="114.0" prefHeight="481.0" prefWidth="918.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" layoutX="-1.0" layoutY="114.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="481.0" prefWidth="918.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="131.0">
         <tabs>
-          <Tab text="Snacks">
+          <Tab closable="false">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@snack.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
                <content>
-                  <ScrollPane fx:id="scrollSnacksPane" prefHeight="200.0" prefWidth="200.0">
+                  <ScrollPane fx:id="snacksScroll" prefHeight="200.0" prefWidth="200.0">
                      <content>
-                        <TilePane fx:id="snacksPane" prefHeight="200.0" prefWidth="200.0" />
+                        <TilePane fx:id="snacksPane" prefHeight="480.0" prefWidth="779.0" />
                      </content>
                   </ScrollPane>
                </content>
           </Tab>
-          <Tab text="Drinks">
+          <Tab>
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@soft-drink.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
                <content>
-                  <ScrollPane fx:id="scrollDrinksPane" prefHeight="200.0" prefWidth="200.0">
+                  <ScrollPane fx:id="drinksScroll" prefHeight="200.0" prefWidth="200.0">
                      <content>
-                        <TilePane fx:id="drinksPane" prefHeight="200.0" prefWidth="200.0" />
+                        <TilePane fx:id="drinksPane" prefHeight="480.0" prefWidth="780.0" />
                      </content>
                   </ScrollPane>
                </content>
@@ -82,7 +96,7 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="backButton" layoutY="776.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="129.0" text="Back">
+      <Button fx:id="backButton" layoutY="776.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
          <font>
             <Font size="20.0" />
          </font>
