@@ -40,6 +40,7 @@ public class ChatClient extends AbstractClient
   public static ArrayList<User> subs = new ArrayList<>();
   public static boolean awaitResponse = false;
   public static String servermsg = new String();
+  public static ArrayList<Product> productList = new ArrayList<Product>();
 //  private UserController userController  = UserController.getUserInstance();
 
   //Constructors ****************************************************
@@ -98,6 +99,9 @@ public class ChatClient extends AbstractClient
               break;
 //          case"IMPORT_MACHINE_ID_SUCCESSFUL":
 //              MessageHandler.setData(message.getData());
+          case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
+        	  productList = (ArrayList<Product>)message.getData();
+              break;
 
       }
   }
