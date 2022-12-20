@@ -64,7 +64,7 @@ public class LogInScreenController {
         try {
             // TODO: expand next screen switch case
             switch (UserController.getCurrentuser().getDepartment()) {
-                case "MEMBER":
+                case "member":
                     root = FXMLLoader.load(getClass().getResource("UserMainScreen.fxml"));
                     break;
 
