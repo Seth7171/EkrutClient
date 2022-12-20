@@ -1,24 +1,30 @@
 package gui.ReportScreens;
 import java.time.Year;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import application.client.ChatClient;
 import application.client.ClientUI;
 import application.client.MessageHandler;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import common.connectivity.User;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
@@ -62,9 +68,29 @@ public class CEOReportsMainScreenController extends Application implements Initi
 		System.exit(0);	
     }
     
+	
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-    	//welcomeReportsLabel.setText("Welcome Back, " + UserController.getCurrentuser().getFirstname());
+		//- TEMP- until CEO main screen will be done
+		 User user = new User();
+	        user.setUsername("ravid");
+	        user.setPassword("123");
+	        user.setFirstname("ravid");
+	        user.setLastname("goldin");
+	        user.setId("315679654");
+	        user.setPhonenumber("0524459292");
+	        user.setDepartment("ceo");
+	        
+	        UserController.setCurrentuser(user);
+	        
+//	        ClientUI.chat.accept(new Message(user, MessageFromClient.REQUEST_ADD_USER));
+//	     
+//	        if (MessageHandler.getMessage().contains("successfully"))
+//	
+	        	
+		
+    	welcomeReportsLabel.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
     	
 		MachineID.setVisible(false);//set machineID combobox unvisible
 		
@@ -93,10 +119,13 @@ public class CEOReportsMainScreenController extends Application implements Initi
 //		MachineID.getSelectionModel().clearSelection();
 //		MachineID.getItems().clear();
 		
-		 ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_MACHINE_IDS));
-		  ArrayList<String> arrstr =  (ArrayList<String>) MessageHandler.getData();
-		
-		
+//		 ClientUI.chat.accept(new Message(user, MessageFromClient.REQUEST_MACHINE_IDS));
+//		 ArrayList<String> MachineIDsArr = new ArrayList<String>();
+//		MachineIDsArr=(ArrayList<String>) MessageHandler.getData();
+////		for(int i=0; i<MachineIDsArr.size();i++)
+////			 	MachineID.getItems().add(MachineIDsArr.get(i));
+//		
+//		 MachineID.getItems().addAll(MachineIDsArr);
 	}
 	
 	
@@ -139,18 +168,52 @@ public class CEOReportsMainScreenController extends Application implements Initi
 			return;
 		}
 		
+	
+ 
+		 //switch screens//
 		reportType = Type.getValue();
+		 Parent root = null;
+		 try {
+			 	switch (reportType) {
+		            case "Inventory":
+		                 root = FXMLLoader.load(getClass().getResource("InventoryReport.fxml"));
+		                  break;
 
+		            case "Orders":
+		                  root = FXMLLoader.load(getClass().getResource("OrdersReportScreen.fxml"));
+		                   break;
+		                    
+//		            case "Activity":
+//		                  root = FXMLLoader.load(getClass().getResource(".fxml"));
+//		                   break;
 
+		                default://TODO: change default
+		                    System.out.println("Unknown!");
+		                   
+		            }
+		       }
+		 
+		  catch (IOException exception){
+		            exception.printStackTrace();
+		        }
+
+		        Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		        Scene scene = new Scene(root);
+		        primaryStage.setScene(scene);
+		        primaryStage.show();
+		        
+		        
+		    }
 		
   
 
-	}
+		
 	
 	 public static void main(String[] args) {
 	        launch(args);
 	    }
 
+	 
 	@Override
 	public void start(Stage arg0) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("ReportsMainScreen.fxml"));
