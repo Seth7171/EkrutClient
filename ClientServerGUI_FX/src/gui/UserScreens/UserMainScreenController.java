@@ -46,7 +46,7 @@ public class UserMainScreenController implements Initializable {
     }
 
     @FXML
-    void logOut(MouseEvent event) {
+    public void logOut(MouseEvent event) {
         ArrayList<String> credentials = new ArrayList<String>();
         credentials.add(UserController.getCurrentuser().getUsername());
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
@@ -72,6 +72,38 @@ public class UserMainScreenController implements Initializable {
         primaryStage.setTitle("Client Editor");
 
         primaryStage.setScene(scene);
+
+        primaryStage.show();
+    }
+    
+    @FXML
+    void NewOrder(MouseEvent event) {
+
+        Parent root = null;
+        try {
+        	
+            root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+
+        root.setOnMousePressed(event1 -> {
+            xoffset = event1.getSceneX();
+            yoffset = event1.getSceneY();
+        });
+
+        // event handler for when the mouse is pressed AND dragged to move the window
+        root.setOnMouseDragged(event1 -> {
+            primaryStage.setX(event1.getScreenX()-xoffset);
+            primaryStage.setY(event1.getScreenY()-yoffset);
+        });
+        primaryStage.setTitle("New Order");
+
+        primaryStage.setScene(scene);
+        
+        primaryStage.setResizable(false);
 
         primaryStage.show();
     }
