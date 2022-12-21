@@ -83,6 +83,9 @@ public class LogInScreenController extends ScreenController {
                 case "customer_service":
                     root = FXMLLoader.load(getClass().getResource("/gui/CustomerServiceEmployeeScreens/CustomerServiceEmployeeScreen.fxml"));
                     break;
+                case"ceo":
+                        root = FXMLLoader.load(getClass().getResource("/gui/ReportScreens/ReportsMainScreen.fxml"));
+                    break;
 
                 default:
                     System.out.println("Unknown!");

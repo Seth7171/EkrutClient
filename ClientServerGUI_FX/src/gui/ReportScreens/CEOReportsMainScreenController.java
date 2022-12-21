@@ -84,10 +84,10 @@ public class CEOReportsMainScreenController extends Application implements Initi
 	        
 	        UserController.setCurrentuser(user);
 	        
-//	        ClientUI.chat.accept(new Message(user, MessageFromClient.REQUEST_ADD_USER));
-//	     
-//	        if (MessageHandler.getMessage().contains("successfully"))
-//	
+	        ClientUI.chat.accept(new Message(user, MessageFromClient.REQUEST_MACHINE_IDS));
+			ArrayList<String> ids = (ArrayList<String>) MessageHandler.getData();
+			System.out.println("debugging breakpoint");
+
 	        	
 		
     	welcomeReportsLabel.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
