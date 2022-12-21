@@ -160,9 +160,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         viewDetails.setOnAction(event -> {
             JOptionPane.showMessageDialog(null, product.getDescription(), "InfoBox: " + product.getName(), JOptionPane.INFORMATION_MESSAGE);
         });
-
         viewDetails.setBorder(null);
-        
         return hBox;
     }
     
