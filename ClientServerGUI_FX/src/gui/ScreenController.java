@@ -1,10 +1,14 @@
 package gui;
 
+import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 
 /**
  * @author Lior Jigalo
@@ -38,6 +42,15 @@ public class ScreenController {
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
 
-        primaryStage.show();
+
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(300));
+        fadeTransition.setNode(root);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.setOnFinished((ActionEvent finishevt) -> {
+            primaryStage.show();
+        });
+        fadeTransition.play();
     }
 }
