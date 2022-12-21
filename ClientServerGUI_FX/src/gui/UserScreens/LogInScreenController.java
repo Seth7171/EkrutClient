@@ -85,6 +85,9 @@ public class LogInScreenController extends ScreenController {
                         root = FXMLLoader.load(getClass().getResource("/gui/ReportScreens/ReportsMainScreen.fxml"));
                     break;
 
+
+                // TODO: reset UserControler on logout
+
                 default:
                     System.out.println("Unknown!");
                     // TODO: maybe add UnknownScreenException later??
