@@ -60,7 +60,7 @@ public class UserMainScreenController extends ScreenController implements Initia
      * @param event
      */
     @FXML
-    public void logOut(MouseEvent event) {
+    void logOut(MouseEvent event) {
         ArrayList<String> credentials = new ArrayList<String>();
         credentials.add(UserController.getCurrentuser().getUsername());
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
@@ -68,7 +68,8 @@ public class UserMainScreenController extends ScreenController implements Initia
         try {
             root = FXMLLoader.load(getClass().getResource("LogInScreen.fxml"));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         super.switchScreen(event, root);
     }

@@ -9,6 +9,7 @@ import application.client.ClientUI;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import gui.ScreenController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,7 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class InventoryReportScreenController implements Initializable{
+public class InventoryReportScreenController extends ScreenController implements Initializable{
 
     @FXML
     private Button backButton;
@@ -41,45 +42,19 @@ public class InventoryReportScreenController implements Initializable{
     
     // Go back to main reports screen.
     @FXML
-    void clickBackButton(ActionEvent event) {
+    void clickBackButton(MouseEvent event) {
     	Parent root = null;
     	try {
 		root = FXMLLoader.load(getClass().getResource("ReportsMainScreen.fxml"));
 		}
     	catch (IOException exception){exception.printStackTrace();}
-
-		Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		// make the NEXT window able to move with mouse
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-            	primaryStage.setX(event.getScreenX() - xOffset);
-            	primaryStage.setY(event.getScreenY() - yOffset);
-            }
-        });
-        // End of movement code for window
-		primaryStage.setScene(scene);
-		primaryStage.show();
+    	super.switchScreen(event, root);
 	}
     
     // exit from application
     @FXML
-    void exitApplication(ActionEvent event) {
-    	ArrayList<String> cred = new ArrayList<String>();
-        cred.add(UserController.getCurrentuser().getUsername());
-        ClientUI.chat.accept("disconnect");
-        ClientUI.chat.accept(new Message(cred, MessageFromClient.REQUEST_LOGOUT));
-        Platform.exit();
-        System.out.println("exit EkrutClient");
-		System.exit(0);	
+    void exitApplication(MouseEvent event) {
+    	super.closeProgram(event, true);	
     }
 
 }

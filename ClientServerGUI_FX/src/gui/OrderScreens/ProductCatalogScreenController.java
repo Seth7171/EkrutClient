@@ -95,8 +95,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     
     @FXML
     void logOut(MouseEvent event) {
-        UserMainScreenController userMainScreenController = new UserMainScreenController();
-		userMainScreenController.logOut(event);
+		super.closeProgram(event, true);
     }
     
     private Node createProductTile(Product product) {
