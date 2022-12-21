@@ -13,6 +13,7 @@ import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import common.connectivity.User;
+import gui.ScreenController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -30,7 +31,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
-public class CEOReportsMainScreenController implements Initializable{
+public class CEOReportsMainScreenController extends ScreenController implements Initializable{
 	int MachineIDFlag=0; // MachineID ComboBox:  1=open|0-close
 	@FXML
     private ComboBox<String> MachineID;
@@ -151,7 +152,7 @@ public class CEOReportsMainScreenController implements Initializable{
 	    }
 
 	@FXML
-    void clickShowReport(ActionEvent event) {
+    void clickShowReport(MouseEvent event) {
 		String reportType;
 		
 		// Check first for valid inputs
@@ -199,29 +200,9 @@ public class CEOReportsMainScreenController implements Initializable{
 		       }
 		 
 		  		catch (IOException exception){exception.printStackTrace();}
-
-		        Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-		        Scene scene = new Scene(root);
+		 
+		        super.switchScreen(event, root);
 		        
-		        // make the NEXT window able to move with mouse
-		        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-		            @Override
-		            public void handle(MouseEvent event) {
-		                xOffset = event.getSceneX();
-		                yOffset = event.getSceneY();
-		            }
-		        });
-		        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-		            @Override
-		            public void handle(MouseEvent event) {
-		            	primaryStage.setX(event.getScreenX() - xOffset);
-		            	primaryStage.setY(event.getScreenY() - yOffset);
-		            }
-		        });
-		        // End of movement code for window
-		        
-		        primaryStage.setScene(scene);
-		        primaryStage.show();
 		    }
 
 }
