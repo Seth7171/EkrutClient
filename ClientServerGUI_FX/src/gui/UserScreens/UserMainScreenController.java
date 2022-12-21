@@ -60,7 +60,7 @@ public class UserMainScreenController extends ScreenController implements Initia
      * @param event
      */
     @FXML
-    public void logOut(MouseEvent event) {
+    void logOut(MouseEvent event) {
         ArrayList<String> credentials = new ArrayList<String>();
         credentials.add(UserController.getCurrentuser().getUsername());
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
@@ -68,26 +68,10 @@ public class UserMainScreenController extends ScreenController implements Initia
         try {
             root = FXMLLoader.load(getClass().getResource("LogInScreen.fxml"));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-        Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-
-        root.setOnMousePressed(event1 -> {
-            xoffset = event1.getSceneX();
-            yoffset = event1.getSceneY();
-        });
-
-        // event handler for when the mouse is pressed AND dragged to move the window
-        root.setOnMouseDragged(event1 -> {
-            primaryStage.setX(event1.getScreenX()-xoffset);
-            primaryStage.setY(event1.getScreenY()-yoffset);
-        });
-        primaryStage.setTitle("Client Editor");
-
-        primaryStage.setScene(scene);
-
-        primaryStage.show();
+        super.switchScreen(event, root);
     }
 
     /**
