@@ -16,6 +16,7 @@ import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import common.orders.Order;
 import common.orders.Product;
+import gui.ScreenController;
 import gui.UserScreens.UserMainScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,7 +43,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class ProductCatalogScreenController implements Initializable {
+public class ProductCatalogScreenController extends ScreenController implements Initializable{
     @FXML
     private Button logOutButton;
 
@@ -168,33 +169,14 @@ public class ProductCatalogScreenController implements Initializable {
     
     @FXML
     void goBack(MouseEvent event) {
-    	Parent root = null;
-    	try {
-			root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/UserMainScreen.fxml"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-        Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-
-        root.setOnMousePressed(event1 -> {
-            xoffset = event1.getSceneX();
-            yoffset = event1.getSceneY();
-        });
-
-        // event handler for when the mouse is pressed AND dragged to move the window
-        root.setOnMouseDragged(event1 -> {
-            primaryStage.setX(event1.getScreenX()-xoffset);
-            primaryStage.setY(event1.getScreenY()-yoffset);
-        });
-        primaryStage.setTitle("Client Editor");
-
-        primaryStage.setScene(scene);
-
-        primaryStage.show();
-    	
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/UserMainScreen.fxml"));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        super.switchScreen(event, root);        
     }
     
 
