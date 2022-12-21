@@ -46,7 +46,7 @@ public class LogInScreenController extends ScreenController {
 
     /**
      * @param event
-     *
+     *This method opens the forgot password alert
      */
     @FXML
     void openForgotPasswordScreen(MouseEvent event) {
