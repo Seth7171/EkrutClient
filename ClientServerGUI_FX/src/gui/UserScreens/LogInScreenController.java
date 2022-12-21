@@ -35,9 +35,6 @@ public class LogInScreenController extends ScreenController {
     private Text forgotPassword;
     @FXML
     private Button loginButton;
-    double xoffset;
-    double yoffset;
-
 
     /**
      * @param event
