@@ -1,6 +1,11 @@
 package gui;
 
+import application.client.ClientUI;
+import application.user.UserController;
+import common.connectivity.Message;
+import common.connectivity.MessageFromClient;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -8,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.util.ArrayList;
 
 
 /**
@@ -52,5 +59,17 @@ public class ScreenController {
             primaryStage.show();
         });
         fadeTransition.play();
+    }
+
+    protected void closeProgram(MouseEvent event, boolean needLogout) {
+
+        ClientUI.chat.accept("disconnect");
+        if (needLogout){
+            ArrayList<String> cred = new ArrayList<String>();
+            cred.add(UserController.getCurrentuser().getUsername());
+            ClientUI.chat.accept(new Message(cred, MessageFromClient.REQUEST_LOGOUT));
+        }
+        Platform.exit();
+        System.exit(0);
     }
 }

@@ -43,9 +43,7 @@ public class LogInScreenController extends ScreenController {
      */
     @FXML
     void exit(MouseEvent event) {
-        ClientUI.chat.accept("disconnect");
-        Platform.exit();
-        System.exit(0);
+        super.closeProgram(event, false);
     }
 
     /**
