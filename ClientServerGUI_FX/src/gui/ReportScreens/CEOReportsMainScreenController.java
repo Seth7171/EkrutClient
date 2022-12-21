@@ -13,6 +13,7 @@ import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import common.connectivity.User;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,6 +65,11 @@ public class CEOReportsMainScreenController extends Application implements Initi
 	 */
     @FXML
     void exitApp(ActionEvent event) throws Exception {
+    	 ArrayList<String> cred = new ArrayList<String>();
+         cred.add(UserController.getCurrentuser().getUsername());
+         ClientUI.chat.accept("disconnect");
+         ClientUI.chat.accept(new Message(cred, MessageFromClient.REQUEST_LOGOUT));
+         Platform.exit();
     	System.out.println("exit EkrutClient");
 		System.exit(0);	
     }
@@ -86,8 +92,8 @@ public class CEOReportsMainScreenController extends Application implements Initi
 	        
 	        ClientUI.chat.accept(new Message(user, MessageFromClient.REQUEST_MACHINE_IDS));
 			ArrayList<String> ids = (ArrayList<String>) MessageHandler.getData();
-			System.out.println("debugging breakpoint");
-
+			MachineID.getItems().addAll(ids);//add all id's to MachineID comboBox
+		
 	        	
 		
     	welcomeReportsLabel.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
@@ -114,18 +120,12 @@ public class CEOReportsMainScreenController extends Application implements Initi
 		Type.getItems().add("Inventory");
 		Type.getItems().add("Activity");
 		
-		//ClientUI.chat.accept("GetMachineIDs"); // command to server to get all ids
+		
 		
 //		MachineID.getSelectionModel().clearSelection();
 //		MachineID.getItems().clear();
 		
-//		 ClientUI.chat.accept(new Message(user, MessageFromClient.REQUEST_MACHINE_IDS));
-//		 ArrayList<String> MachineIDsArr = new ArrayList<String>();
-//		MachineIDsArr=(ArrayList<String>) MessageHandler.getData();
-////		for(int i=0; i<MachineIDsArr.size();i++)
-////			 	MachineID.getItems().add(MachineIDsArr.get(i));
-//		
-//		 MachineID.getItems().addAll(MachineIDsArr);
+
 	}
 	
 	
