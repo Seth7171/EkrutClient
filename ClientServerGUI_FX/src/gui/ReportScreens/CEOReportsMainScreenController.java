@@ -176,7 +176,7 @@ public class CEOReportsMainScreenController extends Application implements Initi
 		 try {
 			 	switch (reportType) {
 		            case "Inventory":
-		                 root = FXMLLoader.load(getClass().getResource("InventoryReport.fxml"));
+		                 root = FXMLLoader.load(getClass().getResource("InventoryReportScreen.fxml"));
 		                  break;
 
 		            case "Orders":
