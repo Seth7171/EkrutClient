@@ -69,14 +69,8 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 	 * @throws Exception
 	 */
     @FXML
-    void exitApp(ActionEvent event) throws Exception {
-    	 ArrayList<String> cred = new ArrayList<String>();
-         cred.add(UserController.getCurrentuser().getUsername());
-         ClientUI.chat.accept("disconnect");
-         ClientUI.chat.accept(new Message(cred, MessageFromClient.REQUEST_LOGOUT));
-         Platform.exit();
-    	System.out.println("exit EkrutClient");
-		System.exit(0);	
+    void exitApp(MouseEvent event) throws Exception {
+    	super.closeProgram(event, true);
     }
     
 	
