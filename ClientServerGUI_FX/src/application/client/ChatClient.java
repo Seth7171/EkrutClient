@@ -103,6 +103,9 @@ public class ChatClient extends AbstractClient
         	  productList = (ArrayList<Product>)message.getData();
               break;
 
+          case"IMPORT_MACHINE_ID_SUCCESSFUL":
+              MessageHandler.setData(message.getData());
+              break;
       }
   }
   
