@@ -3,6 +3,7 @@ package gui.ConnectionScreens;
 import application.client.ClientController;
 import application.client.ClientUI;
 import gui.ScreenController;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -92,9 +93,11 @@ public class ClientConnectorController extends ScreenController {
 		
 		primaryStage.show();
 	}
-	
+
+	@FXML
 	public void getExitBtn(MouseEvent event) throws Exception {
-		super.closeProgram(event, false);
+		Platform.exit();
+		System.exit(0);
 	}
 }
 
