@@ -1,5 +1,6 @@
 package gui.ReportScreens;
 import java.time.Year;
+import javafx.event.EventHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
-public class CEOReportsMainScreenController extends Application implements Initializable{
+public class CEOReportsMainScreenController implements Initializable{
 	int MachineIDFlag=0; // MachineID ComboBox:  1=open|0-close
 	@FXML
     private ComboBox<String> MachineID;
@@ -57,6 +58,9 @@ public class CEOReportsMainScreenController extends Application implements Initi
     
     @FXML
     private Label errorLabel;
+    
+    private double xOffset;
+    private double yOffset;
     
     /**
 	 * exit application
@@ -175,6 +179,7 @@ public class CEOReportsMainScreenController extends Application implements Initi
 		 Parent root = null;
 		 try {
 			 	switch (reportType) {
+			 	
 		            case "Inventory":
 		                 root = FXMLLoader.load(getClass().getResource("InventoryReportScreen.fxml"));
 		                  break;
@@ -193,37 +198,30 @@ public class CEOReportsMainScreenController extends Application implements Initi
 		            }
 		       }
 		 
-		  catch (IOException exception){
-		            exception.printStackTrace();
-		        }
+		  		catch (IOException exception){exception.printStackTrace();}
 
 		        Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
 		        Scene scene = new Scene(root);
+		        
+		        // make the NEXT window able to move with mouse
+		        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+		            @Override
+		            public void handle(MouseEvent event) {
+		                xOffset = event.getSceneX();
+		                yOffset = event.getSceneY();
+		            }
+		        });
+		        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+		            @Override
+		            public void handle(MouseEvent event) {
+		            	primaryStage.setX(event.getScreenX() - xOffset);
+		            	primaryStage.setY(event.getScreenY() - yOffset);
+		            }
+		        });
+		        // End of movement code for window
+		        
 		        primaryStage.setScene(scene);
 		        primaryStage.show();
-		        
-		        
 		    }
-		
-  
-
-		
-	
-	 public static void main(String[] args) {
-	        launch(args);
-	    }
-
-	 
-	@Override
-	public void start(Stage arg0) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("ReportsMainScreen.fxml"));
-		Stage primaryStage = new Stage();
-		Scene scene = new Scene(root);
-
-		primaryStage.setTitle("Client");
-		primaryStage.setScene(scene);
-		
-		primaryStage.show();
-	}
 
 }
