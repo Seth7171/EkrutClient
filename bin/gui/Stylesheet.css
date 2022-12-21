@@ -7,10 +7,6 @@
 	-fx-text-box-border: transparent;
 }
 
-.button{
-	-fx-background-color: #bfbfbf;
-}
-
 .logo{
 	-fx-opacity: 90%;
 }
@@ -20,6 +16,18 @@
 	-fx-background-image: url("exit.png");
 }
 
+/****************************button style****************************************************/
+.button{
+	-fx-background-color: #bfbfbf;
+}
+
+.button: hover{
+	-fx-scale-x: 1.03;
+	-fx-scale-y: 1.03;
+	-fx-scale-z: 1.03;
+	-fx-font-size: 13px;
+}
+/********************************************************************************************/
 
 /****************************text field style*************************************************/
 .text-field{

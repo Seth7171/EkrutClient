@@ -36,6 +36,7 @@ public class ScreenController {
         primaryStage.setTitle("Client Editor");
 
         primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
 
         primaryStage.show();
     }
