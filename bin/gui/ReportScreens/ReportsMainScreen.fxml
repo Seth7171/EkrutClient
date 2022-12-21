@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.CEOReportsMainScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.CEOReportsMainScreenController">
    <children>
       <ImageView fitHeight="74.0" fitWidth="156.0" layoutX="3.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -27,7 +27,7 @@
       </Label>
       <ComboBox fx:id="Month" layoutX="74.0" layoutY="132.0" prefHeight="25.0" prefWidth="79.0" promptText="Month" />
       <ComboBox fx:id="YearComboBox" layoutX="235.0" layoutY="132.0" prefHeight="25.0" prefWidth="79.0" promptText="Year" />
-      <ComboBox fx:id="Type" layoutX="125.0" layoutY="187.0" prefWidth="150.0" promptText="Type" />
+      <ComboBox fx:id="Type" layoutX="125.0" layoutY="187.0" onAction="#clickOnType" prefWidth="150.0" promptText="Type" />
       <Button fx:id="showReportButton" layoutX="149.0" layoutY="310.0" mnemonicParsing="false" onAction="#clickShowReport" prefHeight="25.0" prefWidth="97.0" text="Show report" />
       <Button fx:id="backButton" layoutX="3.0" layoutY="373.0" mnemonicParsing="false" onAction="#clickBackButton" prefHeight="25.0" prefWidth="52.0" text="Back" />
       <Button fx:id="exitButton" layoutX="360.0" layoutY="10.0" mnemonicParsing="false" onAction="#exitApp" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" stylesheets="@Stylesheet.css" />
