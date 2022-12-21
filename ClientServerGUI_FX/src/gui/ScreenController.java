@@ -63,6 +63,10 @@ public class ScreenController {
         fadeTransition.play();
     }
 
+    /**
+     * @param event event to find the primary stage
+     * @param needLogout indicates if logout is needed or not
+     */
     protected void closeProgram(MouseEvent event, boolean needLogout) {
 
         ClientUI.chat.accept("disconnect");
