@@ -22,9 +22,10 @@
 }
 
 .button:hover{
-	-fx-scale-x: 1.04;
-	-fx-scale-y: 1.04;
-	-fx-scale-z: 1.04;
+	-fx-cursor: hand;
+	-fx-scale-x: 1.03;
+	-fx-scale-y: 1.03;
+	-fx-scale-z: 1.03;
 	/*-fx-font-size: 13px;*/
 }
 /********************************************************************************************/
