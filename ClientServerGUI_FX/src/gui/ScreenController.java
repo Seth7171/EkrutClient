@@ -7,6 +7,7 @@ import common.connectivity.MessageFromClient;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -68,6 +70,18 @@ public class ScreenController {
             ArrayList<String> cred = new ArrayList<String>();
             cred.add(UserController.getCurrentuser().getUsername());
             ClientUI.chat.accept(new Message(cred, MessageFromClient.REQUEST_LOGOUT));
+        }
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/goodByeScreen.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        switchScreen(event, root);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
         Platform.exit();
         System.exit(0);
