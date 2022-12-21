@@ -64,6 +64,7 @@ public class UserMainScreenController extends ScreenController implements Initia
         ArrayList<String> credentials = new ArrayList<String>();
         credentials.add(UserController.getCurrentuser().getUsername());
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
+        UserController.setCurrentuser(null);
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("LogInScreen.fxml"));

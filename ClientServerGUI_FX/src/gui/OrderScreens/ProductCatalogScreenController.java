@@ -83,10 +83,10 @@ public class ProductCatalogScreenController extends ScreenController implements 
         ClientUI.chat.accept(new Message("HA01", MessageFromClient.REQUEST_ALL_MACHINE_PRODUCTS));
         tabPane.getStyleClass().add("tab-pane");
         for (Product product : ChatClient.productList) {
-           // if(!product.isCustomMade())
-        	 snacksPane.getChildren().add(createProductTile(product));
-           // else
-           //     tilePaneSingle.getChildren().add(createProductTile(product));
+           //if(product.gettype().equals("snack"))
+        	   snacksPane.getChildren().add(createProductTile(product));
+           //else
+           		//drinksPane.getChildren().add(createProductTile(product));
         }
 
         snacksScroll.setFitToWidth(true);
