@@ -21,7 +21,7 @@
 	-fx-background-color: #bfbfbf;
 }
 
-.button: hover{
+.button hover{
 	-fx-scale-x: 1.03;
 	-fx-scale-y: 1.03;
 	-fx-scale-z: 1.03;
