@@ -59,12 +59,7 @@ public class CustomerServiceEmployeeScreenController extends ScreenController im
 
     @FXML
     protected void exit(MouseEvent event) {
-        ArrayList<String> cred = new ArrayList<String>();
-        cred.add(UserController.getCurrentuser().getUsername());
-        ClientUI.chat.accept(new Message(cred, MessageFromClient.REQUEST_LOGOUT));
-        ClientUI.chat.accept("disconnect");
-        Platform.exit();
-        System.exit(0);
+        super.closeProgram(event, true);
     }
 
     @FXML
