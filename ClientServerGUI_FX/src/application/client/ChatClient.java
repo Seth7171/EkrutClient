@@ -80,9 +80,11 @@ public class ChatClient extends AbstractClient
           case "LOGIN_SUCCESSFUL":
               UserController.setCurrentuser((User)message.getData());
               break;
+
           case "LOGIN_FAILED_ALREADY_LOGGED_IN":
               MessageHandler.setMessage("already logged in");
               break;
+
           case "LOG_IN_ERROR_USER_DOES_NOT_EXIST":
               MessageHandler.setMessage("user does not exist");
               break;
@@ -91,14 +93,15 @@ public class ChatClient extends AbstractClient
               String reply = (String)message.getData();
               MessageHandler.setMessage(reply);
               break;
+
           case "ERROR_ADDING_USER":
               MessageHandler.setMessage("Unknown Error");
               break;
+
           case "USER_ADDED_SUCCESSFULLY":
               MessageHandler.setMessage("user user added successfully!");
               break;
-//          case"IMPORT_MACHINE_ID_SUCCESSFUL":
-//              MessageHandler.setData(message.getData());
+
           case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
         	  productList = (ArrayList<Product>)message.getData();
               break;

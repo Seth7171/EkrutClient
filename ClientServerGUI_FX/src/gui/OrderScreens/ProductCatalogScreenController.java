@@ -79,7 +79,7 @@ public class ProductCatalogScreenController implements Initializable {
     double yoffset;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ClientUI.chat.accept(new Message("123", MessageFromClient.REQUEST_ALL_MACHINE_PRODUCTS));
+        ClientUI.chat.accept(new Message("HA01", MessageFromClient.REQUEST_ALL_MACHINE_PRODUCTS));
         tabPane.getStyleClass().add("tab-pane");
         for (Product product : ChatClient.productList) {
            // if(!product.isCustomMade())

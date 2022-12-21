@@ -21,10 +21,7 @@
          <font>
             <Font size="16.0" />
          </font></PasswordField>
-      <Button fx:id="loginButton" layoutX="110.0" layoutY="289.0" mnemonicParsing="false" onMouseClicked="#logIn" text="Log in">
-         <font>
-            <Font size="17.0" />
-         </font></Button>
+      <Button fx:id="loginButton" layoutX="120.0" layoutY="289.0" mnemonicParsing="false" onMouseClicked="#logIn" text="Log in" />
       <ImageView fitHeight="69.0" fitWidth="128.0" layoutX="79.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
          <image>
             <Image url="@../logo.png" />
