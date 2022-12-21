@@ -7,6 +7,7 @@ import common.Departments;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import common.connectivity.User;
+import gui.ScreenController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,11 +16,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -30,7 +29,10 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AddUserScreenController implements Initializable {
+/**
+ * @author Lior Jigalo
+ */
+public class AddUserScreenController extends ScreenController implements Initializable {
 
     @FXML
     private ChoiceBox<String> departmentField;
@@ -142,29 +144,8 @@ public class AddUserScreenController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        switchScreen(event, root);
-    }
-
-
-    private void switchScreen(MouseEvent event, Parent root){
-        Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-
-        root.setOnMousePressed(event1 -> {
-            xoffset = event1.getSceneX();
-            yoffset = event1.getSceneY();
-        });
-
-        // event handler for when the mouse is pressed AND dragged to move the window
-        root.setOnMouseDragged(event1 -> {
-            primaryStage.setX(event1.getScreenX()-xoffset);
-            primaryStage.setY(event1.getScreenY()-yoffset);
-        });
-        primaryStage.setTitle("Client Editor");
-
-        primaryStage.setScene(scene);
-
-        primaryStage.show();
+        //switchScreen(event, root);
+        super.switchScreen(event, root);
     }
 
     @Override

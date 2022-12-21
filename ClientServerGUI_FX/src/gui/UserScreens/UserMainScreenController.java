@@ -20,6 +20,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * @author Lior Jigalo
+ */
 public class UserMainScreenController implements Initializable {
 
     @FXML
@@ -39,12 +42,22 @@ public class UserMainScreenController implements Initializable {
 
     double xoffset;
     double yoffset;
+
+    /**
+     * @param location  The location used to resolve relative paths for the root object, or
+     *                  {@code null} if the location is not known.
+     * @param resources The resources used to localize the root object, or {@code null} if
+     *                  the root object was not localized.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         welcomeBackText.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
         userStatusText.setText("User Status: " + UserController.getCurrentuser().getStatus());
     }
 
+    /**
+     * @param event
+     */
     @FXML
     public void logOut(MouseEvent event) {
         ArrayList<String> credentials = new ArrayList<String>();
@@ -75,7 +88,10 @@ public class UserMainScreenController implements Initializable {
 
         primaryStage.show();
     }
-    
+
+    /**
+     * @param event
+     */
     @FXML
     void NewOrder(MouseEvent event) {
 

@@ -2,6 +2,7 @@ package gui.ConnectionScreens;
 
 import application.client.ClientController;
 import application.client.ClientUI;
+import gui.ScreenController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,11 +13,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ClientConnectorController {
+public class ClientConnectorController extends ScreenController {
 	String temp="";
 
 	@FXML
@@ -38,7 +40,7 @@ public class ClientConnectorController {
 		return iptxt.getText();			
 	}
 	
-	public void Done(ActionEvent event) throws Exception {
+	public void Done(MouseEvent event) throws Exception {
 		String ip;
 		FXMLLoader loader = new FXMLLoader();
 		
@@ -65,24 +67,7 @@ public class ClientConnectorController {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-
-		root.setOnMousePressed(event1 -> {
-			xoffset = event1.getSceneX();
-			yoffset = event1.getSceneY();
-		});
-
-		// event handler for when the mouse is pressed AND dragged to move the window
-		root.setOnMouseDragged(event1 -> {
-			primaryStage.setX(event1.getScreenX()-xoffset);
-			primaryStage.setY(event1.getScreenY()-yoffset);
-		});
-		primaryStage.setTitle("Client Editor");
-
-		primaryStage.setScene(scene);
-
-		primaryStage.show();
+		super.switchScreen(event, root);
 	}
 
 	public void start(Stage primaryStage) throws Exception {	
