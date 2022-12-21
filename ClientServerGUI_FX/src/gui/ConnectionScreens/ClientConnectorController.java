@@ -93,9 +93,8 @@ public class ClientConnectorController extends ScreenController {
 		primaryStage.show();
 	}
 	
-	public void getExitBtn(ActionEvent event) throws Exception {
-		System.out.println("exit EkrutClient");
-		System.exit(0);			
+	public void getExitBtn(MouseEvent event) throws Exception {
+		super.closeProgram(event, false);
 	}
 }
 
