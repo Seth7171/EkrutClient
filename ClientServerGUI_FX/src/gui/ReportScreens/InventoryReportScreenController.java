@@ -11,6 +11,7 @@ import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,7 +29,11 @@ public class InventoryReportScreenController implements Initializable{
 
     @FXML
     private Button exitApp;
+    
+    private double xOffset;
+    private double yOffset;
 
+    // all stuff needed for Inventory report screen.
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -45,6 +50,22 @@ public class InventoryReportScreenController implements Initializable{
 
 		Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
+		// make the NEXT window able to move with mouse
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+            	primaryStage.setX(event.getScreenX() - xOffset);
+            	primaryStage.setY(event.getScreenY() - yOffset);
+            }
+        });
+        // End of movement code for window
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
