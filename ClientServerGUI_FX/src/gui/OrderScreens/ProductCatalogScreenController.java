@@ -83,10 +83,10 @@ public class ProductCatalogScreenController extends ScreenController implements 
         ClientUI.chat.accept(new Message("HA01", MessageFromClient.REQUEST_ALL_MACHINE_PRODUCTS));
         tabPane.getStyleClass().add("tab-pane");
         for (Product product : ChatClient.productList) {
-           //if(product.gettype().equals("snack"))
+           if(product.getType().equals("SNACK"))
         	   snacksPane.getChildren().add(createProductTile(product));
-           //else
-           		//drinksPane.getChildren().add(createProductTile(product));
+           else
+           		drinksPane.getChildren().add(createProductTile(product));
         }
 
         snacksScroll.setFitToWidth(true);
@@ -99,13 +99,16 @@ public class ProductCatalogScreenController extends ScreenController implements 
     }
     
     private Node createProductTile(Product product) {
+    	String imgPath = "/gui/ProductImages/";
+    	imgPath += product.getName();
+    	imgPath += ".png";
         HBox hBox = new HBox();
         VBox vBox = new VBox();
         
-        //Image image =new Image("@../logo.png");
+        Image image =new Image(imgPath);
         ImageView iv = new ImageView();
-        iv.setFitHeight(250.0);
-        iv.setFitWidth(150.0);
+        iv.setFitHeight(100.0);
+        iv.setFitWidth(100.0);
 
         Button addBtn = new Button("Add to cart");
         addBtn.getStyleClass().add("btn");
@@ -127,12 +130,15 @@ public class ProductCatalogScreenController extends ScreenController implements 
         comboBoxQuantity.getSelectionModel().selectFirst();
 
         //Client.productController.createProductImage(product);
-        //iv.setImage(image);
+        iv.setImage(image);
 
         // Check which price to display to the customer
-        if(product.getDiscount()!=0) {
+        if(product.getDiscount()!= 0) {
             priceLabel.setStrikethrough(true);
-            newPrice.setText("Discount Price: " + (product.getDiscount() - product.getDiscount()) + " \u20AA");
+            float dis = product.getPrice()*(1-product.getDiscount());
+            String present = String.format("%.0f%%OFF - Discount Price: ",product.getDiscount()*100);
+            present += dis;
+            newPrice.setText(present + "\u20AA");
             newPrice.getStyleClass().add("new-price-label");
         }
 
@@ -148,7 +154,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         vBox.setId(String.valueOf(product.getProductId()));
         iv.setTranslateY(50);
         hBox.setPadding(new Insets(0, 0, 0, 0));
-        vBox.setPadding(new Insets(50, 30, 20, 25));
+        vBox.setPadding(new Insets(20, 20, 20, 20));
 
         addBtn.setOnAction(event -> {
             String valueOfQuantity = comboBoxQuantity.getValue();
