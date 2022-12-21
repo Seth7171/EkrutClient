@@ -4,6 +4,7 @@ import application.client.ClientUI;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,7 +24,7 @@ import java.util.ResourceBundle;
 /**
  * @author Lior Jigalo
  */
-public class UserMainScreenController implements Initializable {
+public class UserMainScreenController extends ScreenController implements Initializable {
 
     @FXML
     private Button LogOutButton;
@@ -94,8 +95,15 @@ public class UserMainScreenController implements Initializable {
      */
     @FXML
     void NewOrder(MouseEvent event) {
-
         Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        super.switchScreen(event, root);   
+        /*Parent root = null;
         try {
         	
             root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
@@ -121,7 +129,7 @@ public class UserMainScreenController implements Initializable {
         
         primaryStage.setResizable(false);
 
-        primaryStage.show();
+        primaryStage.show();*/
     }
 
 }
