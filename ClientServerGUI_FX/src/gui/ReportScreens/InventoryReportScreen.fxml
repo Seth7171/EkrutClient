@@ -29,7 +29,7 @@
         </columns>
       </TableView>
       <Button fx:id="backButton" layoutY="575.0" mnemonicParsing="false" onMouseClicked="#clickBackButton" prefHeight="26.0" prefWidth="81.0" text="Back" />
-      <Button fx:id="exitApp" layoutX="931.0" layoutY="3.0" mnemonicParsing="false" onAction="#exitApplication" styleClass="ExitButton" text="X" />
+      <Button fx:id="exitApp" layoutX="931.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#exitApplication" styleClass="ExitButton" text="X" />
       <Label layoutX="77.0" layoutY="252.0" prefHeight="27.0" prefWidth="382.0" text="How many products are not available: $num">
          <font>
             <Font size="18.0" />
