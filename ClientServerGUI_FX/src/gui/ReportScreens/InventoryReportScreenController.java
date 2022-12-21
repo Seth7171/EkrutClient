@@ -53,14 +53,8 @@ public class InventoryReportScreenController extends ScreenController implements
     
     // exit from application
     @FXML
-    void exitApplication(ActionEvent event) {
-    	ArrayList<String> cred = new ArrayList<String>();
-        cred.add(UserController.getCurrentuser().getUsername());
-        ClientUI.chat.accept("disconnect");
-        ClientUI.chat.accept(new Message(cred, MessageFromClient.REQUEST_LOGOUT));
-        Platform.exit();
-        System.out.println("exit EkrutClient");
-		System.exit(0);	
+    void exitApplication(MouseEvent event) {
+    	super.closeProgram(event, true);	
     }
 
 }
