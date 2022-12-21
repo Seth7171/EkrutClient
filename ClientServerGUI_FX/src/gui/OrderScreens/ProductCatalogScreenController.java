@@ -163,7 +163,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         });
 
         viewDetails.setBorder(null);
-        viewDetails.setCursor(Cursor.HAND);
+        
         return hBox;
     }
     
