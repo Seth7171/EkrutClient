@@ -33,6 +33,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -104,7 +105,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	imgPath += ".png";
         HBox hBox = new HBox();
         VBox vBox = new VBox();
-        
+        System.out.println(imgPath);
         Image image =new Image(imgPath);
         ImageView iv = new ImageView();
         iv.setFitHeight(100.0);
@@ -120,14 +121,15 @@ public class ProductCatalogScreenController extends ScreenController implements 
         nameLabel.setWrapText(true);
         nameLabel.setPrefWidth(170);
 
-        ComboBox<String> comboBoxQuantity = new ComboBox<>(quantityPicker);
-        comboBoxQuantity.getStyleClass().add("combo-color");
+        Spinner<String> SpinnerQuantity = new Spinner<>(quantityPicker);
+        SpinnerQuantity.getStyleClass().add("combo-color");
 
         Text newPrice = new Text();
         Text priceLabel = new Text("Price: " + product.getPrice());
         priceLabel.getStyleClass().add("price-label");
 
-        comboBoxQuantity.getSelectionModel().selectFirst();
+        SpinnerQuantity.setMaxWidth(100);
+        //comboBoxQuantity.getSelectionModel().selectFirst();
 
         //Client.productController.createProductImage(product);
         iv.setImage(image);
@@ -141,14 +143,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
             newPrice.setText(present + "\u20AA");
             newPrice.getStyleClass().add("new-price-label");
         }
-
-        /*if(Client.userController.getLoggedInUser() != null)
-            if(Client.userController.getLoggedInUser().getUserType() == UserType.CUSTOMER && ((Customer) Client.userController.getLoggedInUser()).isBlocked())
-                vBox.getChildren().addAll(nameLabel, priceLabel, newPrice, new Label("Color: " + product.getDominantColor()), viewDetails);
-            else
-                vBox.getChildren().addAll(nameLabel, priceLabel, newPrice, new Label("Color: " + product.getDominantColor()), comboBoxQuantity, addBtn, viewDetails);
-        else*/
-        vBox.getChildren().addAll(nameLabel, priceLabel, newPrice, new Label("",viewDetails));
+        vBox.getChildren().addAll(nameLabel, viewDetails, priceLabel, newPrice, SpinnerQuantity, addBtn);
         hBox.getChildren().addAll(iv, vBox);
         vBox.setSpacing(15);
         vBox.setId(String.valueOf(product.getProductId()));
@@ -157,7 +152,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         vBox.setPadding(new Insets(20, 20, 20, 20));
 
         addBtn.setOnAction(event -> {
-            String valueOfQuantity = comboBoxQuantity.getValue();
+            String valueOfQuantity = SpinnerQuantity.getValue();
             addToCart(product, Integer.valueOf(valueOfQuantity));
             System.out.println("");
             //MainDashboardController.refreshCartCounter();
