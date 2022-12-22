@@ -104,6 +104,21 @@ public class ChatClient extends AbstractClient
 
           case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
         	  productList = (ArrayList<Product>)message.getData();
+
+              //TODO: you should take the following block and put it where you need it.
+              //***********************************************************************
+              byte[] inputFile;
+              for (Product o : productList){
+                  inputFile = o.getFile();
+                  try {
+                      FileOutputStream fos = new FileOutputStream("ClientServerGUI_FX/src/gui/imagesFromServer/" + o.getName() + ".png"); // TODO: change the path to your preferred location
+                      fos.write(inputFile);
+                      fos.close();
+                  } catch (Exception e) {
+                      throw new RuntimeException(e);
+                  }
+              }
+              //**********************************************************************
               break;
 
           case"IMPORT_MACHINE_ID_SUCCESSFUL":
