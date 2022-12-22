@@ -80,7 +80,7 @@ public class UserMainScreenController extends ScreenController implements Initia
      */
     @FXML
     void NewOrder(Event event) {
-        Parent root = null;
+                Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
         } catch (IOException e) {
