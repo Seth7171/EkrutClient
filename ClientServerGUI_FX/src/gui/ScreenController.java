@@ -7,6 +7,7 @@ import common.connectivity.MessageFromClient;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -32,7 +33,7 @@ public class ScreenController {
      * @param root loaded fxml file to show.
      * This method displays the scene passed as a parameter.
      */
-    public void switchScreen(MouseEvent event, Parent root){
+    public void switchScreen(Event event, Parent root){
         Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
 
