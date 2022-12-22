@@ -16,6 +16,10 @@
 	-fx-background-image: url("exit.png");
 }
 
+.tab-pane .tab-header-area .tab-header-background{
+	-fx-background-color: transparent;
+}
+
 /****************************button style****************************************************/
 .button{
 	-fx-background-color: #bfbfbf;
