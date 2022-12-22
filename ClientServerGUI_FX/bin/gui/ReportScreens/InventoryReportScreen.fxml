@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="77.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@logo.png" />
+            <Image url="@../logo.png" />
          </image>
       </ImageView>
       <Label layoutX="379.0" layoutY="39.0" prefHeight="51.0" prefWidth="199.0" styleClass="text-field" text="Inventory Report" underline="true">
@@ -45,7 +45,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="77.0" layoutY="129.0" styleClass="text-field" text="Machine ID: $id">
+      <Label fx:id="MachineIDLabel" layoutX="77.0" layoutY="129.0" styleClass="text-field" text="Machine ID: $id">
          <font>
             <Font size="20.0" />
          </font>

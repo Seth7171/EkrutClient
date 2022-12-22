@@ -41,6 +41,7 @@ public class ChatClient extends AbstractClient
   public static boolean awaitResponse = false;
   public static String servermsg = new String();
   public static ArrayList<Product> productList = new ArrayList<Product>();
+  public static String returnMachineID;
 //  private UserController userController  = UserController.getUserInstance();
 
   //Constructors ****************************************************
