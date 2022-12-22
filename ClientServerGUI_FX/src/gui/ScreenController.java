@@ -64,6 +64,37 @@ public class ScreenController {
         fadeTransition.play();
     }
 
+    public void switchScreen(MouseEvent event, Parent root){
+        Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+
+        root.setOnMousePressed(event1 -> {
+            xoffset = event1.getSceneX();
+            yoffset = event1.getSceneY();
+        });
+
+        // event handler for when the mouse is pressed AND dragged to move the window
+        root.setOnMouseDragged(event1 -> {
+            primaryStage.setX(event1.getScreenX()-xoffset);
+            primaryStage.setY(event1.getScreenY()-yoffset);
+        });
+        primaryStage.setTitle("Client Editor");
+
+        primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
+
+
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(300));
+        fadeTransition.setNode(root);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.setOnFinished((ActionEvent finishevt) -> {
+            primaryStage.show();
+        });
+        fadeTransition.play();
+    }
+
     /**
      * @param event event to find the primary stage
      * @param needLogout indicates if logout is needed or not

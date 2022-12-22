@@ -66,7 +66,7 @@
                   </ImageView>
                </graphic>
                <content>
-                  <ScrollPane fx:id="snacksScroll" prefHeight="200.0" prefWidth="200.0">
+                  <ScrollPane fx:id="snacksScroll" prefHeight="200.0" prefWidth="846.0">
                      <content>
                         <TilePane fx:id="snacksPane" prefHeight="480.0" prefWidth="810.0" />
                      </content>
