@@ -100,7 +100,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     }
     
     private Node createProductTile(Product product) {
-    	String imgPath = "/gui/ProductImages/";
+    	String imgPath = "gui/ProductImages/";
     	imgPath += product.getName();
     	imgPath += ".png";
         HBox hBox = new HBox();
