@@ -8,23 +8,30 @@ import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import gui.ScreenController;
 import javafx.application.Platform;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 /**
  * @author Lior Jigalo
  */
-public class LogInScreenController extends ScreenController {
+public class LogInScreenController extends ScreenController implements Initializable {
     @FXML
     private TextField userNameField;
     @FXML
@@ -59,17 +66,22 @@ public class LogInScreenController extends ScreenController {
      * @param event
      */
     @FXML
-    private void logIn(MouseEvent event){
+    private void logIn(Event event){
         ArrayList<String> credentials = getUsernameAndPassword();
         if(credentials == null)
             return;
 
-        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
+        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_MACHINE_INVENTORY_REPORT)); // TODO: this should be DELETED
+        // ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
             errorMessage.setText(MessageHandler.getMessage());
             return;
         }
+        Parent root = loadRoot();
+        super.switchScreen(event,root);
+    }
 
+    private Parent loadRoot(){
         Parent root = null;
         try {
             // TODO: expand next screen switch case
@@ -81,10 +93,11 @@ public class LogInScreenController extends ScreenController {
                 case "customer_service":
                     root = FXMLLoader.load(getClass().getResource("/gui/CustomerServiceEmployeeScreens/CustomerServiceEmployeeScreen.fxml"));
                     break;
-                case"ceo":
-                        root = FXMLLoader.load(getClass().getResource("/gui/ReportScreens/ReportsMainScreen.fxml"));
-                    break;
 
+                case"ceo":
+                    root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
+
+                    break;
 
                 // TODO: reset UserControler on logout
 
@@ -95,8 +108,9 @@ public class LogInScreenController extends ScreenController {
         }catch (IOException exception){
             exception.printStackTrace();
         }
-        super.switchScreen(event,root);
+        return root;
     }
+
 
     /**
      * @return
@@ -114,5 +128,25 @@ public class LogInScreenController extends ScreenController {
         credentials.add(userNameField.getText());
         credentials.add(passwordField.getText());
         return credentials;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        userNameField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent evt1) {
+                if (evt1.getCode().equals(KeyCode.ENTER)) {
+                    logIn(evt1);
+                }
+            }
+        });
+        passwordField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent evt2) {
+                if (evt2.getCode().equals(KeyCode.ENTER)) {
+                    logIn(evt2);
+                }
+            }
+        });
     }
 }
