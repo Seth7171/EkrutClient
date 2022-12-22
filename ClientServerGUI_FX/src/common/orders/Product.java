@@ -17,7 +17,6 @@ public class Product implements Serializable {
     private int criticalAmount;
     private byte[] file;
 
-    //TODO: add a file or byte array.
     public Product() {
     }
 
