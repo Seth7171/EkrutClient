@@ -5,6 +5,7 @@ import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import gui.ScreenController;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -60,7 +61,7 @@ public class UserMainScreenController extends ScreenController implements Initia
      * @param event
      */
     @FXML
-    void logOut(MouseEvent event) {
+    void logOut(Event event) {
         ArrayList<String> credentials = new ArrayList<String>();
         credentials.add(UserController.getCurrentuser().getUsername());
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
@@ -69,7 +70,6 @@ public class UserMainScreenController extends ScreenController implements Initia
         try {
             root = FXMLLoader.load(getClass().getResource("LogInScreen.fxml"));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         super.switchScreen(event, root);
@@ -79,12 +79,11 @@ public class UserMainScreenController extends ScreenController implements Initia
      * @param event
      */
     @FXML
-    void NewOrder(MouseEvent event) {
+    void NewOrder(Event event) {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         super.switchScreen(event, root);
