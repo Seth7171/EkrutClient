@@ -60,5 +60,10 @@
             <Font size="11.0" />
          </font>
       </Label>
+      <Label layoutX="91.0" layoutY="427.0" prefHeight="25.0" prefWidth="354.0" styleClass="text-field" text="The most popular product: $Most_popular">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
