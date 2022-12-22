@@ -99,7 +99,7 @@ public class ChatClient extends AbstractClient
               break;
 
           case "USER_ADDED_SUCCESSFULLY":
-              MessageHandler.setMessage("user user added successfully!");
+              MessageHandler.setMessage("user added successfully!");
               break;
 
           case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
@@ -122,8 +122,10 @@ public class ChatClient extends AbstractClient
               break;
 
           case"IMPORT_MACHINE_ID_SUCCESSFUL":
+          case"IMPORT_WAREHOUSE_PRODUCTS_SUCCESSFUL":
               MessageHandler.setData(message.getData());
               break;
+
       }
   }
   
