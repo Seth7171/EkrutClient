@@ -150,7 +150,10 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 
 	@FXML
     void clickShowReport(MouseEvent event) {
-		String reportType;
+		String reportType = null;
+		String LocationChoose= null;// location
+		String MonthChoose=null;//month
+		String YearChoose=null;//year
 		
 		// Check first for valid inputs
 		if (Month.getValue() == null) {
@@ -172,8 +175,17 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 		
 		
 		 ChatClient.returnMachineID=MachineID.getValue(); //save the machine id that has been choosing
-		 System.out.println("AT CEO:" + ChatClient.returnMachineID);
+		 ChatClient.returnMonthChoose=Month.getValue();
+		 ChatClient.returnYearChoose=YearComboBox.getValue();
+		 //System.out.println("AT CEO:" + ChatClient.returnMachineID);
 		 
+		 
+		 
+		 //Location//
+		 	//need to get the machine Location 
+		
+		
+			 	
 		 
 		 //switch screens//
 		reportType = Type.getValue();
