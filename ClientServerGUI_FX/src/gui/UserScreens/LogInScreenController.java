@@ -63,8 +63,8 @@ public class LogInScreenController extends ScreenController {
         ArrayList<String> credentials = getUsernameAndPassword();
         if(credentials == null)
             return;
-        ClientUI.chat.accept(new Message("HA01", MessageFromClient.REQUEST_MACHINE_PRODUCTS)); // TODO: this should be removed, used for debugging ONLY!
-        // ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
+        //ClientUI.chat.accept(new Message("HA01", MessageFromClient.REQUEST_MACHINE_PRODUCTS)); // TODO: this should be removed, used for debugging ONLY!
+        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
             errorMessage.setText(MessageHandler.getMessage());
             return;
