@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="831.0" fitWidth="918.0" layoutX="-14.0" pickOnBounds="true">
+         <image>
+            <Image url="@bckgrnd_big.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="chooseOrderType" alignment="CENTER" contentDisplay="CENTER" layoutX="273.0" layoutY="152.0" prefHeight="33.0" prefWidth="393.0" text="Payment method : Credit card" textAlignment="CENTER">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Text layoutX="394.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checkout">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <TextField layoutX="343.0" layoutY="279.0" prefHeight="25.0" prefWidth="393.0" />
+      <TextField layoutX="343.0" layoutY="361.0" prefHeight="25.0" prefWidth="393.0" />
+      <TextField layoutX="343.0" layoutY="437.0" prefHeight="25.0" prefWidth="393.0" />
+      <Text layoutX="343.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card number">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text layoutX="339.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name on card">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text layoutX="339.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiry date">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text layoutX="343.0" layoutY="505.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CVC">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <TextField layoutX="343.0" layoutY="516.0" prefHeight="25.0" prefWidth="393.0" />
+      <Button layoutX="885.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="30.0" text="X">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button layoutY="776.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="129.0" text="Back">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="355.0" layoutY="609.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="230.0" text="Pay">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="63.0" fitWidth="200.0" layoutX="370.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+         <image>
+            <Image url="@visa.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="355.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal : $$$">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

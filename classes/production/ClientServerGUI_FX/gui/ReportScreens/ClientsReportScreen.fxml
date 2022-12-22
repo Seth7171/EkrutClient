@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="957.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.ClientsOrderReportScreenController">
+   <children>
+      <ImageView fitHeight="77.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+         <image>
+            <Image url="@../logo.png" />
+         </image>
+      </ImageView>
+      <BarChart layoutX="435.0" layoutY="101.0" prefHeight="442.0" prefWidth="508.0">
+        <xAxis>
+          <CategoryAxis label="Range of buying acitivity" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis label="Number of clients" side="LEFT" upperBound="50.0">
+               <tickLabelFont>
+                  <Font size="11.0" />
+               </tickLabelFont>
+            </NumberAxis>
+        </yAxis>
+      </BarChart>
+      <Button fx:id="backButton" layoutY="576.0" mnemonicParsing="false" onMouseClicked="#ClickBackButton" text="Back" />
+      <Button fx:id="exitApp" layoutX="931.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#ClickLogOutButton" styleClass="ExitButton" text="X" />
+      <Label layoutX="416.0" layoutY="45.0" text="Clients Report" underline="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

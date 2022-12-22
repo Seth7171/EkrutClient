@@ -1,0 +1,73 @@
+.root{
+	-fx-background-image: url("bckgrnd.png");
+	-fx-background-size: cover;
+}
+
+.text-field{
+	-fx-text-box-border: transparent;
+}
+
+.logo{
+	-fx-opacity: 90%;
+}
+
+.ExitButton{
+	-fx-background-color: transparent;
+	-fx-background-image: url("exit.png");
+}
+
+.tab-pane .tab-header-area .tab-header-background{
+	-fx-background-color: transparent;
+}
+
+.label{
+	-fx-background-color: transparent;
+}
+
+/****************************scroll pane style************************************************/
+.scroll-pane > .viewport {
+	-fx-background-color: rgba(255, 255, 255, 0.26);
+}
+
+.scroll-pane {
+	-fx-background-color: rgba(255, 255, 255, 0.31);
+}
+/********************************************************************************************/
+
+
+/****************************button style****************************************************/
+.button{
+	-fx-background-color: #bfbfbf;
+}
+
+
+.button:hover{
+	-fx-cursor: hand;
+	-fx-scale-x: 1.03;
+	-fx-scale-y: 1.03;
+	-fx-scale-z: 1.03;
+	/*-fx-font-size: 13px;*/
+}
+/********************************************************************************************/
+
+/****************************text field style*************************************************/
+.text-field{
+	-fx-text-box-border: transparent;
+	-fx-background-color: #ffffff;
+	-fx-text-fill: black;
+	-fx-prompt-text-fill: #707070;
+}
+/*.text-field: disabled{*/
+/*	-fx-opacity: 60%;*/
+/*}*/
+/********************************************************************************************/
+
+
+/****************************combo box style*************************************************/
+.choice-box{
+	-fx-text-box-border: transparent;
+	-fx-background-color: #ffffff;
+	-fx-text-fill: black;
+	-fx-prompt-text-fill: #707070;
+}
+/********************************************************************************************/
