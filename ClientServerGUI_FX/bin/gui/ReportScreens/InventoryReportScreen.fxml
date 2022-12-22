@@ -30,17 +30,17 @@
       </TableView>
       <Button fx:id="backButton" layoutY="575.0" mnemonicParsing="false" onMouseClicked="#clickBackButton" prefHeight="26.0" prefWidth="81.0" text="Back" />
       <Button fx:id="exitApp" layoutX="931.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#exitApplication" styleClass="ExitButton" text="X" />
-      <Label layoutX="77.0" layoutY="252.0" prefHeight="27.0" prefWidth="382.0" styleClass="text-field" text="How many products are not available: $num">
+      <Label layoutX="93.0" layoutY="256.0" prefHeight="27.0" prefWidth="382.0" styleClass="text-field" text="How many products are not available: $num">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="77.0" layoutY="310.0" prefHeight="25.0" prefWidth="354.0" styleClass="text-field" text="Total items in stock: $amount_of_items">
+      <Label layoutX="93.0" layoutY="310.0" prefHeight="25.0" prefWidth="354.0" styleClass="text-field" text="Total items in stock: $amount_of_items">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="77.0" layoutY="365.0" prefHeight="25.0" prefWidth="354.0" styleClass="text-field" text="Total worth stock: $total_price">
+      <Label layoutX="96.0" layoutY="365.0" prefHeight="25.0" prefWidth="354.0" styleClass="text-field" text="Total worth stock: $total_price">
          <font>
             <Font size="18.0" />
          </font>
@@ -60,10 +60,15 @@
             <Font size="11.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="427.0" prefHeight="25.0" prefWidth="354.0" styleClass="text-field" text="The most popular product: $Most_popular">
+      <Label layoutX="97.0" layoutY="427.0" prefHeight="25.0" prefWidth="354.0" styleClass="text-field" text="The most popular product: $Most_popular">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
+      <ImageView fitHeight="43.0" fitWidth="74.0" layoutX="14.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../bin/gui/MostPopularProduct.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
