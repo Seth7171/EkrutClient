@@ -103,27 +103,24 @@ public class ProductCatalogScreenController extends ScreenController implements 
         Label nameLabel = new Label(product.getName());
         nameLabel.getStyleClass().add("name-label");
         nameLabel.setWrapText(true);
-        nameLabel.setPrefWidth(170);
+        nameLabel.setPrefWidth(150);
 
-        Spinner<String> SpinnerQuantity = new Spinner<>(quantityPicker);
+        Spinner<String> SpinnerQuantity = new Spinner<>(0,product.getAmount(),0);
         SpinnerQuantity.getStyleClass().add("combo-color");
 
         Text newPrice = new Text();
         Text priceLabel = new Text("Price: " + product.getPrice());
         priceLabel.getStyleClass().add("price-label");
 
-        SpinnerQuantity.setMaxWidth(100);
-        //comboBoxQuantity.getSelectionModel().selectFirst();
+        SpinnerQuantity.setMaxWidth(75);
 
-        //Client.productController.createProductImage(product);
         iv.setImage(image);
 
-        // Check which price to display to the customer
         if(product.getDiscount()!= 0) {
             priceLabel.setStrikethrough(true);
             float dis = product.getPrice()*(1-product.getDiscount());
-            String present = String.format("%.0f%%OFF - Discount Price: ",product.getDiscount()*100);
-            present += dis;
+            String present = String.format("%.0f%%OFF - Discount Price: %.1f",product.getDiscount()*100, dis);
+            //present += dis;
             newPrice.setText(present + "\u20AA");
             newPrice.getStyleClass().add("new-price-label");
         }
@@ -133,19 +130,19 @@ public class ProductCatalogScreenController extends ScreenController implements 
         vBox.setId(String.valueOf(product.getProductId()));
         iv.setTranslateY(50);
         hBox.setPadding(new Insets(0, 0, 0, 0));
-        vBox.setPadding(new Insets(20, 20, 20, 20));
+        vBox.setPadding(new Insets(0, 0, 20, 20));
 
         addBtn.setOnAction(event -> {
             String valueOfQuantity = SpinnerQuantity.getValue();
             addToCart(product, Integer.valueOf(valueOfQuantity));
             System.out.println("");
-            //MainDashboardController.refreshCartCounter();
         });
         addBtn.setCursor(Cursor.HAND);
         viewDetails.setOnAction(event -> {
             JOptionPane.showMessageDialog(null, product.getDescription(), "InfoBox: " + product.getName(), JOptionPane.INFORMATION_MESSAGE);
         });
         viewDetails.setBorder(null);
+        //hBox.setStyle("-fx-background-color: gray");
         return hBox;
     }
     
@@ -155,7 +152,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
         try {
             root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/UserMainScreen.fxml"));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         super.switchScreen(event, root);        
