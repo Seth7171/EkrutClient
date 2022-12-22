@@ -13,23 +13,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.ProductCatalogScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.ProductCatalogScreenController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
          <image>
             <Image url="@../logo.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="259.0" layoutY="597.0" prefHeight="34.0" prefWidth="177.0" text="Cart" textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="428.0" layoutY="603.0" prefHeight="35.0" prefWidth="61.0" text="Cart" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="130.0" layoutY="638.0" opacity="0.5" prefHeight="183.0" prefWidth="566.0">
+      <ScrollPane layoutX="108.0" layoutY="638.0" opacity="0.5" prefHeight="183.0" prefWidth="588.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="195.0" prefWidth="694.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="563.0">
                <children>
-                  <TilePane layoutY="43.0" prefHeight="157.0" prefWidth="696.0" />
+                  <TilePane layoutY="44.0" prefHeight="157.0" prefWidth="689.0" />
                </children>
             </AnchorPane>
         </content>
@@ -96,7 +96,7 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="backButton" layoutY="776.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
+      <Button fx:id="backButton" layoutX="11.0" layoutY="766.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="87.0" text="Back">
          <font>
             <Font size="20.0" />
          </font>
