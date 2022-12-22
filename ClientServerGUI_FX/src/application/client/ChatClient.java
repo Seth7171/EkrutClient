@@ -114,10 +114,11 @@ public class ChatClient extends AbstractClient
               for (Product o : productList){
                   inputFile = o.getFile();
                   try {
-                      FileOutputStream fos = new FileOutputStream("src/gui/ProductImages/" + o.getName() + ".png"); // TODO: change the path to your preferred location
+                      FileOutputStream fos = new FileOutputStream("ClientServerGUI_FX/src/gui/ProductImages/" + o.getName() + ".png"); // TODO: change the path to your preferred location
                       fos.write(inputFile);
                       fos.close();
                   } catch (Exception e) {
+                      e.printStackTrace();
                       throw new RuntimeException(e);
                   }
                 
