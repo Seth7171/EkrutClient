@@ -105,7 +105,7 @@ public class ChatClient extends AbstractClient
           case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
         	  productList = (ArrayList<Product>)message.getData();
 
-              //TODO: you should take the following block and put it where you need it.
+              //TODO: you should take the following block and put it where you need it or you can even leave it here.
               //***********************************************************************
               byte[] inputFile;
               for (Product o : productList){
