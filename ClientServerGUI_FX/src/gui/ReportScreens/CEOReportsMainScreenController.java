@@ -142,7 +142,11 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 				MachineID.setVisible(true);
 				MachineIDFlag=1;//MachineID comboBox is open
 			}
-			else MachineID.setVisible(false);
+			else 
+				{
+				MachineID.setVisible(false);
+				MachineIDFlag=0;//MachineID comboBox is close
+				}
 	    }
 
 	@FXML
