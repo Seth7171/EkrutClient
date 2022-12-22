@@ -63,6 +63,7 @@ public class LogInScreenController extends ScreenController {
         ArrayList<String> credentials = getUsernameAndPassword();
         if(credentials == null)
             return;
+
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
             errorMessage.setText(MessageHandler.getMessage());
