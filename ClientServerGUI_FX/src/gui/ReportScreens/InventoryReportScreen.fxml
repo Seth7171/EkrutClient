@@ -55,5 +55,10 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <Label fx:id="DateChooseLabel" layoutX="41.0" layoutY="513.0" prefHeight="27.0" prefWidth="225.0" styleClass="text-field" text="Date: $Month , $Year">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
