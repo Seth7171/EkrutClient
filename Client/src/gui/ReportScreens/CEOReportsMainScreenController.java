@@ -116,7 +116,7 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 	
 	// go back to ceo main screen
 	@FXML
-    void clickBackButton(MouseEvent event) {
+    void clickBackButton(MouseEvent  event) {
 		Parent root = null;
     	try {
     		root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
@@ -127,7 +127,7 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 	
 	//click on Type combo BOX
 	@FXML
-	void clickOnType(MouseEvent event) {
+	void clickOnType(ActionEvent event) {
 			if(Type.getValue().equals("Inventory"))
 			{
 				Location.setVisible(true);
@@ -147,7 +147,7 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 	
 	//click on Location combo BOX
 	@FXML
-    void clickOnLocation(MouseEvent event) {
+    void clickOnLocation(ActionEvent event) {
 		if(Location.getValue()!=null)
 		{
 			MachineID.setVisible(true);
@@ -199,10 +199,11 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 		
 		System.out.println("MachineID choose CEO:" + MachineID.getValue());
 		
-		 ChatClient.returnMachineID=MachineID.getValue(); //save the machine id that has been choosing
-		 ChatClient.returnMonthChoose=Month.getValue();
-		 ChatClient.returnYearChoose=YearComboBox.getValue();
-		// ChatClient.returnLocationChoose=Location.getValue();// need to add returnLocationChoose in ChatClient 
+		//Save data for next window
+		 ChatClient.returnMachineID=MachineID.getValue(); // save the machine id that has been choosing
+		 ChatClient.returnMonthChoose=Month.getValue(); // save the month that has been choosing
+		 ChatClient.returnYearChoose=YearComboBox.getValue(); // save the year that has been choosing
+		 ChatClient.returnLocationChoose=Location.getValue(); // save the machine location that has been choosing
 		 
 		
 		 
@@ -220,9 +221,9 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 			                  root = FXMLLoader.load(getClass().getResource("OrdersReportScreen.fxml"));
 			                   break;
 			                    
-//			            case "Clients":
-//			                  root = FXMLLoader.load(getClass().getResource("ClientsReportScreen.fxml"));
-//			                   break;
+			            case "Clients":
+			                  root = FXMLLoader.load(getClass().getResource("ClientsReportScreen.fxml"));
+			                   break;
 	
 			                default://TODO: change default
 			                    System.out.println("Unknown!");

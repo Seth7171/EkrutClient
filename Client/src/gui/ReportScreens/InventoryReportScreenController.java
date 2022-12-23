@@ -38,12 +38,20 @@ public class InventoryReportScreenController extends ScreenController implements
     
     @FXML
     private Label DateChooseLabel;
+    
+    @FXML
+    private Label locationMachineLabel;
 
     // all stuff needed for Inventory report screen.
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
     	MachineIDLabel.setText("Machine ID: " + ChatClient.returnMachineID);//get the Machine Id that has been choose
     	DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);
+    	// make the location with capital letter
+    	String locationMachine = ChatClient.returnLocationChoose;
+    	locationMachine = locationMachine.substring(0,1).toUpperCase() + locationMachine.substring(1).toLowerCase();
+    	//
+    	locationMachineLabel.setText("Location: " + locationMachine);
 	}
     
     
