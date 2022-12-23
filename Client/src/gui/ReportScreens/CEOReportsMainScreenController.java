@@ -33,6 +33,10 @@ import javafx.stage.Stage;
 
 public class CEOReportsMainScreenController extends ScreenController implements Initializable{
 	int MachineIDFlag=0; // MachineID ComboBox:  1=open|0-close
+	int LocationFlag=0; // Location ComboBox:  1=open|0-close
+	
+	@FXML
+    private ComboBox<String> Location;
 	
 	@FXML
     private ComboBox<String> MachineID;
@@ -88,15 +92,22 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 	        
 	        UserController.setCurrentuser(user);
 	        
-	        ClientUI.chat.accept(new Message(user, MessageFromClient.REQUEST_MACHINE_IDS));
+	        //request all machines locations
+	        ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_ALL_MACHINE_LOCATIONS));
+			ArrayList<String> Locations = (ArrayList<String>) MessageHandler.getData();
+			Location.getItems().addAll(Locations);//add all Locations to Location comboBox
+
+			//request all machines IDS in specific Location
+	        ClientUI.chat.accept(new Message(Location.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
 			ArrayList<String> ids = (ArrayList<String>) MessageHandler.getData();
-			MachineID.getItems().addAll(ids);//add all id's to MachineID comboBox
-		
-	        	
-		
+			MachineID.getItems().addAll(ids);//add all MachinesID in specific Location to MachineID comboBox
+			
+	        
+
     	welcomeReportsLabel.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
     	
 		MachineID.setVisible(false);//set machineID combobox unvisible
+		Location.setVisible(false);//set Location combobox unvisible
 		
     	// Fill years and months in combo boxes
     	Year y = Year.now();
@@ -119,35 +130,55 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 		Type.getItems().add("Activity");
 		
 		
-		
-//		MachineID.getSelectionModel().clearSelection();
-//		MachineID.getItems().clear();
-		
-
 	}
 	
 	
 	// LOAD CEO MAIN SCREEN ON BACK BUTTON
 	// WHEN TAREK FINISH CEO SCREEN, COMBINE IT HERE WITH HIDE/SHOW
+	
 	@FXML
     void clickBackButton(ActionEvent event) {
 	
     }
 	
+	//click on Type combo BOX
 	@FXML
 	void clickOnType(ActionEvent event) {
 			if(Type.getValue().equals("Inventory"))
 			{
-				MachineID.setVisible(true);
-				MachineIDFlag=1;//MachineID comboBox is open
+				Location.setVisible(true);
+				LocationFlag=1;//Location comboBox is open
+				MachineID.setVisible(false);
+				MachineIDFlag=0;//MachindID comboBox is close
+				
 			}
 			else 
 				{
+				Location.setVisible(false);
+				LocationFlag=0;//Location comboBox is close
 				MachineID.setVisible(false);
-				MachineIDFlag=0;//MachineID comboBox is close
+				MachineIDFlag=0;//MachindID comboBox is close
 				}
 	    }
-
+	
+	//click on Location combo BOX
+	@FXML
+    void clickOnLocation(ActionEvent event) {
+		if(Location.getValue()!=null)
+		{
+			MachineID.setVisible(true);
+			MachineIDFlag=1;//MachindID comboBox is open
+			
+		}
+		else 
+			{
+			MachineID.setVisible(false);
+			MachineIDFlag=0;//Machind id comboBox is close
+			}
+		System.out.println("Location choose CEO:" + Location.getValue());
+		
+    }
+	
 	@FXML
     void clickShowReport(MouseEvent event) {
 		String reportType = null;
@@ -168,24 +199,23 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 			errorLabel.setText("You didn't choose Report Type!");
 			return;
 		}
+		if (Location.getValue() == null && LocationFlag==1) {
+			errorLabel.setText("You didn't choose Location !");
+			return;
+		}
 		if (MachineID.getValue() == null && MachineIDFlag==1) {
 			errorLabel.setText("You didn't choose Machine ID!");
 			return;
 		}
 		
+		System.out.println("MachineID choose CEO:" + MachineID.getValue());
 		
 		 ChatClient.returnMachineID=MachineID.getValue(); //save the machine id that has been choosing
 		 ChatClient.returnMonthChoose=Month.getValue();
 		 ChatClient.returnYearChoose=YearComboBox.getValue();
-		 //System.out.println("AT CEO:" + ChatClient.returnMachineID);
+		// ChatClient.returnLocationChoose=Location.getValue();// need to add returnLocationChoose in ChatClient 
 		 
-		 
-		 
-		 //Location//
-		 	//need to get the machine Location 
 		
-		
-			 	
 		 
 		 //switch screens//
 		reportType = Type.getValue();
