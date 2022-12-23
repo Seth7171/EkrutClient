@@ -44,6 +44,7 @@ public class ChatClient extends AbstractClient
   public static String returnMachineID;
   public static String returnMonthChoose;
   public static String returnYearChoose;
+  public static String returnLocationChoose;
 //  private UserController userController  = UserController.getUserInstance();
 
   //Constructors ****************************************************

@@ -50,7 +50,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="77.0" layoutY="170.0" styleClass="text-field" text="Location: $location">
+      <Label fx:id="locationMachineLabel" layoutX="77.0" layoutY="170.0" styleClass="text-field" text="Location: $location">
          <font>
             <Font size="20.0" />
          </font>
