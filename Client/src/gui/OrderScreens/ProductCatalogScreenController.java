@@ -59,15 +59,18 @@ public class ProductCatalogScreenController extends ScreenController implements 
     private TilePane drinksPane;
     
     @FXML
+    private TilePane myCartPane;
+    
+    @FXML
+    private ScrollPane myCartScroll;
+    
+    @FXML
     private ScrollPane snacksScroll;
     
     @FXML
     private ScrollPane drinksScroll;
     
-    Order order = new Order();
-    
-    ObservableList<String> quantityPicker =
-            FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -155,9 +158,11 @@ public class ProductCatalogScreenController extends ScreenController implements 
         super.switchScreen(event, root);        
     }
     
-
     void addToCart(Product product, int quantity) {
-    	
+    	HBox h = new HBox();
+    	h.setBackground(null);
+    	myCartPane.getChildren().add(h);
+    	myCartScroll.setFitToWidth(true);
     }
 }
 

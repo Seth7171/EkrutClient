@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -26,7 +25,6 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ListView layoutX="98.0" layoutY="636.0" orientation="HORIZONTAL" prefHeight="185.0" prefWidth="645.0" />
       <Pane layoutX="696.0" layoutY="603.0" prefHeight="218.0" prefWidth="223.0">
          <children>
             <Label layoutX="46.0" layoutY="123.0" prefHeight="26.0" prefWidth="80.0" text="Total amount :" />
@@ -115,5 +113,10 @@
       </ImageView>
       <Circle fill="#ff1f1f" layoutX="214.0" layoutY="610.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
       <Text fill="WHITE" layoutX="199.0" layoutY="615.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
+      <ScrollPane fx:id="myCartScroll" layoutX="99.0" layoutY="636.0" maxHeight="185.0" prefHeight="185.0" prefWidth="643.0">
+         <content>
+            <TilePane fx:id="myCartPane" prefHeight="183.0" prefWidth="641.0" />
+         </content>
+      </ScrollPane>
    </children>
 </Pane>
