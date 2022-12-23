@@ -75,34 +75,21 @@ public class CEOReportsMainScreenController extends ScreenController implements 
     void exitApp(MouseEvent event) throws Exception {
     	super.closeProgram(event, true);
     }
-    
+
 	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		//- TEMP- until CEO main screen will be done
-		 User user = new User();
-	        user.setUsername("ravid");
-	        user.setPassword("123");
-	        user.setFirstname("ravid");
-	        user.setLastname("goldin");
-	        user.setId("315679654");
-	        user.setPhonenumber("0524459292");
-	        user.setDepartment("ceo");
-	        
-	        UserController.setCurrentuser(user);
-	        
-	        //request all machines locations
-	        ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_ALL_MACHINE_LOCATIONS));
-			ArrayList<String> Locations = (ArrayList<String>) MessageHandler.getData();
-			Location.getItems().addAll(Locations);//add all Locations to Location comboBox
 
-			//request all machines IDS in specific Location
-	        ClientUI.chat.accept(new Message(Location.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
-			ArrayList<String> ids = (ArrayList<String>) MessageHandler.getData();
-			MachineID.getItems().addAll(ids);//add all MachinesID in specific Location to MachineID comboBox
-			
-	        
+		//request all machines locations
+		ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_ALL_MACHINE_LOCATIONS));
+		ArrayList<String> Locations = (ArrayList<String>) MessageHandler.getData();
+		Location.getItems().addAll(Locations);//add all Locations to Location comboBox
+
+		//request all machines IDS in specific Location
+		ClientUI.chat.accept(new Message(Location.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
+		ArrayList<String> ids = (ArrayList<String>) MessageHandler.getData();
+		MachineID.getItems().addAll(ids);//add all MachinesID in specific Location to MachineID comboBox
 
     	welcomeReportsLabel.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
     	
