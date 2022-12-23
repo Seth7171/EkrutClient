@@ -32,7 +32,7 @@
       <Button fx:id="backButton" layoutX="3.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#clickBackButton" prefHeight="25.0" prefWidth="52.0" text="Back" />
       <Button fx:id="exitButton" layoutX="360.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#exitApp" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" stylesheets="@../Stylesheet.css" />
       <ComboBox fx:id="MachineID" layoutX="228.0" layoutY="236.0" prefHeight="25.0" prefWidth="109.0" promptText="MachineID" styleClass="choice-box" />
-      <Label fx:id="errorLabel" layoutX="195.0" layoutY="350.0" prefHeight="17.0" prefWidth="0.0" textFill="RED" />
+      <Label fx:id="errorLabel" layoutX="93.0" layoutY="356.0" prefHeight="17.0" prefWidth="221.0" textAlignment="CENTER" textFill="RED" />
       <ComboBox fx:id="Location" layoutX="53.0" layoutY="236.0" onAction="#clickOnLocation" prefHeight="25.0" prefWidth="109.0" promptText="Location" styleClass="choice-box" />
    </children>
 </AnchorPane>
