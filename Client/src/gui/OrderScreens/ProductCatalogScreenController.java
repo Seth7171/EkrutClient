@@ -35,7 +35,7 @@ import java.util.ResourceBundle;
 
 public class ProductCatalogScreenController extends ScreenController implements Initializable{
     @FXML
-    private Button logOutButton;
+    private Button exitButton;
 
     @FXML
     private Button backButton;
@@ -81,7 +81,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     }
     
     @FXML
-    void logOut(MouseEvent event) {
+    void exit(MouseEvent event) {
 		super.closeProgram(event, true);
     }
     
@@ -91,31 +91,24 @@ public class ProductCatalogScreenController extends ScreenController implements 
         InputStream inputStream = new ByteArrayInputStream(product.getFile());
         Image image = null;
         image = new Image(inputStream);
-        ImageView iv = new ImageView();
-        iv.setFitHeight(100.0);
-        iv.setFitWidth(100.0);
-
+        ImageView imageview = new ImageView();
+        imageview.setFitHeight(100.0);
+        imageview.setFitWidth(100.0);
         Button addBtn = new Button("Add to cart");
         addBtn.getStyleClass().add("btn");
         Button viewDetails = new Button("View details");
         viewDetails.getStyleClass().add("btn-secondary");
-
         Label nameLabel = new Label(product.getName());
         nameLabel.getStyleClass().add("name-label");
         nameLabel.setWrapText(true);
         nameLabel.setPrefWidth(150);
-
         Spinner<String> SpinnerQuantity = new Spinner<>(0,product.getAmount(),0);
         SpinnerQuantity.getStyleClass().add("combo-color");
-
         Text newPrice = new Text();
         Text priceLabel = new Text("Price: " + product.getPrice());
         priceLabel.getStyleClass().add("price-label");
-
         SpinnerQuantity.setMaxWidth(75);
-
-        iv.setImage(image);
-
+        imageview.setImage(image);
         if(product.getDiscount()!= 0) {
             priceLabel.setStrikethrough(true);
             float dis = product.getPrice()*(1-product.getDiscount());
@@ -125,13 +118,12 @@ public class ProductCatalogScreenController extends ScreenController implements 
             newPrice.getStyleClass().add("new-price-label");
         }
         vBox.getChildren().addAll(nameLabel, viewDetails, priceLabel, newPrice, SpinnerQuantity, addBtn);
-        hBox.getChildren().addAll(iv, vBox);
+        hBox.getChildren().addAll(imageview, vBox);
         vBox.setSpacing(15);
         vBox.setId(String.valueOf(product.getProductId()));
-        iv.setTranslateY(50);
+        imageview.setTranslateY(50);
         hBox.setPadding(new Insets(0, 0, 0, 0));
         vBox.setPadding(new Insets(0, 0, 20, 20));
-
         addBtn.setOnAction(event -> {
             String valueOfQuantity = SpinnerQuantity.getValue();
             addToCart(product, Integer.valueOf(valueOfQuantity));
@@ -142,7 +134,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
             JOptionPane.showMessageDialog(null, product.getDescription(), "InfoBox: " + product.getName(), JOptionPane.INFORMATION_MESSAGE);
         });
         viewDetails.setBorder(null);
-        //hBox.setStyle("-fx-background-color: gray");
         return hBox;
     }
     

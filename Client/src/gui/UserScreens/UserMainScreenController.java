@@ -35,6 +35,9 @@ public class UserMainScreenController extends ScreenController implements Initia
 
     @FXML
     private Button newOrderButton;
+    
+    @FXML
+    private Button exitButton;
 
     @FXML
     private Text userStatusText;
@@ -55,6 +58,11 @@ public class UserMainScreenController extends ScreenController implements Initia
     public void initialize(URL location, ResourceBundle resources) {
         welcomeBackText.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
         userStatusText.setText("User Status: " + UserController.getCurrentuser().getStatus());
+    }
+    
+    @FXML
+    void exit(MouseEvent event) {
+		super.closeProgram(event, true);
     }
 
     /**
