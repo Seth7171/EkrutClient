@@ -92,6 +92,8 @@ public class ChatClient extends AbstractClient
               MessageHandler.setMessage("user does not exist");
               break;
 
+
+          case "ERROR_IMPORTING_MACHINE_LOCATIONS":
           case "ERROR_ADDING_USER_EXISTS":
               String reply = (String)message.getData();
               MessageHandler.setMessage(reply);
@@ -107,29 +109,32 @@ public class ChatClient extends AbstractClient
 
           case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
         	  productList = (ArrayList<Product>)message.getData();
-
-              //TODO: you should take the following block and put it where you need it or you can even leave it here.
-              //***********************************************************************
-              byte[] inputFile;
-              for (Product o : productList){
-                  inputFile = o.getFile();
-                  try {
-//                      FileOutputStream fos = new FileOutputStream("ClientServerGUI_FX/src/gui/ProductImages/" + o.getName() + ".png"); // TODO: change the path to your preferred location
+              // TODO: decide if the below block is necessary.
+//              //TODO: you should take the following block and put it where you need it or you can even leave it here.
+//              //***********************************************************************
+//              byte[] inputFile;
+//              for (Product o : productList){
+//                  inputFile = o.getFile();
+//                  try {
+//                      FileOutputStream fos = new FileOutputStream("Client/src/gui/ProductImages/" + o.getName() + ".png");
 //                      fos.write(inputFile);
 //                      fos.close();
-                  } catch (Exception e) {
-                      e.printStackTrace();
-                      throw new RuntimeException(e);
-                  }
-                
-              }
-              //**********************************************************************
+//                  } catch (Exception e) {
+//                      e.printStackTrace();
+//                      throw new RuntimeException(e);
+//                  }
+//
+//              }
+//              //**********************************************************************
               break;
 
-          case"IMPORT_MACHINE_ID_SUCCESSFUL":
-          case"IMPORT_WAREHOUSE_PRODUCTS_SUCCESSFUL":
+          case "IMPORT_MACHINE_ID_SUCCESSFUL":
+          case "IMPORT_MACHINE_LOCATIONS_SUCCESSFUL":
+          case "IMPORT_WAREHOUSE_PRODUCTS_SUCCESSFUL":
               MessageHandler.setData(message.getData());
               break;
+
+
 
       }
   }
