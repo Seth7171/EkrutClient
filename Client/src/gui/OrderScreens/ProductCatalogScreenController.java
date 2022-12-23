@@ -33,6 +33,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.time.Duration;
 import java.util.ResourceBundle;
 
 public class ProductCatalogScreenController extends ScreenController implements Initializable{
@@ -102,15 +103,14 @@ public class ProductCatalogScreenController extends ScreenController implements 
         addtocarticon.setFitWidth(35.0);
         addBtn.setGraphic(addtocarticon);
         addBtn.getStyleClass().add("btn");
-        Button viewDetails = new Button("View details");
-        viewDetails.getStyleClass().add("btn-secondary");
         Button detBtn = new Button();
         ImageView deticon = new ImageView(getClass().getResource("/gui/OrderScreens/details.png").toExternalForm());
         deticon.setFitHeight(20.0);
         deticon.setFitWidth(20.0);
         detBtn.setGraphic(deticon);
-        JTextArea Description = new JTextArea(product.getDescription());
-        //Description.setPreferredSize(150,150);
+        Tooltip tooltip = new Tooltip(product.getDescription());
+        tooltip.setShowDelay(null);
+        detBtn.setTooltip(tooltip);
         Label nameLabel = new Label(product.getName());
         nameLabel.getStyleClass().add("name-label");
         nameLabel.setWrapText(true);
@@ -141,13 +141,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
             addToCart(product, Integer.valueOf(valueOfQuantity));
             System.out.println("");
         });
-        addBtn.setCursor(Cursor.HAND);
-        detBtn.setOnMouseEntered(event -> {
-        	//Point p = event.getLocationOnScreen();
-        	//Description.setLocation(p);
-            JOptionPane.showMessageDialog(null, product.getDescription(), "InfoBox: " + product.getName(), JOptionPane.INFORMATION_MESSAGE);
-        });
-        viewDetails.setBorder(null);
         return hBox;
     }
     
