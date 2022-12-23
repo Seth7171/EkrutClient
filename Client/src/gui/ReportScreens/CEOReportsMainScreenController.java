@@ -86,11 +86,6 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 		ArrayList<String> Locations = (ArrayList<String>) MessageHandler.getData();
 		Location.getItems().addAll(Locations);//add all Locations to Location comboBox
 
-		//request all machines IDS in specific Location
-		ClientUI.chat.accept(new Message(Location.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
-		ArrayList<String> ids = (ArrayList<String>) MessageHandler.getData();
-		MachineID.getItems().addAll(ids);//add all MachinesID in specific Location to MachineID comboBox
-
     	welcomeReportsLabel.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
     	
 		MachineID.setVisible(false);//set machineID combobox unvisible
@@ -155,6 +150,11 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 		{
 			MachineID.setVisible(true);
 			MachineIDFlag=1;//MachindID comboBox is open
+			//request all machines IDS in specific Location
+			ClientUI.chat.accept(new Message(Location.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
+			ArrayList<String> ids = (ArrayList<String>) MessageHandler.getData();
+			MachineID.getItems().clear();
+			MachineID.getItems().addAll(ids);//add all MachinesID in specific Location to MachineID comboBox
 			
 		}
 		else 
