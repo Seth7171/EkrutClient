@@ -27,6 +27,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import javax.swing.*;
+
+import java.awt.Point;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -95,9 +97,20 @@ public class ProductCatalogScreenController extends ScreenController implements 
         imageview.setFitHeight(100.0);
         imageview.setFitWidth(100.0);
         Button addBtn = new Button("Add to cart");
+        ImageView addtocarticon = new ImageView(getClass().getResource("/gui/OrderScreens/agalaadd.png").toExternalForm());
+        addtocarticon.setFitHeight(35.0);
+        addtocarticon.setFitWidth(35.0);
+        addBtn.setGraphic(addtocarticon);
         addBtn.getStyleClass().add("btn");
         Button viewDetails = new Button("View details");
         viewDetails.getStyleClass().add("btn-secondary");
+        Button detBtn = new Button();
+        ImageView deticon = new ImageView(getClass().getResource("/gui/OrderScreens/details.png").toExternalForm());
+        deticon.setFitHeight(20.0);
+        deticon.setFitWidth(20.0);
+        detBtn.setGraphic(deticon);
+        JTextArea Description = new JTextArea(product.getDescription());
+        //Description.setPreferredSize(150,150);
         Label nameLabel = new Label(product.getName());
         nameLabel.getStyleClass().add("name-label");
         nameLabel.setWrapText(true);
@@ -113,11 +126,10 @@ public class ProductCatalogScreenController extends ScreenController implements 
             priceLabel.setStrikethrough(true);
             float dis = product.getPrice()*(1-product.getDiscount());
             String present = String.format("%.0f%%OFF - Discount Price: %.1f",product.getDiscount()*100, dis);
-            //present += dis;
             newPrice.setText(present + "\u20AA");
             newPrice.getStyleClass().add("new-price-label");
         }
-        vBox.getChildren().addAll(nameLabel, viewDetails, priceLabel, newPrice, SpinnerQuantity, addBtn);
+        vBox.getChildren().addAll(nameLabel, detBtn, priceLabel, newPrice, SpinnerQuantity, addBtn);
         hBox.getChildren().addAll(imageview, vBox);
         vBox.setSpacing(15);
         vBox.setId(String.valueOf(product.getProductId()));
@@ -130,7 +142,9 @@ public class ProductCatalogScreenController extends ScreenController implements 
             System.out.println("");
         });
         addBtn.setCursor(Cursor.HAND);
-        viewDetails.setOnAction(event -> {
+        detBtn.setOnMouseEntered(event -> {
+        	//Point p = event.getLocationOnScreen();
+        	//Description.setLocation(p);
             JOptionPane.showMessageDialog(null, product.getDescription(), "InfoBox: " + product.getName(), JOptionPane.INFORMATION_MESSAGE);
         });
         viewDetails.setBorder(null);
