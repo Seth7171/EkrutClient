@@ -11,6 +11,10 @@
 	-fx-opacity: 90%;
 }
 
+.hbox{
+	-fx-background-color: green;
+}
+
 .ExitButton{
 	-fx-background-color: transparent;
 	-fx-background-image: url("exit.png");
@@ -30,7 +34,7 @@
 }
 
 .scroll-pane {
-	-fx-background-color: rgba(255, 255, 255, 0.31);
+	-fx-background-color: rgba(241, 241, 241, 0.31);
 }
 /********************************************************************************************/
 
