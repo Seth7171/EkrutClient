@@ -118,6 +118,10 @@ public class ProductCatalogScreenController extends ScreenController implements 
         nameLabel.getStyleClass().add("name-label");
         nameLabel.setWrapText(true);
         nameLabel.setPrefWidth(150);
+        Label idLable = new Label("ID: " + product.getProductId());
+        idLable.getStyleClass().add("id-label");
+        idLable.setWrapText(true);
+        idLable.setPrefWidth(150);
         Spinner<String> SpinnerQuantity = new Spinner<>(0,product.getAmount(),0);
         SpinnerQuantity.getStyleClass().add("combo-color");
         Text newPrice = new Text();
@@ -132,7 +136,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
             newPrice.setText(present + "\u20AA");
             newPrice.getStyleClass().add("new-price-label");
         }
-        vBox.getChildren().addAll(nameLabel, detBtn, priceLabel, newPrice, SpinnerQuantity, addBtn);
+        vBox.getChildren().addAll(nameLabel, idLable, detBtn, priceLabel, newPrice, SpinnerQuantity, addBtn);
         hBox.getChildren().addAll(imageview, vBox);
         vBox.setSpacing(15);
         vBox.setId(String.valueOf(product.getProductId()));
