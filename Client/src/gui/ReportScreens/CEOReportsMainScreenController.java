@@ -32,8 +32,8 @@ import javafx.stage.Stage;
 
 
 public class CEOReportsMainScreenController extends ScreenController implements Initializable{
-	int MachineIDFlag=0; // MachineID ComboBox:  1=open|0-close
-	int LocationFlag=0; // Location ComboBox:  1=open|0-close
+	int MachineIDFlag=0; // MachineID ComboBox:  1=open|0=close
+	int LocationFlag=0; // Location ComboBox:  1=open|0=close
 	
 	@FXML
     private ComboBox<String> Location;
@@ -76,8 +76,7 @@ public class CEOReportsMainScreenController extends ScreenController implements 
     	super.closeProgram(event, true);
     }
 
-	
-	
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -109,23 +108,26 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 		// Add monthly reports type
 		Type.getItems().add("Orders");
 		Type.getItems().add("Inventory");
-		Type.getItems().add("Activity");
+		Type.getItems().add("Clients");
 		
 		
 	}
 	
 	
-	// LOAD CEO MAIN SCREEN ON BACK BUTTON
-	// WHEN TAREK FINISH CEO SCREEN, COMBINE IT HERE WITH HIDE/SHOW
-	
+	// go back to ceo main screen
 	@FXML
-    void clickBackButton(ActionEvent event) {
-	
-    }
+    void clickBackButton(MouseEvent event) {
+		Parent root = null;
+    	try {
+    		root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
+		}
+    	catch (IOException exception){exception.printStackTrace();}
+    	super.switchScreen(event, root);
+	}
 	
 	//click on Type combo BOX
 	@FXML
-	void clickOnType(ActionEvent event) {
+	void clickOnType(MouseEvent event) {
 			if(Type.getValue().equals("Inventory"))
 			{
 				Location.setVisible(true);
@@ -145,7 +147,7 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 	
 	//click on Location combo BOX
 	@FXML
-    void clickOnLocation(ActionEvent event) {
+    void clickOnLocation(MouseEvent event) {
 		if(Location.getValue()!=null)
 		{
 			MachineID.setVisible(true);
@@ -210,36 +212,24 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 		 try {
 			 	switch (reportType) 
 			 		{
-			 	
-		            case "Inventory":
-		                 root = FXMLLoader.load(getClass().getResource("InventoryReportScreen.fxml"));
-		                  break;
-
-		            case "Orders":
-		                  root = FXMLLoader.load(getClass().getResource("OrdersReportScreen.fxml"));
-		                   break;
-		                    
-//		            case "Activity":
-//		                  root = FXMLLoader.load(getClass().getResource(".fxml"));
-//		                   break;
-
-		                default://TODO: change default
-		                    System.out.println("Unknown!");
-		                   
+			            case "Inventory":
+			                 root = FXMLLoader.load(getClass().getResource("InventoryReportScreen.fxml"));
+			                  break;
+	
+			            case "Orders":
+			                  root = FXMLLoader.load(getClass().getResource("OrdersReportScreen.fxml"));
+			                   break;
+			                    
+//			            case "Clients":
+//			                  root = FXMLLoader.load(getClass().getResource("ClientsReportScreen.fxml"));
+//			                   break;
+	
+			                default://TODO: change default
+			                    System.out.println("Unknown!");
 		            }
-			 	
 		 	}
-		 catch (IOException exception){exception.printStackTrace();}
-		 
-		 
-		
-		 
-		 
-		 
-		 
-		 
-		        super.switchScreen(event, root);
-		        
+		 catch (IOException exception){exception.printStackTrace();} 
+		        super.switchScreen(event, root);  
 		    }
 
 }
