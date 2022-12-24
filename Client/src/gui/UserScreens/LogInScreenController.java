@@ -72,11 +72,6 @@ public class LogInScreenController extends ScreenController implements Initializ
         ArrayList<String> credentials = getUsernameAndPassword();
         if(credentials == null)
             return;
-        ArrayList<String> monthYearMachine = new ArrayList<>();
-        monthYearMachine.add("01");
-        monthYearMachine.add("2021");
-        monthYearMachine.add("TA01");
-
 
         //ClientUI.chat.accept(new Message(monthYearMachine, MessageFromClient.REQUEST_MACHINE_MONTHLY_INVENTORY_REPORT)); // TODO: this should be DELETED
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
