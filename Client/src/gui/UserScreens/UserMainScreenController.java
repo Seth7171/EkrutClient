@@ -93,5 +93,19 @@ public class UserMainScreenController extends ScreenController implements Initia
         }
         super.switchScreenWithTimerCustomersOnly(event, root);
     }
+    
+    /**
+     * @param event
+     */
+    @FXML
+    void GrabOrder(Event event) {
+                Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/GrabOrderScreen.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        super.switchScreenWithTimerCustomersOnly(event, root);
+    }
 
 }
