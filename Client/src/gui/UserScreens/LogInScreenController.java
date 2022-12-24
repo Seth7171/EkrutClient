@@ -106,6 +106,7 @@ public class LogInScreenController extends ScreenController implements Initializ
                     // TODO: maybe add UnknownScreenException later??
             }
         }catch (IOException exception){
+            errorMessage.setText("Unknown login error");
             exception.printStackTrace();
         }
         return root;
