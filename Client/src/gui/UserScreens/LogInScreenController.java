@@ -75,8 +75,8 @@ public class LogInScreenController extends ScreenController implements Initializ
         dsad.add("02");
         dsad.add("2022");
 
-        ClientUI.chat.accept(new Message(dsad, MessageFromClient.REQUEST_MONTHLY_INVENTORY_REPORT)); // TODO: this should be DELETED
-        //ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
+        //ClientUI.chat.accept(new Message(dsad, MessageFromClient.REQUEST_MONTHLY_INVENTORY_REPORT)); // TODO: this should be DELETED
+        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
             errorMessage.setText(MessageHandler.getMessage());
             return;
