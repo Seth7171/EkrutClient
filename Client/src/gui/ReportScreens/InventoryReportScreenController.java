@@ -71,15 +71,16 @@ public class InventoryReportScreenController extends ScreenController implements
 
     @FXML
     private TableColumn<Product, String> ProductNameColumn;
+    
+    private ArrayList<Product> tempProd = new ArrayList<>();
 
     private ObservableList<Product> observablesubs = FXCollections.observableArrayList();
 	ObservableList<String> list;
     
 	public void loadProducts() {
 		tbData.getItems().clear();
-		
-        for(Product p : ChatClient.productList){
-        	
+		// here we insert the data for the table.
+        for(Product p : tempProd){	
         	Product productData = new Product();
         	productData.setProductId(p.getProductId());
         	productData.setName(p.getName());
@@ -105,6 +106,8 @@ public class InventoryReportScreenController extends ScreenController implements
 		//send data to server
 		ClientUI.chat.accept(new Message(productsArr, MessageFromClient.REQUEST_MACHINE_MONTHLY_INVENTORY_REPORT));
 		InventoryReport currentReportData =(InventoryReport) MessageHandler.getData();//getting data from server
+		
+		// TODO: this is where we don't know how to handle when we get error response because inventory report doesn't exist
 //		if(MessageHandler.getData().equals("Error importing inventory report")) {
 //			notInStockLabel.setText("");
 //			inStockItemsLabel.setText("");
@@ -124,12 +127,13 @@ public class InventoryReportScreenController extends ScreenController implements
 		totalWorthLabel.setText("Total worth stock: " +  totalWorthItems + "¤");
 //		}	
 		
-//		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ProductId"));
-//		ProductNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-//		AvailableColumn.setCellValueFactory(new PropertyValueFactory<>("Amount"));
-//		tbData.setItems(observablesubs);
-//		loadProducts();
-		
+		// tempProd to see if I get all details(name,amount,price......) about products in the report.
+		tempProd = currentReportData.getProducts();
+		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ProductId"));
+		ProductNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+		AvailableColumn.setCellValueFactory(new PropertyValueFactory<>("Amount"));
+		tbData.setItems(observablesubs);
+		loadProducts();
 	}
 
 
