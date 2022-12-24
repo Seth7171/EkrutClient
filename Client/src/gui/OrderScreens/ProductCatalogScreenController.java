@@ -3,6 +3,7 @@ package gui.OrderScreens;
 
 import application.client.ChatClient;
 import application.client.ClientUI;
+import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import common.orders.Order;
@@ -10,6 +11,7 @@ import common.orders.Product;
 import gui.ScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,6 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -34,6 +37,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class ProductCatalogScreenController extends ScreenController implements Initializable{
@@ -53,16 +57,13 @@ public class ProductCatalogScreenController extends ScreenController implements 
     private TabPane tabPane;
     
     @FXML
+    private ListView<Object> myCart = new ListView<Object>();;
+    
+    @FXML
     private TilePane snacksPane;
 
     @FXML
     private TilePane drinksPane;
-    
-    @FXML
-    private TilePane myCartPane;
-    
-    @FXML
-    private ScrollPane myCartScroll;
     
     @FXML
     private ScrollPane snacksScroll;
@@ -74,6 +75,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	myCart.setFocusTraversable( false );
         ClientUI.chat.accept(new Message("HA01", MessageFromClient.REQUEST_ALL_MACHINE_PRODUCTS));
         tabPane.getStyleClass().add("tab-pane");
         for (Product product : ChatClient.productList) {
@@ -122,7 +124,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         idLable.getStyleClass().add("id-label");
         idLable.setWrapText(true);
         idLable.setPrefWidth(150);
-        Spinner<String> SpinnerQuantity = new Spinner<>(0,product.getAmount(),0);
+        Spinner<Integer> SpinnerQuantity = new Spinner<>(0,product.getAmount(),0);
         SpinnerQuantity.getStyleClass().add("combo-color");
         Text newPrice = new Text();
         Text priceLabel = new Text("Price: " + product.getPrice());
@@ -144,14 +146,49 @@ public class ProductCatalogScreenController extends ScreenController implements 
         hBox.setPadding(new Insets(0, 0, 0, 0));
         vBox.setPadding(new Insets(0, 0, 20, 20));
         addBtn.setOnAction(event -> {
-            String valueOfQuantity = SpinnerQuantity.getValue();
-            addToCart(product, Integer.valueOf(valueOfQuantity));
+        	addToCart(product,nameLabel, idLable, detBtn, priceLabel, newPrice, SpinnerQuantity);
             System.out.println("");
         });
+        
         return hBox;
     }
     
-    @FXML
+    private void addToCart(Product product, Label nameLabel, Label idLable, Button detBtn, Text priceLabel,
+			Text newPrice, Spinner<Integer> spinnerQuantity) {
+    	int quantity = spinnerQuantity.getValue();
+    	System.out.println(quantity);
+    	HBox hboxofcart = new HBox();
+    	if (ChatClient.productInCart.containsKey(product)) {
+    		if (quantity==0) {
+    			ChatClient.productInCart.remove(product);
+    			hboxofcart.getChildren().remove(hboxofcart);
+    		}
+    		else {
+    			ChatClient.productInCart.replace(product, quantity);
+    		}
+    	}
+    	else {
+    		ChatClient.productInCart.put(product, quantity);
+            InputStream inputStream = new ByteArrayInputStream(product.getFile());
+            Image image = null;
+            image = new Image(inputStream);
+            ImageView imageview = new ImageView();
+            imageview.setFitHeight(100.0);
+            imageview.setFitWidth(100.0);
+            imageview.setImage(image);
+	    	Label namelb = new Label(nameLabel.getText());
+	    	Label idlb = new Label(idLable.getText());
+	    	Button detsBtn = new Button(detBtn.getStyle());
+	    	Text pricelb = new Text(priceLabel.getText());
+	    	Text newPricelb = new Text(newPrice.getText());
+	    	Spinner<Integer> spinnerQuantitynew = new Spinner<Integer>(0,product.getAmount(),spinnerQuantity.getValue());
+	    	hboxofcart.getChildren().addAll(imageview, namelb, idlb, detsBtn, pricelb, newPricelb, spinnerQuantitynew);
+	    	imageview.setTranslateY(50);
+	    	myCart.getItems().addAll(hboxofcart);
+    	}
+	}
+
+	@FXML
     void goBack(MouseEvent event) {
         Parent root = null;
         try {
@@ -160,13 +197,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
             e.printStackTrace();
         }
         super.switchScreen(event, root);        
-    }
-    
-    void addToCart(Product product, int quantity) {
-    	HBox h = new HBox();
-    	h.setBackground(null);
-    	myCartPane.getChildren().add(h);
-    	myCartScroll.setFitToWidth(true);
     }
 }
 
