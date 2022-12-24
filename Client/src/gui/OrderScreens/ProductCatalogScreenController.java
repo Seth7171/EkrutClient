@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
@@ -28,6 +29,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.control.Spinner;
+
 
 import javax.swing.*;
 
@@ -41,6 +44,10 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class ProductCatalogScreenController extends ScreenController implements Initializable{
+	HashMap<Product, Integer> productInCart = new HashMap<Product, Integer>();
+    @FXML
+    private Text cartCounter = new Text("2");
+    
     @FXML
     private Button exitButton;
 
@@ -71,7 +78,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     @FXML
     private ScrollPane drinksScroll;
     
-
+    int counter = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -116,6 +123,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         Tooltip tooltip = new Tooltip(product.getDescription());
         tooltip.setShowDelay(null);
         detBtn.setTooltip(tooltip);
+        detBtn.setStyle("-fx-background-color: transparent;");
         Label nameLabel = new Label(product.getName());
         nameLabel.getStyleClass().add("name-label");
         nameLabel.setWrapText(true);
@@ -146,14 +154,17 @@ public class ProductCatalogScreenController extends ScreenController implements 
         hBox.setPadding(new Insets(0, 0, 0, 0));
         vBox.setPadding(new Insets(0, 0, 20, 20));
         addBtn.setOnAction(event -> {
-        	addToCart(product,nameLabel, idLable, detBtn, priceLabel, newPrice, SpinnerQuantity);
+        	if (SpinnerQuantity.getValue() != 0 ) {
+        		SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = (SpinnerValueFactory.IntegerSpinnerValueFactory) SpinnerQuantity.getValueFactory();
+        		addToCart(product,SpinnerQuantity);
+        		SpinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, (valueFactory.getMax()-SpinnerQuantity.getValue()), 0));
+        	}
         });
         
         return hBox;
     }
     
-    private void addToCart(Product product, Label nameLabel, Label idLable, Button detBtn, Text priceLabel,
-			Text newPrice, Spinner<Integer> spinnerQuantity) {
+    private void addToCart(Product product, Spinner<Integer> spinnerQuantity) {
     	int quantity = spinnerQuantity.getValue();
     	HBox hboxofcart = new HBox();
     	InputStream inputStream = new ByteArrayInputStream(product.getFile());
@@ -163,50 +174,91 @@ public class ProductCatalogScreenController extends ScreenController implements 
         imageview.setFitHeight(50.0);
         imageview.setFitWidth(50.0);
         imageview.setImage(image);
-    	Label namelb = new Label(nameLabel.getText());
+    	Label namelb = new Label(product.getName());
     	namelb.setPrefWidth(100);
-    	Label idlb = new Label(idLable.getText());
+    	Label idlb = new Label(product.getProductId());
     	idlb.setPrefWidth(100);
-    	Text pricelb = new Text(priceLabel.getText());
-    	Text newPricelb = new Text(newPrice.getText());
     	float productPrice = product.getPrice();
     	Text productTotalPrice = new Text();
-    	productTotalPrice.minWidth(100);
-    	productTotalPrice.setText(String.valueOf(productPrice*spinnerQuantity.getValue()));
+    	productTotalPrice.setWrappingWidth(100);
+    	float priceofproduct = productPrice*spinnerQuantity.getValue();
     	if (product.getDiscount()!=0) {
-    		productTotalPrice.setText(String.valueOf(productPrice*(1-product.getDiscount())*spinnerQuantity.getValue()));
+    		priceofproduct = productPrice*(1-product.getDiscount())*spinnerQuantity.getValue();
     	}
+    	productTotalPrice.setText(String.valueOf(priceofproduct) + "\u20AA");
     	Spinner<Integer> spinnerQuantitynew = new Spinner<Integer>(0,product.getAmount(),spinnerQuantity.getValue());
+    	Button removeProduct = new Button();
+        ImageView addtocarticon = new ImageView(getClass().getResource("/gui/OrderScreens/agalaremove.png").toExternalForm());
+        addtocarticon.setFitHeight(15.0);
+        addtocarticon.setFitWidth(15.0);
+        removeProduct.setGraphic(addtocarticon);
+        removeProduct.getStyleClass().add("btn");
     	spinnerQuantitynew.setMaxWidth(75);
-    	hboxofcart.getChildren().addAll(imageview, namelb, idlb, productTotalPrice, spinnerQuantitynew);
+    	hboxofcart.getChildren().addAll(imageview, namelb, idlb, productTotalPrice, removeProduct, spinnerQuantitynew);
     	imageview.setTranslateY(0);
-    	if (ChatClient.productInCart.containsKey(product)) {
-    		for (Object hb : myCart.getItems()) {
-    			if (hb instanceof HBox){
-		    		Label label = (Label)(((HBox)hb).getChildren().get(1));
-		    		if (label.getText().equals(nameLabel.getText())) {
-		    		    if (quantity==0) {
-		    		    	ChatClient.productInCart.remove(product);
-		    		    	myCart.getItems().remove(hb);
-		    		    }
-		    		    else {
-		        			ChatClient.productInCart.replace(product, quantity);
-		        			myCart.getItems().remove(hb);
-		        			myCart.getItems().addAll(hboxofcart);
-		        		}
-		    			break;
-		    		}
+    	if (productInCart.containsKey(product)) {
+    		HBox hb = (HBox)(findhbofid(idlb.getText()));
+    		if (hb != null) {
+    			productInCart.put(product, (productInCart.get(product) + quantity));
+    			((Spinner<Integer>)hb.getChildren().get(5)).increment(quantity);
+    			if (product.getDiscount() != 0) { 
+    			((Text)hb.getChildren().get(3)).setText(
+    					String.valueOf(product.getPrice()*(1-product.getDiscount())*productInCart.get(product)) + "\u20AA");
+	    		}
+    			else {
+    				((Text)hb.getChildren().get(3)).setText(
+        					String.valueOf(product.getPrice()*productInCart.get(product)) + "\u20AA");
     			}
     		}
     	}
     	else {
-    		if (quantity!=0) {
-	    		ChatClient.productInCart.put(product, quantity);
-		    	myCart.getItems().addAll(hboxofcart);
-    		}
+    		productInCart.put(product, quantity);
+	    	myCart.getItems().addAll(hboxofcart);
+	    	counter++;
+	    	cartCounter.setText(String.valueOf(counter));
     	}
+    	removeProduct.setOnAction(event -> {
+    		HBox hb = (HBox)(findhbofid(idlb.getText()));
+    		productInCart.remove(product);
+	    	myCart.getItems().remove(hb);
+	    	counter--;
+	    	cartCounter.setText(String.valueOf(counter));
+        });
+    	spinnerQuantitynew.setOnMouseReleased(event -> {
+			productInCart.remove(product);
+			productInCart.put(product, spinnerQuantitynew.getValue());
+			if (product.getDiscount() != 0) {
+				((Text) ((HBox) spinnerQuantitynew.getParent()).getChildren().get(3)).setText(
+						String.valueOf(product.getPrice()*(1-product.getDiscount())*(productInCart.get(product))) + "\u20AA");
+			}
+			else {
+				((Text) ((HBox) spinnerQuantitynew.getParent()).getChildren().get(3)).setText(
+						String.valueOf(product.getPrice()*(productInCart.get(product))) + "\u20AA");
+			}
+			SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = (SpinnerValueFactory.IntegerSpinnerValueFactory) spinnerQuantitynew.getValueFactory();
+    		spinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, (valueFactory.getMax()-spinnerQuantitynew.getValue()), 0));
+    	    if (spinnerQuantitynew.getValue() == 0) {
+        		HBox hb = (HBox)(findhbofid(idlb.getText()));
+        		productInCart.remove(product);
+    	    	myCart.getItems().remove(hb);
+    	    	counter--;
+    	    	cartCounter.setText(String.valueOf(counter));
+    	    }
+    		System.out.println(productInCart);
+    	});
 	}
     		
+    Object findhbofid(String nameLabel) {
+    	for (Object hb : myCart.getItems()) {
+			if (hb instanceof HBox){
+	    		Label label = (Label)(((HBox)hb).getChildren().get(2));
+	    		if (label.getText().equals(nameLabel)) {
+	    			return hb;
+	    		}
+	    	}
+    	}
+    	return null; 
+    }
 
 	@FXML
     void goBack(MouseEvent event) {
