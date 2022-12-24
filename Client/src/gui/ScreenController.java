@@ -5,6 +5,7 @@ import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -62,6 +63,7 @@ public class ScreenController {
             primaryStage.show();
         });
         fadeTransition.play();
+        
     }
 
     public void switchScreen(MouseEvent event, Parent root){
@@ -92,7 +94,27 @@ public class ScreenController {
         fadeTransition.setOnFinished((ActionEvent finishevt) -> {
             primaryStage.show();
         });
-        fadeTransition.play();
+        
+        /*
+//////////////////////////////////////////////////////////////////////////////
+///////////////////              ATTENTION!!!!!!!                 ////////////
+///////////////////            FOR LIOR'S EYES ONLY.              ////////////
+/////////////////// this section contains a timer, it is not final////////////
+///////////////////  why?        from the semester project :      ////////////
+/////////////////// אם תהליך ההזמנה לא מגיע לסיומו התקין "        ////////////
+/////////////////// למשל המזמין לא אישר ולא ביטל, או נטש את התהליך////////////
+///////////////////  לפני סיומו יש סיום מאולץ אוטומטי יש חלון זמן.////////////
+///////////////////כדי לא לתקוע את המכשיר"                        ////////////
+///////////////////  NOTE : the timer is working for 15 min. but  ////////////
+/////////////////// I commented it for now.       have a nice day ////////////
+///////////////////                                         Ron.  ////////////   
+////////PauseTransition delay = new PauseTransition(Duration.seconds(900));///
+////////delay.setOnFinished( event2 -> primaryStage.close() );    ////////////
+////////delay.play();                                             ////////////
+////////fadeTransition.play();                                    ////////////
+//////////////////////////////////////////////////////////////////////////////
+
+        */
     }
 
     /**
