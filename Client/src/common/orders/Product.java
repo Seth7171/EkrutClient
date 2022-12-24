@@ -115,6 +115,9 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
+        String f = "no file";
+        if (file != null)
+            f = "file is present!";
         return "Product{" +
                 "price= " + price +
                 ", discount= " + discount +
@@ -124,7 +127,7 @@ public class Product implements Serializable {
                 ", type= '" + type + '\'' +
                 ", productId= '" + productId + '\'' +
                 ", criticalAmount= " + criticalAmount +
-                ", file= " + Arrays.toString(file).substring(1, 5) +
+                ", file= " + f +
                 '}';
     }
 }
