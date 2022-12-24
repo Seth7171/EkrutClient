@@ -37,7 +37,7 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Button layoutX="344.0" layoutY="379.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="230.0" text="Collect Order Now">
+      <Button fx:id="grabNow" layoutX="344.0" layoutY="379.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="230.0" text="Collect Order Now">
          <font>
             <Font size="20.0" />
          </font>
@@ -47,7 +47,7 @@
             <Image url="@collectOrder.png" />
          </image>
       </ImageView>
-      <TextField layoutX="373.0" layoutY="333.0" prefHeight="25.0" prefWidth="173.0" promptText="Order Number #" />
+      <TextField fx:id="orderNumField" layoutX="373.0" layoutY="333.0" prefHeight="25.0" prefWidth="173.0" promptText="Order Number #" />
       <Button fx:id="backButton" layoutY="777.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
          <font>
             <Font size="20.0" />
