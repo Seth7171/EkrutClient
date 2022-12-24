@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.PostPaymentController">
    <children>
-      <ImageView fitHeight="831.0" fitWidth="918.0" layoutX="-14.0" pickOnBounds="true">
+      <ImageView fitHeight="150.0" fitWidth="143.0" layoutX="318.0" layoutY="340.0" pickOnBounds="true">
          <image>
-            <Image url="@bckgrnd_big.png" />
+            <Image url="@../../../../../../Downloads/Receipt.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
@@ -31,17 +31,17 @@
          </font>
       </Text>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text layoutX="345.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Number : ########">
+      <Text layoutX="448.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Number :">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <Button layoutX="885.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="30.0" text="X">
+      <Button fx:id="exitButton" layoutX="885.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="16.0" prefWidth="30.0" text="X">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button layoutX="344.0" layoutY="379.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="230.0" text="Back to menu screen">
+      <Button fx:id="backButton" layoutX="346.0" layoutY="511.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="63.0" prefWidth="230.0" text="Back to menu screen">
          <font>
             <Font size="20.0" />
          </font>
@@ -51,5 +51,10 @@
             <Image url="@GreenCheckMark.png" />
          </image>
       </ImageView>
+      <Text layoutX="584.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="######">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
    </children>
 </Pane>
