@@ -18,8 +18,17 @@ public class Product implements Serializable {
     private byte[] file;
 
     public Product() {
-    }
-
+   	 this.price = 0;
+        this.discount = 0;
+        this.name = null;
+        this.amount = 0;
+        this.description = null;
+        this.type = null;
+        this.productId = null;
+        this.file = null;
+        this.criticalAmount = 0;
+   }
+    
     public Product(float price, float discount, String name, int amount, String description, String type, String productId, byte[] file, int criticalAmount) {
         this.price = price;
         this.discount = discount;
