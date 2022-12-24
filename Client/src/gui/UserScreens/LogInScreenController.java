@@ -71,8 +71,12 @@ public class LogInScreenController extends ScreenController implements Initializ
         if(credentials == null)
             return;
 
-        //ClientUI.chat.accept(new Message("tel aviv", MessageFromClient.REQUEST_MACHINE_IDS)); // TODO: this should be DELETED
-        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
+        ArrayList<String> dsad = new ArrayList<>();
+        dsad.add("02");
+        dsad.add("2022");
+
+        ClientUI.chat.accept(new Message(dsad, MessageFromClient.REQUEST_MONTHLY_INVENTORY_REPORT)); // TODO: this should be DELETED
+        //ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
             errorMessage.setText(MessageHandler.getMessage());
             return;
