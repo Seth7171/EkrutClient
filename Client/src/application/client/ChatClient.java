@@ -75,12 +75,11 @@ public class ChatClient extends AbstractClient
    *
    * @param serverMessage The message from the server.
    */
-  public void handleMessageFromServer(Object serverMessage) {
+  public void handleMessageFromServer(Object serverMessage) { // TODO: optimize switch case.
 	  subs = new ArrayList<>();
 	  System.out.println("--> handleMessageFromServer");
 	  System.out.println(serverMessage);
 	  servermsg = serverMessage.toString();
-     
 	  awaitResponse = false;
       Message message = (Message) serverMessage;
 
@@ -96,7 +95,6 @@ public class ChatClient extends AbstractClient
           case "LOG_IN_ERROR_USER_DOES_NOT_EXIST":
               MessageHandler.setMessage("user does not exist");
               break;
-
 
           case "ERROR_IMPORTING_MACHINE_LOCATIONS":
           case "ERROR_ADDING_USER_EXISTS":
@@ -133,6 +131,8 @@ public class ChatClient extends AbstractClient
 //              //**********************************************************************
               break;
 
+          case "IMPORT_INVENTORY_REPORT_SUCCESSFUL":
+          case "ERROR_IMPORTING_INVENTORY_REPORT":
           case "IMPORT_MACHINE_ID_SUCCESSFUL":
           case "IMPORT_MACHINE_LOCATIONS_SUCCESSFUL":
           case "ERROR_IMPORTING_MACHINE_PRODUCTS":
@@ -140,8 +140,6 @@ public class ChatClient extends AbstractClient
           case "IMPORT_WAREHOUSE_PRODUCTS_SUCCESSFUL":
               MessageHandler.setData(message.getData());
               break;
-
-
 
       }
   }
