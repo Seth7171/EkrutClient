@@ -13,9 +13,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.CheckoutScreenController">
    <children>
-      <ImageView fitHeight="831.0" fitWidth="918.0" layoutY="-6.0" pickOnBounds="true">
+      <ImageView fitHeight="89.0" fitWidth="95.0" layoutX="284.0" layoutY="13.0" pickOnBounds="true">
          <image>
-            <Image url="@bckgrnd_big.png" />
+            <Image url="@cashout.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
