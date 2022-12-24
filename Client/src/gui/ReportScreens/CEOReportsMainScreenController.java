@@ -227,8 +227,10 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 			                    System.out.println("Unknown!");
 		            }
 		 	}
-		 catch (IOException exception){exception.printStackTrace();} 
-		        super.switchScreen(event, root);  
-		    }
+		 catch (IOException exception){
+			 exception.printStackTrace();
+		 }
+		 super.switchScreen(event, root);
+	}
 
 }

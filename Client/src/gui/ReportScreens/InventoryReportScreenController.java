@@ -69,13 +69,14 @@ public class InventoryReportScreenController extends ScreenController implements
     	locationMachineLabel.setText("Location: " + locationMachine);//get the Location  that has been choose
     	
     	//get data
+    	InventoryReport currentReportData = null;
     	ArrayList<String> productsArr= new ArrayList<>();
     	productsArr.add(ChatClient.returnMonthChoose);//adding Month  that has been choose to arraylist
     	productsArr.add(ChatClient.returnYearChoose);//adding Year  that has been choose to arraylist
     	productsArr.add(ChatClient.returnMachineID);//adding Machine id  that has been choose to arraylist
     	
     	ClientUI.chat.accept(new Message(productsArr, MessageFromClient.REQUEST_MACHINE_MONTHLY_INVENTORY_REPORT));
-    	InventoryReport currentReportData =(InventoryReport) MessageHandler.getData();
+    	currentReportData =(InventoryReport) MessageHandler.getData();
 //    	ArrayList<Product> temp = new ArrayList<>();
 //
 //       	 	temp = currentReportData.getProducts();
@@ -90,15 +91,15 @@ public class InventoryReportScreenController extends ScreenController implements
 //   	 				inStockItems++;
 //   	 				product.getAmount();
 //   	 				product.getPrice();
-//   	 		}	
+//   	 		}
    	 	
-  
-   	 		
-   	 		
-//   	 	totalWorthLabel.setText("Total worth stock: " +  totalWorthItems + "¤");
+
+
+
+//   	 	totalWorthLabel.setText("Total worth stock: " +  totalWorthItems + "ï¿½");
 //   	 	notInStockLabel.setText("Total items not in stock: " + notInStockItems);
 //   	 	inStockItemsLabel.setText("Total items in stock: " + inStockItems);
-//   	 	
+//
 	}
     
     
