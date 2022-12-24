@@ -43,10 +43,22 @@ public class InventoryReportScreenController extends ScreenController implements
     
     @FXML
     private Label locationMachineLabel;
-
+    
+    @FXML
+    private Label totalWorthLabel;
+    
+    @FXML
+    private Label notInStockLabel;
+    
+    @FXML
+    private Label inStockItemsLabel;
+    
     // all stuff needed for Inventory report screen.
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+    	float totalWorthItems = 0;
+        int notInStockItems = 0;
+        int inStockItems = 0;
     	MachineIDLabel.setText("Machine ID: " + ChatClient.returnMachineID);//get the Machine Id that has been choose
     	DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);//get the Date that has been choose
     	String locationMachine = ChatClient.returnLocationChoose;
@@ -56,12 +68,21 @@ public class InventoryReportScreenController extends ScreenController implements
     	//get data
     	ClientUI.chat.accept(new Message(ChatClient.returnMachineID, MessageFromClient.REQUEST_MACHINE_PRODUCTS));
    	 		for (Product product : ChatClient.productList) {//{System.out.println("Products: " + products.getName());}
+   	 			totalWorthItems += product.getPrice();
+   	 			if(product.getAmount() == 0)
+   	 				notInStockItems++;
+   	 			else
+   	 				inStockItems++;
    	 			product.getProductId();
    	 			product.getName();
    	 			product.getAmount();
    	 			product.getPrice();
    	 		}
-
+   	 	
+   	 	totalWorthLabel.setText("Total worth stock: " +  totalWorthItems + "¤");
+   	 	notInStockLabel.setText("Total items not in stock: " + notInStockItems);
+   	 	inStockItemsLabel.setText("Total items in stock: " + inStockItems);
+   	 	
 	}
     
     
