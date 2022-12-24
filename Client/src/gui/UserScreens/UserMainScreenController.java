@@ -91,7 +91,7 @@ public class UserMainScreenController extends ScreenController implements Initia
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreen(event, root);
+        super.switchScreenWithTimerCustomersOnly(event, root);
     }
 
 }

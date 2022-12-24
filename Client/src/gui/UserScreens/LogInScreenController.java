@@ -78,7 +78,7 @@ public class LogInScreenController extends ScreenController implements Initializ
             return;
         }
         Parent root = loadRoot();
-        super.switchScreen(event,root);
+        super.switchScreenWithTimerCustomersOnly(event,root);
     }
 
     private Parent loadRoot(){

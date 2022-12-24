@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -66,6 +67,7 @@ public class ScreenController {
         
     }
 
+    // OLD CODE -> WE NEED TO SWITCH TO EVENT, AND DISCARD MOUSE EVENT FROM EVERY FXML .
     public void switchScreen(MouseEvent event, Parent root){
         Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -94,27 +96,79 @@ public class ScreenController {
         fadeTransition.setOnFinished((ActionEvent finishevt) -> {
             primaryStage.show();
         });
-        
-        /*
-//////////////////////////////////////////////////////////////////////////////
-///////////////////              ATTENTION!!!!!!!                 ////////////
-///////////////////            FOR LIOR'S EYES ONLY.              ////////////
-/////////////////// this section contains a timer, it is not final////////////
-///////////////////  why?        from the semester project :      ////////////
-/////////////////// אם תהליך ההזמנה לא מגיע לסיומו התקין "        ////////////
-/////////////////// למשל המזמין לא אישר ולא ביטל, או נטש את התהליך////////////
-///////////////////  לפני סיומו יש סיום מאולץ אוטומטי יש חלון זמן.////////////
-///////////////////כדי לא לתקוע את המכשיר"                        ////////////
-///////////////////  NOTE : the timer is working for 15 min. but  ////////////
-/////////////////// I commented it for now.       have a nice day ////////////
-///////////////////                                         Ron.  ////////////   
-////////PauseTransition delay = new PauseTransition(Duration.seconds(900));///
-////////delay.setOnFinished( event2 -> primaryStage.close() );    ////////////
-////////delay.play();                                             ////////////
-////////fadeTransition.play();                                    ////////////
-//////////////////////////////////////////////////////////////////////////////
+    }
+    
+    // for customers only, this switch-screen will add a timer.
+    public void switchScreenWithTimerCustomersOnly(Event event, Parent root){
+        Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
 
-        */
+        root.setOnMousePressed(event1 -> {
+            xoffset = event1.getSceneX();
+            yoffset = event1.getSceneY();
+        });
+
+        // event handler for when the mouse is pressed AND dragged to move the window
+        root.setOnMouseDragged(event1 -> {
+            primaryStage.setX(event1.getScreenX()-xoffset);
+            primaryStage.setY(event1.getScreenY()-yoffset);
+        });
+        primaryStage.setTitle("Client Editor");
+
+        primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
+
+
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(300));
+        fadeTransition.setNode(root);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.setOnFinished((ActionEvent finishevt) -> {
+            primaryStage.show();
+        });
+        
+        // start of timer code
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
+        
+	    delay.setOnFinished( event2 -> {        ClientUI.chat.accept("disconnect");
+            									ArrayList<String> cred = new ArrayList<String>();
+            									cred.add(UserController.getCurrentuser().getUsername());
+            									ClientUI.chat.accept(new Message(cred, MessageFromClient.REQUEST_LOGOUT));
+            									Parent roottwo = null;
+            							        try {
+            							        	roottwo = FXMLLoader.load(getClass().getResource("/gui/AFKBye.fxml"));
+            							        } catch (IOException e) {
+            							            e.printStackTrace();
+            							        }
+            							        Scene scene1 = new Scene(roottwo);
+            							        
+            							        roottwo.setOnMousePressed(event4 -> {
+            							            xoffset = event4.getSceneX();
+            							            yoffset = event4.getSceneY();
+            							        });
+            							        // event handler for when the mouse is pressed AND dragged to move the window
+            							        root.setOnMouseDragged(event4 -> {
+            							        	primaryStage.setX(event4.getScreenX()-xoffset);
+            							        	primaryStage.setY(event4.getScreenY()-yoffset);
+            							        });
+            							        primaryStage.setTitle("Client Editor");
+
+            							        primaryStage.setScene(scene1);
+            							        primaryStage.centerOnScreen();
+            							        primaryStage.show();
+            							        try {
+            							            Thread.sleep(3000);
+            							        } catch (InterruptedException e) {
+            							            throw new RuntimeException(e);
+            							        }
+            									Platform.exit();
+            							        System.exit(0);} );
+	    delay.play();
+	    fadeTransition.play();
+	    scene.addEventFilter(InputEvent.ANY, event3 -> delay.playFromStart());
+	    // end of timer code
+
     }
 
     /**
