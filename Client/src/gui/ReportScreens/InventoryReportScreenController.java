@@ -9,8 +9,10 @@ import application.client.ChatClient;
 import application.client.ClientUI;
 import application.client.MessageHandler;
 import application.user.UserController;
+import common.Reports.InventoryReport;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import common.connectivity.MessageFromServer;
 import common.orders.Product;
 import gui.ScreenController;
 import javafx.application.Platform;
@@ -66,19 +68,26 @@ public class InventoryReportScreenController extends ScreenController implements
     	locationMachineLabel.setText("Location: " + locationMachine);//get the Location  that has been choose
     	
     	//get data
-    	ClientUI.chat.accept(new Message(ChatClient.returnMachineID, MessageFromClient.REQUEST_MACHINE_PRODUCTS));
-   	 		for (Product product : ChatClient.productList) {//{System.out.println("Products: " + products.getName());}
-   	 			totalWorthItems += product.getPrice();
-   	 			if(product.getAmount() == 0)
-   	 				notInStockItems++;
-   	 			else
-   	 				inStockItems++;
-   	 			product.getProductId();
-   	 			product.getName();
-   	 			product.getAmount();
-   	 			product.getPrice();
-   	 		}
-   	 	
+    	InventoryReport currentReportData = null;
+    	ArrayList<String> productsArr= new ArrayList<>();
+    	productsArr.add(ChatClient.returnMonthChoose);//adding Month  that has been choose to arraylist
+    	productsArr.add(ChatClient.returnYearChoose);//adding Year  that has been choose to arraylist
+    	productsArr.add(ChatClient.returnMachineID);//adding Machine id  that has been choose to arraylist
+    	
+    	ClientUI.chat.accept(new Message(productsArr, MessageFromClient.REQUEST_MACHINE_MONTHLY_INVENTORY_REPORT));
+    	System.out.println("Products in machine: " +  currentReportData.getProducts() );
+//   	 		for (Product product : currentReportData.getProducts()) {//{System.out.println("Products: " + products.getName());}
+//   	 			totalWorthItems += product.getPrice();
+//   	 			if(product.getAmount() == 0)
+//   	 				notInStockItems++;
+//   	 			else
+//   	 				inStockItems++;
+//   	 			product.getProductId();
+//   	 			product.getName();
+//   	 			product.getAmount();
+//   	 			product.getPrice();
+//   	 		}
+//   	 	
    	 	totalWorthLabel.setText("Total worth stock: " +  totalWorthItems + "¤");
    	 	notInStockLabel.setText("Total items not in stock: " + notInStockItems);
    	 	inStockItemsLabel.setText("Total items in stock: " + inStockItems);
