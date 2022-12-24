@@ -4,17 +4,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.client.ChatClient;
 import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 public class ClientsOrderReportScreenController extends ScreenController implements Initializable{
 	 @FXML
 	    private Button backButton;
+	 
+	  @FXML
+	    private Label DateChooseLabel;
 
 	    @FXML
 	    private Button exitApp;
@@ -38,6 +43,7 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);
 		
 	}
 
