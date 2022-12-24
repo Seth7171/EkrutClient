@@ -7,9 +7,11 @@ import java.util.ResourceBundle;
 
 import application.client.ChatClient;
 import application.client.ClientUI;
+import application.client.MessageHandler;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import common.orders.Product;
 import gui.ScreenController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -46,12 +48,20 @@ public class InventoryReportScreenController extends ScreenController implements
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
     	MachineIDLabel.setText("Machine ID: " + ChatClient.returnMachineID);//get the Machine Id that has been choose
-    	DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);
-    	// make the location with capital letter
+    	DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);//get the Date that has been choose
     	String locationMachine = ChatClient.returnLocationChoose;
-    	locationMachine = locationMachine.substring(0,1).toUpperCase() + locationMachine.substring(1).toLowerCase();
-    	//
-    	locationMachineLabel.setText("Location: " + locationMachine);
+    	locationMachine = locationMachine.substring(0,1).toUpperCase() + locationMachine.substring(1).toLowerCase();// make the location with capital letter
+    	locationMachineLabel.setText("Location: " + locationMachine);//get the Location  that has been choose
+    	
+    	//get data
+    	ClientUI.chat.accept(new Message(ChatClient.returnMachineID, MessageFromClient.REQUEST_MACHINE_PRODUCTS));
+   	 		for (Product product : ChatClient.productList) {//{System.out.println("Products: " + products.getName());}
+   	 			product.getProductId();
+   	 			product.getName();
+   	 			product.getAmount();
+   	 			product.getPrice();
+   	 		}
+
 	}
     
     

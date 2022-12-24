@@ -163,9 +163,7 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 			{
 			MachineID.setVisible(false);
 			MachineIDFlag=0;//Machind id comboBox is close
-			}
-		System.out.println("Location choose CEO:" + Location.getValue());
-		
+			}		
     }
 	
 	@FXML
@@ -197,7 +195,7 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 			return;
 		}
 		
-		System.out.println("MachineID choose CEO:" + MachineID.getValue());
+		
 		
 		//Save data for next window
 		 ChatClient.returnMachineID=MachineID.getValue(); // save the machine id that has been choosing
