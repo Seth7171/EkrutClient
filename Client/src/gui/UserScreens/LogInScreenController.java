@@ -6,6 +6,8 @@ import application.client.MessageHandler;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import common.orders.Order;
+import common.orders.Product;
 import gui.ScreenController;
 import javafx.application.Platform;
 import javafx.event.Event;
@@ -71,12 +73,7 @@ public class LogInScreenController extends ScreenController implements Initializ
         if(credentials == null)
             return;
 
-        ArrayList<String> dsad = new ArrayList<>();
-        dsad.add("02");
-        dsad.add("2022");
-        dsad.add("HA01");
-
-        //ClientUI.chat.accept(new Message(dsad, MessageFromClient.REQUEST_MACHINE_MONTHLY_INVENTORY_REPORT)); // TODO: this should be DELETED
+        //ClientUI.chat.accept(new Message(dsdad, MessageFromClient.REQUEST_ORDER_BY_ORDER_ID_AND_CUSTOMER_ID)); // TODO: this should be DELETED
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
             errorMessage.setText(MessageHandler.getMessage());

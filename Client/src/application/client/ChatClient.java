@@ -5,23 +5,19 @@
 package application.client;
 
 import application.user.UserController;
+import common.connectivity.ChatIF;
 import common.connectivity.Message;
-import common.connectivity.MessageFromClient;
+import common.connectivity.User;
 import common.orders.Order;
 import common.orders.Product;
-import ocsf.client.*;
-import common.connectivity.ChatIF;
-import common.connectivity.User;
-import javafx.scene.control.Alert;
+import ocsf.client.AbstractClient;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import application.client.*;
-
 /**
- * This class overrides some of the methods defined in the abstract
+ * This class overrides some methods defined in the abstract
  * superclass in order to give more functionality to the client.
  *
  * @author Dr Timothy C. Lethbridge
@@ -131,6 +127,8 @@ public class ChatClient extends AbstractClient
 //              //**********************************************************************
               break;
 
+          case "ERROR_IMPORTING_ORDER":
+          case "IMPORT_ORDER_BY_ORDER_ID_AND_CUSTOMER_ID_SUCCESSFUL":
           case "IMPORT_INVENTORY_REPORT_SUCCESSFUL":
           case "ERROR_IMPORTING_INVENTORY_REPORT":
           case "IMPORT_MACHINE_ID_SUCCESSFUL":
@@ -187,7 +185,9 @@ public class ChatClient extends AbstractClient
     {
       closeConnection();
     }
-    catch(IOException e) {}
+    catch(IOException e) {
+        e.printStackTrace();
+    }
     System.exit(0);
   }
 }
