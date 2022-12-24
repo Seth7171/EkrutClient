@@ -122,8 +122,10 @@ public class AddUserScreenController extends ScreenController implements Initial
         ClientUI.chat.accept(new Message(user, MessageFromClient.REQUEST_ADD_USER));
 
         errorMessage.setText(MessageHandler.getMessage());
-        if (MessageHandler.getMessage().contains("successfully"))
+        if (MessageHandler.getMessage().contains("successfully")){
+            MessageHandler.setMessage(null);
             errorMessage.setFill(Color.GREEN);
+        }
     }
 
     @FXML

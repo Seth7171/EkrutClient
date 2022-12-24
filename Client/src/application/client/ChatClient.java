@@ -92,10 +92,10 @@ public class ChatClient extends AbstractClient
               MessageHandler.setMessage("user does not exist");
               break;
 
+          case "ERROR_IMPORTING_INVENTORY_REPORT":
           case "ERROR_IMPORTING_MACHINE_LOCATIONS":
           case "ERROR_ADDING_USER_EXISTS":
-              String reply = (String)message.getData();
-              MessageHandler.setMessage(reply);
+              MessageHandler.setMessage((String)message.getData());
               break;
 
           case "ERROR_ADDING_USER":
@@ -130,7 +130,6 @@ public class ChatClient extends AbstractClient
           case "ERROR_IMPORTING_ORDER":
           case "IMPORT_ORDER_BY_ORDER_ID_AND_CUSTOMER_ID_SUCCESSFUL":
           case "IMPORT_INVENTORY_REPORT_SUCCESSFUL":
-          case "ERROR_IMPORTING_INVENTORY_REPORT":
           case "IMPORT_MACHINE_ID_SUCCESSFUL":
           case "IMPORT_MACHINE_LOCATIONS_SUCCESSFUL":
           case "ERROR_IMPORTING_MACHINE_PRODUCTS":
