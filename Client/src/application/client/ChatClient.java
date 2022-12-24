@@ -7,6 +7,7 @@ package application.client;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import common.orders.Order;
 import common.orders.Product;
 import ocsf.client.*;
 import common.connectivity.ChatIF;
@@ -15,6 +16,7 @@ import javafx.scene.control.Alert;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import application.client.*;
 
@@ -35,16 +37,18 @@ public class ChatClient extends AbstractClient
    * The interface type variable.  It allows the implementation of 
    * the display method in the client.
    */
-  ChatIF clientUI; 
-  public static User  s1 = new User();
-  public static ArrayList<User> subs = new ArrayList<>();
-  public static boolean awaitResponse = false;
-  public static String servermsg = new String();
-  public static ArrayList<Product> productList = new ArrayList<Product>();
-  public static String returnMachineID;
-  public static String returnMonthChoose;
-  public static String returnYearChoose;
-  public static String returnLocationChoose;
+	ChatIF clientUI; 
+	  public static User  s1 = new User();
+	  public static ArrayList<User> subs = new ArrayList<>();
+	  public static boolean awaitResponse = false;
+	  public static String servermsg = new String();
+	  public static ArrayList<Product> productList = new ArrayList<Product>();
+	  public static ArrayList<Order> orderList = new ArrayList<Order>();
+	  public static HashMap<Product, Integer> productInCart = new HashMap<Product, Integer>();
+	  public static String returnMachineID;
+	  public static String returnMonthChoose;
+	  public static String returnYearChoose;
+	  public static String returnLocationChoose;
 //  private UserController userController  = UserController.getUserInstance();
 
   //Constructors ****************************************************
