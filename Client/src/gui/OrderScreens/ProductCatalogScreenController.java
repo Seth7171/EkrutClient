@@ -186,7 +186,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     		priceofproduct = productPrice*(1-product.getDiscount())*spinnerQuantity.getValue();
     	}
     	productTotalPrice.setText(String.valueOf(priceofproduct) + "\u20AA");
-    	Spinner<Integer> spinnerQuantitynew = new Spinner<Integer>(1,product.getAmount(),spinnerQuantity.getValue());
+    	Spinner<Integer> spinnerQuantitynew = new Spinner<Integer>(0,product.getAmount(),spinnerQuantity.getValue());
     	Button removeProduct = new Button();
         ImageView addtocarticon = new ImageView(getClass().getResource("/gui/OrderScreens/agalaremove.png").toExternalForm());
         addtocarticon.setFitHeight(15.0);
@@ -237,7 +237,14 @@ public class ProductCatalogScreenController extends ScreenController implements 
 			}
 			SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = (SpinnerValueFactory.IntegerSpinnerValueFactory) spinnerQuantitynew.getValueFactory();
     		spinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, (valueFactory.getMax()-spinnerQuantitynew.getValue()), 0));
-    	    System.out.println(productInCart);
+    	    if (spinnerQuantitynew.getValue() == 0) {
+        		HBox hb = (HBox)(findhbofid(idlb.getText()));
+        		productInCart.remove(product);
+    	    	myCart.getItems().remove(hb);
+    	    	counter--;
+    	    	cartCounter.setText(String.valueOf(counter));
+    	    }
+    		System.out.println(productInCart);
     	});
 	}
     		
