@@ -131,6 +131,8 @@ public class ChatClient extends AbstractClient
 
           case "IMPORT_MACHINE_ID_SUCCESSFUL":
           case "IMPORT_MACHINE_LOCATIONS_SUCCESSFUL":
+          case "ERROR_IMPORTING_MACHINE_PRODUCTS":
+          case "ERROR_IMPORTING_ALL_MACHINE_PRODUCTS":
           case "IMPORT_WAREHOUSE_PRODUCTS_SUCCESSFUL":
               MessageHandler.setData(message.getData());
               break;
