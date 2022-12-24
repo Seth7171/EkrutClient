@@ -147,7 +147,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
         vBox.setPadding(new Insets(0, 0, 20, 20));
         addBtn.setOnAction(event -> {
         	addToCart(product,nameLabel, idLable, detBtn, priceLabel, newPrice, SpinnerQuantity);
-            System.out.println("");
         });
         
         return hBox;
@@ -156,37 +155,58 @@ public class ProductCatalogScreenController extends ScreenController implements 
     private void addToCart(Product product, Label nameLabel, Label idLable, Button detBtn, Text priceLabel,
 			Text newPrice, Spinner<Integer> spinnerQuantity) {
     	int quantity = spinnerQuantity.getValue();
-    	System.out.println(quantity);
     	HBox hboxofcart = new HBox();
+    	InputStream inputStream = new ByteArrayInputStream(product.getFile());
+        Image image = null;
+        image = new Image(inputStream);
+        ImageView imageview = new ImageView();
+        imageview.setFitHeight(50.0);
+        imageview.setFitWidth(50.0);
+        imageview.setImage(image);
+    	Label namelb = new Label(nameLabel.getText());
+    	namelb.setPrefWidth(100);
+    	Label idlb = new Label(idLable.getText());
+    	idlb.setPrefWidth(100);
+    	Text pricelb = new Text(priceLabel.getText());
+    	Text newPricelb = new Text(newPrice.getText());
+    	float productPrice = product.getPrice();
+    	Text productTotalPrice = new Text();
+    	productTotalPrice.minWidth(100);
+    	productTotalPrice.setText(String.valueOf(productPrice*spinnerQuantity.getValue()));
+    	if (product.getDiscount()!=0) {
+    		productTotalPrice.setText(String.valueOf(productPrice*(1-product.getDiscount())*spinnerQuantity.getValue()));
+    	}
+    	Spinner<Integer> spinnerQuantitynew = new Spinner<Integer>(0,product.getAmount(),spinnerQuantity.getValue());
+    	spinnerQuantitynew.setMaxWidth(75);
+    	hboxofcart.getChildren().addAll(imageview, namelb, idlb, productTotalPrice, spinnerQuantitynew);
+    	imageview.setTranslateY(0);
     	if (ChatClient.productInCart.containsKey(product)) {
-    		if (quantity==0) {
-    			ChatClient.productInCart.remove(product);
-    			hboxofcart.getChildren().remove(hboxofcart);
-    		}
-    		else {
-    			ChatClient.productInCart.replace(product, quantity);
+    		for (Object hb : myCart.getItems()) {
+    			if (hb instanceof HBox){
+		    		Label label = (Label)(((HBox)hb).getChildren().get(1));
+		    		if (label.getText().equals(nameLabel.getText())) {
+		    		    if (quantity==0) {
+		    		    	ChatClient.productInCart.remove(product);
+		    		    	myCart.getItems().remove(hb);
+		    		    }
+		    		    else {
+		        			ChatClient.productInCart.replace(product, quantity);
+		        			myCart.getItems().remove(hb);
+		        			myCart.getItems().addAll(hboxofcart);
+		        		}
+		    			break;
+		    		}
+    			}
     		}
     	}
     	else {
-    		ChatClient.productInCart.put(product, quantity);
-            InputStream inputStream = new ByteArrayInputStream(product.getFile());
-            Image image = null;
-            image = new Image(inputStream);
-            ImageView imageview = new ImageView();
-            imageview.setFitHeight(100.0);
-            imageview.setFitWidth(100.0);
-            imageview.setImage(image);
-	    	Label namelb = new Label(nameLabel.getText());
-	    	Label idlb = new Label(idLable.getText());
-	    	Button detsBtn = new Button(detBtn.getStyle());
-	    	Text pricelb = new Text(priceLabel.getText());
-	    	Text newPricelb = new Text(newPrice.getText());
-	    	Spinner<Integer> spinnerQuantitynew = new Spinner<Integer>(0,product.getAmount(),spinnerQuantity.getValue());
-	    	hboxofcart.getChildren().addAll(imageview, namelb, idlb, detsBtn, pricelb, newPricelb, spinnerQuantitynew);
-	    	imageview.setTranslateY(50);
-	    	myCart.getItems().addAll(hboxofcart);
+    		if (quantity!=0) {
+	    		ChatClient.productInCart.put(product, quantity);
+		    	myCart.getItems().addAll(hboxofcart);
+    		}
     	}
 	}
+    		
 
 	@FXML
     void goBack(MouseEvent event) {
