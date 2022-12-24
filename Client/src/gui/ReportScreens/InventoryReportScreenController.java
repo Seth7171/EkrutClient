@@ -97,45 +97,36 @@ public class InventoryReportScreenController extends ScreenController implements
 		MachineIDLabel.setText("Machine ID: " + ChatClient.returnMachineID);//get the Machine Id that has been choose
 		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);//get the Date that has been choose
 		String locationMachine = ChatClient.returnLocationChoose;
-		locationMachine = locationMachine.substring(0,1).toUpperCase() + locationMachine.substring(1).toLowerCase();// make the location with capital letter
+		locationMachine = locationMachine.substring(0, 1).toUpperCase() + locationMachine.substring(1).toLowerCase();// make the location with capital letter
 		locationMachineLabel.setText("Location: " + locationMachine);//get the Location  that has been choose
-		ArrayList<String> productsArr= new ArrayList<>();
+		ArrayList<String> productsArr = new ArrayList<>();
 		productsArr.add(ChatClient.returnMonthChoose);//adding Month  that has been choose to arraylist
 		productsArr.add(ChatClient.returnYearChoose);//adding Year  that has been choose to arraylist
 		productsArr.add(ChatClient.returnMachineID);//adding Machine id  that has been choose to arraylist
-		//send data to server
-		ClientUI.chat.accept(new Message(productsArr, MessageFromClient.REQUEST_MACHINE_MONTHLY_INVENTORY_REPORT));
-		InventoryReport currentReportData =(InventoryReport) MessageHandler.getData();//getting data from server
-		
-		// TODO: this is where we don't know how to handle when we get error response because inventory report doesn't exist
-//		if(MessageHandler.getData().equals("Error importing inventory report")) {
-//			notInStockLabel.setText("");
-//			inStockItemsLabel.setText("");
-//			totalWorthLabel.setText("");
-//			}
-//		else {
-		for (Product product : currentReportData.getProducts()) {//calculate statistics 
-			if(product.getAmount()==0)
-				notInStockItems++;	
-			inStockItems += product.getAmount();
 
+
+		InventoryReport currentReportData = (InventoryReport) MessageHandler.getData();//getting data from server
+
+		for (Product product : currentReportData.getProducts()) {//calculate statistics 
+			if (product.getAmount() == 0)
+				notInStockItems++;
+			inStockItems += product.getAmount();
 		}
-		totalWorthItems=currentReportData.getTotalValue();
+		totalWorthItems = currentReportData.getTotalValue();
 		//show result on screen
 		notInStockLabel.setText("Total items not in stock: " + notInStockItems);
 		inStockItemsLabel.setText("Total items in stock: " + inStockItems);
-		totalWorthLabel.setText("Total worth stock: " +  totalWorthItems + "¤");
+		totalWorthLabel.setText("Total worth stock: " + totalWorthItems + "ï¿½");
 //		}	
-		
+
 		// tempProd to see if I get all details(name,amount,price......) about products in the report.
 		tempProd = currentReportData.getProducts();
-		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ProductId"));
+		IDColumn.setCellValueFactory(new PropertyValueFactory<>("Product Id"));
 		ProductNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
 		AvailableColumn.setCellValueFactory(new PropertyValueFactory<>("Amount"));
-		tbData.setItems(observablesubs);
+		tbData.setItems(observablesubs);  // TODO NULLPointerException: tbData is null according to my debugger...
 		loadProducts();
 	}
-
 
 
 // Go back to main reports screen.

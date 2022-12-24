@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -206,18 +207,34 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 		
 		 
 		 //switch screens//
-		reportType = Type.getValue();
 		 Parent root = null;
 		 try {
-			 	switch (reportType) 
+			 	switch (Type.getValue())
 			 		{
 			            case "Inventory":
+							ArrayList<String> monthYearMachine = new ArrayList<>();
+							monthYearMachine.add(Month.getValue());
+							monthYearMachine.add(YearComboBox.getValue());
+							monthYearMachine.add(MachineID.getValue());
+
+							// request report from server
+							ClientUI.chat.accept(new Message(monthYearMachine, MessageFromClient.REQUEST_MACHINE_MONTHLY_INVENTORY_REPORT));
+							// TODO: this is where we don't know how to handle when we get error response because inventory report doesn't exist
+
+							if (MessageHandler.getMessage() != null && MessageHandler.getMessage().contains("Error")) {
+								MessageHandler.setMessage(null);
+								Alert a = new Alert(Alert.AlertType.INFORMATION, "No monthly reports were found for this machine please choose another machine or another time frame.");
+								a.setTitle("Report not found");
+								a.show();
+								return;
+							}
+
 			                 root = FXMLLoader.load(getClass().getResource("InventoryReportScreen.fxml"));
 			                  break;
 	
 			            case "Orders":
-			                  root = FXMLLoader.load(getClass().getResource("OrdersReportScreen.fxml"));
-			                   break;
+							root = FXMLLoader.load(getClass().getResource("OrdersReportScreen.fxml"));
+							break;
 			                    
 			            case "Clients":
 			                  root = FXMLLoader.load(getClass().getResource("ClientsReportScreen.fxml"));

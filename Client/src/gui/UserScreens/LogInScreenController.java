@@ -77,6 +77,7 @@ public class LogInScreenController extends ScreenController implements Initializ
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
             errorMessage.setText(MessageHandler.getMessage());
+            MessageHandler.setMessage(null);
             return;
         }
         Parent root = loadRoot();
