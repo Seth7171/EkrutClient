@@ -48,7 +48,7 @@
       </Label>
       <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="21.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../bin/gui/like.png" />
+            <Image url="@like.png" />
          </image></ImageView>
       <Label layoutX="116.0" layoutY="166.0" prefHeight="30.0" prefWidth="185.0" text="ID: $id">
          <font>
@@ -72,7 +72,7 @@
       </Label>
       <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="21.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../bin/gui/dislike.png" />
+            <Image url="@dislike.png" />
          </image>
       </ImageView>
       <Label layoutX="116.0" layoutY="343.0" prefHeight="30.0" prefWidth="185.0" text="ID: $id">

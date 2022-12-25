@@ -60,6 +60,7 @@ public class InventoryReportScreenController extends ScreenController implements
 	@FXML
 	private Label inStockItemsLabel;
 	
+    
 	@FXML
     private TableColumn<Product, Integer> AvailableColumn;
 	
@@ -111,13 +112,14 @@ public class InventoryReportScreenController extends ScreenController implements
 			if (product.getAmount() == 0)
 				notInStockItems++;
 			inStockItems += product.getAmount();
+		
 		}
 		totalWorthItems = currentReportData.getTotalValue();
 		//show result on screen
 		notInStockLabel.setText("Total items not in stock: " + notInStockItems);
 		inStockItemsLabel.setText("Total items in stock: " + inStockItems);
 		totalWorthLabel.setText("Total worth stock: " + totalWorthItems + " ¤");
-//		}	
+			
 
 		// tempProd to see if I get all details(name,amount,price......) about products in the report.
 		tempProd = currentReportData.getProducts();
