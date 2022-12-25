@@ -17,12 +17,12 @@
             <Image url="@../logo.png" />
          </image>
       </ImageView>
-      <BarChart layoutX="435.0" layoutY="101.0" prefHeight="442.0" prefWidth="508.0">
+      <BarChart fx:id="OrdersChart" layoutX="435.0" layoutY="101.0" prefHeight="442.0" prefWidth="508.0">
         <xAxis>
-          <CategoryAxis label="Machine ID" side="BOTTOM" />
+          <CategoryAxis label="Machine ID" side="BOTTOM" fx:id="x" />
         </xAxis>
         <yAxis>
-          <NumberAxis label="Number of orders" side="LEFT" upperBound="300.0">
+          <NumberAxis fx:id="y" label="Number of orders" side="LEFT" upperBound="300.0">
                <tickLabelFont>
                   <Font size="11.0" />
                </tickLabelFont>
@@ -48,7 +48,7 @@
       </Label>
       <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="21.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../bin/gui/like.png" />
+            <Image url="@like.png" />
          </image></ImageView>
       <Label layoutX="116.0" layoutY="166.0" prefHeight="30.0" prefWidth="185.0" text="ID: $id">
          <font>
@@ -72,7 +72,7 @@
       </Label>
       <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="21.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../bin/gui/dislike.png" />
+            <Image url="@dislike.png" />
          </image>
       </ImageView>
       <Label layoutX="116.0" layoutY="343.0" prefHeight="30.0" prefWidth="185.0" text="ID: $id">
@@ -85,6 +85,13 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="DateChooseLabel" layoutX="41.0" layoutY="513.0" prefHeight="27.0" prefWidth="225.0" text="Date: $Month , $Year" />
+      <Label fx:id="DateChooseLabel" layoutX="41.0" layoutY="533.0" prefHeight="27.0" prefWidth="225.0" text="Date: $Month , $Year" />
+      <ImageView fitHeight="116.0" fitWidth="164.0" layoutX="289.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Histogram_report2.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="41.0" layoutY="464.0" prefHeight="30.0" prefWidth="365.0" text="The area with the MOST orders is: $best_area" underline="true" />
+      <Label layoutX="40.0" layoutY="485.0" prefHeight="30.0" prefWidth="365.0" text="The area with the LOWEST orders is: $worst_area" underline="true" />
    </children>
 </AnchorPane>

@@ -21,7 +21,7 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <TableView layoutX="510.0" layoutY="110.0" prefHeight="454.0" prefWidth="421.0">
+      <TableView fx:id="tbData" layoutX="510.0" layoutY="110.0" prefHeight="454.0" prefWidth="421.0">
         <columns>
           <TableColumn fx:id="IDColumn" prefWidth="66.0" text="ID" />
           <TableColumn fx:id="ProductNameColumn" prefWidth="252.0" text="Product Name" />
@@ -60,14 +60,44 @@
             <Font size="11.0" />
          </font>
       </Label>
-      <Label layoutX="97.0" layoutY="427.0" prefHeight="25.0" prefWidth="354.0" styleClass="text-field" text="The most popular product: $Most_popular">
+      <ImageView fitHeight="43.0" fitWidth="74.0" layoutX="4.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@SOLD-OUT.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="43.0" fitWidth="55.0" layoutX="15.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@total_price.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="43.0" fitWidth="55.0" layoutX="15.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Amount_of_items.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="95.0" fitWidth="146.0" layoutX="244.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@inventory_report.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="snacksAmountLabel" layoutX="93.0" layoutY="447.0" prefHeight="27.0" prefWidth="146.0" styleClass="text-field" text="Snacks: $num">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="43.0" fitWidth="74.0" layoutX="14.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
+      <Label fx:id="drinksAmountLabel" layoutX="321.0" layoutY="447.0" prefHeight="27.0" prefWidth="154.0" styleClass="text-field" text="Drinks: $num">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="71.0" fitWidth="74.0" layoutX="7.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../bin/gui/MostPopularProduct.png" />
+            <Image url="@snack.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="71.0" fitWidth="74.0" layoutX="249.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@drinks.png" />
          </image>
       </ImageView>
    </children>
