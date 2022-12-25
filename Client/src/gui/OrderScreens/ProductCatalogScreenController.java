@@ -223,6 +223,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
 	    	myCart.getItems().remove(hb);
 	    	counter--;
 	    	cartCounter.setText(String.valueOf(counter));
+	    	spinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,product.getAmount(), 0));
         });
     	spinnerQuantitynew.setOnMouseReleased(event -> {
 			productInCart.remove(product);
