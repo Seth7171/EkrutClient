@@ -233,6 +233,8 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 			                  break;
 	
 			            case "Orders":
+			            	// request report from server
+							//TODO: request all machines id's from DB
 							root = FXMLLoader.load(getClass().getResource("OrdersReportScreen.fxml"));
 							break;
 			                    

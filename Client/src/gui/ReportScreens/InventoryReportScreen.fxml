@@ -60,14 +60,24 @@
             <Font size="11.0" />
          </font>
       </Label>
-      <Label layoutX="97.0" layoutY="427.0" prefHeight="25.0" prefWidth="354.0" styleClass="text-field" text="The most popular product: $Most_popular">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="43.0" fitWidth="74.0" layoutX="14.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="43.0" fitWidth="74.0" layoutX="4.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../bin/gui/MostPopularProduct.png" />
+            <Image url="@SOLD-OUT.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="43.0" fitWidth="55.0" layoutX="15.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@total_price.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="43.0" fitWidth="55.0" layoutX="15.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Amount_of_items.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="95.0" fitWidth="146.0" layoutX="244.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@inventory_report.png" />
          </image>
       </ImageView>
    </children>
