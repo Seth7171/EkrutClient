@@ -83,7 +83,7 @@ public class InventoryReportScreenController extends ScreenController implements
         for(Product p : tempProd){	
         	Product productData = new Product();
         	productData.setProductId(p.getProductId());
-        	productData.setName(p.getName());
+        	productData.setDescription(p.getDescription());
         	productData.setAmount(p.getAmount());
             tbData.getItems().add(productData);
         }
@@ -116,15 +116,15 @@ public class InventoryReportScreenController extends ScreenController implements
 		//show result on screen
 		notInStockLabel.setText("Total items not in stock: " + notInStockItems);
 		inStockItemsLabel.setText("Total items in stock: " + inStockItems);
-		totalWorthLabel.setText("Total worth stock: " + totalWorthItems + "ï¿½");
+		totalWorthLabel.setText("Total worth stock: " + totalWorthItems + " ¤");
 //		}	
 
 		// tempProd to see if I get all details(name,amount,price......) about products in the report.
 		tempProd = currentReportData.getProducts();
-		IDColumn.setCellValueFactory(new PropertyValueFactory<>("Product Id"));
-		ProductNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ProductId"));
+		ProductNameColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
 		AvailableColumn.setCellValueFactory(new PropertyValueFactory<>("Amount"));
-		tbData.setItems(observablesubs);  // TODO NULLPointerException: tbData is null according to my debugger...
+		tbData.setItems(observablesubs);
 		loadProducts();
 	}
 
