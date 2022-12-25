@@ -17,12 +17,12 @@
             <Image url="@../logo.png" />
          </image>
       </ImageView>
-      <BarChart layoutX="435.0" layoutY="101.0" prefHeight="442.0" prefWidth="508.0">
+      <BarChart fx:id="OrdersChart" layoutX="435.0" layoutY="101.0" prefHeight="442.0" prefWidth="508.0">
         <xAxis>
-          <CategoryAxis label="Machine ID" side="BOTTOM" />
+          <CategoryAxis label="Machine ID" side="BOTTOM" fx:id="x" />
         </xAxis>
         <yAxis>
-          <NumberAxis label="Number of orders" side="LEFT" upperBound="300.0">
+          <NumberAxis fx:id="y" label="Number of orders" side="LEFT" upperBound="300.0">
                <tickLabelFont>
                   <Font size="11.0" />
                </tickLabelFont>
