@@ -86,5 +86,10 @@
          </font>
       </Label>
       <Label fx:id="DateChooseLabel" layoutX="41.0" layoutY="513.0" prefHeight="27.0" prefWidth="225.0" text="Date: $Month , $Year" />
+      <ImageView fitHeight="116.0" fitWidth="164.0" layoutX="289.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Histogram_report2.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
