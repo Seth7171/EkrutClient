@@ -61,20 +61,27 @@ public class OrdersReportScreenController extends ScreenController implements In
 		ser1.setName("Haifa");
 		ser1.getData().add(new XYChart.Data<String, Integer>("HA01", 200));
 		ser1.getData().add(new XYChart.Data<String, Integer>("HA02", 140));
-		ser1.getData().add(new XYChart.Data<String, Integer>("HA05", 36));
-		ser1.getData().add(new XYChart.Data<String, Integer>("HA09", 32));
+		ser1.getData().add(new XYChart.Data<String, Integer>("HA03", 36));
+		ser1.getData().add(new XYChart.Data<String, Integer>("HA04", 32));
+	
 		
 		XYChart.Series<String, Integer> ser2= new XYChart.Series<>();
 		ser2.setName("Tel-Aviv");
 		ser2.getData().add(new XYChart.Data<String, Integer>("TA01", 110));
 		ser2.getData().add(new XYChart.Data<String, Integer>("TA02", 100));
-		ser2.getData().add(new XYChart.Data<String, Integer>("TA08", 110));
-		ser2.getData().add(new XYChart.Data<String, Integer>("TA03", 100));
+		ser2.getData().add(new XYChart.Data<String, Integer>("TA03", 110));
+		ser2.getData().add(new XYChart.Data<String, Integer>("TA04", 100));
+		ser2.getData().add(new XYChart.Data<String, Integer>("TA05", 110));
 		
-		OrdersChart.getData().addAll(ser1,ser2);
+		XYChart.Series<String, Integer> ser3= new XYChart.Series<>();
+		ser3.setName("Karmiel");
+		ser3.getData().add(new XYChart.Data<String, Integer>("KA01", 110));
+		ser3.getData().add(new XYChart.Data<String, Integer>("KA02", 100));
+		
+		OrdersChart.getData().addAll(ser1,ser2,ser3);
 		
 		//TODO:           // calculate The area with the MOST\LOWEST orders..//
-		//for example: HAIFA: ((Total Orders = 200+140+36+32 / NumbersOfMachines =4))  =====  408\4 =102        LOWEST
+		//for example: HAIFA: ((Total Orders = 200+140+36+32 / NumbersOfMachines =4 ))  =====  408\4 =102        LOWEST
 		//             Tel-Aviv: ((Total Orders = 110+100+110+100 / NumbersOfMachines =4))  =====  420\4 =105    MOST
 		
 	}
