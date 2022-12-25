@@ -17,7 +17,7 @@
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
          <image>
-            <Image url="@logo.png" />
+            <Image url="@../logo.png" />
          </image>
       </ImageView>
       <Label fx:id="chooseOrderType" alignment="CENTER" contentDisplay="CENTER" layoutX="263.0" layoutY="278.0" prefHeight="33.0" prefWidth="393.0" text="Payment completed" textAlignment="CENTER">

@@ -29,7 +29,7 @@
       <Pane layoutX="696.0" layoutY="603.0" prefHeight="218.0" prefWidth="223.0">
          <children>
             <Label layoutX="46.0" layoutY="123.0" prefHeight="26.0" prefWidth="80.0" text="Total amount :" />
-            <Text layoutX="126.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$$$$$$" wrappingWidth="87.4700927734375" />
+            <Text fx:id="totalAmount" layoutX="126.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$$$$$$" wrappingWidth="87.4700927734375" />
             <Button fx:id="checkOutButton" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="47.0" layoutY="152.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="153.0" text="Checkout">
                <font>
                   <Font size="20.0" />
@@ -42,7 +42,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="emptyMyCartButton" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="47.0" layoutY="33.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="166.0" text="Empty My Cart">
+            <Button fx:id="emptyMyCartButton" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="47.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#emptyMyCart" prefHeight="47.0" prefWidth="166.0" text="Empty My Cart">
                <font>
                   <Font size="16.0" />
                </font>
@@ -113,7 +113,7 @@
          </image>
       </ImageView>
       <Circle fill="#ff1f1f" layoutX="214.0" layoutY="610.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
-      <Text fill="WHITE" layoutX="199.0" layoutY="615.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
+      <Text fx:id="cartCounter" fill="WHITE" layoutX="199.0" layoutY="615.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
       <ListView fx:id="myCart" layoutX="99.0" layoutY="636.0" prefHeight="185.0" prefWidth="643.0" />
    </children>
 </Pane>
