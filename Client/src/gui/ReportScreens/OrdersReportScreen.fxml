@@ -85,11 +85,13 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="DateChooseLabel" layoutX="41.0" layoutY="513.0" prefHeight="27.0" prefWidth="225.0" text="Date: $Month , $Year" />
+      <Label fx:id="DateChooseLabel" layoutX="41.0" layoutY="533.0" prefHeight="27.0" prefWidth="225.0" text="Date: $Month , $Year" />
       <ImageView fitHeight="116.0" fitWidth="164.0" layoutX="289.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Histogram_report2.png" />
          </image>
       </ImageView>
+      <Label layoutX="41.0" layoutY="464.0" prefHeight="30.0" prefWidth="365.0" text="The area with the MOST orders is: $best_area" underline="true" />
+      <Label layoutX="40.0" layoutY="485.0" prefHeight="30.0" prefWidth="365.0" text="The area with the LOWEST orders is: $worst_area" underline="true" />
    </children>
 </AnchorPane>

@@ -72,6 +72,11 @@ public class OrdersReportScreenController extends ScreenController implements In
 		ser2.getData().add(new XYChart.Data<String, Integer>("TA03", 100));
 		
 		OrdersChart.getData().addAll(ser1,ser2);
+		
+		//TODO:           // calculate The area with the MOST\LOWEST orders..//
+		//for example: HAIFA: ((Total Orders = 200+140+36+32 / NumbersOfMachines =4))  =====  408\4 =102        LOWEST
+		//             Tel-Aviv: ((Total Orders = 110+100+110+100 / NumbersOfMachines =4))  =====  420\4 =105    MOST
+		
 	}
 
 }
