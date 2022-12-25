@@ -11,14 +11,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.GrabOrderScreenController">
    <children>
-      <ImageView fitHeight="831.0" fitWidth="918.0" layoutX="-14.0" pickOnBounds="true">
-         <image>
-            <Image url="@bckgrnd_big.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
          <image>
-            <Image url="@logo.png" />
+            <Image url="@../logo.png" />
          </image>
       </ImageView>
       <Label fx:id="chooseOrderType" alignment="CENTER" contentDisplay="CENTER" layoutX="263.0" layoutY="277.0" prefHeight="33.0" prefWidth="393.0" text="Please insert you Order Number here :" textAlignment="CENTER">
