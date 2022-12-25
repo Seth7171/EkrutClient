@@ -87,7 +87,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	myCart.setFocusTraversable( false );
-    	totalAmount.setText("0\u20AA");
+    	totalAmount.setText("0.0\u20AA");
         ClientUI.chat.accept(new Message("HA01", MessageFromClient.REQUEST_ALL_MACHINE_PRODUCTS));
         tabPane.getStyleClass().add("tab-pane");
         tabPane.setTabMinWidth(220);
