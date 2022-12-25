@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
+import javafx.geometry.Side;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -45,6 +46,8 @@ import java.util.ResourceBundle;
 
 public class ProductCatalogScreenController extends ScreenController implements Initializable{
 	HashMap<Product, Integer> productInCart = new HashMap<Product, Integer>();
+    int counter = 0;
+    
     @FXML
     private Text cartCounter = new Text("2");
     
@@ -77,14 +80,14 @@ public class ProductCatalogScreenController extends ScreenController implements 
     
     @FXML
     private ScrollPane drinksScroll;
-    
-    int counter = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	myCart.setFocusTraversable( false );
         ClientUI.chat.accept(new Message("HA01", MessageFromClient.REQUEST_ALL_MACHINE_PRODUCTS));
         tabPane.getStyleClass().add("tab-pane");
+        tabPane.setTabMinWidth(220);
+        tabPane.setTabMaxWidth(220);
         for (Product product : ChatClient.productList) {
            if(product.getType().equals("SNACK"))
         	   snacksPane.getChildren().add(createProductTile(product));
