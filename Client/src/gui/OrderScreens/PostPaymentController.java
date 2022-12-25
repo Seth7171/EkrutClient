@@ -39,6 +39,6 @@ public class PostPaymentController extends ScreenController implements Initializ
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreen(event, root);        
+        super.switchScreenWithTimerCustomersOnly(event, root);        
     }
 }

@@ -58,7 +58,7 @@ public class GrabOrderScreenController extends ScreenController implements Initi
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreen(event, root);        
+        super.switchScreenWithTimerCustomersOnly(event, root);        
     }
     
     @FXML
@@ -69,7 +69,7 @@ public class GrabOrderScreenController extends ScreenController implements Initi
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreen(event, root);        
+        super.switchScreenWithTimerCustomersOnly(event, root);        
     }
     
 }

@@ -39,7 +39,7 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreen(event, root);        
+        super.switchScreenWithTimerCustomersOnly(event, root);        
     }
     
 }

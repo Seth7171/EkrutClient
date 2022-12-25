@@ -39,7 +39,7 @@ public class PaymentScreenController extends ScreenController implements Initial
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreen(event, root);        
+        super.switchScreenWithTimerCustomersOnly(event, root);        
     }
     
 }
