@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import application.client.ChatClient;
@@ -208,22 +209,21 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 		 
 		 //switch screens//
 		 Parent root = null;
+		 ArrayList<String> monthYearMachine = new ArrayList<>();
+		 monthYearMachine.add(Month.getValue());
+		 monthYearMachine.add(YearComboBox.getValue());
+		
 		 try {
 			 	switch (Type.getValue())
 			 		{
 			            case "Inventory":
-							ArrayList<String> monthYearMachine = new ArrayList<>();
-							monthYearMachine.add(Month.getValue());
-							monthYearMachine.add(YearComboBox.getValue());
-							monthYearMachine.add(MachineID.getValue());
-
+			            	 monthYearMachine.add(MachineID.getValue());
 							// request report from server
 							ClientUI.chat.accept(new Message(monthYearMachine, MessageFromClient.REQUEST_MACHINE_MONTHLY_INVENTORY_REPORT));
-							// TODO: this is where we don't know how to handle when we get error response because inventory report doesn't exist
-
+							//if no such report
 							if (MessageHandler.getMessage() != null && MessageHandler.getMessage().contains("Error")) {
 								MessageHandler.setMessage(null);
-								Alert a = new Alert(Alert.AlertType.INFORMATION, "No monthly reports were found for this machine please choose another machine or another time frame.");
+								Alert a = new Alert(Alert.AlertType.INFORMATION, "No monthly reports were found for this machine.");
 								a.setTitle("Report not found");
 								a.show();
 								return;
@@ -233,10 +233,23 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 			                  break;
 	
 			            case "Orders":
+			            	//Fix month 
+			            	
+			            //	TODO: need to replace the month if we got 02 to 2 ...
+			            	monthYearMachine.get(0);//this is the month string
+			            	
 			            	// request report from server
-							//TODO: request all machines id's from DB
+			            	ClientUI.chat.accept(new Message(monthYearMachine, MessageFromClient.REQUEST_ALL_MACHINES_ORDERS_MONTHLY_REPORT));
+							//if no such report
+			            	if (MessageHandler.getMessage() != null && MessageHandler.getMessage().contains("Error")) {
+								MessageHandler.setMessage(null);
+								Alert a = new Alert(Alert.AlertType.INFORMATION, "Sorry,No monthly report were found.");
+								a.setTitle("Report not found");
+								a.show();
+								return;
+			            	}
 							root = FXMLLoader.load(getClass().getResource("OrdersReportScreen.fxml"));
-							break;
+								break;
 			                    
 			            case "Clients":
 			                  root = FXMLLoader.load(getClass().getResource("ClientsReportScreen.fxml"));
