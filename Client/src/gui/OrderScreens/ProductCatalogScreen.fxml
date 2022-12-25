@@ -42,7 +42,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="emptyMyCartButton" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="47.0" layoutY="33.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="166.0" text="Empty My Cart">
+            <Button fx:id="emptyMyCartButton" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="47.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#emptyMyCart" prefHeight="47.0" prefWidth="166.0" text="Empty My Cart">
                <font>
                   <Font size="16.0" />
                </font>

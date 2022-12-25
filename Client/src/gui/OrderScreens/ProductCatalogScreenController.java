@@ -263,6 +263,11 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	}
     	return null; 
     }
+    
+	@FXML
+    void emptyMyCart(MouseEvent event) {
+
+    }
 
 	@FXML
     void goBack(MouseEvent event) {
@@ -275,7 +280,4 @@ public class ProductCatalogScreenController extends ScreenController implements 
         super.switchScreen(event, root);        
     }
 }
-
-
-
 
