@@ -113,7 +113,7 @@
          </image>
       </ImageView>
       <Circle fill="#ff1f1f" layoutX="214.0" layoutY="610.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
-      <Text fill="WHITE" layoutX="199.0" layoutY="615.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
+      <Text fx:id="cartCounter" fill="WHITE" layoutX="199.0" layoutY="615.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
       <ListView fx:id="myCart" layoutX="99.0" layoutY="636.0" prefHeight="185.0" prefWidth="643.0" />
    </children>
 </Pane>
