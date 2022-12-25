@@ -29,7 +29,7 @@
       <Pane layoutX="696.0" layoutY="603.0" prefHeight="218.0" prefWidth="223.0">
          <children>
             <Label layoutX="46.0" layoutY="123.0" prefHeight="26.0" prefWidth="80.0" text="Total amount :" />
-            <Text layoutX="126.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$$$$$$" wrappingWidth="87.4700927734375" />
+            <Text fx:id="totalAmount" layoutX="126.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$$$$$$" wrappingWidth="87.4700927734375" />
             <Button fx:id="checkOutButton" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="47.0" layoutY="152.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="153.0" text="Checkout">
                <font>
                   <Font size="20.0" />
