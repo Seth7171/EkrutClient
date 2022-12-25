@@ -107,11 +107,6 @@ public class InventoryReportScreenController extends ScreenController implements
 		String locationMachine = ChatClient.returnLocationChoose;
 		locationMachine = locationMachine.substring(0, 1).toUpperCase() + locationMachine.substring(1).toLowerCase();// make the location with capital letter
 		locationMachineLabel.setText("Location: " + locationMachine);//get the Location  that has been choose
-		ArrayList<String> productsArr = new ArrayList<>();
-		productsArr.add(ChatClient.returnMonthChoose);//adding Month  that has been choose to arraylist
-		productsArr.add(ChatClient.returnYearChoose);//adding Year  that has been choose to arraylist
-		productsArr.add(ChatClient.returnMachineID);//adding Machine id  that has been choose to arraylist
-
 
 		InventoryReport currentReportData = (InventoryReport) MessageHandler.getData();//getting data from server
 
