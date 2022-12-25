@@ -277,7 +277,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreen(event, root);        
+        super.switchScreenWithTimerCustomersOnly(event, root);        
     }
 }
 
