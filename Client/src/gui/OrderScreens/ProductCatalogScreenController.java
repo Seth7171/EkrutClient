@@ -93,10 +93,12 @@ public class ProductCatalogScreenController extends ScreenController implements 
         tabPane.setTabMinWidth(220);
         tabPane.setTabMaxWidth(220);
         for (Product product : ChatClient.productList) {
-           if(product.getType().equals("SNACK"))
-        	   snacksPane.getChildren().add(createProductTile(product));
-           else
-           		drinksPane.getChildren().add(createProductTile(product));
+        	if(product.getAmount() != 0 ) {
+		       if(product.getType().equals("SNACK"))
+		    	   snacksPane.getChildren().add(createProductTile(product));
+		       else
+		       		drinksPane.getChildren().add(createProductTile(product));
+        	}
         }
         snacksScroll.setFitToWidth(true);
         drinksScroll.setFitToWidth(true);
