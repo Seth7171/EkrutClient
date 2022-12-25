@@ -49,7 +49,10 @@ public class ProductCatalogScreenController extends ScreenController implements 
     int counter = 0;
     
     @FXML
-    private Text cartCounter = new Text("2");
+    private Text cartCounter;
+    
+    @FXML
+    private Text totalAmount;
     
     @FXML
     private Button exitButton;
@@ -84,6 +87,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	myCart.setFocusTraversable( false );
+    	totalAmount.setText("0\u20AA");
         ClientUI.chat.accept(new Message("HA01", MessageFromClient.REQUEST_ALL_MACHINE_PRODUCTS));
         tabPane.getStyleClass().add("tab-pane");
         tabPane.setTabMinWidth(220);
@@ -200,7 +204,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	hboxofcart.getChildren().addAll(imageview, namelb, idlb, productTotalPrice, removeProduct, spinnerQuantitynew);
     	imageview.setTranslateY(0);
     	if (productInCart.containsKey(product)) {
-    		HBox hb = (HBox)(findhbofid(idlb.getText()));
+    		HBox hb = (HBox)(findHBoxOfproductID(idlb.getText()));
     		if (hb != null) {
     			productInCart.put(product, (productInCart.get(product) + quantity));
     			((Spinner<Integer>)hb.getChildren().get(5)).increment(quantity);
@@ -212,6 +216,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     				((Text)hb.getChildren().get(3)).setText(
         					String.valueOf(product.getPrice()*productInCart.get(product)) + "\u20AA");
     			}
+    			totalAmount();
     		}
     	}
     	else {
@@ -219,14 +224,16 @@ public class ProductCatalogScreenController extends ScreenController implements 
 	    	myCart.getItems().addAll(hboxofcart);
 	    	counter++;
 	    	cartCounter.setText(String.valueOf(counter));
+	    	totalAmount();
     	}
     	removeProduct.setOnAction(event -> {
-    		HBox hb = (HBox)(findhbofid(idlb.getText()));
+    		HBox hb = (HBox)(findHBoxOfproductID(idlb.getText()));
     		productInCart.remove(product);
 	    	myCart.getItems().remove(hb);
 	    	counter--;
 	    	cartCounter.setText(String.valueOf(counter));
 	    	spinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,product.getAmount(), 0));
+	    	totalAmount();
         });
     	spinnerQuantitynew.setOnMouseReleased(event -> {
 			productInCart.remove(product);
@@ -242,17 +249,18 @@ public class ProductCatalogScreenController extends ScreenController implements 
 			SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = (SpinnerValueFactory.IntegerSpinnerValueFactory) spinnerQuantitynew.getValueFactory();
     		spinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, (valueFactory.getMax()-spinnerQuantitynew.getValue()), 0));
     	    if (spinnerQuantitynew.getValue() == 0) {
-        		HBox hb = (HBox)(findhbofid(idlb.getText()));
+        		HBox hb = (HBox)(findHBoxOfproductID(idlb.getText()));
         		productInCart.remove(product);
     	    	myCart.getItems().remove(hb);
     	    	counter--;
     	    	cartCounter.setText(String.valueOf(counter));
     	    }
+    	    totalAmount();
     		System.out.println(productInCart);
     	});
 	}
     		
-    Object findhbofid(String nameLabel) {
+    Object findHBoxOfproductID(String nameLabel) {
     	for (Object hb : myCart.getItems()) {
 			if (hb instanceof HBox){
 	    		Label label = (Label)(((HBox)hb).getChildren().get(2));
@@ -264,9 +272,34 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	return null; 
     }
     
+    void totalAmount() {
+    	float totalprice = 0;
+    	int index;
+    	String pricevalue;
+		int numItems = myCart.getItems().size();
+		for (;numItems>0;numItems--) {
+			Object hb = myCart.getItems().get(numItems-1);
+			if (hb instanceof HBox){
+				Text price = (Text)(((HBox)hb).getChildren().get(3));
+				pricevalue = price.getText();
+				pricevalue = pricevalue.split("\u20AA")[0];
+				totalprice += Float.parseFloat(pricevalue);
+	    	}
+    	}
+		totalAmount.setText(String.valueOf(totalprice) + "\u20AA");
+    }
+    
 	@FXML
     void emptyMyCart(MouseEvent event) {
-
+		int numItems = myCart.getItems().size();
+		for (;numItems>0;numItems--) {
+			Object hb = myCart.getItems().get(0);
+			if (hb instanceof HBox){
+				Button removebuttn = new Button();
+				removebuttn = (Button)(((HBox)hb).getChildren().get(4));
+				removebuttn.fire();
+	    	}
+    	}
     }
 
 	@FXML
