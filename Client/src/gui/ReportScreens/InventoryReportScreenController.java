@@ -60,6 +60,11 @@ public class InventoryReportScreenController extends ScreenController implements
 	@FXML
 	private Label inStockItemsLabel;
 	
+    @FXML
+    private Label snacksAmountLabel;
+    
+    @FXML
+    private Label drinksAmountLabel;
     
 	@FXML
     private TableColumn<Product, Integer> AvailableColumn;
@@ -95,16 +100,13 @@ public class InventoryReportScreenController extends ScreenController implements
 		float totalWorthItems = 0;
 		int notInStockItems = 0;
 		int inStockItems = 0;
+		int snacksAmount = 0;
+		int drinksAmount = 0;
 		MachineIDLabel.setText("Machine ID: " + ChatClient.returnMachineID);//get the Machine Id that has been choose
 		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);//get the Date that has been choose
 		String locationMachine = ChatClient.returnLocationChoose;
 		locationMachine = locationMachine.substring(0, 1).toUpperCase() + locationMachine.substring(1).toLowerCase();// make the location with capital letter
 		locationMachineLabel.setText("Location: " + locationMachine);//get the Location  that has been choose
-		ArrayList<String> productsArr = new ArrayList<>();
-		productsArr.add(ChatClient.returnMonthChoose);//adding Month  that has been choose to arraylist
-		productsArr.add(ChatClient.returnYearChoose);//adding Year  that has been choose to arraylist
-		productsArr.add(ChatClient.returnMachineID);//adding Machine id  that has been choose to arraylist
-
 
 		InventoryReport currentReportData = (InventoryReport) MessageHandler.getData();//getting data from server
 
@@ -112,15 +114,19 @@ public class InventoryReportScreenController extends ScreenController implements
 			if (product.getAmount() == 0)
 				notInStockItems++;
 			inStockItems += product.getAmount();
-		
+			if(product.getType().equals("DRINK"))
+				drinksAmount++;
+			else
+				snacksAmount++;
 		}
 		totalWorthItems = currentReportData.getTotalValue();
 		//show result on screen
 		notInStockLabel.setText("Total items not in stock: " + notInStockItems);
 		inStockItemsLabel.setText("Total items in stock: " + inStockItems);
 		totalWorthLabel.setText("Total worth stock: " + totalWorthItems + " ¤");
-			
-
+		snacksAmountLabel.setText("Snacks: " + snacksAmount);
+		drinksAmountLabel.setText("Drinks: " + drinksAmount);
+		
 		// tempProd to see if I get all details(name,amount,price......) about products in the report.
 		tempProd = currentReportData.getProducts();
 		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ProductId"));
