@@ -2,9 +2,15 @@ package gui.ReportScreens;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import application.client.ChatClient;
+import application.client.MessageHandler;
+import common.Reports.InventoryReport;
+import common.Reports.OrderReport;
 import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +41,15 @@ public class OrdersReportScreenController extends ScreenController implements In
 
 	    @FXML
 	    private NumberAxis y;
+	    
+	    @FXML
+	    private Label bestIDLabel;
+	    
+	    @FXML
+	    private Label bestLocationLabel;
+
+	    @FXML
+	    private Label worstIDLabel;
     @FXML
     void ClickBackButton(MouseEvent event) {
     	Parent root = null;
@@ -54,36 +69,54 @@ public class OrdersReportScreenController extends ScreenController implements In
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		int  ArrlocationSize=0;
 		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);
 		
+		 OrderReport orderReportData =  (OrderReport) MessageHandler.getData();//getting data from server
+
 		//making the BarChart from data
-		XYChart.Series<String, Integer> ser1= new XYChart.Series<>();
-		ser1.setName("Haifa");
-		ser1.getData().add(new XYChart.Data<String, Integer>("HA01", 200));
-		ser1.getData().add(new XYChart.Data<String, Integer>("HA02", 140));
-		ser1.getData().add(new XYChart.Data<String, Integer>("HA03", 36));
-		ser1.getData().add(new XYChart.Data<String, Integer>("HA04", 32));
-	
-		
-		XYChart.Series<String, Integer> ser2= new XYChart.Series<>();
-		ser2.setName("Tel-Aviv");
-		ser2.getData().add(new XYChart.Data<String, Integer>("TA01", 110));
-		ser2.getData().add(new XYChart.Data<String, Integer>("TA02", 100));
-		ser2.getData().add(new XYChart.Data<String, Integer>("TA03", 110));
-		ser2.getData().add(new XYChart.Data<String, Integer>("TA04", 100));
-		ser2.getData().add(new XYChart.Data<String, Integer>("TA05", 110));
-		
-		XYChart.Series<String, Integer> ser3= new XYChart.Series<>();
-		ser3.setName("Karmiel");
-		ser3.getData().add(new XYChart.Data<String, Integer>("KA01", 110));
-		ser3.getData().add(new XYChart.Data<String, Integer>("KA02", 100));
-		
+		 int BestSeller=0;
+		 String strBestSeller=null, strBestLocation=null;
+		 XYChart.Series<String, Integer> ser1= new XYChart.Series<>();// tel aviv
+		 XYChart.Series<String, Integer> ser2= new XYChart.Series<>();//haifa
+		 XYChart.Series<String, Integer> ser3= new XYChart.Series<>();//karmiel
+		 ser1.setName("Tel-Aviv");	
+		 ser2.setName("Haifa");
+		 ser3.setName("Karmiel");	
+		for(Map.Entry<String,Integer>ite : orderReportData.getMachineAndAmount().entrySet()){//run on the HASHMAP keys
+					
+			if(ite.getKey().contains("TA")){//Tel-Aviv
+				ser1.getData().add(new XYChart.Data<String, Integer>(ite.getKey(), ite.getValue()));//set the key and value
+			}
+			if(ite.getKey().contains("HA")){//Haifa
+				ser2.getData().add(new XYChart.Data<String, Integer>(ite.getKey(), ite.getValue()));//set the key and value
+			}
+			if(ite.getKey().contains("KA")){//Karmiel	
+				ser3.getData().add(new XYChart.Data<String, Integer>(ite.getKey(), ite.getValue()));//set the key and value
+			}
+			// analyze data for best seller
+			if(ite.getValue() > BestSeller) { 
+				BestSeller=ite.getValue();
+				strBestSeller=ite.getKey(); 
+				 }
+			
+			
+		}
+			
 		OrdersChart.getData().addAll(ser1,ser2,ser3);
+
+		//show analyze data
+		bestIDLabel.setText("ID:" + strBestSeller);// show the ID  of the best seller
+		
 		
 		//TODO:           // calculate The area with the MOST\LOWEST orders..//
 		//for example: HAIFA: ((Total Orders = 200+140+36+32 / NumbersOfMachines =4 ))  =====  408\4 =102        LOWEST
 		//             Tel-Aviv: ((Total Orders = 110+100+110+100 / NumbersOfMachines =4))  =====  420\4 =105    MOST
-		
 	}
+}		
+		
 
-}
+  
+		
+
+
