@@ -211,60 +211,66 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	spinnerQuantitynew.setMaxWidth(75);
     	hboxofcart.getChildren().addAll(imageview, namelb, idlb, productTotalPrice, removeProduct, spinnerQuantitynew);
     	imageview.setTranslateY(0);
-    	if (ChatClient.productInCart.containsKey(product)) {
+    	//if (ChatClient.productInCart.containsKey(product)) {
     		HBox hb = (HBox)(findHBoxOfproductID(idlb.getText()));
     		if (hb != null) {
-    			ChatClient.productInCart.put(product, (ChatClient.productInCart.get(product) + quantity));
+        		ChatClient.cartList.add(product);
+        		ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).setAmount(
+        				ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()+quantity);
     			((Spinner<Integer>)hb.getChildren().get(5)).increment(quantity);
     			if (product.getDiscount() != 0) { 
     			((Text)hb.getChildren().get(3)).setText(
-    					String.valueOf(product.getPrice()*(1-product.getDiscount())*ChatClient.productInCart.get(product)) + "\u20AA");
+    					String.valueOf(product.getPrice()*(1-product.getDiscount())*
+    							ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()) + "\u20AA");
 	    		}
     			else {
     				((Text)hb.getChildren().get(3)).setText(
-        					String.valueOf(product.getPrice()*ChatClient.productInCart.get(product)) + "\u20AA");
+        					String.valueOf(product.getPrice()*
+        							ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()) + "\u20AA");
     			}
     			totalAmount();
     		}
-    	}
+    	//}
     	else {
-    		ChatClient.productInCart.put(product, quantity);
+    		ChatClient.cartList.add(product);
+    		ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).setAmount(quantity);
 	    	myCart.getItems().addAll(hboxofcart);
 	    	counter++;
 	    	cartCounter.setText(String.valueOf(counter));
 	    	totalAmount();
     	}
     	removeProduct.setOnAction(event -> {
-    		HBox hb = (HBox)(findHBoxOfproductID(idlb.getText()));
-    		ChatClient.productInCart.remove(product);
-	    	myCart.getItems().remove(hb);
+    		HBox hb1 = (HBox)(findHBoxOfproductID(idlb.getText()));
+    		ChatClient.cartList.remove(product);
+	    	myCart.getItems().remove(hb1);
 	    	counter--;
 	    	cartCounter.setText(String.valueOf(counter));
 	    	spinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,product.getAmount(), 0));
 	    	totalAmount();
         });
     	spinnerQuantitynew.setOnMouseReleased(event -> {
-			ChatClient.productInCart.remove(product);
-			ChatClient.productInCart.put(product, spinnerQuantitynew.getValue());
+    		ChatClient.cartList.remove(product);
+    		ChatClient.cartList.add(product);
+    		ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).setAmount(spinnerQuantitynew.getValue());
 			if (product.getDiscount() != 0) {
 				((Text) ((HBox) spinnerQuantitynew.getParent()).getChildren().get(3)).setText(
-						String.valueOf(product.getPrice()*(1-product.getDiscount())*(ChatClient.productInCart.get(product))) + "\u20AA");
+						String.valueOf(product.getPrice()*(1-product.getDiscount())*ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()) + "\u20AA");
 			}
 			else {
 				((Text) ((HBox) spinnerQuantitynew.getParent()).getChildren().get(3)).setText(
-						String.valueOf(product.getPrice()*(ChatClient.productInCart.get(product))) + "\u20AA");
+						String.valueOf(product.getPrice()*(ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount())) + "\u20AA");
 			}
 			SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = (SpinnerValueFactory.IntegerSpinnerValueFactory) spinnerQuantitynew.getValueFactory();
     		spinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, (valueFactory.getMax()-spinnerQuantitynew.getValue()), 0));
     	    if (spinnerQuantitynew.getValue() == 0) {
-        		HBox hb = (HBox)(findHBoxOfproductID(idlb.getText()));
-        		ChatClient.productInCart.remove(product);
-    	    	myCart.getItems().remove(hb);
+        		HBox hb2 = (HBox)(findHBoxOfproductID(idlb.getText()));
+        		ChatClient.cartList.remove(product);
+    	    	myCart.getItems().remove(hb2);
     	    	counter--;
     	    	cartCounter.setText(String.valueOf(counter));
     	    }
     	    totalAmount();
-    		System.out.println(ChatClient.productInCart);
+    		System.out.println(ChatClient.cartList);
     	});
 	}
     		
@@ -312,7 +318,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
 
 	@FXML
     void goBack(MouseEvent event) {
-		ChatClient.productInCart.clear();
+		emptyMyCart(event);
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/UserMainScreen.fxml"));
@@ -340,14 +346,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
 			return;
 		}
 		ChatClient.rememberMyCart.setItems(myCart.getItems());
-		ChatClient.cartList.clear();
-		Map.Entry<Product, Integer> element = null;
-    	Iterator<Map.Entry<Product, Integer>> iterator = ChatClient.productInCart.entrySet().iterator();
-        while (iterator.hasNext()) {
-        	element = iterator.next();
-        	element.getKey().setAmount(element.getValue());
-        	ChatClient.cartList.add(element.getKey());
-        }
         System.out.println(ChatClient.cartList);
 		//ChatClient.currentOrder = new Order("1", totalprice, ChatClient.cartList, String machineID, String orderDate, String estimatedDeliveryTime, String confirmationDate, String orderStatus, String customerID, String supplyMethod, String paidWith);
         Parent root = null;

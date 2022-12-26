@@ -43,7 +43,6 @@ public class ChatClient extends AbstractClient
 	  public static ArrayList<Product> cartList = new ArrayList<Product>();
 	  public static ArrayList<Order> orderList = new ArrayList<Order>();
 	  public static Order currentOrder = new Order();
-	  public static HashMap<Product, Integer> productInCart = new HashMap<Product, Integer>();
 	  public static ListView<Object> rememberMyCart = new ListView<Object>();
 	  public static String returnMachineID;
 	  public static String returnMonthChoose;
