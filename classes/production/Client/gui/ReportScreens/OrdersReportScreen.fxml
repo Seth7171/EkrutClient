@@ -50,12 +50,12 @@
          <image>
             <Image url="@like.png" />
          </image></ImageView>
-      <Label layoutX="116.0" layoutY="166.0" prefHeight="30.0" prefWidth="185.0" text="ID: $id">
+      <Label fx:id="bestIDLabel" layoutX="116.0" layoutY="166.0" prefHeight="30.0" prefWidth="185.0" text="ID: $id">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="116.0" layoutY="205.0" prefHeight="30.0" prefWidth="213.0" text="Location: $location">
+      <Label fx:id="bestLocationLabel" layoutX="116.0" layoutY="205.0" prefHeight="30.0" prefWidth="213.0" text="Location: $location">
          <font>
             <Font size="18.0" />
          </font>
@@ -75,7 +75,7 @@
             <Image url="@dislike.png" />
          </image>
       </ImageView>
-      <Label layoutX="116.0" layoutY="343.0" prefHeight="30.0" prefWidth="185.0" text="ID: $id">
+      <Label fx:id="worstIDLabel" layoutX="116.0" layoutY="343.0" prefHeight="30.0" prefWidth="185.0" text="ID: $id">
          <font>
             <Font size="18.0" />
          </font>
