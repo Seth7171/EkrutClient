@@ -237,9 +237,9 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 			            	
 			            //	TODO: need to replace the month if we got 02 to 2 ...
 			            	monthYearMachine.get(0);//this is the month string
-			            	if(monthYearMachine.get(0).startsWith("0"))
-			            		monthYearMachine.set(0, monthYearMachine.get(0).substring(1));
-			            	
+//			            	if(monthYearMachine.get(0).startsWith("0"))
+//			            		monthYearMachine.set(0, monthYearMachine.get(0).substring(1));
+			            	System.out.println(monthYearMachine); 
 			            	// request report from server
 			            	ClientUI.chat.accept(new Message(monthYearMachine, MessageFromClient.REQUEST_ALL_MACHINES_ORDERS_MONTHLY_REPORT));
 							//if no such report

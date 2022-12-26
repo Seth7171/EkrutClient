@@ -60,7 +60,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="116.0" layoutY="301.0" prefHeight="30.0" prefWidth="185.0" text="Wrost Seller Machine:" underline="true">
+      <Label layoutX="116.0" layoutY="301.0" prefHeight="30.0" prefWidth="185.0" text="Worst Seller Machine:" underline="true">
          <font>
             <Font size="18.0" />
          </font>
