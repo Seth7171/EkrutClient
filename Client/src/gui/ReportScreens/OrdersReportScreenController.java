@@ -123,10 +123,12 @@ public class OrdersReportScreenController extends ScreenController implements In
 		OrdersChart.getData().addAll(ser1,ser2,ser3);
 
 		//show analyze data
-		bestIDLabel.setText("ID: " + strIDofBestSeller);// show the ID  of the best seller
+		bestIDLabel.setText("ID: " + strIDofBestSeller);// show the ID  of the BEST seller
+		strLocationOfBest = strLocationOfBest.substring(0, 1).toUpperCase() + strLocationOfBest.substring(1).toLowerCase();// make the location with capital letter
 		bestLocationLabel.setText("Location: " + strLocationOfBest);
 		totalOrdersBestLabel.setText("Total orders: " + totalOrdersBestSeller);
-		worstIDLabel.setText("ID: " + strIDofWrostSeller);// show the ID  of the best seller
+		worstIDLabel.setText("ID: " + strIDofWrostSeller);// show the ID  of the WORST seller
+		strLocationOfWrost = strLocationOfWrost.substring(0, 1).toUpperCase() + strLocationOfWrost.substring(1).toLowerCase();// make the location with capital letter
 		wrostLocationLabel.setText("Location: " + strLocationOfWrost);
 		totalOrdersWrostLabel.setText("Total orders: " + totalOrdersWrostSeller);
 		
