@@ -22,7 +22,7 @@
           <CategoryAxis label="Machine ID" side="BOTTOM" fx:id="x" />
         </xAxis>
         <yAxis>
-          <NumberAxis fx:id="y" label="Number of orders" side="LEFT" upperBound="300.0">
+          <NumberAxis fx:id="y" autoRanging="false" label="Number of orders" minorTickVisible="false" side="LEFT" tickLabelGap="5.0" upperBound="50.0">
                <tickLabelFont>
                   <Font size="11.0" />
                </tickLabelFont>
@@ -41,7 +41,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="116.0" layoutY="243.0" prefHeight="30.0" prefWidth="213.0" text="Total orders: $num">
+      <Label fx:id="totalOrdersBestLabel" layoutX="116.0" layoutY="243.0" prefHeight="30.0" prefWidth="213.0" text="Total orders: $num">
          <font>
             <Font size="18.0" />
          </font>
@@ -65,7 +65,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="116.0" layoutY="420.0" prefHeight="30.0" prefWidth="213.0" text="Total orders: $num">
+      <Label fx:id="totalOrdersWrostLabel" layoutX="116.0" layoutY="420.0" prefHeight="30.0" prefWidth="213.0" text="Total orders: $num">
          <font>
             <Font size="18.0" />
          </font>
@@ -80,7 +80,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="116.0" layoutY="382.0" prefHeight="30.0" prefWidth="213.0" text="Location: $location">
+      <Label fx:id="wrostLocationLabel" layoutX="116.0" layoutY="382.0" prefHeight="30.0" prefWidth="213.0" text="Location: $location">
          <font>
             <Font size="18.0" />
          </font>
