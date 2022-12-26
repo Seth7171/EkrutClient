@@ -10,6 +10,7 @@ import common.connectivity.Message;
 import common.connectivity.User;
 import common.orders.Order;
 import common.orders.Product;
+import javafx.scene.control.ListView;
 import ocsf.client.AbstractClient;
 
 import java.io.IOException;
@@ -39,8 +40,11 @@ public class ChatClient extends AbstractClient
 	  public static boolean awaitResponse = false;
 	  public static String servermsg = new String();
 	  public static ArrayList<Product> productList = new ArrayList<Product>();
+	  public static ArrayList<Product> cartList = new ArrayList<Product>();
 	  public static ArrayList<Order> orderList = new ArrayList<Order>();
+	  public static Order currentOrder = new Order();
 	  public static HashMap<Product, Integer> productInCart = new HashMap<Product, Integer>();
+	  public static ListView<Object> rememberMyCart = new ListView<Object>();
 	  public static String returnMachineID;
 	  public static String returnMonthChoose;
 	  public static String returnYearChoose;

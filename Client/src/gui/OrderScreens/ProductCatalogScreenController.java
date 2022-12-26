@@ -33,6 +33,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.control.Spinner;
 
+import java.util.Iterator;
+import java.util.Map;
 
 import javax.swing.*;
 
@@ -47,8 +49,9 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class ProductCatalogScreenController extends ScreenController implements Initializable{
-	HashMap<Product, Integer> productInCart = new HashMap<Product, Integer>();
+	//HashMap<Product, Integer> ChatClient.productInCart = new HashMap<Product, Integer>();
     int counter = 0;
+    float totalprice = 0;
     
     @FXML
     private Text cartCounter;
@@ -72,7 +75,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     private TabPane tabPane;
     
     @FXML
-    private ListView<Object> myCart = new ListView<Object>();;
+    private ListView<Object> myCart = new ListView<Object>();
     
     @FXML
     private TilePane snacksPane;
@@ -90,10 +93,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     public void initialize(URL location, ResourceBundle resources) {
     	myCart.setFocusTraversable( false );
     	totalAmount.setText("0.0\u20AA");
-        // @ Lior
-        // changed here to request warehouse products and getting the product list from MessageHandler class.
         ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_WAREHOUSE_PRODUCTS));
-        //////////////////////////////////////////////////////////////////////////////////////////////////////
         tabPane.getStyleClass().add("tab-pane");
         tabPane.setTabMinWidth(220);
         tabPane.setTabMaxWidth(220);
@@ -107,6 +107,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         }
         snacksScroll.setFitToWidth(true);
         drinksScroll.setFitToWidth(true);
+        myCart.setItems(ChatClient.rememberMyCart.getItems());
     }
     
     @FXML
@@ -210,24 +211,24 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	spinnerQuantitynew.setMaxWidth(75);
     	hboxofcart.getChildren().addAll(imageview, namelb, idlb, productTotalPrice, removeProduct, spinnerQuantitynew);
     	imageview.setTranslateY(0);
-    	if (productInCart.containsKey(product)) {
+    	if (ChatClient.productInCart.containsKey(product)) {
     		HBox hb = (HBox)(findHBoxOfproductID(idlb.getText()));
     		if (hb != null) {
-    			productInCart.put(product, (productInCart.get(product) + quantity));
+    			ChatClient.productInCart.put(product, (ChatClient.productInCart.get(product) + quantity));
     			((Spinner<Integer>)hb.getChildren().get(5)).increment(quantity);
     			if (product.getDiscount() != 0) { 
     			((Text)hb.getChildren().get(3)).setText(
-    					String.valueOf(product.getPrice()*(1-product.getDiscount())*productInCart.get(product)) + "\u20AA");
+    					String.valueOf(product.getPrice()*(1-product.getDiscount())*ChatClient.productInCart.get(product)) + "\u20AA");
 	    		}
     			else {
     				((Text)hb.getChildren().get(3)).setText(
-        					String.valueOf(product.getPrice()*productInCart.get(product)) + "\u20AA");
+        					String.valueOf(product.getPrice()*ChatClient.productInCart.get(product)) + "\u20AA");
     			}
     			totalAmount();
     		}
     	}
     	else {
-    		productInCart.put(product, quantity);
+    		ChatClient.productInCart.put(product, quantity);
 	    	myCart.getItems().addAll(hboxofcart);
 	    	counter++;
 	    	cartCounter.setText(String.valueOf(counter));
@@ -235,7 +236,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	}
     	removeProduct.setOnAction(event -> {
     		HBox hb = (HBox)(findHBoxOfproductID(idlb.getText()));
-    		productInCart.remove(product);
+    		ChatClient.productInCart.remove(product);
 	    	myCart.getItems().remove(hb);
 	    	counter--;
 	    	cartCounter.setText(String.valueOf(counter));
@@ -243,27 +244,27 @@ public class ProductCatalogScreenController extends ScreenController implements 
 	    	totalAmount();
         });
     	spinnerQuantitynew.setOnMouseReleased(event -> {
-			productInCart.remove(product);
-			productInCart.put(product, spinnerQuantitynew.getValue());
+			ChatClient.productInCart.remove(product);
+			ChatClient.productInCart.put(product, spinnerQuantitynew.getValue());
 			if (product.getDiscount() != 0) {
 				((Text) ((HBox) spinnerQuantitynew.getParent()).getChildren().get(3)).setText(
-						String.valueOf(product.getPrice()*(1-product.getDiscount())*(productInCart.get(product))) + "\u20AA");
+						String.valueOf(product.getPrice()*(1-product.getDiscount())*(ChatClient.productInCart.get(product))) + "\u20AA");
 			}
 			else {
 				((Text) ((HBox) spinnerQuantitynew.getParent()).getChildren().get(3)).setText(
-						String.valueOf(product.getPrice()*(productInCart.get(product))) + "\u20AA");
+						String.valueOf(product.getPrice()*(ChatClient.productInCart.get(product))) + "\u20AA");
 			}
 			SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = (SpinnerValueFactory.IntegerSpinnerValueFactory) spinnerQuantitynew.getValueFactory();
     		spinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, (valueFactory.getMax()-spinnerQuantitynew.getValue()), 0));
     	    if (spinnerQuantitynew.getValue() == 0) {
         		HBox hb = (HBox)(findHBoxOfproductID(idlb.getText()));
-        		productInCart.remove(product);
+        		ChatClient.productInCart.remove(product);
     	    	myCart.getItems().remove(hb);
     	    	counter--;
     	    	cartCounter.setText(String.valueOf(counter));
     	    }
     	    totalAmount();
-    		System.out.println(productInCart);
+    		System.out.println(ChatClient.productInCart);
     	});
 	}
     		
@@ -280,7 +281,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     }
     
     void totalAmount() {
-    	float totalprice = 0;
+    	totalprice = 0;
     	int index;
     	String pricevalue;
 		int numItems = myCart.getItems().size();
@@ -311,6 +312,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
 
 	@FXML
     void goBack(MouseEvent event) {
+		ChatClient.productInCart.clear();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/UserMainScreen.fxml"));
@@ -337,7 +339,17 @@ public class ProductCatalogScreenController extends ScreenController implements 
 	        timeline.play();*/
 			return;
 		}
-		
+		ChatClient.rememberMyCart.setItems(myCart.getItems());
+		ChatClient.cartList.clear();
+		Map.Entry<Product, Integer> element = null;
+    	Iterator<Map.Entry<Product, Integer>> iterator = ChatClient.productInCart.entrySet().iterator();
+        while (iterator.hasNext()) {
+        	element = iterator.next();
+        	element.getKey().setAmount(element.getValue());
+        	ChatClient.cartList.add(element.getKey());
+        }
+        System.out.println(ChatClient.cartList);
+		//ChatClient.currentOrder = new Order("1", totalprice, ChatClient.cartList, String machineID, String orderDate, String estimatedDeliveryTime, String confirmationDate, String orderStatus, String customerID, String supplyMethod, String paidWith);
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("CheckoutScreen.fxml"));
