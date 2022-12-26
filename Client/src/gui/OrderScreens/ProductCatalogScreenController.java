@@ -92,6 +92,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	myCart.setFocusTraversable( false );
+    	myCart.setItems(ChatClient.rememberMyCart.getItems());
     	totalAmount.setText("0.0\u20AA");
         ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_WAREHOUSE_PRODUCTS));
         tabPane.getStyleClass().add("tab-pane");
@@ -107,7 +108,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
         }
         snacksScroll.setFitToWidth(true);
         drinksScroll.setFitToWidth(true);
-        myCart.setItems(ChatClient.rememberMyCart.getItems());
     }
     
     @FXML
@@ -147,7 +147,13 @@ public class ProductCatalogScreenController extends ScreenController implements 
         idLable.getStyleClass().add("id-label");
         idLable.setWrapText(true);
         idLable.setPrefWidth(150);
-        Spinner<Integer> SpinnerQuantity = new Spinner<>(0,product.getAmount(),0);
+		Spinner<Integer> SpinnerQuantity = new Spinner<>(0,product.getAmount(),0);
+        HBox hb = (HBox)(findHBoxOfproductID(product.getProductId()));
+		if (hb != null) {
+			SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = (SpinnerValueFactory.IntegerSpinnerValueFactory) SpinnerQuantity.getValueFactory();
+			SpinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 
+					valueFactory.getMax()-((Spinner<Integer>)hb.getChildren().get(5)).getValue(), 0));
+		}
         SpinnerQuantity.getStyleClass().add("combo-color");
         Text newPrice = new Text();
         Text priceLabel = new Text("Price: " + product.getPrice());
@@ -270,7 +276,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	    	cartCounter.setText(String.valueOf(counter));
     	    }
     	    totalAmount();
-    		System.out.println(ChatClient.cartList);
     	});
 	}
     		
