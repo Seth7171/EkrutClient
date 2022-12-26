@@ -44,12 +44,23 @@ public class OrdersReportScreenController extends ScreenController implements In
 	    
 	    @FXML
 	    private Label bestIDLabel;
-	    
+
 	    @FXML
 	    private Label bestLocationLabel;
 
 	    @FXML
+	    private Label totalOrdersBestLabel;
+
+	    @FXML
+	    private Label totalOrdersWrostLabel;
+
+	    @FXML
 	    private Label worstIDLabel;
+
+	    @FXML
+	    private Label wrostLocationLabel;
+	    
+	    
     @FXML
     void ClickBackButton(MouseEvent event) {
     	Parent root = null;
@@ -75,8 +86,11 @@ public class OrdersReportScreenController extends ScreenController implements In
 		 OrderReport orderReportData =  (OrderReport) MessageHandler.getData();//getting data from server
 
 		//making the BarChart from data
-		 int BestSeller=0;
-		 String strBestSeller=null, strBestLocation=null;
+		 int totalOrdersBestSeller=0;
+		 String strIDofBestSeller=null, strLocationOfBest=null;
+		 int totalOrdersWrostSeller = 999999;
+		 String strIDofWrostSeller=null, strLocationOfWrost=null;
+		 
 		 XYChart.Series<String, Integer> ser1= new XYChart.Series<>();// tel aviv
 		 XYChart.Series<String, Integer> ser2= new XYChart.Series<>();//haifa
 		 XYChart.Series<String, Integer> ser3= new XYChart.Series<>();//karmiel
@@ -95,19 +109,38 @@ public class OrdersReportScreenController extends ScreenController implements In
 				ser3.getData().add(new XYChart.Data<String, Integer>(ite.getKey(), ite.getValue()));//set the key and value
 			}
 			// analyze data for best seller
-			if(ite.getValue() > BestSeller) { 
-				BestSeller=ite.getValue();
-				strBestSeller=ite.getKey(); 
-				 }
+			if(ite.getValue() > totalOrdersBestSeller) { 
+				totalOrdersBestSeller=ite.getValue(); // get total orders of best machine
+				strIDofBestSeller=ite.getKey(); //get ID of best machine
+				if(strIDofBestSeller.startsWith("TA"))
+					strLocationOfBest = "Tel Aviv";
+				else if(strIDofBestSeller.startsWith("HA"))
+					strLocationOfBest = "Haifa";
+				else if(strIDofBestSeller.startsWith("KA"))
+					strLocationOfBest = "Karmiel";
+			}
 			
-			
+			if(ite.getValue() < totalOrdersWrostSeller) { 
+				totalOrdersWrostSeller=ite.getValue(); // get total orders of worst machine
+				strIDofWrostSeller=ite.getKey(); //get ID of best machine
+				if(strIDofWrostSeller.startsWith("TA"))
+					strLocationOfWrost = "Tel Aviv";
+				else if(strIDofWrostSeller.startsWith("HA"))
+					strLocationOfWrost = "Haifa";
+				else if(strIDofWrostSeller.startsWith("KA"))
+					strLocationOfWrost = "Karmiel";
+			}
 		}
 			
 		OrdersChart.getData().addAll(ser1,ser2,ser3);
 
 		//show analyze data
-		bestIDLabel.setText("ID:" + strBestSeller);// show the ID  of the best seller
-		
+		bestIDLabel.setText("ID: " + strIDofBestSeller);// show the ID  of the best seller
+		bestLocationLabel.setText("Location: " + strLocationOfBest);
+		totalOrdersBestLabel.setText("Total orders: " + totalOrdersBestSeller);
+		worstIDLabel.setText("ID: " + strIDofWrostSeller);// show the ID  of the best seller
+		wrostLocationLabel.setText("Location: " + strLocationOfWrost);
+		totalOrdersWrostLabel.setText("Total orders: " + totalOrdersWrostSeller);
 		
 		//TODO:           // calculate The area with the MOST\LOWEST orders..//
 		//for example: HAIFA: ((Total Orders = 200+140+36+32 / NumbersOfMachines =4 ))  =====  408\4 =102        LOWEST
