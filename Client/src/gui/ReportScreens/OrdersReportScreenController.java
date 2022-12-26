@@ -115,7 +115,7 @@ public class OrdersReportScreenController extends ScreenController implements In
 			
 			if(ordrep.getNumberOfOrders() < totalOrdersWrostSeller) {
 				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
-				strIDofWrostSeller = ordrep.getMachineid(); //get ID of best machine
+				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
 				strLocationOfWrost = ordrep.getMachineLocation();
 			}
 		}
