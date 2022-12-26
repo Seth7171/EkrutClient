@@ -3,6 +3,7 @@ package gui.OrderScreens;
 
 import application.client.ChatClient;
 import application.client.ClientUI;
+import application.client.MessageHandler;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
@@ -41,6 +42,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -88,11 +90,14 @@ public class ProductCatalogScreenController extends ScreenController implements 
     public void initialize(URL location, ResourceBundle resources) {
     	myCart.setFocusTraversable( false );
     	totalAmount.setText("0.0\u20AA");
-        ClientUI.chat.accept(new Message("HA01", MessageFromClient.REQUEST_ALL_MACHINE_PRODUCTS));
+        // @ Lior
+        // changed here to request warehouse products and getting the product list from MessageHandler class.
+        ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_WAREHOUSE_PRODUCTS));
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
         tabPane.getStyleClass().add("tab-pane");
         tabPane.setTabMinWidth(220);
         tabPane.setTabMaxWidth(220);
-        for (Product product : ChatClient.productList) {
+        for (Product product : (ArrayList<Product>) MessageHandler.getData()) {
         	if(product.getAmount() != 0 ) {
 		       if(product.getType().equals("SNACK"))
 		    	   snacksPane.getChildren().add(createProductTile(product));

@@ -56,6 +56,9 @@
 	-fx-background-color: #bfbfbf;
 }
 
+.ExitButton{
+	-fx-background-color: transparent;
+}
 
 .button:hover{
 	-fx-cursor: hand;
