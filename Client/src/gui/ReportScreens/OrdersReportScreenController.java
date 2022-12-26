@@ -2,15 +2,13 @@ package gui.ReportScreens;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 
 import application.client.ChatClient;
 import application.client.MessageHandler;
 import common.Reports.InventoryReport;
 import common.Reports.OrderReport;
+import common.orders.Order;
 import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -82,8 +80,8 @@ public class OrdersReportScreenController extends ScreenController implements In
 		// TODO Auto-generated method stub
 		int  ArrlocationSize=0;
 		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);
-		
-		 OrderReport orderReportData =  (OrderReport) MessageHandler.getData();//getting data from server
+
+		ArrayList<OrderReport> orderReportData = (ArrayList<OrderReport>)  MessageHandler.getData();
 
 		//making the BarChart from data
 		 int totalOrdersBestSeller=0;
@@ -97,38 +95,28 @@ public class OrdersReportScreenController extends ScreenController implements In
 		 ser1.setName("Tel-Aviv");	
 		 ser2.setName("Haifa");
 		 ser3.setName("Karmiel");	
-		for(Map.Entry<String,Integer>ite : orderReportData.getMachineAndAmount().entrySet()){//run on the HASHMAP keys
-					
-			if(ite.getKey().contains("TA")){//Tel-Aviv
-				ser1.getData().add(new XYChart.Data<String, Integer>(ite.getKey(), ite.getValue()));//set the key and value
-			}
-			if(ite.getKey().contains("HA")){//Haifa
-				ser2.getData().add(new XYChart.Data<String, Integer>(ite.getKey(), ite.getValue()));//set the key and value
-			}
-			if(ite.getKey().contains("KA")){//Karmiel	
-				ser3.getData().add(new XYChart.Data<String, Integer>(ite.getKey(), ite.getValue()));//set the key and value
-			}
+		for(OrderReport ordrep : orderReportData){//run on the HASHMAP keys
+
+			if (ordrep.getMachineLocation().equals("tel aviv"))
+				ser1.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set the key and value
+
+			if (ordrep.getMachineLocation().equals("haifa"))
+				ser2.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set the key and value
+
+			if (ordrep.getMachineLocation().equals("karmiel"))
+				ser3.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set the key and value
+
 			// analyze data for best seller
-			if(ite.getValue() > totalOrdersBestSeller) { 
-				totalOrdersBestSeller=ite.getValue(); // get total orders of best machine
-				strIDofBestSeller=ite.getKey(); //get ID of best machine
-				if(strIDofBestSeller.startsWith("TA"))
-					strLocationOfBest = "Tel Aviv";
-				else if(strIDofBestSeller.startsWith("HA"))
-					strLocationOfBest = "Haifa";
-				else if(strIDofBestSeller.startsWith("KA"))
-					strLocationOfBest = "Karmiel";
+			if(ordrep.getNumberOfOrders() > totalOrdersBestSeller) {
+				totalOrdersBestSeller = ordrep.getNumberOfOrders(); // get total orders of best machine
+				strIDofBestSeller = ordrep.getMachineid(); //get ID of best machine
+				strLocationOfBest = ordrep.getMachineLocation();
 			}
 			
-			if(ite.getValue() < totalOrdersWrostSeller) { 
-				totalOrdersWrostSeller=ite.getValue(); // get total orders of worst machine
-				strIDofWrostSeller=ite.getKey(); //get ID of best machine
-				if(strIDofWrostSeller.startsWith("TA"))
-					strLocationOfWrost = "Tel Aviv";
-				else if(strIDofWrostSeller.startsWith("HA"))
-					strLocationOfWrost = "Haifa";
-				else if(strIDofWrostSeller.startsWith("KA"))
-					strLocationOfWrost = "Karmiel";
+			if(ordrep.getNumberOfOrders() < totalOrdersWrostSeller) {
+				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
+				strIDofWrostSeller = ordrep.getMachineid(); //get ID of best machine
+				strLocationOfWrost = ordrep.getMachineLocation();
 			}
 		}
 			
