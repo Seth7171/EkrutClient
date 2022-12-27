@@ -58,6 +58,12 @@ public class OrdersReportScreenController extends ScreenController implements In
 	    @FXML
 	    private Label wrostLocationLabel;
 	    
+	    @FXML
+	    private Label bestArea;
+
+	    @FXML
+	    private Label worstArea;
+	    
 	    
     @FXML
     void ClickBackButton(MouseEvent event) {
@@ -84,28 +90,33 @@ public class OrdersReportScreenController extends ScreenController implements In
 		ArrayList<OrderReport> orderReportData = (ArrayList<OrderReport>)  MessageHandler.getData();
 
 		//making the BarChart from data
-		 int totalOrdersBestSeller=0;
-		 String strIDofBestSeller=null, strLocationOfBest=null;
+		 int totalOrdersBestSeller=0,NorthMachinesAmount=0,SouthMachinesAmount=0,UAEMachinesAmount=0,totalOrdersNorth=0,totalOrdersSouth=0,totalOrdersUAE=0,totalOrdersBestArea=0;
+		 String strIDofBestSeller=null, strLocationOfBest=null ,strBestArea=null;
 		 int totalOrdersWrostSeller = 999999;
-		 String strIDofWrostSeller=null, strLocationOfWrost=null;
+		 String strIDofWrostSeller=null, strLocationOfWrost=null,strWorstArea=null;
+		 double totalNorth=0,totalSouth=0, totalUAE=0;
 		 
-		 XYChart.Series<String, Integer> ser1= new XYChart.Series<>();// tel aviv
-		 XYChart.Series<String, Integer> ser2= new XYChart.Series<>();//haifa
-		 XYChart.Series<String, Integer> ser3= new XYChart.Series<>();//karmiel
-		 ser1.setName("Tel-Aviv");	
-		 ser2.setName("Haifa");
-		 ser3.setName("Karmiel");	
-		for(OrderReport ordrep : orderReportData){//run on the HASHMAP keys
+		 XYChart.Series<String, Integer> ser1= new XYChart.Series<>();// North
+		 XYChart.Series<String, Integer> ser2= new XYChart.Series<>();//South
+		 XYChart.Series<String, Integer> ser3= new XYChart.Series<>();//UAE
+		 ser1.setName("North");	
+		 ser2.setName("South");
+		 ser3.setName("UAE");	
+		for(OrderReport ordrep : orderReportData){
 
-			if (ordrep.getMachineLocation().equals("tel aviv"))
-				ser1.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set the key and value
+			if (ordrep.getMachineLocation().equals("haifa")) {
+				ser1.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+				NorthMachinesAmount++;}
 
-			if (ordrep.getMachineLocation().equals("haifa"))
-				ser2.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set the key and value
+			if (ordrep.getMachineLocation().equals("tel aviv")) {
+				ser2.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+				SouthMachinesAmount++;}
 
-			if (ordrep.getMachineLocation().equals("karmiel"))
-				ser3.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set the key and value
-
+				
+			if (ordrep.getMachineLocation().equals("karmiel")) {
+				ser3.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+				UAEMachinesAmount++;}
+			
 			// analyze data for best seller
 			if(ordrep.getNumberOfOrders() > totalOrdersBestSeller) {
 				totalOrdersBestSeller = ordrep.getNumberOfOrders(); // get total orders of best machine
@@ -118,10 +129,40 @@ public class OrdersReportScreenController extends ScreenController implements In
 				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
 				strLocationOfWrost = ordrep.getMachineLocation();
 			}
+			// analyze data for best AREA
+			if(ordrep.getMachineLocation().equals("haifa")) {
+				totalOrdersNorth += ordrep.getNumberOfOrders();
+				NorthMachinesAmount++;
+			}
+			if(ordrep.getMachineLocation().equals("tel aviv")) {
+				totalOrdersSouth += ordrep.getNumberOfOrders();
+				SouthMachinesAmount++;
+			}
+			if(ordrep.getMachineLocation().equals("karmiel")) {
+				totalOrdersUAE += ordrep.getNumberOfOrders();
+				UAEMachinesAmount++;
+			}
 		}
 			
 		OrdersChart.getData().addAll(ser1,ser2,ser3);
-
+		
+		//calculate data for who is the best area
+		totalNorth=totalOrdersNorth/NorthMachinesAmount;
+		totalSouth=totalOrdersSouth/SouthMachinesAmount;
+		totalUAE=totalOrdersUAE/UAEMachinesAmount;
+		if((totalNorth>totalSouth) && (totalSouth>totalUAE))//NORTH is best area + UAE is the worst
+		{strBestArea="North"; strWorstArea="UAE";}
+		if((totalNorth>totalUAE) && (totalUAE>totalSouth))//NORTH is best area + South is the worst
+		{strBestArea="North"; strWorstArea="South";}
+		if((totalSouth>totalNorth) && (totalSouth>totalUAE))//South is best area + UAE is the worst
+		{strBestArea="South"; strWorstArea="UAE";}
+		if((totalSouth>totalNorth) && (totalNorth<totalUAE))//South is best area + North is the worst	
+		{strBestArea="South"; strWorstArea="North";}
+		if((totalUAE>totalNorth) && (totalSouth>totalNorth))//UAE is best area + North is the worst
+		{strBestArea="UAE"; strWorstArea="North";}
+		if((totalUAE>totalNorth) && (totalSouth<totalNorth))//UAE is best area + South is the worst	
+		{strBestArea="UAE"; strWorstArea="South";}
+		
 		//show analyze data
 		bestIDLabel.setText("ID: " + strIDofBestSeller);// show the ID  of the BEST seller
 		strLocationOfBest = strLocationOfBest.substring(0, 1).toUpperCase() + strLocationOfBest.substring(1).toLowerCase();// make the location with capital letter
@@ -131,10 +172,9 @@ public class OrdersReportScreenController extends ScreenController implements In
 		strLocationOfWrost = strLocationOfWrost.substring(0, 1).toUpperCase() + strLocationOfWrost.substring(1).toLowerCase();// make the location with capital letter
 		wrostLocationLabel.setText("Location: " + strLocationOfWrost);
 		totalOrdersWrostLabel.setText("Total orders: " + totalOrdersWrostSeller);
+		bestArea.setText("The area with the MOST orders is: " + strBestArea);// show the Best area
+		worstArea.setText("The area with the LOWEST orders is: " + strWorstArea);// show the worst area
 		
-		//TODO:           // calculate The area with the MOST\LOWEST orders..//
-		//for example: HAIFA: ((Total Orders = 200+140+36+32 / NumbersOfMachines =4 ))  =====  408\4 =102        LOWEST
-		//             Tel-Aviv: ((Total Orders = 110+100+110+100 / NumbersOfMachines =4))  =====  420\4 =105    MOST
 	}
 }		
 		
