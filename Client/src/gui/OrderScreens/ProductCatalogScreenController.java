@@ -343,39 +343,71 @@ public class ProductCatalogScreenController extends ScreenController implements 
 	    	// Call the totalAmount method to update the total price of all items in the cart
 	    	totalAmount();
     	}
-    	// Set the action for the remove product button
+    	/**
+    	 * An event handler that removes a product from the shopping cart and updates the cart counter.
+    	 * The event is triggered when the "Remove" button is clicked.
+    	 * 
+    	 * @param event the action event that occurred
+    	 */
     	removeProduct.setOnAction(event -> {
-    		// Find the horizontal box that corresponds to the product ID
-    		HBox hb1 = (HBox)(findHBoxOfproductID(idlb.getText()));
-    		// Remove the product from the list of products in the cart
-    		ChatClient.cartList.remove(product);
-	    	// Remove the horizontal box from the list view of the cart
-	    	myCart.getItems().remove(hb1);
-	    	// Decrement the counter for the number of items in the cart
-	    	counter--;
-	    	// Set the text of the cart counter label to the new value of the counter
-	    	cartCounter.setText(String.valueOf(counter));
-	    	// Call the totalAmount method to update the total price of all items in the cart
-	    	totalAmount();
+    	    // Find the HBox that contains the product details
+    	    HBox hb1 = (HBox)(findHBoxOfproductID(idlb.getText()));
+    	    // Remove the product from the cartList
+    	    ChatClient.cartList.remove(product);
+    	    // Remove the HBox from the ListView
+    	    myCart.getItems().remove(hb1);
+    	    // Decrement the counter
+    	    counter--;
+    	    // Update the cart counter label
+    	    cartCounter.setText(String.valueOf(counter));
+    	    // Reset the quantity spinner to 0
+    	    spinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,product.getAmount(), 0));
+    	    // Update the total amount
+    	    totalAmount();
     	});
-    	// Set the action for the quantity spinner
-    	spinnerQuantitynew.valueProperty().addListener((observable, oldValue, newValue) -> {
-    		// Find the horizontal box that corresponds to the product ID
-    		HBox hb2 = (HBox)(findHBoxOfproductID(idlb.getText()));
-    		// Update the quantity of the product in the cart
-    		ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).setAmount(newValue);
-    		// If the product has a discount, update the total price text to reflect the discounted price
-    		if (product.getDiscount() != 0) { 
-    			((Text)hb2.getChildren().get(3)).setText(
-    					String.valueOf(product.getPrice()*(1-product.getDiscount())*newValue) + "\u20AA");
-	    	}
-    		// If the product does not have a discount, update the total price text to the regular price
-    		else {
-    			((Text)hb2.getChildren().get(3)).setText(
-    					String.valueOf(product.getPrice()*newValue) + "\u20AA");
-    		}
-    		// Call the totalAmount method to update the total price of all items in the cart
-    		totalAmount();
+
+    	/**
+    	 * An event handler that updates the quantity of a product in the shopping cart and updates the total amount.
+    	 * The event is triggered when the quantity spinner is released.
+    	 * 
+    	 * @param event the mouse event that occurred
+    	 */
+    	spinnerQuantitynew.setOnMouseReleased(event -> {
+    	    // Remove the product from the cartList
+    	    ChatClient.cartList.remove(product);
+    	    // Add the updated product to the cartList
+    	    ChatClient.cartList.add(product);
+    	    // Update the quantity of the product in the cartList
+    	    ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).setAmount(spinnerQuantitynew.getValue());
+    	    // Update the price label with the new total price
+    	    if (product.getDiscount() != 0) {
+    	        // If the product has a discount, apply it to the total price
+    	        ((Text) ((HBox) spinnerQuantitynew.getParent()).getChildren().get(3)).setText(
+    	            String.valueOf(product.getPrice()*(1-product.getDiscount())*ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()) + "\u20AA");
+    	    } else {
+    	        // If the product doesn't have a discount, just multiply the price by the quantity
+    	        ((Text) ((HBox) spinnerQuantitynew.getParent()).getChildren().get(3)).setText(
+    	            String.valueOf(product.getPrice()*(ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount())) + "\u20AA");
+    	    }
+    	    // Get the maximum value of the quantity spinner
+    	    SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = (SpinnerValueFactory.IntegerSpinnerValueFactory) spinnerQuantitynew.getValueFactory();
+    	    // Update the quantity spinner for the other product
+    	    spinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, (valueFactory.getMax()-spinnerQuantitynew.getValue()), 0));
+    	    // If the quantity of the product is set to 0, remove it from the cart
+    	    if (spinnerQuantitynew.getValue() ==0) {
+    	        // Find the HBox that contains the product details
+    	        HBox hb2 = (HBox)(findHBoxOfproductID(idlb.getText()));
+    	        // Remove the product from the cartList
+    	        ChatClient.cartList.remove(product);
+    	        // Remove the HBox from the ListView
+    	        myCart.getItems().remove(hb2);
+    	        // Decrement the counter
+    	        counter--;
+    	        // Update the cart counter label
+    	        cartCounter.setText(String.valueOf(counter));
+    	    }
+    	    // Update the total amount
+    	    totalAmount();
     	});
     }
     		
