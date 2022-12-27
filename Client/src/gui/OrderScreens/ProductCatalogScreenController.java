@@ -243,12 +243,14 @@ public class ProductCatalogScreenController extends ScreenController implements 
      * @param spinnerQuantity the quantity spinner for the product
      */
     private void addToCart(Product product, Spinner<Integer> spinnerQuantity) {
+    	Product cartProduct = new Product(product.getPrice(), product.getDiscount(), product.getName(), product.getAmount(), 
+        		product.getDescription(), product.getType(), product.getProductId(), product.getFile(), product.getCriticalAmount());
         // Get the selected quantity of the product
         int quantity = spinnerQuantity.getValue();
         // Create a new horizontal box to hold the cart items
         HBox hboxofcart = new HBox();
         // Create an input stream from the product's file
-        InputStream inputStream = new ByteArrayInputStream(product.getFile());
+        InputStream inputStream = new ByteArrayInputStream(cartProduct.getFile());
         // Create a new image from the input stream
         Image image = null;
         image = new Image(inputStream);
@@ -260,15 +262,15 @@ public class ProductCatalogScreenController extends ScreenController implements 
         // Set the image for the image view
         imageview.setImage(image);
         // Create a label to display the product's name
-        Label namelb = new Label(product.getName());
+        Label namelb = new Label(cartProduct.getName());
         // Set the width of the name label
         namelb.setPrefWidth(100);
         // Create a label to display the product's ID
-        Label idlb = new Label(product.getProductId());
+        Label idlb = new Label(cartProduct.getProductId());
         // Set the width of the ID label
         idlb.setPrefWidth(100);
         // Get the product's price
-        float productPrice = product.getPrice();
+        float productPrice = cartProduct.getPrice();
         // Create a text object to display the total price of the product
         Text productTotalPrice = new Text();
         // Set the width of the total price text
@@ -276,8 +278,8 @@ public class ProductCatalogScreenController extends ScreenController implements 
         // Calculate the total price of the product based on the quantity selected
         float priceofproduct = productPrice*spinnerQuantity.getValue();
         // If the product has a discount, apply the discount to the total price
-        if (product.getDiscount()!=0) {
-    		priceofproduct = productPrice*(1-product.getDiscount())*spinnerQuantity.getValue();
+        if (cartProduct.getDiscount()!=0) {
+    		priceofproduct = productPrice*(1-cartProduct.getDiscount())*spinnerQuantity.getValue();
     	}
     	// Set the text of the total price text to the calculated total price
     	productTotalPrice.setText(String.valueOf(priceofproduct) + "\u20AA");
@@ -306,23 +308,23 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	// If the horizontal box is found, update the quantity and total price of the product in the cart
     	if (hb != null) {
     		// Add the product to the list of products in the cart
-        	ChatClient.cartList.add(product);
+        	ChatClient.cartList.add(cartProduct);
         	// Update the quantity of the product in the cart
-        	ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).setAmount(
-        			ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()+quantity);
+        	ChatClient.cartList.get(ChatClient.cartList.indexOf(cartProduct)).setAmount(
+        			ChatClient.cartList.get(ChatClient.cartList.indexOf(cartProduct)).getAmount()+quantity);
     		// Increment the quantity spinner by the selected quantity
     		((Spinner<Integer>)hb.getChildren().get(5)).increment(quantity);
     		// If the product has a discount, update the total price text to reflect the discounted price
-    		if (product.getDiscount() != 0) { 
+    		if (cartProduct.getDiscount() != 0) { 
     			((Text)hb.getChildren().get(3)).setText(
-    					String.valueOf(product.getPrice()*(1-product.getDiscount())*
-    							ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()) + "\u20AA");
+    					String.valueOf(cartProduct.getPrice()*(1-cartProduct.getDiscount())*
+    							ChatClient.cartList.get(ChatClient.cartList.indexOf(cartProduct)).getAmount()) + "\u20AA");
 	    	}
     		// If the product does not have a discount, update the total price text to the regular price
     		else {
     			((Text)hb.getChildren().get(3)).setText(
-    					String.valueOf(product.getPrice()*
-    							ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()) + "\u20AA");
+    					String.valueOf(cartProduct.getPrice()*
+    							ChatClient.cartList.get(ChatClient.cartList.indexOf(cartProduct)).getAmount()) + "\u20AA");
     		}
     		// Call the totalAmount method to update the total price of all items in the cart
     		totalAmount();
@@ -330,9 +332,9 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	// If the horizontal box is not found, add the product to the cart
     	else {
     		// Add the product to the list of products in the cart
-    		ChatClient.cartList.add(product);
+    		ChatClient.cartList.add(cartProduct);
     		// Set the quantity of the product in the cart
-    		ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).setAmount(quantity);
+    		ChatClient.cartList.get(ChatClient.cartList.indexOf(cartProduct)).setAmount(quantity);
 	    	// Add the horizontal box to the list view of the cart
 	    	myCart.getItems().addAll(hboxofcart);
 	    	// Increment the counter for the number of items in the cart
@@ -352,7 +354,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	    // Find the HBox that contains the product details
     	    HBox hb1 = (HBox)(findHBoxOfproductID(idlb.getText()));
     	    // Remove the product from the cartList
-    	    ChatClient.cartList.remove(product);
+    	    ChatClient.cartList.remove(cartProduct);
     	    // Remove the HBox from the ListView
     	    myCart.getItems().remove(hb1);
     	    // Decrement the counter
@@ -373,20 +375,20 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	 */
     	spinnerQuantitynew.setOnMouseReleased(event -> {
     	    // Remove the product from the cartList
-    	    ChatClient.cartList.remove(product);
+    	    ChatClient.cartList.remove(cartProduct);
     	    // Add the updated product to the cartList
-    	    ChatClient.cartList.add(product);
+    	    ChatClient.cartList.add(cartProduct);
     	    // Update the quantity of the product in the cartList
-    	    ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).setAmount(spinnerQuantitynew.getValue());
+    	    ChatClient.cartList.get(ChatClient.cartList.indexOf(cartProduct)).setAmount(spinnerQuantitynew.getValue());
     	    // Update the price label with the new total price
-    	    if (product.getDiscount() != 0) {
+    	    if (cartProduct.getDiscount() != 0) {
     	        // If the product has a discount, apply it to the total price
     	        ((Text) ((HBox) spinnerQuantitynew.getParent()).getChildren().get(3)).setText(
-    	            String.valueOf(product.getPrice()*(1-product.getDiscount())*ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()) + "\u20AA");
+    	            String.valueOf(cartProduct.getPrice()*(1-cartProduct.getDiscount())*ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()) + "\u20AA");
     	    } else {
     	        // If the product doesn't have a discount, just multiply the price by the quantity
     	        ((Text) ((HBox) spinnerQuantitynew.getParent()).getChildren().get(3)).setText(
-    	            String.valueOf(product.getPrice()*(ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount())) + "\u20AA");
+    	            String.valueOf(cartProduct.getPrice()*(ChatClient.cartList.get(ChatClient.cartList.indexOf(cartProduct)).getAmount())) + "\u20AA");
     	    }
     	    // Get the maximum value of the quantity spinner
     	    SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = (SpinnerValueFactory.IntegerSpinnerValueFactory) spinnerQuantitynew.getValueFactory();
@@ -397,7 +399,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	        // Find the HBox that contains the product details
     	        HBox hb2 = (HBox)(findHBoxOfproductID(idlb.getText()));
     	        // Remove the product from the cartList
-    	        ChatClient.cartList.remove(product);
+    	        ChatClient.cartList.remove(cartProduct);
     	        // Remove the HBox from the ListView
     	        myCart.getItems().remove(hb2);
     	        // Decrement the counter
