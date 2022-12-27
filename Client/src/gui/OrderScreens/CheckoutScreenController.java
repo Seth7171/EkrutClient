@@ -35,32 +35,31 @@ public class CheckoutScreenController extends ScreenController implements Initia
     
     @FXML
     private ListView<Object> myOrder = new ListView<Object>();
-    
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
       myOrder.setItems(ChatClient.rememberMyCart.getItems());
       totalAmount();
 
-      // Add a listener to the myOrder ListView to update the total amount when an item is removed or the quantity is changed
-      myOrder.getItems().addListener((ListChangeListener<Object>) change -> {
-        // Calculate the total amount again when an item is removed or the quantity is changed
-        totalAmount();
-      });
-
-      // Add a listener to the valueProperty of each Spinner in the ListView items to update the total amount when the value is changed
+      // Add a listener to the onMouseClicked event of each Spinner in the ListView items to update the total amount when the spinner is clicked
       for (Object item : myOrder.getItems()) {
           Spinner spinner = ((Spinner<Integer>)(((HBox) item).getChildren().get(5)));
-          spinner.valueProperty().addListener((observable, oldValue, newValue) -> {
-            totalAmount();
-          });
-          spinner.setOnScroll(event -> {
+          spinner.setOnMouseClicked(event -> {
+            // update the total amount when the spinner is clicked
             totalAmount();
           });
         }
+
+      // Add a listener to the items property of the myOrder ListView to update the total amount when an item is removed or the quantity is changed
+      myOrder.getItems().addListener((ListChangeListener<Object>) change -> {
+         while (change.next()) {
+            if (change.wasRemoved()) {
+               // An item was removed from the list, update the total amount
+               totalAmount();
+            }
+         }
+      });
     }
-
-
-
 
 	@FXML
     void exit(MouseEvent event) {
