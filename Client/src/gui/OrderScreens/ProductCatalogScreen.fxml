@@ -56,7 +56,7 @@
             </Button>
          </children>
       </Pane>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="263.0" layoutY="23.0" prefHeight="33.0" prefWidth="393.0" text="Create Order" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="278.0" layoutY="25.0" prefHeight="33.0" prefWidth="393.0" text="Create Order" textAlignment="CENTER">
          <font>
             <Font size="33.0" />
          </font>
@@ -115,7 +115,7 @@
       <Circle fill="#ff1f1f" layoutX="214.0" layoutY="610.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
       <Text fx:id="cartCounter" fill="WHITE" layoutX="199.0" layoutY="615.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
       <ListView fx:id="myCart" layoutX="99.0" layoutY="636.0" prefHeight="185.0" prefWidth="643.0" />
-      <ImageView fitHeight="89.0" fitWidth="94.0" layoutX="269.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="89.0" fitWidth="94.0" layoutX="289.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@catalogIcon.png" />
          </image>
