@@ -93,19 +93,8 @@ public class CheckoutScreenController extends ScreenController implements Initia
 	@FXML
     void proceed(MouseEvent event) {
 		if (myOrder.getItems().size() == 0) {
-			JOptionPane.showMessageDialog(null, "Please add some products to your cart before CheckOut", "InfoBox: " + "No Cart", JOptionPane.INFORMATION_MESSAGE);
-			/*Duration dur = Duration.seconds(3);
-	        Timeline timeline = new Timeline(
-	                new KeyFrame(
-	                		dur,
-	                		event -> {
-	                            JOptionPane.showMessageDialog(null, "Please add some products to your cart before CheckOut", "InfoBox: " + "No Cart", JOptionPane.INFORMATION_MESSAGE);
-	                        }
-	                )
-	        );
-	        timeline.setCycleCount(Animation.INDEFINITE);
-	        timeline.play();*/
-			return;
+			super.alertHandler("Please add some products to your cart before Proceed" , true);
+            return;
 		}
 		ChatClient.currentOrder = new Order("OrderID", totalprice, ChatClient.cartList, "machineID", "orderDate", "estimatedDeliveryTime", "confirmationDate", "Pending", UserController.getCurrentuser().getId(), "supplyMethod", "paidWith");
 		Parent root = null;

@@ -522,29 +522,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     void checkOut(MouseEvent event) {
         // Check if the cart is empty
         if (myCart.getItems().size() == 0) {
-            // Create a new stage for the popup window
-            Stage popupWindow = new Stage();
-            // Set the window's modality to application modal, which means it will block input to other windows
-            popupWindow.initModality(Modality.APPLICATION_MODAL);
-            popupWindow.setTitle("InfoBox: No Cart");
-
-            // Create a label with the message to display
-            Label label = new Label("Please add some products to your cart before CheckOut");
-
-            // Add the label to a layout
-            VBox layout = new VBox(10);
-            layout.getChildren().add(label);
-            layout.setAlignment(Pos.CENTER);
-
-            // Show the popup window
-            Scene scene = new Scene(layout);
-            popupWindow.setScene(scene);
-            popupWindow.show();
-
-            // Create a timeline to close the window after 3 seconds
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), event1 -> popupWindow.close()));
-            timeline.play();
-
+        	super.alertHandler("Please add some products to your cart before CheackOut" , true);
             return;
         }
         // Set the items in the rememberMyCart to the items in the current cart
