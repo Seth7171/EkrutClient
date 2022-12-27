@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import application.client.ChatClient;
 import gui.ScreenController;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Spinner;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -36,15 +38,31 @@ public class CheckoutScreenController extends ScreenController implements Initia
     @FXML
     private ListView<Object> myOrder = new ListView<Object>();
     
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		myOrder.setItems(ChatClient.rememberMyCart.getItems());
-		totalAmount();
-		myOrder.setOnMouseReleased(event -> {
-			totalAmount();
-		});
-		totalAmount();
-	}
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+      myOrder.setItems(ChatClient.rememberMyCart.getItems());
+      totalAmount();
+
+      // Add a listener to the myOrder ListView to update the total amount when an item is removed or the quantity is changed
+      myOrder.getItems().addListener((ListChangeListener<Object>) change -> {
+        // Calculate the total amount again when an item is removed or the quantity is changed
+        totalAmount();
+      });
+
+      // Add a listener to the valueProperty of each Spinner in the ListView items to update the total amount when the value is changed
+      for (Object item : myOrder.getItems()) {
+          Spinner spinner = ((Spinner<Integer>)(((HBox) item).getChildren().get(5)));
+          spinner.valueProperty().addListener((observable, oldValue, newValue) -> {
+            totalAmount();
+          });
+          spinner.setOnScroll(event -> {
+            totalAmount();
+          });
+        }
+    }
+
+
+
 
 	@FXML
     void exit(MouseEvent event) {
@@ -64,7 +82,12 @@ public class CheckoutScreenController extends ScreenController implements Initia
     }
     
     void totalAmount() {
-    	totalprice = ChatClient.currentOrder.getOverallPrice();
+    	totalprice=0;
+    	for (Object item : myOrder.getItems()) {
+    		 String productTotalPrice = ((Text)(((HBox) item).getChildren().get(3))).getText();
+    		 productTotalPrice = productTotalPrice.replace('\u20AA', '\0');
+    		 totalprice += Float.parseFloat(productTotalPrice);
+    	}
 		totalPrice.setText(String.valueOf(totalprice) + "\u20AA");
     }
     
