@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProductControlScreens.ProductManagementScreenController">
+   <children>
+      <ImageView fitHeight="46.0" fitWidth="103.0" layoutX="26.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../logo.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="exitButton" layoutX="658.0" layoutY="11.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <Button fx:id="backButton" layoutX="12.0" layoutY="658.0" mnemonicParsing="false" onMouseClicked="#goBackToCEOMainScreen" text="back">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TabPane layoutX="20.0" layoutY="71.0" prefHeight="578.0" prefWidth="663.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="warehouseProductsTab" onSelectionChanged="#initCols" text="warehouse products">
+            <content>
+              <AnchorPane fx:id="warehouseProducts" minHeight="0.0" minWidth="0.0" prefHeight="489.0" prefWidth="337.0">
+                     <children>
+                        <TableView fx:id="warehouseProductsTable" layoutX="5.0" prefHeight="468.0" prefWidth="655.0">
+                          <columns>
+                            <TableColumn fx:id="productIDColumn" prefWidth="63.0" text="productID" />
+                              <TableColumn fx:id="descriptionColumn" prefWidth="288.0" text="Description" />
+                              <TableColumn fx:id="alertAmountColumn" prefWidth="84.0" text="Alert amount" />
+                              <TableColumn fx:id="priceColumn" prefWidth="43.0" text="Price" />
+                              <TableColumn fx:id="discountColumn" prefWidth="69.0" text="discount" />
+                              <TableColumn fx:id="currentAmountColumn" prefWidth="81.0" text="Amount left" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="395.0" layoutY="511.0" mnemonicParsing="false" onMouseClicked="#refreshTable" prefHeight="30.0" prefWidth="116.0" text="refresh table">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="machineProductsTab" onSelectionChanged="#initCols" text="machine products">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="663.0">
+                     <children>
+                        <TableView fx:id="machineProductTable" layoutX="5.0" prefHeight="468.0" prefWidth="655.0">
+                          <columns>
+                            <TableColumn fx:id="productIDColumn" prefWidth="65.0" sortType="DESCENDING" text="product ID" />
+                              <TableColumn fx:id="machineIDColumn" prefWidth="70.0" sortType="DESCENDING" text="Machine ID" />
+                              <TableColumn fx:id="descriptionColumn" prefWidth="225.0" sortable="false" text="Description" />
+                            <TableColumn fx:id="alertAmountColumn" prefWidth="84.0" sortType="DESCENDING" text="Alert amount" />
+                              <TableColumn fx:id="priceColumn" minWidth="1.0" prefWidth="38.0" sortType="DESCENDING" text="Price" />
+                              <TableColumn fx:id="discountColumn" minWidth="6.0" prefWidth="53.0" sortType="DESCENDING" text="discount" />
+                              <TableColumn fx:id="currentAmountColumn" prefWidth="99.0" sortType="DESCENDING" text="Amount left" />
+                          </columns>
+                        </TableView>
+                        <ChoiceBox fx:id="areaComboBox" layoutX="6.0" layoutY="513.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="machineIDComboBox" layoutX="201.0" layoutY="513.0" prefWidth="150.0" />
+                        <Button fx:id="refreshTableButton" layoutX="395.0" layoutY="511.0" mnemonicParsing="false" onMouseClicked="#refreshTable" prefHeight="30.0" prefWidth="116.0" text="refresh table">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                        <Text layoutX="6.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="choose area:">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="201.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="choose machine ID:">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Button layoutX="573.0" layoutY="511.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.0" text="Add new row" />
+                        <Text fx:id="errorMessage" fill="RED" layoutX="161.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="342.3359375">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</Pane>
