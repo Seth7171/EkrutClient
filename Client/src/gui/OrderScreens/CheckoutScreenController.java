@@ -9,8 +9,6 @@ import javax.swing.JOptionPane;
 import application.client.ChatClient;
 import gui.ScreenController;
 import javafx.collections.ListChangeListener;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

@@ -29,7 +29,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Spinner;
-import javax.swing.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -566,4 +565,3 @@ public class ProductCatalogScreenController extends ScreenController implements 
     }
 
 }
-
