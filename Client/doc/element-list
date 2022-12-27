@@ -1,0 +1,16 @@
+application.client
+application.user
+common
+common.connectivity
+common.orders
+common.Reports
+gui
+gui.CEOScreens
+gui.ConnectionScreens
+gui.CustomerServiceEmployeeScreens
+gui.OrderScreens
+gui.ProductControlScreens
+gui.ReportScreens
+gui.SubscriberSaveAndEditOldPrototypeScreens
+gui.UserScreens
+ocsf.client
