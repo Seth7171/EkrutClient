@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import application.client.ChatClient;
 import gui.ScreenController;
 import javafx.event.ActionEvent;
@@ -66,4 +68,29 @@ public class CheckoutScreenController extends ScreenController implements Initia
 		totalPrice.setText(String.valueOf(totalprice) + "\u20AA");
     }
     
+	@FXML
+    void proceed(MouseEvent event) {
+		if (myOrder.getItems().size() == 0) {
+			JOptionPane.showMessageDialog(null, "Please add some products to your cart before CheckOut", "InfoBox: " + "No Cart", JOptionPane.INFORMATION_MESSAGE);
+			/*Duration dur = Duration.seconds(3);
+	        Timeline timeline = new Timeline(
+	                new KeyFrame(
+	                		dur,
+	                		event -> {
+	                            JOptionPane.showMessageDialog(null, "Please add some products to your cart before CheckOut", "InfoBox: " + "No Cart", JOptionPane.INFORMATION_MESSAGE);
+	                        }
+	                )
+	        );
+	        timeline.setCycleCount(Animation.INDEFINITE);
+	        timeline.play();*/
+			return;
+		}
+		Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("PaymentScreen.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        super.switchScreenWithTimerCustomersOnly(event, root);   
+	}
 }
