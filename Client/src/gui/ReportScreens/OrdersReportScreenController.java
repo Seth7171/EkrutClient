@@ -84,18 +84,17 @@ public class OrdersReportScreenController extends ScreenController implements In
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		int  ArrlocationSize=0;
-		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);
-
+				
+		//get the data
 		ArrayList<OrderReport> orderReportData = (ArrayList<OrderReport>)  MessageHandler.getData();
-
-		//making the BarChart from data
+		
 		 int totalOrdersBestSeller=0,NorthMachinesAmount=0,SouthMachinesAmount=0,UAEMachinesAmount=0,totalOrdersNorth=0,totalOrdersSouth=0,totalOrdersUAE=0,totalOrdersBestArea=0;
 		 String strIDofBestSeller=null, strLocationOfBest=null ,strBestArea=null;
 		 int totalOrdersWrostSeller = 999999;
 		 String strIDofWrostSeller=null, strLocationOfWrost=null,strWorstArea=null;
 		 double totalNorth=0,totalSouth=0, totalUAE=0;
 		 
+		//making the BarChart from data
 		 XYChart.Series<String, Integer> ser1= new XYChart.Series<>();// North
 		 XYChart.Series<String, Integer> ser2= new XYChart.Series<>();//South
 		 XYChart.Series<String, Integer> ser3= new XYChart.Series<>();//UAE
@@ -163,7 +162,8 @@ public class OrdersReportScreenController extends ScreenController implements In
 		if((totalUAE>totalNorth) && (totalSouth<totalNorth))//UAE is best area + South is the worst	
 		{strBestArea="UAE"; strWorstArea="South";}
 		
-		//show analyze data
+		//show analyze data on the screen
+		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);//show the date
 		bestIDLabel.setText("ID: " + strIDofBestSeller);// show the ID  of the BEST seller
 		strLocationOfBest = strLocationOfBest.substring(0, 1).toUpperCase() + strLocationOfBest.substring(1).toLowerCase();// make the location with capital letter
 		bestLocationLabel.setText("Location: " + strLocationOfBest);
