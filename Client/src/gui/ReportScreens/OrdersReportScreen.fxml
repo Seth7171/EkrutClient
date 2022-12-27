@@ -91,7 +91,7 @@
             <Image url="@Histogram_report2.png" />
          </image>
       </ImageView>
-      <Label layoutX="41.0" layoutY="464.0" prefHeight="30.0" prefWidth="365.0" text="The area with the MOST orders is: $best_area" underline="true" />
-      <Label layoutX="40.0" layoutY="485.0" prefHeight="30.0" prefWidth="365.0" text="The area with the LOWEST orders is: $worst_area" underline="true" />
+      <Label fx:id="bestArea" layoutX="41.0" layoutY="464.0" prefHeight="30.0" prefWidth="365.0" text="The area with the MOST orders is: $best_area" underline="true" />
+      <Label fx:id="worstArea" layoutX="40.0" layoutY="485.0" prefHeight="30.0" prefWidth="365.0" text="The area with the LOWEST orders is: $worst_area" underline="true" />
    </children>
 </AnchorPane>
