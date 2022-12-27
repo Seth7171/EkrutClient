@@ -26,7 +26,7 @@
             <Font size="35.0" />
          </font>
       </Label>
-      <Button fx:id="proceed" layoutX="678.0" layoutY="675.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="129.0" text="Proceed">
+      <Button fx:id="proceed" layoutX="678.0" layoutY="675.0" mnemonicParsing="false" onMouseClicked="#proceed" prefHeight="44.0" prefWidth="129.0" text="Proceed">
          <font>
             <Font size="20.0" />
          </font>
