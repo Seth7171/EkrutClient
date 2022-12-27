@@ -82,12 +82,17 @@
             <Image url="@visa.png" />
          </image>
       </ImageView>
-      <Text layoutX="355.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal : $$$">
+      <Text layoutX="355.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal :">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
       <ComboBox layoutX="396.0" layoutY="436.0" prefHeight="25.0" prefWidth="71.0" />
       <ComboBox layoutX="336.0" layoutY="436.0" prefHeight="25.0" prefWidth="42.0" />
+      <Text fx:id="Subtotal" layoutX="444.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$$$$" wrappingWidth="155.0498046875">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

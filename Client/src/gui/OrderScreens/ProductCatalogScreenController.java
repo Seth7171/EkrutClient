@@ -42,8 +42,8 @@ import javafx.util.Duration;
 // Class to control the product catalog screen
 public class ProductCatalogScreenController extends ScreenController implements Initializable{
     // Declare variables to keep track of the number of items in the cart and the total price
-    int counter = 0;
-    float totalprice = 0;
+    private int counter = 0;
+    private float totalprice = 0;
     
     // Declare FXML variables
     @FXML

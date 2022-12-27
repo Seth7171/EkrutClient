@@ -3,6 +3,8 @@ package gui.OrderScreens;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import application.client.ChatClient;
 import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +12,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 public class PaymentScreenController extends ScreenController implements Initializable{
-
+	
+    @FXML
+    private Text Subtotal;
+	
     @FXML
     private Button exitButton;
 
@@ -24,8 +31,7 @@ public class PaymentScreenController extends ScreenController implements Initial
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+		Subtotal.setText(String.valueOf(ChatClient.currentOrder.getOverallPrice()) + "\u20AA");
 	}
 
 	@FXML
@@ -60,4 +66,5 @@ public class PaymentScreenController extends ScreenController implements Initial
         }
         super.switchScreenWithTimerCustomersOnly(event, root);
     }
+	
 }

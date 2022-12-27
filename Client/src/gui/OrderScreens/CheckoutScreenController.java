@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import application.client.ChatClient;
+import application.user.UserController;
+import common.orders.Order;
 import gui.ScreenController;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -22,7 +24,7 @@ import javafx.scene.text.Text;
 
 public class CheckoutScreenController extends ScreenController implements Initializable{
 
-    float totalprice = 0;
+    private float totalprice = 0;
     
     @FXML
     private Button exitButton;
@@ -105,6 +107,7 @@ public class CheckoutScreenController extends ScreenController implements Initia
 	        timeline.play();*/
 			return;
 		}
+		ChatClient.currentOrder = new Order("OrderID", totalprice, ChatClient.cartList, "machineID", "orderDate", "estimatedDeliveryTime", "confirmationDate", "Pending", UserController.getCurrentuser().getId(), "supplyMethod", "paidWith");
 		Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("PaymentScreen.fxml"));
