@@ -20,6 +20,9 @@ public class PaymentScreenController extends ScreenController implements Initial
     @FXML
     private Button backButton;
     
+    @FXML
+    private Button paybotton;
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -35,11 +38,27 @@ public class PaymentScreenController extends ScreenController implements Initial
     void goBack(MouseEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/GrabOrderScreen.fxml"));
+            root = FXMLLoader.load(getClass().getResource("CheckoutScreen.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
         super.switchScreenWithTimerCustomersOnly(event, root);        
     }
     
+	@FXML
+    void pay(MouseEvent event) {
+		
+		
+		
+		
+		
+		
+		Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("PostPaymentScreen.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        super.switchScreenWithTimerCustomersOnly(event, root);
+    }
 }
