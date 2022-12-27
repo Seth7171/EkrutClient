@@ -5,17 +5,24 @@ import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -197,5 +204,37 @@ public class ScreenController {
         }
         Platform.exit();
         System.exit(0);
+    }
+    
+    public void alertHandler(String allertMessage , boolean isBad){
+	 // Create a new stage for the popup window
+	    Stage popupWindow = new Stage();
+	    // Set the window's modality to application modal, which means it will block input to other windows
+	    popupWindow.initModality(Modality.APPLICATION_MODAL);
+	    popupWindow.setTitle("InfoBox: No Cart");
+	
+	    // Create a label with the message to display
+	    Label label = new Label(allertMessage);
+	
+	    // Add the label to a layout
+	    VBox layout = new VBox(30);
+	    if (isBad)
+	    	layout.setStyle("-fx-padding:4; -fx-border-radius:4; -fx-border-color: grey; -fx-background-color:#ffe4e1");
+	    else
+	    	layout.setStyle("-fx-padding:4; -fx-border-radius:4; -fx-border-color: grey; -fx-background-color:#f0ffff");
+	    layout.getChildren().add(label);
+	    layout.setAlignment(Pos.CENTER);
+	    label.setStyle("-fx-font-size: 25");
+	
+	    // Show the popup window
+	    Scene scene = new Scene(layout);
+	    popupWindow.initStyle(StageStyle.UNDECORATED);
+	    popupWindow.setScene(scene);
+	    popupWindow.show();
+	
+	    // Create a timeline to close the window after 3 seconds
+	    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), event1 -> popupWindow.close()));
+	    
+	    timeline.play();
     }
 }
