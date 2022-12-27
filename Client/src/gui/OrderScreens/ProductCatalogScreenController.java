@@ -4,8 +4,10 @@ package gui.OrderScreens;
 import application.client.ChatClient;
 import application.client.ClientUI;
 import application.client.MessageHandler;
+import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import common.orders.Order;
 import common.orders.Product;
 import gui.ScreenController;
 import javafx.fxml.FXML;
@@ -172,7 +174,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         
         return hBox;
     }
-    
+   
     private void addToCart(Product product, Spinner<Integer> spinnerQuantity) {
     	int quantity = spinnerQuantity.getValue();
     	HBox hboxofcart = new HBox();
@@ -337,7 +339,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
 		}
 		ChatClient.rememberMyCart.setItems(myCart.getItems());
         System.out.println(ChatClient.cartList);
-		//ChatClient.currentOrder = new Order("1", totalprice, ChatClient.cartList, String machineID, String orderDate, String estimatedDeliveryTime, String confirmationDate, String orderStatus, String customerID, String supplyMethod, String paidWith);
+		ChatClient.currentOrder = new Order("OrderID", totalprice, ChatClient.cartList, "machineID", "orderDate", "estimatedDeliveryTime", "confirmationDate", "Pending", UserController.getCurrentuser().getId(), "supplyMethod", "paidWith");
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("CheckoutScreen.fxml"));
