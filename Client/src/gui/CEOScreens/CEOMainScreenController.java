@@ -62,6 +62,16 @@ public class CEOMainScreenController extends ScreenController implements Initial
         }
         super.switchScreen(event, root);
     }
+    @FXML
+    void openManageProductsScreen(MouseEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/ProductControlScreens/productManagementScreen.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        super.switchScreen(event, root);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -111,6 +111,7 @@ public class ChatClient extends AbstractClient
               break;
 
           case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
+              MessageHandler.setData((ArrayList<Product>)message.getData());
         	  productList = (ArrayList<Product>)message.getData();
               // TODO: decide if the below block is necessary.
 //              //TODO: you should take the following block and put it where you need it or you can even leave it here.
