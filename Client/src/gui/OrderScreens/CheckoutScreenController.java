@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import application.client.ChatClient;
 import gui.ScreenController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,9 +15,13 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 public class CheckoutScreenController extends ScreenController implements Initializable{
 
+    float totalprice = 0;
+    
     @FXML
     private Button exitButton;
 
@@ -23,11 +29,19 @@ public class CheckoutScreenController extends ScreenController implements Initia
     private Button backButton;
     
     @FXML
+    private Text totalPrice;
+    
+    @FXML
     private ListView<Object> myOrder = new ListView<Object>();
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		myOrder.setItems(ChatClient.rememberMyCart.getItems());
+		totalAmount();
+		myOrder.setOnMouseReleased(event -> {
+			totalAmount();
+		});
+		totalAmount();
 	}
 
 	@FXML
@@ -45,6 +59,11 @@ public class CheckoutScreenController extends ScreenController implements Initia
             e.printStackTrace();
         }
         super.switchScreenWithTimerCustomersOnly(event, root);        
+    }
+    
+    void totalAmount() {
+    	totalprice = ChatClient.currentOrder.getOverallPrice();
+		totalPrice.setText(String.valueOf(totalprice) + "\u20AA");
     }
     
 }
