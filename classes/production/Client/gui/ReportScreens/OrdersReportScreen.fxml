@@ -60,7 +60,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="116.0" layoutY="301.0" prefHeight="30.0" prefWidth="185.0" text="Wrost Seller Machine:" underline="true">
+      <Label layoutX="116.0" layoutY="301.0" prefHeight="30.0" prefWidth="185.0" text="Worst Seller Machine:" underline="true">
          <font>
             <Font size="18.0" />
          </font>
@@ -91,7 +91,7 @@
             <Image url="@Histogram_report2.png" />
          </image>
       </ImageView>
-      <Label layoutX="41.0" layoutY="464.0" prefHeight="30.0" prefWidth="365.0" text="The area with the MOST orders is: $best_area" underline="true" />
-      <Label layoutX="40.0" layoutY="485.0" prefHeight="30.0" prefWidth="365.0" text="The area with the LOWEST orders is: $worst_area" underline="true" />
+      <Label fx:id="bestArea" layoutX="41.0" layoutY="464.0" prefHeight="30.0" prefWidth="365.0" text="The area with the MOST orders is: $best_area" underline="true" />
+      <Label fx:id="worstArea" layoutX="40.0" layoutY="485.0" prefHeight="30.0" prefWidth="365.0" text="The area with the LOWEST orders is: $worst_area" underline="true" />
    </children>
 </AnchorPane>
