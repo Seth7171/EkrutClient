@@ -95,6 +95,13 @@ public class ChatClient extends AbstractClient
               MessageHandler.setMessage("user does not exist");
               break;
 
+
+          case "PRODUCT_ADDED_SUCCESSFULLY":
+          case "ERROR_ADDING_PRODUCT":
+          case "ERROR_UPDATING_MACHINE_PRODUCT":
+          case "MACHINE_PRODUCT_UPDATED_SUCCESSFULLY":
+          case "WAREHOUSE_PRODUCTS_UPDATED_SUCCESSFULLY":
+          case "ERROR_UPDATING_WAREHOUSE_PRODUCT":
           case "ERROR_IMPORTING_ALL_MACHINES_MONTHLY_REPORT":
           case "ERROR_IMPORTING_INVENTORY_REPORT":
           case "ERROR_IMPORTING_MACHINE_LOCATIONS":
