@@ -17,7 +17,7 @@
             <Image url="@../logo.png" />
          </image>
       </ImageView>
-      <BarChart layoutX="435.0" layoutY="101.0" prefHeight="442.0" prefWidth="508.0">
+      <BarChart fx:id="ClientChart" layoutX="435.0" layoutY="101.0" prefHeight="442.0" prefWidth="508.0">
         <xAxis>
           <CategoryAxis label="Range of purchase" side="BOTTOM" />
         </xAxis>
