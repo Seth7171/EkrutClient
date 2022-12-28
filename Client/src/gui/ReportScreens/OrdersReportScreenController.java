@@ -92,7 +92,7 @@ public class OrdersReportScreenController extends ScreenController implements In
 		 String strIDofBestSeller=null, strLocationOfBest=null ,strBestArea=null;
 		 int totalOrdersWrostSeller = 999999;
 		 String strIDofWrostSeller=null, strLocationOfWrost=null,strWorstArea=null;
-		 double totalNorth=0,totalSouth=0, totalUAE=0;
+		 float totalNorth=0,totalSouth=0, totalUAE=0;
 		 
 		//making the BarChart from data
 		 XYChart.Series<String, Integer> ser1= new XYChart.Series<>();// North
@@ -103,17 +103,20 @@ public class OrdersReportScreenController extends ScreenController implements In
 		 ser3.setName("UAE");	
 		for(OrderReport ordrep : orderReportData){
 
-			if (ordrep.getMachineLocation().equals("haifa")) {
+			if (ordrep.getMachineLocation().equals("north")) {
 				ser1.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+				totalOrdersNorth += ordrep.getNumberOfOrders();//analyze data for best AREA
 				NorthMachinesAmount++;}
 
-			if (ordrep.getMachineLocation().equals("tel aviv")) {
+			if (ordrep.getMachineLocation().equals("south")) {
 				ser2.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+				totalOrdersSouth += ordrep.getNumberOfOrders();//analyze data for best AREA
 				SouthMachinesAmount++;}
 
 				
-			if (ordrep.getMachineLocation().equals("karmiel")) {
+			if (ordrep.getMachineLocation().equals("uae")) {
 				ser3.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+				totalOrdersUAE += ordrep.getNumberOfOrders();//analyze data for best AREA
 				UAEMachinesAmount++;}
 			
 			// analyze data for best seller
@@ -128,40 +131,31 @@ public class OrdersReportScreenController extends ScreenController implements In
 				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
 				strLocationOfWrost = ordrep.getMachineLocation();
 			}
-			// analyze data for best AREA
-			if(ordrep.getMachineLocation().equals("haifa")) {
-				totalOrdersNorth += ordrep.getNumberOfOrders();
-				NorthMachinesAmount++;
-			}
-			if(ordrep.getMachineLocation().equals("tel aviv")) {
-				totalOrdersSouth += ordrep.getNumberOfOrders();
-				SouthMachinesAmount++;
-			}
-			if(ordrep.getMachineLocation().equals("karmiel")) {
-				totalOrdersUAE += ordrep.getNumberOfOrders();
-				UAEMachinesAmount++;
-			}
+			
 		}
 			
 		OrdersChart.getData().addAll(ser1,ser2,ser3);
 		
 		//calculate data for who is the best area
-		totalNorth=totalOrdersNorth/NorthMachinesAmount;
-		totalSouth=totalOrdersSouth/SouthMachinesAmount;
-		totalUAE=totalOrdersUAE/UAEMachinesAmount;
-		if((totalNorth>totalSouth) && (totalSouth>totalUAE))//NORTH is best area + UAE is the worst
-		{strBestArea="North"; strWorstArea="UAE";}
-		if((totalNorth>totalUAE) && (totalUAE>totalSouth))//NORTH is best area + South is the worst
-		{strBestArea="North"; strWorstArea="South";}
-		if((totalSouth>totalNorth) && (totalSouth>totalUAE))//South is best area + UAE is the worst
-		{strBestArea="South"; strWorstArea="UAE";}
-		if((totalSouth>totalNorth) && (totalNorth<totalUAE))//South is best area + North is the worst	
-		{strBestArea="South"; strWorstArea="North";}
-		if((totalUAE>totalNorth) && (totalSouth>totalNorth))//UAE is best area + North is the worst
-		{strBestArea="UAE"; strWorstArea="North";}
-		if((totalUAE>totalNorth) && (totalSouth<totalNorth))//UAE is best area + South is the worst	
-		{strBestArea="UAE"; strWorstArea="South";}
-		
+		totalNorth=(float)totalOrdersNorth/NorthMachinesAmount;
+		totalSouth=(float)totalOrdersSouth/SouthMachinesAmount;
+		totalUAE=(float)totalOrdersUAE/UAEMachinesAmount;
+		System.out.println(" totalOrdersNorth :" + totalOrdersNorth + "   /NorthMachinesAmount : " + NorthMachinesAmount );
+		System.out.println(" totalOrdersSouth :" + totalOrdersSouth + "   /SouthMachinesAmount : " + SouthMachinesAmount );
+		System.out.println("totalNorth" + totalNorth + " totalSouth: " + totalSouth + " totalUAE: " + totalUAE); 
+		if((totalNorth>=totalSouth) && (totalSouth>totalUAE))//NORTH is best area + UAE is the worst
+		{strBestArea="North"; strWorstArea="UAE";System.out.println("1");}
+		if((totalNorth>=totalUAE) && (totalUAE>=totalSouth))//NORTH is best area + South is the worst
+		{strBestArea="North"; strWorstArea="South";System.out.println("2");}
+		if((totalSouth>=totalNorth) && (totalSouth>=totalUAE))//South is best area + UAE is the worst
+		{strBestArea="South"; strWorstArea="UAE";System.out.println("3");}
+		if((totalSouth>=totalNorth) && (totalNorth<=totalUAE))//South is best area + North is the worst	
+		{strBestArea="South"; strWorstArea="North";System.out.println("4");}
+		if((totalUAE>=totalNorth) && (totalSouth>totalNorth))//UAE is best area + North is the worst
+		{strBestArea="UAE"; strWorstArea="North";System.out.println("5");}
+		if((totalUAE>=totalNorth) && (totalSouth<=totalNorth))//UAE is best area + South is the worst	
+		{strBestArea="UAE"; strWorstArea="South";System.out.println("6");}
+		System.out.println("BEST: " + strBestArea + "  strWorstArea: " + strWorstArea );
 		//show analyze data on the screen
 		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);//show the date
 		bestIDLabel.setText("ID: " + strIDofBestSeller);// show the ID  of the BEST seller

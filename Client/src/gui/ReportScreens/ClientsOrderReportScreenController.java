@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import application.client.ChatClient;
 import application.client.MessageHandler;
+import common.Reports.ClientReport;
 import common.Reports.OrderReport;
 import gui.ScreenController;
 import javafx.fxml.FXML;
@@ -30,7 +31,7 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 	    private Button exitApp;
 	    @FXML
 	    private BarChart<String, Integer> ClientChart;
-
+	    
 	    
     @FXML
     void ClickBackButton(MouseEvent event) {
@@ -51,17 +52,39 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		int totalOrders=0, totalClients=0, minOrders=9999,biggestOrders=0;
+		int numOfLines=0;
+		ArrayList<ClientReport> clientReportData = (ArrayList<ClientReport>)  MessageHandler.getData();//get the data
 		
 		//making the BarChart from data
 		 XYChart.Series<String, Integer> ser1= new XYChart.Series<>();// North
 		 ser1.setName("Range of Purchase");	
-		 ser1.getData().add(new XYChart.Data<String, Integer>("0-4",15));//set data
-		 ser1.getData().add(new XYChart.Data<String, Integer>("5-9",30));
-		 ser1.getData().add(new XYChart.Data<String, Integer>("10-14",50));
-		 ser1.getData().add(new XYChart.Data<String, Integer>("15-20",30));
+		 for(ClientReport clientor : clientReportData){
+			 	totalOrders+= clientor.getTotalOrders();
+			 	totalClients++;
+			 	if(minOrders>clientor.getTotalOrders())//calculate what is the Lowest number of orders from all client
+			 			minOrders=clientor.getTotalOrders();
+			 	if(biggestOrders<clientor.getTotalOrders())//calculate what is the Biggest number of orders from all client			 		
+			 			biggestOrders=clientor.getTotalOrders();
+			 	}
+		 numOfLines=(int) Math.sqrt(minOrders+biggestOrders);//calculate how many columns
+		 //setting the data on the BarChart
+//		 for(ClientReport clientor : clientReportData){
+//		 ser1.getData().add(new XYChart.Data<String, Integer>("0-9",clientor.));
+//		 ser1.getData().add(new XYChart.Data<String, Integer>("10-19",50));
+//		 ser1.getData().add(new XYChart.Data<String, Integer>("20-29",30));
+//		 ser1.getData().add(new XYChart.Data<String, Integer>("30-39",30));
+//		 ser1.getData().add(new XYChart.Data<String, Integer>("40-49",30));
+//		 ser1.getData().add(new XYChart.Data<String, Integer>("50-59",30));
+//		 ser1.getData().add(new XYChart.Data<String, Integer>("60-69",30));
+//		 ser1.getData().add(new XYChart.Data<String, Integer>("70-79",30));
+//		 ser1.getData().add(new XYChart.Data<String, Integer>("80-89",30));
+//		 ser1.getData().add(new XYChart.Data<String, Integer>("90-99",30));
+//	    	 }
 		 
 		 
-		 ClientChart.getData().addAll(ser1);
+		 
+		 //ClientChart.getData().addAll(ser1);
 
 		//show analyze data on the screen
 		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);
