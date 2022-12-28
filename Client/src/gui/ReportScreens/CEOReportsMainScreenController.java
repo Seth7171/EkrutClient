@@ -237,7 +237,7 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 			            	
 			            //	TODO: need to replace the month if we got 02 to 2 ...
 			          //        if(monthYearMachine.get(0).startsWith("0"))
-//			            		monthYearMachine.set(0, monthYearMachine.get(0).substring(1));
+			            	//	monthYearMachine.set(0, monthYearMachine.get(0).substring(1));
 			            	
 			            	// request report from server
 			            	ClientUI.chat.accept(new Message(monthYearMachine, MessageFromClient.REQUEST_ALL_MACHINES_ORDERS_MONTHLY_REPORT));
@@ -253,6 +253,16 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 								break;
 			                    
 			            case "Clients":
+			            			// request report from server
+ //WHEN LIOR FINISH: 259-265   	ClientUI.chat.accept(new Message(monthYearMachine, MessageFromClient.REQUEST_CUSTOMER_REPORT));
+									//if no such report
+//D				            	if (MessageHandler.getMessage() != null && MessageHandler.getMessage().contains("Error")) {
+//D								MessageHandler.setMessage(null);
+//D								Alert a = new Alert(Alert.AlertType.INFORMATION, "Sorry,No monthly report were found.");
+//D								a.setTitle("Report not found");
+//D								a.show();
+//D								return;
+//D			            	}
 			                  root = FXMLLoader.load(getClass().getResource("ClientsReportScreen.fxml"));
 			                   break;
 	
