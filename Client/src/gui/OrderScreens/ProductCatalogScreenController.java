@@ -230,6 +230,13 @@ public class ProductCatalogScreenController extends ScreenController implements 
                 addToCart(product,SpinnerQuantity);
                 // Reset the spinner value to 0
                 SpinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, (valueFactory.getMax()-SpinnerQuantity.getValue()), 0));
+            	super.alertHandler("Product was added to the cart" , false);
+                return;
+            }
+         // If a zero quantity of the product is selected alert the user
+            else {
+            	super.alertHandler("Please choose quantity of the product" , true);
+                return;
             }
         });
 
