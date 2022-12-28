@@ -210,7 +210,7 @@ public class ScreenController {
 	 // Create a new stage for the popup window
 	    Stage popupWindow = new Stage();
 	    // Set the window's modality to application modal, which means it will block input to other windows
-	    popupWindow.initModality(Modality.APPLICATION_MODAL);
+	    //popupWindow.initModality(Modality.APPLICATION_MODAL);
 	    popupWindow.setTitle("InfoBox: No Cart");
 	
 	    // Create a label with the message to display
