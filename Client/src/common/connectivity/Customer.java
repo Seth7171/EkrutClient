@@ -8,6 +8,7 @@ public class Customer extends User  implements Serializable{
 	
 		// CLASS FIELDS ***********************************************
 		private String creditCardNumber;
+		private boolean isSub;
 		//****************************************************************
 
 		
