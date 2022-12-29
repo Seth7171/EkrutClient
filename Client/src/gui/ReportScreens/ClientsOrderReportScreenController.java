@@ -88,7 +88,7 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 		System.out.println("prime: "+prime);
 		for(int i=1; i<topRange/2; i++)//find the lowest  range between topRange multiplies number
 			 	for(int j=0; j<=topRange;j++)
-			 		if(i*j==(float)topRange)///// TODO: check it !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+			 		if(i*j==(float)topRange)///// TODO: check it on my DB !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 			 			if(tmpj-tmpi>j-i) {tmpj=j; tmpi=i;}
 		 columnRange=tmpj-tmpi;
 	
