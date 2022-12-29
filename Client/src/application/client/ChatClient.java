@@ -37,7 +37,6 @@ public class ChatClient extends AbstractClient
    */
 	ChatIF clientUI; 
 	  public static User s1 = new User();
-	  public static Customer c1 = new Customer();
 	  public static ArrayList<User> subs = new ArrayList<>();
 	  public static boolean awaitResponse = false;
 	  public static String servermsg = new String();

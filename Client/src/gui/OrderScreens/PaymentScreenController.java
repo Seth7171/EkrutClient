@@ -65,7 +65,6 @@ public class PaymentScreenController extends ScreenController implements Initial
 		
 		//String cardYear = yearCombobox.getValue();
 		//String cardMonth = monthCombobox.getValue();
-		//ChatClient.c1.set
 		
 		
 		
