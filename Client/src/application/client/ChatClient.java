@@ -96,6 +96,7 @@ public class ChatClient extends AbstractClient
               break;
 
 
+          case "ERROR_GETTING_CLIENT_REPORT":
           case "PRODUCT_ADDED_SUCCESSFULLY":
           case "ERROR_ADDING_PRODUCT":
           case "ERROR_UPDATING_MACHINE_PRODUCT":
@@ -140,7 +141,7 @@ public class ChatClient extends AbstractClient
               break;
 
 
-
+          case "SUCCESSFULLY_IMPORTED_CLIENT_REPORT":
           case "IMPORT_ALL_MACHINES_MONTHLY_REPORT_SUCCESSFUL":
           case "ERROR_IMPORTING_ORDER":
           case "IMPORT_ORDER_BY_ORDER_ID_AND_CUSTOMER_ID_SUCCESSFUL":
@@ -152,7 +153,6 @@ public class ChatClient extends AbstractClient
           case "IMPORT_WAREHOUSE_PRODUCTS_SUCCESSFUL":
               MessageHandler.setData(message.getData());
               break;
-
       }
   }
   
