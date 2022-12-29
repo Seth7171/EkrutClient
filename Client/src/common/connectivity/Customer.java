@@ -2,7 +2,7 @@ package common.connectivity;
 
 import java.io.Serializable;
 
-public class Customer extends User  implements Serializable{
+public class Customer extends User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	

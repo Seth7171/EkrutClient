@@ -34,7 +34,7 @@ public class PostPaymentController extends ScreenController implements Initializ
     void goBack(MouseEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/UserMainScreen.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }

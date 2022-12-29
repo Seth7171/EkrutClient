@@ -1,9 +1,12 @@
 package gui.UserScreens;
 
+import application.client.ChatClient;
 import application.client.ClientUI;
+import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import common.orders.Product;
 import gui.ScreenController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -11,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
@@ -22,7 +26,7 @@ import java.util.ResourceBundle;
 /**
  * @author Lior Jigalo
  */
-public class UserMainScreenController extends ScreenController implements Initializable {
+public class CustomerMainScreenController extends ScreenController implements Initializable {
 
     @FXML
     private Button LogOutButton;
@@ -53,6 +57,8 @@ public class UserMainScreenController extends ScreenController implements Initia
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	if (!CustomerController.isLogged())
+    		grabOrderButton.setVisible(false);
         welcomeBackText.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
         userStatusText.setText("User Status: " + UserController.getCurrentuser().getStatus());
     }
@@ -71,6 +77,9 @@ public class UserMainScreenController extends ScreenController implements Initia
         credentials.add(UserController.getCurrentuser().getUsername());
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
         UserController.setCurrentuser(null);
+        CustomerController.setCurrentCustomer(null);
+        ChatClient.rememberMyCart = new ListView<Object>();
+        ChatClient.cartList = new ArrayList<Product>();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("LogInScreen.fxml"));
