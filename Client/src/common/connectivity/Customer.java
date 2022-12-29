@@ -13,9 +13,8 @@ public class Customer extends User  implements Serializable{
 
 		
 		// CLASS Constructors ********************************************
-		public Customer(String creditCardNumber) {
+		public Customer() {
 			super();
-			this.creditCardNumber = creditCardNumber;
 		}
 		public Customer(String username, String password, String firstname,String lastname, String id,
 					String phonenumber, String emailaddress, String isLoggedIn, String department, String status, String creditCardNumber) {
@@ -32,12 +31,18 @@ public class Customer extends User  implements Serializable{
 		public void setCreditCardNumber(String creditCardNumber) {
 			this.creditCardNumber = creditCardNumber;
 		}
+		public boolean isSub() {
+			return isSub;
+		}
+		public void setSub(boolean isSub) {
+			this.isSub = isSub;
+		}
 	    //  **************************************************************
 		
 		// CLASS TO-STRING ***********************************************
 		@Override
 		public String toString(){
-			return String.format("%s\n" , creditCardNumber);
+			return String.format("Card number : %s, Is a subscriber : %b\n" , creditCardNumber , isSub);
 		}
 		//  **************************************************************
 }

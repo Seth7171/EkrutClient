@@ -6,6 +6,7 @@ package application.client;
 
 import application.user.UserController;
 import common.connectivity.ChatIF;
+import common.connectivity.Customer;
 import common.connectivity.Message;
 import common.connectivity.User;
 import common.orders.Order;
@@ -35,7 +36,8 @@ public class ChatClient extends AbstractClient
    * the display method in the client.
    */
 	ChatIF clientUI; 
-	  public static User  s1 = new User();
+	  public static User s1 = new User();
+	  public static Customer c1 = new Customer();
 	  public static ArrayList<User> subs = new ArrayList<>();
 	  public static boolean awaitResponse = false;
 	  public static String servermsg = new String();
