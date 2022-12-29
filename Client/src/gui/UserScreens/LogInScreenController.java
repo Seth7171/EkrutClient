@@ -6,6 +6,7 @@ import application.client.MessageHandler;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import common.connectivity.MessageFromServer;
 import common.orders.Order;
 import common.orders.Product;
 import gui.ScreenController;
@@ -78,7 +79,7 @@ public class LogInScreenController extends ScreenController implements Initializ
         abcde.add("10");
         abcde.add("2022");
 
-        //ClientUI.chat.accept(new Message(abcde, )); // TODO: this should be DELETED
+        //ClientUI.chat.accept(new Message(null,MessageFromClient.UNKNOWN )); // TODO: this should be DELETED
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
             errorMessage.setText(MessageHandler.getMessage());
