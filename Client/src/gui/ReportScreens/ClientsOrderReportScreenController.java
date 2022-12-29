@@ -30,13 +30,34 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 	    private Button backButton;
 	 
 	  @FXML
-	    private Label DateChooseLabel;
+	  private Label DateChooseLabel;
 
-	    @FXML
-	    private Button exitApp;
-	    @FXML
-	    private BarChart<String, Integer> ClientChart;
-	    
+	  @FXML
+	  private Button exitApp;
+	  
+	  @FXML
+	  private BarChart<String, Integer> ClientChart;
+	  
+	  @FXML
+	  private Label maxPurchaseLabel;
+
+	  @FXML
+	  private Label minPurchaseLabel;
+
+	  @FXML
+	  private Label standardDeviationLabel;
+
+	  @FXML
+	  private Label totalPurchaseLabel;
+
+	  @FXML
+	  private Label clientLeastPurchaseLabel;
+
+	  @FXML
+	  private Label clientMostPurchaseLabel; 
+
+	  @FXML
+	  private Label avgPurchaseLabel;
 	    
     @FXML
     void ClickBackButton(MouseEvent event) {
@@ -62,6 +83,8 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 		boolean prime=true;
 		String strMinOrder=null;
 		String strBiggestOrder=null;
+		User bigUser = null;
+		User lowUser = null;
 
 		HashMap<User,Integer> clientReportData =  (HashMap<User,Integer>) ((ClientReport) MessageHandler.getData()).getUserOrderAmount();//get the data
 		
@@ -69,8 +92,11 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 		    String key = clientor.getKey().getFirstname();//new key
 		    Integer value = clientor.getValue();//value
 		    System.out.println("key " +key + "   value:" + value);
-		  	if(biggestOrder<value) {biggestOrder=value; strBiggestOrder=key;}//find the MAX Order
-		  	if(minOrder>value) {minOrder=value; strMinOrder=key;}//find the MIN Order
+		  	if(biggestOrder<value) {biggestOrder=value; strBiggestOrder=key; bigUser=clientor.getKey();}//find the MAX Order
+		  	if(minOrder>value) {minOrder=value; strMinOrder=key; lowUser=clientor.getKey();}//find the MIN Order
+		  	
+		  	totalOrders += clientor.getValue();
+		  	totalClients++;
 		}
 		 System.out.println("biggestOrder: "+biggestOrder + "minOrder: " + minOrder);
 		//making the BarChart from data
@@ -106,10 +132,20 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 			// columnRange=columnRange+minOrder;
 	    }
 		 ClientChart.getData().addAll(ser1);
-
+		 
 		//show analyze data on the screen
 		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);
-		
+		clientMostPurchaseLabel.setText("The client who made the most purchases is: " + capitalLetter(bigUser.getFirstname()) + " " + capitalLetter(bigUser.getLastname()));
+		maxPurchaseLabel.setText("with " + clientReportData.get(bigUser) + " Purchases!");
+		clientLeastPurchaseLabel.setText("The client who made the least purchases is: " + capitalLetter(lowUser.getFirstname()) + " " + capitalLetter(lowUser.getLastname()));
+		minPurchaseLabel.setText("with " + clientReportData.get(lowUser) + " Purchases!");
+		totalPurchaseLabel.setText("Total Purchases: " + totalOrders);
+		avgPurchaseLabel.setText("Average Purchases per Client: " + totalOrders/totalClients + " (" + totalClients + " clients)");
+	}
+	
+	// return the string with first letter capital and all lowercase
+	public String capitalLetter(String str) {
+		return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 	}
 
 }
