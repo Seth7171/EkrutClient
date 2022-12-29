@@ -254,15 +254,15 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 			                    
 			            case "Clients":
 			            			// request report from server
- //WHEN LIOR FINISH: 259-265   	ClientUI.chat.accept(new Message(monthYearMachine, MessageFromClient.REQUEST_CUSTOMER_REPORT));
+			            		ClientUI.chat.accept(new Message(monthYearMachine, MessageFromClient.REQUEST_CLIENT_REPORT));
 									//if no such report
-//D				            	if (MessageHandler.getMessage() != null && MessageHandler.getMessage().contains("Error")) {
-//D								MessageHandler.setMessage(null);
-//D								Alert a = new Alert(Alert.AlertType.INFORMATION, "Sorry,No monthly report were found.");
-//D								a.setTitle("Report not found");
-//D								a.show();
-//D								return;
-//D			            	}
+				            	if (MessageHandler.getMessage() != null && MessageHandler.getMessage().contains("error")) {
+								MessageHandler.setMessage(null);
+								Alert a = new Alert(Alert.AlertType.INFORMATION, "Sorry,No monthly report were found.");
+								a.setTitle("Report not found");
+								a.show();
+								return;
+			            	}
 			                  root = FXMLLoader.load(getClass().getResource("ClientsReportScreen.fxml"));
 			                   break;
 	

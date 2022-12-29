@@ -3,12 +3,16 @@ package gui.ReportScreens;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
 import application.client.ChatClient;
 import application.client.MessageHandler;
 import common.Reports.ClientReport;
 import common.Reports.OrderReport;
+import common.connectivity.User;
 import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,13 +56,26 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		int totalOrders=0, totalClients=0, minOrders=9999,biggestOrders=0;
-		int numOfLines=0;
-		ArrayList<ClientReport> clientReportData = (ArrayList<ClientReport>)  MessageHandler.getData();//get the data
+		
+		
+		HashMap<User,Integer> clientReportData =  (HashMap<User,Integer>) MessageHandler.getData();//get the data
+		
+		System.out.println("MAP:: " +clientReportData.toString());
+		
+//		for (Map.Entry<User, Integer> entry : clientReportData.entrySet()) {
+//		    String key = entry.getKey().getFirstname();
+//		    Integer value = entry.getValue();
+//		    System.out.println("key: " +entry.getKey() + "   value:" + entry.getValue());
+//
+//		} 
+//		
+//		int totalOrders=0, totalClients=0, minOrders=9999,biggestOrders=0;
+//		int numOfLines=0;
+		
 		
 		//making the BarChart from data
-		 XYChart.Series<String, Integer> ser1= new XYChart.Series<>();// North
-		 ser1.setName("Range of Purchase");
+		 //XYChart.Series<String, Integer> ser1= new XYChart.Series<>();// North
+		// ser1.setName("Range of Purchase");
 
 
 		// LIOR: i have commented this for loop because it conflicts with the map
@@ -70,8 +87,8 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 //			 	if(biggestOrders<clientor.getTotalOrders())//calculate what is the Biggest number of orders from all client
 //			 			biggestOrders=clientor.getTotalOrders();
 //		 }
-		//LIOR /////////////////////////////
-		 numOfLines=(int) Math.sqrt(minOrders+biggestOrders);//calculate how many columns
+		// /////////////////////////////
+		// numOfLines=(int) Math.sqrt(minOrders+biggestOrders);//calculate how many columns
 		 //setting the data on the BarChart
 //		 for(ClientReport clientor : clientReportData){
 //		 ser1.getData().add(new XYChart.Data<String, Integer>("0-9",clientor.));

@@ -140,9 +140,6 @@ public class OrdersReportScreenController extends ScreenController implements In
 		totalNorth=(float)totalOrdersNorth/NorthMachinesAmount;
 		totalSouth=(float)totalOrdersSouth/SouthMachinesAmount;
 		totalUAE=(float)totalOrdersUAE/UAEMachinesAmount;
-		System.out.println(" totalOrdersNorth :" + totalOrdersNorth + "   /NorthMachinesAmount : " + NorthMachinesAmount );
-		System.out.println(" totalOrdersSouth :" + totalOrdersSouth + "   /SouthMachinesAmount : " + SouthMachinesAmount );
-		System.out.println("totalNorth" + totalNorth + " totalSouth: " + totalSouth + " totalUAE: " + totalUAE); 
 		if((totalNorth>=totalSouth) && (totalSouth>totalUAE))//NORTH is best area + UAE is the worst
 		{strBestArea="North"; strWorstArea="UAE";System.out.println("1");}
 		if((totalNorth>=totalUAE) && (totalUAE>=totalSouth))//NORTH is best area + South is the worst
@@ -155,7 +152,7 @@ public class OrdersReportScreenController extends ScreenController implements In
 		{strBestArea="UAE"; strWorstArea="North";System.out.println("5");}
 		if((totalUAE>=totalNorth) && (totalSouth<=totalNorth))//UAE is best area + South is the worst	
 		{strBestArea="UAE"; strWorstArea="South";System.out.println("6");}
-		System.out.println("BEST: " + strBestArea + "  strWorstArea: " + strWorstArea );
+	
 		//show analyze data on the screen
 		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);//show the date
 		bestIDLabel.setText("ID: " + strIDofBestSeller);// show the ID  of the BEST seller
