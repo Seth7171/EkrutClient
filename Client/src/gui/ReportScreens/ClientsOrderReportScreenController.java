@@ -58,15 +58,16 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 		
 		//making the BarChart from data
 		 XYChart.Series<String, Integer> ser1= new XYChart.Series<>();// North
-		 ser1.setName("Range of Purchase");	
-		 for(ClientReport clientor : clientReportData){
-			 	totalOrders+= clientor.getTotalOrders();
-			 	totalClients++;
-			 	if(minOrders>clientor.getTotalOrders())//calculate what is the Lowest number of orders from all client
-			 			minOrders=clientor.getTotalOrders();
-			 	if(biggestOrders<clientor.getTotalOrders())//calculate what is the Biggest number of orders from all client			 		
-			 			biggestOrders=clientor.getTotalOrders();
-			 	}
+		 ser1.setName("Range of Purchase");
+		// LIOR i have commented this because it conflicts with the map
+//		 for(ClientReport clientor : clientReportData){
+//			 	totalOrders+= clientor.getTotalOrders();
+//			 	totalClients++;
+//			 	if(minOrders>clientor.getTotalOrders())//calculate what is the Lowest number of orders from all client
+//			 			minOrders=clientor.getTotalOrders();
+//			 	if(biggestOrders<clientor.getTotalOrders())//calculate what is the Biggest number of orders from all client
+//			 			biggestOrders=clientor.getTotalOrders();
+//		 }
 		 numOfLines=(int) Math.sqrt(minOrders+biggestOrders);//calculate how many columns
 		 //setting the data on the BarChart
 //		 for(ClientReport clientor : clientReportData){
