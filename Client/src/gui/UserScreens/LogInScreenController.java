@@ -3,6 +3,7 @@ package gui.UserScreens;
 //TODO CHECK WHY ENTERING LIOR 1 THAN LIOR 123 NOT WORKING
 import application.client.ClientUI;
 import application.client.MessageHandler;
+import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
@@ -95,8 +96,13 @@ public class LogInScreenController extends ScreenController implements Initializ
         try {
             // TODO: expand next screen switch case
             switch (UserController.getCurrentuser().getDepartment()) {
-                case "member":
-                    root = FXMLLoader.load(getClass().getResource("UserMainScreen.fxml"));
+                case "customer":
+                	CustomerController.setCurrentCustomer(UserController.getCurrentuser());
+                    root = FXMLLoader.load(getClass().getResource("CustomerMainScreen.fxml"));
+                    break;
+                    
+                case "subscriber":
+                    root = FXMLLoader.load(getClass().getResource("CustomerMainScreen.fxml"));
                     break;
 
                 case "customer_service":

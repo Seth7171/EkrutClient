@@ -4,6 +4,7 @@
 
 package application.client;
 
+import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.ChatIF;
 import common.connectivity.Customer;
@@ -95,7 +96,9 @@ public class ChatClient extends AbstractClient
           case "LOG_IN_ERROR_USER_DOES_NOT_EXIST":
               MessageHandler.setMessage("user does not exist");
               break;
-
+          case "CUSTOMER_CREDIT_CARD":
+        	  CustomerController.setCreditnumber(((String)message.getData()));
+        	  break;
 
           case "ERROR_GETTING_CLIENT_REPORT":
           case "PRODUCT_ADDED_SUCCESSFULLY":
