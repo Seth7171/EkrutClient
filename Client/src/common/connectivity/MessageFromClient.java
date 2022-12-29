@@ -34,4 +34,5 @@ public enum MessageFromClient implements Serializable {
     REQUEST_ADD_USER,                           // V
     REQUEST_LOGOUT,                             // V
     REQUEST_LOGIN,                              // V
+    UNKNOWN
 }

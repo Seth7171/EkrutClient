@@ -79,7 +79,13 @@ public class CEOMainScreenController extends ScreenController implements Initial
 
     @FXML
     void openRefilOrdersScreen(MouseEvent event) {
-
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/ProductControlScreens/RefillOrderScreen.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        super.switchScreen(event, root);
     }
 
     @Override

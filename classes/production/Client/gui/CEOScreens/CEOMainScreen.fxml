@@ -6,15 +6,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CEOScreens.CEOMainScreenController">
    <children>
-      <Text fx:id="welcomeBackText" layoutX="80.0" layoutY="96.0" stroke="#f7f3f3" strokeType="OUTSIDE" strokeWidth="2.0" text="Welcome CEO Yael!" textAlignment="CENTER" underline="true" wrappingWidth="232.4000244140625">
+      <Text fx:id="welcomeBackText" layoutX="51.0" layoutY="88.0" stroke="#f7f3f3" strokeType="OUTSIDE" strokeWidth="2.0" text="Welcome CEO $name!" textAlignment="CENTER" underline="true" wrappingWidth="297.4000244140625">
          <font>
             <Font size="25.0" />
          </font>
@@ -37,10 +34,11 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Button layoutX="227.0" layoutY="29.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="Aprrove Users" />
-                        <Button layoutX="227.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="View System Alerts" />
+                        <Button layoutX="227.0" layoutY="85.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="View System Alerts" />
                         <Button fx:id="viewReportsButton" layoutX="36.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#openViewReportsScreen" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #bfbfbf;" text="View monthly reports" />
-                        <Button fx:id="manageProductsButton" layoutX="36.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#openManageProductsScreen" prefHeight="30.0" prefWidth="130.0" text="Manage products" />
-                        <Button layoutX="36.0" layoutY="134.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="View/Send Messages" />
+                        <Button fx:id="manageProductsButton" layoutX="36.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#openManageProductsScreen" prefHeight="30.0" prefWidth="130.0" text="Manage products" />
+                        <Button layoutX="227.0" layoutY="141.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="View/Send Messages" />
+                        <Button fx:id="viewRefilOrdersButton" layoutX="36.0" layoutY="141.0" mnemonicParsing="false" onMouseClicked="#openRefilOrdersScreen" prefHeight="30.0" prefWidth="130.0" text="view refill orders" />
                      </children>
                   </AnchorPane>
                </content>
@@ -49,19 +47,8 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane alignment="CENTER" layoutX="35.0" layoutY="67.0" prefHeight="100.0" prefWidth="331.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #bfbfbf;" text="Create Sale" />
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Start Sale" GridPane.columnIndex="1" />
-                           </children>
-                        </GridPane>
+                        <Button layoutX="120.0" layoutY="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #bfbfbf;" text="Create Sale" />
+                        <Button layoutX="120.0" layoutY="111.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Start Sale" />
                      </children>
                   </AnchorPane>
                </content>
@@ -70,19 +57,8 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane alignment="CENTER" layoutX="35.0" layoutY="67.0" prefHeight="100.0" prefWidth="331.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #bfbfbf;" text="View Product Quantity" />
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="View Messages" GridPane.columnIndex="1" />
-                           </children>
-                        </GridPane>
+                        <Button layoutX="111.0" layoutY="34.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #bfbfbf;" text="View Product Quantity" />
+                        <Button layoutX="111.0" layoutY="102.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="View Messages" />
                      </children>
                   </AnchorPane>
                </content>
@@ -91,19 +67,8 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane alignment="CENTER" layoutX="35.0" layoutY="67.0" prefHeight="100.0" prefWidth="331.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #bfbfbf;" text="New Order" />
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Grab Order" GridPane.columnIndex="1" />
-                           </children>
-                        </GridPane>
+                        <Button layoutX="120.0" layoutY="53.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #bfbfbf;" text="New Order" />
+                        <Button layoutX="120.0" layoutY="128.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Grab Order" />
                      </children>
                   </AnchorPane>
                </content>
