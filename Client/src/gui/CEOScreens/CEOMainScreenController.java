@@ -30,6 +30,10 @@ public class CEOMainScreenController extends ScreenController implements Initial
     private Text welcomeBackText;
 
     @FXML
+    private Button viewRefilOrdersButton;
+
+
+    @FXML
     private Button viewReportsButton;
 
     @FXML
@@ -71,6 +75,11 @@ public class CEOMainScreenController extends ScreenController implements Initial
             throw new RuntimeException(e);
         }
         super.switchScreen(event, root);
+    }
+
+    @FXML
+    void openRefilOrdersScreen(MouseEvent event) {
+
     }
 
     @Override

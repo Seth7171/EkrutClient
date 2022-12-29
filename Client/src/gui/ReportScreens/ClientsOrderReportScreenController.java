@@ -59,7 +59,9 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 		//making the BarChart from data
 		 XYChart.Series<String, Integer> ser1= new XYChart.Series<>();// North
 		 ser1.setName("Range of Purchase");
-		// LIOR i have commented this because it conflicts with the map
+
+
+		// LIOR: i have commented this for loop because it conflicts with the map
 //		 for(ClientReport clientor : clientReportData){
 //			 	totalOrders+= clientor.getTotalOrders();
 //			 	totalClients++;
@@ -68,6 +70,7 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 //			 	if(biggestOrders<clientor.getTotalOrders())//calculate what is the Biggest number of orders from all client
 //			 			biggestOrders=clientor.getTotalOrders();
 //		 }
+		//LIOR /////////////////////////////
 		 numOfLines=(int) Math.sqrt(minOrders+biggestOrders);//calculate how many columns
 		 //setting the data on the BarChart
 //		 for(ClientReport clientor : clientReportData){
