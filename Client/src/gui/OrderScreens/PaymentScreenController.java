@@ -63,8 +63,8 @@ public class PaymentScreenController extends ScreenController implements Initial
 	@FXML
     void pay(MouseEvent event) {
 		
-		
-		
+		//String cardYear = yearCombobox.getValue();
+		//String cardMonth = monthCombobox.getValue();
 		
 		
 		
