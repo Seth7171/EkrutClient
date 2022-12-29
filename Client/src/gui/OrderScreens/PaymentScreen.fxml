@@ -53,12 +53,12 @@
             <Font size="19.0" />
          </font>
       </Text>
-      <Text layoutX="491.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CVC">
+      <Text layoutX="505.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CVC">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <TextField layoutX="491.0" layoutY="437.0" prefHeight="25.0" prefWidth="71.0" promptText="000">
+      <TextField layoutX="504.0" layoutY="437.0" prefHeight="25.0" prefWidth="71.0" promptText="000">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></TextField>
@@ -87,8 +87,8 @@
             <Font size="19.0" />
          </font>
       </Text>
-      <ComboBox layoutX="396.0" layoutY="436.0" prefHeight="25.0" prefWidth="71.0" />
-      <ComboBox layoutX="336.0" layoutY="436.0" prefHeight="25.0" prefWidth="42.0" />
+      <ComboBox fx:id="yearCombobox" layoutX="424.0" layoutY="436.0" prefHeight="25.0" prefWidth="71.0" promptText="Year" />
+      <ComboBox fx:id="monthCombobox" layoutX="338.0" layoutY="436.0" prefHeight="25.0" prefWidth="80.0" promptText="Month" />
       <Text fx:id="Subtotal" layoutX="444.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$$$$" wrappingWidth="155.0498046875">
          <font>
             <Font size="19.0" />
