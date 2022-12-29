@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -56,56 +57,55 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		int totalOrders=0, totalClients=0, minOrder=9999,biggestOrder=0,topRange=0,tmpi=0,tmpj=9999999,range=0;
+		int numOfLines=0, columnRange=0,cnt=0;
+		boolean prime=true;
+		String strMinOrder=null;
+		String strBiggestOrder=null;
+
+		HashMap<User,Integer> clientReportData =  (HashMap<User,Integer>) ((ClientReport) MessageHandler.getData()).getUserOrderAmount();//get the data
 		
-		
-		HashMap<User,Integer> clientReportData =  (HashMap<User,Integer>) MessageHandler.getData();//get the data
-		
-		System.out.println("MAP:: " +clientReportData.toString());
-		
-//		for (Map.Entry<User, Integer> entry : clientReportData.entrySet()) {
-//		    String key = entry.getKey().getFirstname();
-//		    Integer value = entry.getValue();
-//		    System.out.println("key: " +entry.getKey() + "   value:" + entry.getValue());
-//
-//		} 
-//		
-//		int totalOrders=0, totalClients=0, minOrders=9999,biggestOrders=0;
-//		int numOfLines=0;
-		
-		
+		for (Map.Entry<User, Integer> clientor : clientReportData.entrySet()) {//find the min and max orderValue
+		    String key = clientor.getKey().getFirstname();//new key
+		    Integer value = clientor.getValue();//value
+		    System.out.println("key " +key + "   value:" + value);
+		  	if(biggestOrder<value) {biggestOrder=value; strBiggestOrder=key;}//find the MAX Order
+		  	if(minOrder>value) {minOrder=value; strMinOrder=key;}//find the MIN Order
+		}
+		 System.out.println("biggestOrder: "+biggestOrder + "minOrder: " + minOrder);
 		//making the BarChart from data
-		 //XYChart.Series<String, Integer> ser1= new XYChart.Series<>();// North
-		// ser1.setName("Range of Purchase");
-
-
-		// LIOR: i have commented this for loop because it conflicts with the map
-//		 for(ClientReport clientor : clientReportData){
-//			 	totalOrders+= clientor.getTotalOrders();
-//			 	totalClients++;
-//			 	if(minOrders>clientor.getTotalOrders())//calculate what is the Lowest number of orders from all client
-//			 			minOrders=clientor.getTotalOrders();
-//			 	if(biggestOrders<clientor.getTotalOrders())//calculate what is the Biggest number of orders from all client
-//			 			biggestOrders=clientor.getTotalOrders();
-//		 }
-		// /////////////////////////////
-		// numOfLines=(int) Math.sqrt(minOrders+biggestOrders);//calculate how many columns
+		 XYChart.Series<String, Integer> ser1= new XYChart.Series<>();//ranges
+		 ser1.setName("Range of Purchase");
+		 //calculate the columns range
+		 topRange=biggestOrder-minOrder;//topRange calculate 50-0
+		
+		for(int k=1; k<topRange;k++){//check if the topRange is a Prime
+			if(topRange%k==0) 
+				cnt++; 
+			if(cnt>1) {prime=false;break;}//if not a prime
+		}
+		if(prime)topRange+=1;//if a the range is prime --> topRange+=1	
+		System.out.println("prime: "+prime);
+		for(int i=1; i<topRange/2; i++)//find the lowest  range between topRange multiplies number
+			 	for(int j=0; j<=topRange;j++)
+			 		if(i*j==(float)topRange)///// TODO: check it !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+			 			if(tmpj-tmpi>j-i) {tmpj=j; tmpi=i;}
+		 columnRange=tmpj-tmpi;
+	
+		 System.out.println("columnRange: " +columnRange );
+		 
 		 //setting the data on the BarChart
-//		 for(ClientReport clientor : clientReportData){
-//		 ser1.getData().add(new XYChart.Data<String, Integer>("0-9",clientor.));
-//		 ser1.getData().add(new XYChart.Data<String, Integer>("10-19",50));
-//		 ser1.getData().add(new XYChart.Data<String, Integer>("20-29",30));
-//		 ser1.getData().add(new XYChart.Data<String, Integer>("30-39",30));
-//		 ser1.getData().add(new XYChart.Data<String, Integer>("40-49",30));
-//		 ser1.getData().add(new XYChart.Data<String, Integer>("50-59",30));
-//		 ser1.getData().add(new XYChart.Data<String, Integer>("60-69",30));
-//		 ser1.getData().add(new XYChart.Data<String, Integer>("70-79",30));
-//		 ser1.getData().add(new XYChart.Data<String, Integer>("80-89",30));
-//		 ser1.getData().add(new XYChart.Data<String, Integer>("90-99",30));
-//	    	 }
-		 
-		 
-		 
-		 //ClientChart.getData().addAll(ser1);
+		 for(int p=minOrder; p<=biggestOrder ;p=minOrder){// search for clients in specific area
+			 int amount=0;
+			 for(Map.Entry<User, Integer> clientor : clientReportData.entrySet()) {
+				 if(clientor.getValue()>=minOrder && clientor.getValue()<=(minOrder+columnRange-1)) 
+					 amount++;
+			 }
+			 ser1.getData().add(new XYChart.Data<String, Integer>(Integer.toString(minOrder) + "-" + Integer.toString(minOrder+columnRange-1),amount));
+			 minOrder=minOrder+columnRange;
+			// columnRange=columnRange+minOrder;
+	    }
+		 ClientChart.getData().addAll(ser1);
 
 		//show analyze data on the screen
 		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);
