@@ -39,25 +39,28 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 	  private BarChart<String, Integer> ClientChart;
 	  
 	  @FXML
-	  private Label maxPurchaseLabel;
+	  private Label avgPurchaseLabel;
 
 	  @FXML
-	  private Label minPurchaseLabel;
+	  private Label leastOrdersClientIDLabel;
 
 	  @FXML
-	  private Label standardDeviationLabel;
+	  private Label leastOrdersClientNameLabel;
+
+	  @FXML
+	  private Label leastOrdersClientTotalOrdersLabel;
+
+	  @FXML
+	  private Label mostOrdersClientIDLabel;
+
+	  @FXML
+	  private Label mostOrdersClientNameLabel;
+
+	  @FXML
+	  private Label mostOrdersClientTotalOrdersLabel;
 
 	  @FXML
 	  private Label totalPurchaseLabel;
-
-	  @FXML
-	  private Label clientLeastPurchaseLabel;
-
-	  @FXML
-	  private Label clientMostPurchaseLabel; 
-
-	  @FXML
-	  private Label avgPurchaseLabel;
 	    
     @FXML
     void ClickBackButton(MouseEvent event) {
@@ -135,15 +138,17 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 		 
 		//show analyze data on the screen
 		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);
-		clientMostPurchaseLabel.setText("The client who made the most purchases is: " + capitalLetter(bigUser.getFirstname()) + " " + capitalLetter(bigUser.getLastname()));
-		maxPurchaseLabel.setText("with " + clientReportData.get(bigUser) + " Purchases!");
-		clientLeastPurchaseLabel.setText("The client who made the least purchases is: " + capitalLetter(lowUser.getFirstname()) + " " + capitalLetter(lowUser.getLastname()));
-		minPurchaseLabel.setText("with " + clientReportData.get(lowUser) + " Purchases!");
+		mostOrdersClientIDLabel.setText("ID: " + bigUser.getId());
+		mostOrdersClientNameLabel.setText("Name: " + capitalLetter(bigUser.getFirstname()) + " " + capitalLetter(bigUser.getLastname()));
+		mostOrdersClientTotalOrdersLabel.setText("Total orders: " + clientReportData.get(bigUser));
+		leastOrdersClientIDLabel.setText("ID: " + lowUser.getId());
+		leastOrdersClientNameLabel.setText("Name: " + capitalLetter(lowUser.getFirstname()) + " " + capitalLetter(lowUser.getLastname()));
+		leastOrdersClientTotalOrdersLabel.setText("Total orders: " + clientReportData.get(lowUser));
 		totalPurchaseLabel.setText("Total Purchases: " + totalOrders);
 		avgPurchaseLabel.setText("Average Purchases per Client: " + totalOrders/totalClients + " (" + totalClients + " clients)");
 	}
 	
-	// return the string with first letter capital and all lowercase
+	// return the string with first letter capital and all lowercase letters
 	public String capitalLetter(String str) {
 		return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 	}
