@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -31,6 +33,9 @@ public class PaymentScreenController extends ScreenController implements Initial
     private Button paybotton;
     
     @FXML
+    private Button infoCvv;
+    
+    @FXML
     private ComboBox<String> monthCombobox;
     
     @FXML
@@ -42,6 +47,14 @@ public class PaymentScreenController extends ScreenController implements Initial
 		
 		monthCombobox.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
 		yearCombobox.getItems().addAll("2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033");
+		
+        // Create a tooltip to display the cvv helper
+        Tooltip tooltip = new Tooltip();
+        ImageView cvvimage = new ImageView("/gui/OrderScreens/cvvHelper.png");
+        tooltip.setGraphic(cvvimage);
+        tooltip.setShowDelay(null);
+        infoCvv.setTooltip(tooltip);
+        infoCvv.setStyle("-fx-background-color: transparent;");
 	}
 
 	@FXML
