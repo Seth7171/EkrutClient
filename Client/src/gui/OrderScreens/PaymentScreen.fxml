@@ -104,5 +104,11 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button fx:id="delay" layoutX="603.0" layoutY="609.0" mnemonicParsing="false" onMouseClicked="#pay" prefHeight="63.0" prefWidth="230.0" text="Delayed Payment">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Text layoutX="636.0" layoutY="613.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to do : and only for subscribers" />
    </children>
 </Pane>
