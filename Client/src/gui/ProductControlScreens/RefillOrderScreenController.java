@@ -155,7 +155,18 @@ public class RefillOrderScreenController extends ScreenController implements Ini
     private void loadData(){
         requestList = FXCollections.observableArrayList();
         ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_REFILL_ORDERS));
-        requestList.addAll((ArrayList<RefillOrder>) MessageHandler.getData());
+        ArrayList<RefillOrder> list = new ArrayList<>();
+        list = (ArrayList<RefillOrder>) MessageHandler.getData();
+        if (UserController.getCurrentuser().getDepartment().equals("operations")){
+            for (RefillOrder refillOrder : list){
+                if (refillOrder.getAssignedEmployee().equals(UserController.getCurrentuser().getId())){
+                    requestList.add(refillOrder);
+                }
+            }
+            requestTable.setItems(requestList);
+            return;
+        }
+        requestList.addAll(list);
         requestTable.setItems(requestList);
     }
 
