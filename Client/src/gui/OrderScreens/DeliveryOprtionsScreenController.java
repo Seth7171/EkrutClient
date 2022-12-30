@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import application.client.ChatClient;
 import application.client.ClientUI;
 import application.client.MessageHandler;
 import common.connectivity.Message;
@@ -88,6 +89,20 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
     
 	@FXML
     void proceedToShop(MouseEvent event) {
+		
+		
+		// Dynamic Pick Up
+		ChatClient.currentOrder.setMachineID(null);
+		ChatClient.currentOrder.setAddress(null);
+		ChatClient.currentOrder.setSupplyMethod("Dynamic PickUp");
+		
+		// Delivery
+		StringBuilder sb = new StringBuilder();
+		   // FILL THE
+		   // ADRESS IN THE SB
+		ChatClient.currentOrder.setAddress(sb.toString());
+		ChatClient.currentOrder.setSupplyMethod("delivery");
+		
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));

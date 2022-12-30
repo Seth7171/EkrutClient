@@ -96,7 +96,8 @@ public class CheckoutScreenController extends ScreenController implements Initia
 			super.alertHandler("Please add some products to your cart before Proceed" , true);
             return;
 		}
-		ChatClient.currentOrder = new Order("OrderID", totalprice, ChatClient.cartList, "machineID", "orderDate", "estimatedDeliveryTime", "confirmationDate", "Pending", UserController.getCurrentuser().getId(), "supplyMethod", "paidWith");
+        ChatClient.currentOrder.setOverallPrice(totalprice);
+        ChatClient.currentOrder.setProducts(ChatClient.cartList);
 		Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("PaymentScreen.fxml"));

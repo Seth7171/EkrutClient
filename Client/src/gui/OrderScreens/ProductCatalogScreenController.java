@@ -556,7 +556,9 @@ public class ProductCatalogScreenController extends ScreenController implements 
         // Print the current cart list
         System.out.println(ChatClient.cartList);
         // Create a new order with the specified parameters
-        ChatClient.currentOrder = new Order("OrderID", totalprice, ChatClient.cartList, "machineID", "orderDate", "estimatedDeliveryTime", "confirmationDate", "Pending", UserController.getCurrentuser().getId(), "supplyMethod", "paidWith");
+        ChatClient.currentOrder.setCustomerID(UserController.getCurrentuser().getId());
+        ChatClient.currentOrder.setOverallPrice(totalprice);
+        ChatClient.currentOrder.setProducts(ChatClient.cartList);
         Parent root = null;
         try {
             // Load the CheckoutScreen FXML file
