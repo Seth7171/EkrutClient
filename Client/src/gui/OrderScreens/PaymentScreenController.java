@@ -3,6 +3,7 @@ package gui.OrderScreens;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 import application.client.ChatClient;
 import gui.ScreenController;
@@ -80,6 +81,8 @@ public class PaymentScreenController extends ScreenController implements Initial
 		//String cardMonth = monthCombobox.getValue();
 		
 		
+        String  uuid = UUID.randomUUID().toString().substring(0, 8);
+        ChatClient.currentOrder.setOrderID(uuid);
 		
 		Parent root = null;
         try {
