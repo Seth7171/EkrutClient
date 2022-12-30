@@ -4,6 +4,7 @@ package gui.OrderScreens;
 import application.client.ChatClient;
 import application.client.ClientUI;
 import application.client.MessageHandler;
+import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
@@ -103,9 +104,15 @@ public class ProductCatalogScreenController extends ScreenController implements 
         
         // Set the total amount text to 0
         totalAmount.setText("0.0\u20AA");
-        
+    	if (CustomerController.isLogged()) {
+    		ArrayList<String> machine = new ArrayList<String>();
+    		machine.add("NOR1");
+    		machine.add("0");
+    		ClientUI.chat.accept(new Message(machine, MessageFromClient.REQUEST_MACHINE_PRODUCTS));
+    	}
         // Request the list of products from the warehouse
-        ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_WAREHOUSE_PRODUCTS));
+    	else
+    		ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_WAREHOUSE_PRODUCTS));
         tabPane.getStyleClass().add("tab-pane");
         tabPane.setTabMinWidth(220);
         tabPane.setTabMaxWidth(220);
