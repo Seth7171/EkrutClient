@@ -51,7 +51,7 @@
             <Image url="@GreenCheckMark.png" />
          </image>
       </ImageView>
-      <Text layoutX="584.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="######">
+      <Text fx:id="orderNum" layoutX="584.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="######">
          <font>
             <Font size="19.0" />
          </font>

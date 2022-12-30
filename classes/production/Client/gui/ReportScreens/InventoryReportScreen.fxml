@@ -16,7 +16,7 @@
             <Image url="@../logo.png" />
          </image>
       </ImageView>
-      <Label layoutX="379.0" layoutY="39.0" prefHeight="51.0" prefWidth="199.0" styleClass="text-field" text="Inventory Report" underline="true">
+      <Label layoutX="379.0" layoutY="39.0" prefHeight="51.0" prefWidth="199.0" text="Inventory Report" underline="true">
          <font>
             <Font size="26.0" />
          </font>
@@ -30,32 +30,32 @@
       </TableView>
       <Button fx:id="backButton" layoutY="575.0" mnemonicParsing="false" onMouseClicked="#clickBackButton" prefHeight="26.0" prefWidth="81.0" text="Back" />
       <Button fx:id="exitApp" layoutX="931.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#exitApplication" styleClass="ExitButton" text="X" />
-      <Label fx:id="notInStockLabel" layoutX="93.0" layoutY="256.0" prefHeight="27.0" prefWidth="382.0" styleClass="text-field" text="How many products are not available: $num">
+      <Label fx:id="notInStockLabel" layoutX="93.0" layoutY="256.0" prefHeight="27.0" prefWidth="382.0" text="How many products are not available: $num">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="inStockItemsLabel" layoutX="93.0" layoutY="310.0" prefHeight="25.0" prefWidth="354.0" styleClass="text-field" text="Total items in stock: $amount_of_items">
+      <Label fx:id="inStockItemsLabel" layoutX="93.0" layoutY="310.0" prefHeight="25.0" prefWidth="354.0" text="Total items in stock: $amount_of_items">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="totalWorthLabel" layoutX="96.0" layoutY="365.0" prefHeight="25.0" prefWidth="354.0" styleClass="text-field" text="Total worth stock: $total_price">
+      <Label fx:id="totalWorthLabel" layoutX="96.0" layoutY="365.0" prefHeight="25.0" prefWidth="354.0" text="Total worth stock: $total_price">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="MachineIDLabel" layoutX="77.0" layoutY="129.0" styleClass="text-field" text="Machine ID: $id">
+      <Label fx:id="MachineIDLabel" layoutX="77.0" layoutY="129.0" text="Machine ID: $id">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="locationMachineLabel" layoutX="77.0" layoutY="170.0" styleClass="text-field" text="Location: $location">
+      <Label fx:id="locationMachineLabel" layoutX="77.0" layoutY="170.0" text="Location: $location">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="DateChooseLabel" layoutX="41.0" layoutY="513.0" prefHeight="27.0" prefWidth="225.0" styleClass="text-field" text="Date: $Month , $Year">
+      <Label fx:id="DateChooseLabel" layoutX="41.0" layoutY="513.0" prefHeight="27.0" prefWidth="225.0" text="Date: $Month , $Year">
          <font>
             <Font size="11.0" />
          </font>
@@ -80,12 +80,12 @@
             <Image url="@inventory_report.png" />
          </image>
       </ImageView>
-      <Label fx:id="snacksAmountLabel" layoutX="93.0" layoutY="447.0" prefHeight="27.0" prefWidth="146.0" styleClass="text-field" text="Snacks: $num">
+      <Label fx:id="snacksAmountLabel" layoutX="93.0" layoutY="447.0" prefHeight="27.0" prefWidth="146.0" text="Snacks: $num">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="drinksAmountLabel" layoutX="321.0" layoutY="447.0" prefHeight="27.0" prefWidth="154.0" styleClass="text-field" text="Drinks: $num">
+      <Label fx:id="drinksAmountLabel" layoutX="321.0" layoutY="447.0" prefHeight="27.0" prefWidth="154.0" text="Drinks: $num">
          <font>
             <Font size="18.0" />
          </font>
