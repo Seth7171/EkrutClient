@@ -22,7 +22,7 @@
           <CategoryAxis label="Range of purchase" side="BOTTOM" />
         </xAxis>
         <yAxis>
-          <NumberAxis label="Number of clients" side="LEFT" upperBound="50.0">
+          <NumberAxis autoRanging="false" label="Number of clients" minorTickLength="3.0" side="LEFT" upperBound="50.0">
                <tickLabelFont>
                   <Font size="11.0" />
                </tickLabelFont>
@@ -36,51 +36,76 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="DateChooseLabel" layoutX="41.0" layoutY="513.0" prefHeight="27.0" prefWidth="225.0" text="Date: $Month , $Year" />
-      <Label layoutX="14.0" layoutY="118.0" prefHeight="30.0" prefWidth="398.0" text="The client who made the most purchase is : $nameB">
+      <Label fx:id="DateChooseLabel" layoutX="101.0" layoutY="543.0" prefHeight="27.0" prefWidth="225.0" text="Date: $Month , $Year" />
+      <Label layoutX="102.0" layoutY="98.0" prefHeight="30.0" prefWidth="294.0" text="The client with most orders:" underline="true">
          <font>
-            <Font size="17.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="159.0" prefHeight="30.0" prefWidth="204.0" text="with $max purchase !!!" textFill="#e10c0c">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="53.0" fitWidth="66.0" layoutX="14.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="73.0" fitWidth="78.0" layoutX="15.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@MostPopularProduct.png" />
+            <Image url="@like.png" />
          </image>
       </ImageView>
-      <Label layoutX="14.0" layoutY="227.0" prefHeight="30.0" prefWidth="398.0" text="The client who made the least purchases is : $nameL">
+      <Label fx:id="avgPurchaseLabel" layoutX="102.0" layoutY="471.0" prefHeight="30.0" prefWidth="345.0" text="Average purchases : $average ">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="83.0" layoutY="267.0" prefHeight="30.0" prefWidth="204.0" text="with $min purchase !!!" textFill="#e10c0c">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="14.0" layoutY="380.0" prefHeight="30.0" prefWidth="398.0" text="Average purchases : $average ">
+      <Label fx:id="totalPurchaseLabel" layoutX="101.0" layoutY="396.0" prefHeight="30.0" prefWidth="196.0" text="Total purchases: $totalP">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <ImageView fitHeight="53.0" fitWidth="66.0" layoutX="15.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true">
+      <Label fx:id="mostOrdersClientTotalOrdersLabel" layoutX="102.0" layoutY="186.0" prefHeight="30.0" prefWidth="204.0" text="Total orders: $max" textFill="#e10c0c">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="mostOrdersClientIDLabel" layoutX="102.0" layoutY="128.0" prefHeight="30.0" prefWidth="204.0" text="ID: $id">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="mostOrdersClientNameLabel" layoutX="102.0" layoutY="156.0" prefHeight="30.0" prefWidth="204.0" text="Name: $name">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="101.0" layoutY="252.0" prefHeight="30.0" prefWidth="294.0" text="The client with least orders:" underline="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="73.0" fitWidth="78.0" layoutX="14.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@money.png" />
+            <Image url="@dislike.png" />
          </image>
       </ImageView>
-      <Label layoutX="14.0" layoutY="445.0" prefHeight="30.0" prefWidth="398.0" text="Standard deviation fo this month:  %stiat_teken">
+      <Label fx:id="leastOrdersClientTotalOrdersLabel" layoutX="101.0" layoutY="340.0" prefHeight="30.0" prefWidth="204.0" text="Total orders: $max" textFill="#e10c0c">
          <font>
-            <Font size="17.0" />
+            <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="343.0" prefHeight="30.0" prefWidth="398.0" text="Total purchases: $totalP">
+      <Label fx:id="leastOrdersClientIDLabel" layoutX="101.0" layoutY="282.0" prefHeight="30.0" prefWidth="204.0" text="ID: $id">
          <font>
-            <Font size="17.0" />
+            <Font size="16.0" />
          </font>
       </Label>
+      <Label fx:id="leastOrdersClientNameLabel" layoutX="101.0" layoutY="310.0" prefHeight="30.0" prefWidth="204.0" text="Name: $name">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="54.0" fitWidth="53.0" layoutX="25.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@total.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="54.0" fitWidth="53.0" layoutX="24.0" layoutY="459.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@average.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
