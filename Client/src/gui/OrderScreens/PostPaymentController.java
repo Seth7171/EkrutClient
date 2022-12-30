@@ -2,9 +2,11 @@ package gui.OrderScreens;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.client.ChatClient;
+import common.orders.Order;
 import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +34,9 @@ public class PostPaymentController extends ScreenController implements Initializ
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		orderNum.setText(ChatClient.currentOrder.getOrderID());
 		machineNum.setText(ChatClient.currentOrder.getMachineID());
+		
+		// reset the currentOrder for the next order
+		ChatClient.currentOrder = new Order();
 		
 	}
 
