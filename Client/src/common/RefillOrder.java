@@ -8,6 +8,9 @@ public class RefillOrder implements Serializable {
     private String ProductID;
     private String MachineID;
     private String creationDate;
+    private int amountAtRequest;
+    private int newAmount;
+    private String assignedEmployee;
 
     public RefillOrder() {
     }
@@ -44,6 +47,30 @@ public class RefillOrder implements Serializable {
         this.creationDate = creationDate;
     }
 
+    public int getAmountAtRequest() {
+        return amountAtRequest;
+    }
+
+    public void setAmountAtRequest(int amountAtRequest) {
+        this.amountAtRequest = amountAtRequest;
+    }
+
+    public String getAssignedEmployee() {
+        return assignedEmployee;
+    }
+
+    public void setAssignedEmployee(String assignedEmployee) {
+        this.assignedEmployee = assignedEmployee;
+    }
+
+    public int getNewAmount() {
+        return newAmount;
+    }
+
+    public void setNewAmount(int newAmount) {
+        this.newAmount = newAmount;
+    }
+
     @Override
     public String toString() {
         return "RefillOrder{" +
@@ -51,6 +78,9 @@ public class RefillOrder implements Serializable {
                 ", ProductID='" + ProductID + '\'' +
                 ", MachineID='" + MachineID + '\'' +
                 ", creationDate='" + creationDate + '\'' +
+                ", amountAtRequest=" + amountAtRequest +
+                ", newAmount=" + newAmount +
+                ", assignedEmployee='" + assignedEmployee + '\'' +
                 '}';
     }
 }
