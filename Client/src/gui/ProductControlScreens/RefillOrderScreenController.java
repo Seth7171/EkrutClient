@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RefillOrderScreenController extends ScreenController implements Initializable {
 
@@ -71,7 +73,24 @@ public class RefillOrderScreenController extends ScreenController implements Ini
     public void initialize(URL location, ResourceBundle resources) {
         changesToBeMade = new ArrayList<>();
         requestTable.setPlaceholder(new Label("no requests to display"));
+        Thread.setDefaultUncaughtExceptionHandler((Thread t, Throwable e) -> {
+            if (e instanceof NumberFormatException){
+                super.alertHandler("This Field must only contain numbers", false);
+            }
+        });
         initCols();
+        switch (UserController.getCurrentuser().getDepartment()){
+            case "ceo":
+                initManagerCol();
+                break;
+
+            case "operations":
+                initOperationsCol();
+                break;
+            default:
+                break;
+
+        }
         loadData();
     }
 
@@ -89,19 +108,47 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         // creationDate column
         creationDateColumn.setCellValueFactory  (new PropertyValueFactory<>("creationDate"));
 
+        // hide column
+        assignedEmployeeColumn.setVisible(false);
+
+        // new amount column
+        newAmountColumn.setVisible(false);
+
+        // amount at request column
+        amountAtRequestColumn.setCellValueFactory   (new PropertyValueFactory<>("amountAtRequest"));
+        //amountAtRequestColumn.setCellFactory        (TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
+        requestTable.setEditable(true);
+    }
+
+    private void initOperationsCol(){
+        // assigned employee column
+        newAmountColumn.setCellValueFactory  (new PropertyValueFactory<>("newAmount"));
+        newAmountColumn.setCellFactory        (TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        newAmountColumn.setOnEditCommit       (event -> {
+            event.getTableView().getItems().get(event.getTablePosition().getRow()).setNewAmount(event.getNewValue());
+            checkAndReplace(event.getTableView().getItems().get(event.getTablePosition().getRow()));
+        });
+        newAmountColumn.setVisible(true);
+    }
+
+    private void initManagerCol(){
         // assigned employee column
         assignedEmployeeColumn.setCellValueFactory  (new PropertyValueFactory<>("assignedEmployee"));
         assignedEmployeeColumn.setCellFactory        (TextFieldTableCell.forTableColumn());
         assignedEmployeeColumn.setOnEditCommit       (event -> {
+            // check for valid email address
+            Pattern pattern = Pattern.compile("^[0-9]{9}$");
+            Matcher matcher = pattern.matcher(event.getNewValue());
+            if (!matcher.matches()){
+                super.alertHandler("ID must contain only numbers!", true);
+                event.getTableView().getItems().get(event.getTablePosition().getRow()).setAssignedEmployee(event.getOldValue());
+                return;
+            }
             event.getTableView().getItems().get(event.getTablePosition().getRow()).setAssignedEmployee(event.getNewValue());
             checkAndReplace(event.getTableView().getItems().get(event.getTablePosition().getRow()));
         });
-
-        // amount at request column
-        amountAtRequestColumn.setCellValueFactory   (new PropertyValueFactory<>("amountAtRequest"));
-        amountAtRequestColumn.setCellFactory        (TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-
-        requestTable.setEditable(true);
+        assignedEmployeeColumn.setVisible(true);
     }
 
 
@@ -136,7 +183,18 @@ public class RefillOrderScreenController extends ScreenController implements Ini
     void backToMainScreen(MouseEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
+            switch (UserController.getCurrentuser().getDepartment()){
+                case "ceo":
+                    root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
+                    break;
+
+                case "operations":
+                    root = FXMLLoader.load(getClass().getResource("/gui/OperationsEmployeeScreens/operationsEmployeeMainScreen.fxml"));
+                    break;
+
+                default:
+                    break;
+            }
         }catch (IOException exception){
             exception.printStackTrace();
         }
@@ -144,20 +202,42 @@ public class RefillOrderScreenController extends ScreenController implements Ini
     }
 
     @FXML
-    void updateEmployeesInDataBase(MouseEvent event) {
+    void updateDataBase(MouseEvent event) {
         if (changesToBeMade.isEmpty()){
             super.alertHandler("You have no changes to upload", false);
             return;
         }
 
-        for (RefillOrder refOrd : changesToBeMade) {
-            MessageHandler.setMessage(null);
-            ClientUI.chat.accept(new Message(refOrd, MessageFromClient.REQUEST_ASSIGN_EMPLOYEE_TO_REFILL_ORDER));
+        switch (UserController.getCurrentuser().getDepartment()){
+            case "area_manager":
+            case "ceo":
+                for (RefillOrder refOrd : changesToBeMade) {
+                    MessageHandler.setMessage(null);
+                    ClientUI.chat.accept(new Message(refOrd, MessageFromClient.REQUEST_ASSIGN_EMPLOYEE_TO_REFILL_ORDER));
 
-            if (MessageHandler.getMessage().contains("Error")) {
-                super.alertHandler(MessageHandler.getMessage(), true);
-                return;
-            }
+                    if (MessageHandler.getMessage().contains("Error")) {
+                        super.alertHandler(MessageHandler.getMessage(), true);
+                        return;
+                    }
+                }
+                break;
+
+            case "operations":
+                for (RefillOrder refOrd : changesToBeMade) {
+                    MessageHandler.setMessage(null);
+                    ArrayList<String> orderData = new ArrayList<>();
+                    orderData.add(refOrd.getMachineID());
+                    orderData.add(refOrd.getProductID());
+                    orderData.add(String.valueOf(refOrd.getNewAmount()));
+                    ClientUI.chat.accept(new Message(orderData, MessageFromClient.REQUEST_UPDATE_MACHINE_PRODUCT_AMOUNT));
+
+                    if (MessageHandler.getMessage().contains("Error")) {
+                        super.alertHandler(MessageHandler.getMessage(), true);
+                        return;
+                    }
+                }
+                break;
+
         }
 
         super.alertHandler("Data successfully updated!", false);

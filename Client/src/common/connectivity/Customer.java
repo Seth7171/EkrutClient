@@ -9,6 +9,7 @@ public class Customer extends User implements Serializable{
 		// CLASS FIELDS ***********************************************
 		private String creditCardNumber;
 		private boolean isSub;
+		private boolean	isFirstBuyAsSub;
 		//****************************************************************
 
 		
@@ -37,12 +38,27 @@ public class Customer extends User implements Serializable{
 		public void setSub(boolean isSub) {
 			this.isSub = isSub;
 		}
-	    //  **************************************************************
+
+		public boolean isFirstBuyAsSub() {
+			return isFirstBuyAsSub;
+		}
+
+		public void setFirstBuyAsSub(boolean firstBuyAsSub) {
+			isFirstBuyAsSub = firstBuyAsSub;
+		}
+
+	//  **************************************************************
 		
 		// CLASS TO-STRING ***********************************************
-		@Override
-		public String toString(){
-			return String.format("Card number : %s, Is a subscriber : %b\n" , creditCardNumber , isSub);
-		}
-		//  **************************************************************
+
+	@Override
+	public String toString() {
+		return "Customer{" +
+				"creditCardNumber='" + creditCardNumber + '\'' +
+				", isSub=" + isSub +
+				", isFirstBuyAsSub=" + isFirstBuyAsSub +
+				'}';
+	}
+
+	//  **************************************************************
 }

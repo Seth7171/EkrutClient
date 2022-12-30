@@ -1,9 +1,6 @@
 package application.user;
 
-import application.client.ClientUI;
 import common.connectivity.Customer;
-import common.connectivity.Message;
-import common.connectivity.MessageFromClient;
 import common.connectivity.User;
 
 public class CustomerController {

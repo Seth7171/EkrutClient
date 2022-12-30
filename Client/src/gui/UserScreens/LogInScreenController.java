@@ -96,12 +96,10 @@ public class LogInScreenController extends ScreenController implements Initializ
         try {
             // TODO: expand next screen switch case
             switch (UserController.getCurrentuser().getDepartment()) {
+
+                case "subscriber":
                 case "customer":
                 	CustomerController.setCurrentCustomer(UserController.getCurrentuser());
-                    root = FXMLLoader.load(getClass().getResource("CustomerMainScreen.fxml"));
-                    break;
-                    
-                case "subscriber":
                     root = FXMLLoader.load(getClass().getResource("CustomerMainScreen.fxml"));
                     break;
 
@@ -109,12 +107,15 @@ public class LogInScreenController extends ScreenController implements Initializ
                     root = FXMLLoader.load(getClass().getResource("/gui/CustomerServiceEmployeeScreens/CustomerServiceEmployeeScreen.fxml"));
                     break;
 
+
                 case"ceo":
                     root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
 
                     break;
 
-                // TODO: reset UserControler on logout
+                case "operations":
+                    root = FXMLLoader.load(getClass().getResource("/gui/OperationsEmployeeScreens/operationsEmployeeMainScreen.fxml"));
+                    break;
 
                 default:
                     System.out.println("Unknown!");
