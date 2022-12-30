@@ -9,6 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="957.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.ClientsOrderReportScreenController">
    <children>
@@ -22,7 +23,7 @@
           <CategoryAxis label="Range of purchase" side="BOTTOM" />
         </xAxis>
         <yAxis>
-          <NumberAxis autoRanging="false" label="Number of clients" minorTickLength="3.0" side="LEFT" upperBound="50.0">
+          <NumberAxis fx:id="y" autoRanging="false" label="Number of clients" minorTickLength="3.0" side="LEFT" upperBound="25.0">
                <tickLabelFont>
                   <Font size="11.0" />
                </tickLabelFont>
@@ -37,66 +38,16 @@
          </font>
       </Label>
       <Label fx:id="DateChooseLabel" layoutX="101.0" layoutY="543.0" prefHeight="27.0" prefWidth="225.0" text="Date: $Month , $Year" />
-      <Label layoutX="102.0" layoutY="98.0" prefHeight="30.0" prefWidth="294.0" text="The client with most orders:" underline="true">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
       <ImageView fitHeight="73.0" fitWidth="78.0" layoutX="15.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@like.png" />
          </image>
       </ImageView>
-      <Label fx:id="avgPurchaseLabel" layoutX="102.0" layoutY="471.0" prefHeight="30.0" prefWidth="345.0" text="Average purchases : $average ">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Label>
-      <Label fx:id="totalPurchaseLabel" layoutX="101.0" layoutY="396.0" prefHeight="30.0" prefWidth="196.0" text="Total purchases: $totalP">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Label>
-      <Label fx:id="mostOrdersClientTotalOrdersLabel" layoutX="102.0" layoutY="186.0" prefHeight="30.0" prefWidth="204.0" text="Total orders: $max" textFill="#e10c0c">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="mostOrdersClientIDLabel" layoutX="102.0" layoutY="128.0" prefHeight="30.0" prefWidth="204.0" text="ID: $id">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="mostOrdersClientNameLabel" layoutX="102.0" layoutY="156.0" prefHeight="30.0" prefWidth="204.0" text="Name: $name">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="101.0" layoutY="252.0" prefHeight="30.0" prefWidth="294.0" text="The client with least orders:" underline="true">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
       <ImageView fitHeight="73.0" fitWidth="78.0" layoutX="14.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@dislike.png" />
          </image>
       </ImageView>
-      <Label fx:id="leastOrdersClientTotalOrdersLabel" layoutX="101.0" layoutY="340.0" prefHeight="30.0" prefWidth="204.0" text="Total orders: $max" textFill="#e10c0c">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="leastOrdersClientIDLabel" layoutX="101.0" layoutY="282.0" prefHeight="30.0" prefWidth="204.0" text="ID: $id">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="leastOrdersClientNameLabel" layoutX="101.0" layoutY="310.0" prefHeight="30.0" prefWidth="204.0" text="Name: $name">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
       <ImageView fitHeight="54.0" fitWidth="53.0" layoutX="25.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@total.png" />
@@ -107,5 +58,55 @@
             <Image url="@average.png" />
          </image>
       </ImageView>
+      <Text layoutX="94.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The client with most orders:" underline="true" wrappingWidth="240.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="94.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The client with least orders:" underline="true" wrappingWidth="240.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="mostOrdersClientIDText" layoutX="101.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID: $id" wrappingWidth="142.6666717529297">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="mostOrdersClientNameText" layoutX="101.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: $name" wrappingWidth="240.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="mostOrdersClientTotalOrdersText" fill="#ed0f0f" layoutX="101.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total orders: $max" wrappingWidth="172.66668701171875">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="leastOrdersClientIDText" layoutX="101.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID: $id" wrappingWidth="142.6666717529297">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="leastOrdersClientNameText" layoutX="102.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: $name" wrappingWidth="210.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="leastOrdersClientTotalOrdersText" fill="#ed0f0f" layoutX="101.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total orders: $low" wrappingWidth="172.66668701171875">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="totalPurchaseText" layoutX="94.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total purchases: $totalP" wrappingWidth="240.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fx:id="avgPurchaseText" layoutX="84.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Average purchases : $average " wrappingWidth="259.33331298828125">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
