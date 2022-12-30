@@ -1,5 +1,6 @@
 package gui.OrderScreens;
 
+import java.awt.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -39,6 +40,15 @@ public class PaymentScreenController extends ScreenController implements Initial
     private Button infoCvv;
     
     @FXML
+    private TextField cardNumberTextField;
+    
+    @FXML
+    private TextField cardNameTextField;
+    
+    @FXML
+    private TextField cardCVVTextField;
+    
+    @FXML
     private ComboBox<String> monthCombobox;
     
     @FXML
@@ -60,6 +70,10 @@ public class PaymentScreenController extends ScreenController implements Initial
         infoCvv.setStyle("-fx-background-color: transparent;");
 	}
 
+	private boolean callCreditCardCompany(String cardNumber, String cardName, String cardYear, String cardMonth, String cardCVV, float totalPrice) {
+		return true;
+	}
+	
 	@FXML
     void exit(MouseEvent event) {
 		super.closeProgram(event, true);
@@ -79,37 +93,46 @@ public class PaymentScreenController extends ScreenController implements Initial
 	@FXML
     void pay(MouseEvent event) {
 		
-		//String cardYear = yearCombobox.getValue();
-		//String cardMonth = monthCombobox.getValue();
+		String cardNumber = cardNumberTextField.getText();
+		String cardName = cardNameTextField.getText();
+		String cardYear = yearCombobox.getValue();
+		String cardMonth = monthCombobox.getValue();
+		String cardCVV = cardCVVTextField.getText();
 		
-		//GETTING THE DATE :
-		// Get the current time
-	    Date currentDate = new Date();
-	    // Create a SimpleDateFormat object to format the date as a string
-	    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-	    // Format the current date as a string
-	    String dateString = formatter.format(currentDate);
-	    ChatClient.currentOrder.setOrderDate(dateString);
-	    System.out.println(dateString);
+		if(callCreditCardCompany(cardNumber, cardName ,cardYear, cardMonth, cardCVV, ChatClient.currentOrder.getOverallPrice())) {
+			
+			//GETTING THE DATE and setting it in order.
+			// Get the current time
+		    Date currentDate = new Date();
+		    // Create a SimpleDateFormat object to format the date as a string
+		    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		    // Format the current date as a string
+		    String dateString = formatter.format(currentDate);
+		    ChatClient.currentOrder.setOrderDate(dateString);
+			
+			// generate order number and paid with
+	        String  uuid = UUID.randomUUID().toString().substring(0, 8);
+	        ChatClient.currentOrder.setOrderID(uuid);
+	        ChatClient.currentOrder.setPaidWith("credit card");
+	        
+	        // IF DELIVERY :
+	        ChatClient.currentOrder.setOrderStatus("awaiting approval");
+	        ChatClient.currentOrder.setEstimatedDeliveryTime("awaiting order approval");
+	        // ELSE :
+	        ChatClient.currentOrder.setOrderStatus("approved");
+	        ChatClient.currentOrder.setEstimatedDeliveryTime(dateString);
+			
+			Parent root = null;
+	        try {
+	            root = FXMLLoader.load(getClass().getResource("PostPaymentScreen.fxml"));
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	        super.switchScreenWithTimerCustomersOnly(event, root);
+	    }
+	}
+	
 		
-		
-        String  uuid = UUID.randomUUID().toString().substring(0, 8);
-        ChatClient.currentOrder.setOrderID(uuid);
-        ChatClient.currentOrder.setPaidWith("credit card");
-        // IF DELIVERY :
-        ChatClient.currentOrder.setOrderStatus("awaiting approval");
-        ChatClient.currentOrder.setEstimatedDeliveryTime("awaiting order approval");
-        // ELSE :
-        ChatClient.currentOrder.setOrderStatus("approved");
-        ChatClient.currentOrder.setEstimatedDeliveryTime(dateString);
-		
-		Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("PostPaymentScreen.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        super.switchScreenWithTimerCustomersOnly(event, root);
-    }
+
 	
 }

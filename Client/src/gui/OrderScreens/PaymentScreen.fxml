@@ -33,11 +33,11 @@
          </font>
       </Text>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <TextField layoutX="343.0" layoutY="279.0" prefHeight="25.0" prefWidth="166.0" promptText="0000 0000 0000 0000">
+      <TextField fx:id="cardNumberTextField" layoutX="343.0" layoutY="279.0" prefHeight="25.0" prefWidth="166.0" promptText="0000 0000 0000 0000">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></TextField>
-      <TextField layoutX="343.0" layoutY="361.0" prefHeight="25.0" prefWidth="211.0" />
+      <TextField fx:id="cardNameTextField" layoutX="343.0" layoutY="361.0" prefHeight="25.0" prefWidth="211.0" />
       <Text layoutX="343.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card number">
          <font>
             <Font size="19.0" />
@@ -58,7 +58,7 @@
             <Font size="19.0" />
          </font>
       </Text>
-      <TextField layoutX="504.0" layoutY="437.0" prefHeight="25.0" prefWidth="71.0" promptText="000">
+      <TextField fx:id="cardCVVTextField" layoutX="504.0" layoutY="437.0" prefHeight="25.0" prefWidth="71.0" promptText="000">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></TextField>
