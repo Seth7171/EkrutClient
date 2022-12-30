@@ -2,6 +2,8 @@ package gui.OrderScreens;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
@@ -80,9 +82,26 @@ public class PaymentScreenController extends ScreenController implements Initial
 		//String cardYear = yearCombobox.getValue();
 		//String cardMonth = monthCombobox.getValue();
 		
+		//GETTING THE DATE :
+		// Get the current time
+	    Date currentDate = new Date();
+	    // Create a SimpleDateFormat object to format the date as a string
+	    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+	    // Format the current date as a string
+	    String dateString = formatter.format(currentDate);
+	    ChatClient.currentOrder.setOrderDate(dateString);
+	    System.out.println(dateString);
+		
 		
         String  uuid = UUID.randomUUID().toString().substring(0, 8);
         ChatClient.currentOrder.setOrderID(uuid);
+        ChatClient.currentOrder.setPaidWith("credit card");
+        // IF DELIVERY :
+        ChatClient.currentOrder.setOrderStatus("awaiting approval");
+        ChatClient.currentOrder.setEstimatedDeliveryTime("awaiting order approval");
+        // ELSE :
+        ChatClient.currentOrder.setOrderStatus("approved");
+        ChatClient.currentOrder.setEstimatedDeliveryTime(dateString);
 		
 		Parent root = null;
         try {
