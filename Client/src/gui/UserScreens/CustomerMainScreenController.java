@@ -57,7 +57,7 @@ public class CustomerMainScreenController extends ScreenController implements In
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	if (!CustomerController.isLogged())
+    	if (CustomerController.isLogged())
     		grabOrderButton.setVisible(false);
         welcomeBackText.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
         userStatusText.setText("User Status: " + UserController.getCurrentuser().getStatus());
