@@ -523,7 +523,12 @@ public class ProductCatalogScreenController extends ScreenController implements 
         Parent root = null;
         // Try to load the user main screen scene
         try {
-            root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));
+        	if (UserController.getCurrentuser().getDepartment().equals("customer")) {
+        		root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));
+        	}
+        	else {
+        		root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/DeliveryOprtionsScreen.fxml"));;
+        	}
         } 
         // Catch any exceptions that may occur
         catch (IOException e) {
