@@ -87,7 +87,7 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		int totalOrders=0, totalClients=0, minOrder=9999,biggestOrder=0,topRange=0,tmpi=0,tmpj=9999999,range=0;
-		int columnRange=0,cnt=0;
+		int columnRange=0,cnt=0, upperBound=0;
 		boolean prime=true;
 		String strMinOrder=null;
 		String strBiggestOrder=null;
@@ -122,7 +122,7 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 		System.out.println("prime: "+prime);
 		for(int i=1; i<topRange/2; i++)//find the lowest  range between topRange multiplies number
 			 	for(int j=0; j<=topRange;j++)
-			 		if(i*j==(float)topRange)///// TODO: check it on my DB !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+			 		if(i*j==(float)topRange) //
 			 			if(tmpj-tmpi>j-i &&j-i>1 ) {tmpj=j; tmpi=i;}
 		 columnRange=tmpj-tmpi;
 	
@@ -134,13 +134,13 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 			 for(Map.Entry<User, Integer> clientor : clientReportData.entrySet()) {
 				 if(clientor.getValue()>=minOrder && clientor.getValue()<=(minOrder+columnRange-1)) 
 					 amount++;
+				 if(amount>upperBound)upperBound=amount;
 			 }
-			 ser1.getData().add(new XYChart.Data<String, Integer>(Integer.toString(minOrder) + "-" + Integer.toString(minOrder+columnRange-1),amount));
+			 ser1.getData().add(new XYChart.Data<String, Integer>(Integer.toString(minOrder) + "-" + Integer.toString(minOrder+columnRange-1),amount));	
 			 minOrder=minOrder+columnRange;
-			// columnRange=columnRange+minOrder;
-	    }
-		 ClientChart.setBarGap(0);
-		// ClientChart.setCategoryGap(20);
+	     }
+		 
+		 y.setUpperBound(upperBound+=5);
 		 ClientChart.getData().addAll(ser1);
 		 
 		//show analyze data on the screen

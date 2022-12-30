@@ -134,7 +134,7 @@ public class OrdersReportScreenController extends ScreenController implements In
 			
 		}
 		
-	//	OrdersChart.setBarGap(0);
+		y.setUpperBound(totalOrdersBestSeller+=5);
 		OrdersChart.getData().addAll(ser1,ser2,ser3);
 		
 		//calculate data for who is the best area
