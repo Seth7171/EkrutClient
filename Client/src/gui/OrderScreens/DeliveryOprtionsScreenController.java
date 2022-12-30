@@ -19,6 +19,9 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
     @FXML
     private Button backButton;
     
+    @FXML
+    private Button proceedToShop;
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -34,11 +37,22 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
     void goBack(MouseEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/GrabOrderScreen.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
         super.switchScreenWithTimerCustomersOnly(event, root);        
+    }
+    
+	@FXML
+    void proceedToShop(MouseEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        super.switchScreenWithTimerCustomersOnly(event, root); 
     }
     
 }

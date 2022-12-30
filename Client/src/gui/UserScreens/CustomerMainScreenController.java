@@ -94,9 +94,14 @@ public class CustomerMainScreenController extends ScreenController implements In
      */
     @FXML
     void NewOrder(Event event) {
-                Parent root = null;
+        Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
+        	if (UserController.getCurrentuser().getDepartment().equals("customer")) {
+        		root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
+        	}
+        	else {
+            	root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/DeliveryOprtionsScreen.fxml"));
+        	}
         } catch (IOException e) {
             e.printStackTrace();
         }

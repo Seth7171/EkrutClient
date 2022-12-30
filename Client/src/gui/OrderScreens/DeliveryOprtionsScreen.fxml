@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.DeliveryOprtionsScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.DeliveryOprtionsScreenController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
          <image>
@@ -40,7 +40,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="351.0" layoutY="586.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="230.0" text="Proceed to Checkout">
+      <Button fx:id="proceedToShop" layoutX="351.0" layoutY="586.0" mnemonicParsing="false" onMouseClicked="#proceedToShop" prefHeight="63.0" prefWidth="230.0" text="Proceed to Shop">
          <font>
             <Font size="20.0" />
          </font>
@@ -61,12 +61,12 @@
                <content>
                   <Pane prefHeight="384.0" prefWidth="810.0">
                      <children>
-                        <Text layoutX="234.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dynamic Pick Up Selected">
+                        <Text layoutX="262.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dynamic Pick Up Selected">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>
                         </Text>
-                        <Label layoutY="57.5029296875" prefHeight="34.0" prefWidth="358.0" text="Please Choose a location to Pick Up from :">
+                        <Label layoutX="3.0" layoutY="57.5029296875" prefHeight="34.0" prefWidth="358.0" text="Please Choose a location to Pick Up from :">
                            <font>
                               <Font name="System Italic" size="19.0" />
                            </font>
@@ -90,40 +90,40 @@
                <content>
                   <Pane prefHeight="374.0" prefWidth="610.0">
                      <children>
-                        <Text layoutX="172.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Selected">
+                        <Text layoutX="282.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Selected">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>
                         </Text>
-                        <Text layoutX="57.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill you delivery details :" wrappingWidth="258.08984375">
+                        <Text layoutX="49.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill you delivery details :" wrappingWidth="258.08984375">
                            <font>
                               <Font name="System Italic" size="18.0" />
                            </font>
                         </Text>
-                        <TextField layoutX="302.0" layoutY="82.0" prefHeight="25.0" prefWidth="393.0" />
-                        <TextField layoutX="302.0" layoutY="125.0" prefHeight="25.0" prefWidth="393.0" />
-                        <TextField layoutX="302.0" layoutY="172.0" prefHeight="25.0" prefWidth="393.0" />
-                        <Text layoutX="55.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Street Address :">
+                        <TextField layoutX="298.0" layoutY="72.0" prefHeight="25.0" prefWidth="393.0" />
+                        <TextField layoutX="298.0" layoutY="111.0" prefHeight="25.0" prefWidth="393.0" />
+                        <TextField layoutX="298.0" layoutY="148.0" prefHeight="25.0" prefWidth="393.0" />
+                        <Text layoutX="160.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Street Address :">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Text>
-                        <Text layoutX="100.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City :">
+                        <Text layoutX="249.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City :">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Text>
-                        <Text layoutX="29.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State/Province :">
+                        <Text layoutX="160.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State/Province :">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Text>
-                        <Text layoutX="49.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zip/Postal Code :">
+                        <Text layoutX="149.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zip/Postal Code :">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Text>
-                        <TextField layoutX="313.0" layoutY="234.0" prefHeight="25.0" prefWidth="393.0" />
+                        <TextField layoutX="298.0" layoutY="184.0" prefHeight="25.0" prefWidth="108.0" />
                      </children>
                   </Pane>
                </content>
