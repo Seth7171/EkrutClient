@@ -1,6 +1,5 @@
 package gui.OrderScreens;
 
-import java.awt.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -9,6 +8,9 @@ import java.util.ResourceBundle;
 import java.util.UUID;
 
 import application.client.ChatClient;
+import application.client.ClientUI;
+import common.connectivity.Message;
+import common.connectivity.MessageFromClient;
 import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.scene.control.TextField;
 
 public class PaymentScreenController extends ScreenController implements Initializable{
 	
@@ -115,12 +118,15 @@ public class PaymentScreenController extends ScreenController implements Initial
 	        ChatClient.currentOrder.setOrderID(uuid);
 	        ChatClient.currentOrder.setPaidWith("credit card");
 	        
+	        // TO DO !!!!!!! : 
 	        // IF DELIVERY :
 	        ChatClient.currentOrder.setOrderStatus("awaiting approval");
 	        ChatClient.currentOrder.setEstimatedDeliveryTime("awaiting order approval");
 	        // ELSE :
 	        ChatClient.currentOrder.setOrderStatus("approved");
 	        ChatClient.currentOrder.setEstimatedDeliveryTime(dateString);
+	        
+	        ClientUI.chat.accept(new Message(ChatClient.currentOrder, MessageFromClient.REQUEST_ADD_NEW_ORDER));
 			
 			Parent root = null;
 	        try {
