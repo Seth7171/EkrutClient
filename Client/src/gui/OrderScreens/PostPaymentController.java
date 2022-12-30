@@ -3,6 +3,8 @@ package gui.OrderScreens;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import application.client.ChatClient;
 import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 public class PostPaymentController extends ScreenController implements Initializable{
 
@@ -19,9 +22,12 @@ public class PostPaymentController extends ScreenController implements Initializ
     @FXML
     private Button backButton;
     
+    @FXML
+    private Text orderNum;
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		orderNum.setText(ChatClient.currentOrder.getOrderID());
 		
 	}
 
