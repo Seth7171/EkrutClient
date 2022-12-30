@@ -94,7 +94,7 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
 		// Dynamic Pick Up
 		ChatClient.currentOrder.setMachineID(null);
 		ChatClient.currentOrder.setAddress(null);
-		ChatClient.currentOrder.setSupplyMethod("Dynamic PickUp");
+		ChatClient.currentOrder.setSupplyMethod("machine pickup");
 		
 		// Delivery
 		StringBuilder sb = new StringBuilder();
