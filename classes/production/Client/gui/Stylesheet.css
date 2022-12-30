@@ -15,11 +15,6 @@
 	-fx-background-color: green;
 }
 
-.ExitButton{
-	-fx-background-color: transparent;
-	-fx-background-image: url("exit.png");
-}
-
 .tab-pane .tab-header-area .tab-header-background{
 	-fx-background-color: transparent;
 }
@@ -55,17 +50,21 @@
 .button{
 	-fx-background-color: #bfbfbf;
 }
-
 .ExitButton{
+	-fx-background-image: url("exit.png");
 	-fx-background-color: transparent;
+}
+.notification{
+	-fx-background-image: url("notification.png");
+	-fx-background-color: transparent;
+	-fx-background-size: cover;
 }
 
 .button:hover{
 	-fx-cursor: hand;
-	-fx-scale-x: 0.95;
-	-fx-scale-y: 0.95;
-	-fx-scale-z: 0.95;
-	/*-fx-font-size: 13px;*/
+	-fx-scale-x: 0.97;
+	-fx-scale-y: 0.97;
+	-fx-scale-z: 0.97;
 }
 /********************************************************************************************/
 

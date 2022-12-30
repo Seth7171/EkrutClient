@@ -22,12 +22,12 @@
             <Image url="@../logo.png" />
          </image>
       </ImageView>
-      <Text layoutX="196.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Refill orders" underline="true">
+      <Text layoutX="157.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assign refill orders" underline="true">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Button fx:id="updateButton" layoutX="229.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#updateEmployeesInDataBase" text="update">
+      <Button fx:id="updateButton" layoutX="229.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#updateDataBase" text="update">
          <font>
             <Font size="14.0" />
          </font>
@@ -35,11 +35,12 @@
       <TableView fx:id="requestTable" layoutX="13.0" layoutY="82.0" prefHeight="398.0" prefWidth="494.0">
         <columns>
           <TableColumn fx:id="orderidColumn" prefWidth="59.0" text="Order id" />
-          <TableColumn fx:id="productidColumn" prefWidth="67.0" text="product id" />
-            <TableColumn fx:id="machineidColumn" prefWidth="67.0" text="machine id" />
-            <TableColumn fx:id="creationDateColumn" text="creation date" />
-            <TableColumn fx:id="assignedEmployeeColumn" prefWidth="87.0" text="Employee ID" />
-            <TableColumn fx:id="amountAtRequestColumn" prefWidth="113.0" text="amount at request" />
+          <TableColumn fx:id="productidColumn" prefWidth="67.0" text="Product id" />
+            <TableColumn fx:id="machineidColumn" prefWidth="67.0" text="Machine id" />
+            <TableColumn fx:id="creationDateColumn" prefWidth="85.0" text="Creation date" />
+            <TableColumn fx:id="amountAtRequestColumn" prefWidth="111.0" text="Amount at request" />
+            <TableColumn fx:id="assignedEmployeeColumn" prefWidth="84.0" text="Employee ID" />
+            <TableColumn fx:id="newAmountColumn" prefWidth="84.0" text="New amount" />
         </columns>
       </TableView>
    </children>
