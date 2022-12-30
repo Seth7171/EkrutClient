@@ -108,7 +108,7 @@ public class PaymentScreenController extends ScreenController implements Initial
 			// Get the current time
 		    Date currentDate = new Date();
 		    // Create a SimpleDateFormat object to format the date as a string
-		    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		    SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
 		    // Format the current date as a string
 		    String dateString = formatter.format(currentDate);
 		    ChatClient.currentOrder.setOrderDate(dateString);
@@ -125,6 +125,8 @@ public class PaymentScreenController extends ScreenController implements Initial
 	        // ELSE :
 	        ChatClient.currentOrder.setOrderStatus("approved");
 	        ChatClient.currentOrder.setEstimatedDeliveryTime(dateString);
+	        
+	        System.out.println(ChatClient.currentOrder);
 	        
 	        ClientUI.chat.accept(new Message(ChatClient.currentOrder, MessageFromClient.REQUEST_ADD_NEW_ORDER));
 			
