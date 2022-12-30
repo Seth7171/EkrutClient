@@ -83,8 +83,8 @@ public class LogInScreenController extends ScreenController implements Initializ
         Order order = new Order();
 
 
-        ClientUI.chat.accept(new Message("316109115",MessageFromClient.REQUEST_SET_FIRST_TIME_BUY_AS_SUB )); // TODO: this should be DELETED
-        //ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
+        //ClientUI.chat.accept(new Message("316109115",MessageFromClient.REQUEST_SET_FIRST_TIME_BUY_AS_SUB )); // TODO: this should be DELETED
+        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
             errorMessage.setText(MessageHandler.getMessage());
             MessageHandler.setMessage(null);
