@@ -55,8 +55,6 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
 		
 		HashMap<User,Integer> clientReportData =  (HashMap<User,Integer>) MessageHandler.getData();//get the data
 		

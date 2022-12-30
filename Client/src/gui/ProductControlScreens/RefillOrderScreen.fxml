@@ -1,65 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="400.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProductControlScreens.RefillOrderScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="520.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProductControlScreens.RefillOrderScreenController">
    <children>
-      <Button fx:id="goBackButton" layoutX="11.0" layoutY="409.0" mnemonicParsing="false" onMouseClicked="#backToMainScreen" text="back">
+      <Button fx:id="goBackButton" layoutX="11.0" layoutY="519.0" mnemonicParsing="false" onMouseClicked="#backToMainScreen" text="back">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="exitButton" layoutX="359.0" layoutY="11.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <ChoiceBox fx:id="machineToRefillChoiceBox" layoutX="119.0" layoutY="104.0" prefWidth="150.0" />
-      <Text layoutX="119.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose machine to refill">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
+      <Button fx:id="exitButton" layoutX="467.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
       <ImageView fitHeight="57.0" fitWidth="107.0" layoutX="12.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../logo.png" />
          </image>
       </ImageView>
-      <TextField fx:id="newAmountTextField" layoutX="163.0" layoutY="322.0" prefHeight="25.0" prefWidth="62.0" />
-      <Text fx:id="newAmountTXT" layoutX="138.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter new amount">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Text fx:id="chooseProductIDTXT" layoutX="121.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose product id to refill">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <ChoiceBox fx:id="chooseProductIDtoRefillChoiceBox" layoutX="120.0" layoutY="177.0" prefWidth="150.0" />
-      <Text layoutX="121.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Refill products" underline="true">
+      <Text layoutX="157.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assign refill orders" underline="true">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Button fx:id="updateButton" layoutX="163.0" layoutY="373.0" mnemonicParsing="false" text="update">
+      <Button fx:id="updateButton" layoutX="229.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#updateEmployeesInDataBase" text="update">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Text layoutX="120.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order ID: $ orderid" wrappingWidth="158.3984375">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Text layoutX="120.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orde was created: $ date" wrappingWidth="230.666015625">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
+      <TableView fx:id="requestTable" layoutX="13.0" layoutY="82.0" prefHeight="398.0" prefWidth="494.0">
+        <columns>
+          <TableColumn fx:id="orderidColumn" prefWidth="59.0" text="Order id" />
+          <TableColumn fx:id="productidColumn" prefWidth="67.0" text="product id" />
+            <TableColumn fx:id="machineidColumn" prefWidth="67.0" text="machine id" />
+            <TableColumn fx:id="creationDateColumn" text="creation date" />
+            <TableColumn fx:id="assignedEmployeeColumn" prefWidth="87.0" text="Employee ID" />
+            <TableColumn fx:id="amountAtRequestColumn" prefWidth="113.0" text="amount at request" />
+        </columns>
+      </TableView>
    </children>
 </Pane>

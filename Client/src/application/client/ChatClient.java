@@ -96,6 +96,12 @@ public class ChatClient extends AbstractClient
               break;
 
 
+          case "SUCCESSFULLY_ASSIGNED_EMPLOYEE_TO_REFILL_REQUEST":
+          case "ERROR_ASSIGNING_EMPLOYEE_TO_REFILL_REQUEST":
+          case "ERROR_UPDATING_MACHINE_AMOUNT":
+          case "ERROR_REMOVING_REFILL_ORDER":
+          case "SUCCESSFULLY_UPDATED_AMOUNT_IN_MACHINE":
+          case "ERROR_IMPORTING_REFILL_ORDERS":
           case "ERROR_GETTING_CLIENT_REPORT":
           case "PRODUCT_ADDED_SUCCESSFULLY":
           case "ERROR_ADDING_PRODUCT":
@@ -141,6 +147,7 @@ public class ChatClient extends AbstractClient
               break;
 
 
+          case "SUCCESSFULLY_IMPORTED_REFILL_ORDERS":
           case "SUCCESSFULLY_IMPORTED_CLIENT_REPORT":
           case "IMPORT_ALL_MACHINES_MONTHLY_REPORT_SUCCESSFUL":
           case "ERROR_IMPORTING_ORDER":
