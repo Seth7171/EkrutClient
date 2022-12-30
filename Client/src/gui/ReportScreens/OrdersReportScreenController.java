@@ -130,10 +130,11 @@ public class OrdersReportScreenController extends ScreenController implements In
 				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
 				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
 				strLocationOfWrost = ordrep.getMachineLocation();
-			}
+			}	
 			
 		}
-			
+		
+	//	OrdersChart.setBarGap(0);
 		OrdersChart.getData().addAll(ser1,ser2,ser3);
 		
 		//calculate data for who is the best area

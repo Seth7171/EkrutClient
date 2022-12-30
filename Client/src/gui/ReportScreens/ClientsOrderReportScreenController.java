@@ -19,16 +19,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 public class ClientsOrderReportScreenController extends ScreenController implements Initializable{
-	 @FXML
-	    private Button backButton;
-	 
+	  @FXML
+	  private Button backButton;
+	  
+	  @FXML
+	  private NumberAxis y;
+
 	  @FXML
 	  private Label DateChooseLabel;
 
@@ -39,28 +44,28 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 	  private BarChart<String, Integer> ClientChart;
 	  
 	  @FXML
-	  private Label avgPurchaseLabel;
+	  private Text avgPurchaseText;
 
 	  @FXML
-	  private Label leastOrdersClientIDLabel;
+	  private Text leastOrdersClientIDText;
 
 	  @FXML
-	  private Label leastOrdersClientNameLabel;
+	  private Text leastOrdersClientNameText;
 
 	  @FXML
-	  private Label leastOrdersClientTotalOrdersLabel;
+	  private Text leastOrdersClientTotalOrdersText;
 
 	  @FXML
-	  private Label mostOrdersClientIDLabel;
+	  private Text mostOrdersClientIDText;
 
 	  @FXML
-	  private Label mostOrdersClientNameLabel;
+	  private Text mostOrdersClientNameText;
 
 	  @FXML
-	  private Label mostOrdersClientTotalOrdersLabel;
+	  private Text mostOrdersClientTotalOrdersText;
 
 	  @FXML
-	  private Label totalPurchaseLabel;
+	  private Text totalPurchaseText;
 	    
     @FXML
     void ClickBackButton(MouseEvent event) {
@@ -82,7 +87,7 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		int totalOrders=0, totalClients=0, minOrder=9999,biggestOrder=0,topRange=0,tmpi=0,tmpj=9999999,range=0;
-		int numOfLines=0, columnRange=0,cnt=0;
+		int columnRange=0,cnt=0;
 		boolean prime=true;
 		String strMinOrder=null;
 		String strBiggestOrder=null;
@@ -118,7 +123,7 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 		for(int i=1; i<topRange/2; i++)//find the lowest  range between topRange multiplies number
 			 	for(int j=0; j<=topRange;j++)
 			 		if(i*j==(float)topRange)///// TODO: check it on my DB !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-			 			if(tmpj-tmpi>j-i) {tmpj=j; tmpi=i;}
+			 			if(tmpj-tmpi>j-i &&j-i>1 ) {tmpj=j; tmpi=i;}
 		 columnRange=tmpj-tmpi;
 	
 		 System.out.println("columnRange: " +columnRange );
@@ -134,18 +139,20 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 			 minOrder=minOrder+columnRange;
 			// columnRange=columnRange+minOrder;
 	    }
+		 ClientChart.setBarGap(0);
+		// ClientChart.setCategoryGap(20);
 		 ClientChart.getData().addAll(ser1);
 		 
 		//show analyze data on the screen
 		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);
-		mostOrdersClientIDLabel.setText("ID: " + bigUser.getId());
-		mostOrdersClientNameLabel.setText("Name: " + capitalLetter(bigUser.getFirstname()) + " " + capitalLetter(bigUser.getLastname()));
-		mostOrdersClientTotalOrdersLabel.setText("Total orders: " + clientReportData.get(bigUser));
-		leastOrdersClientIDLabel.setText("ID: " + lowUser.getId());
-		leastOrdersClientNameLabel.setText("Name: " + capitalLetter(lowUser.getFirstname()) + " " + capitalLetter(lowUser.getLastname()));
-		leastOrdersClientTotalOrdersLabel.setText("Total orders: " + clientReportData.get(lowUser));
-		totalPurchaseLabel.setText("Total Purchases: " + totalOrders);
-		avgPurchaseLabel.setText("Average Purchases per Client: " + totalOrders/totalClients + " (" + totalClients + " clients)");
+		mostOrdersClientIDText.setText("ID: " + bigUser.getId());
+		mostOrdersClientNameText.setText("Name: " + capitalLetter(bigUser.getFirstname()) + " " + capitalLetter(bigUser.getLastname()));
+		mostOrdersClientTotalOrdersText.setText("Total orders: " + clientReportData.get(bigUser));
+		leastOrdersClientIDText.setText("ID: " + lowUser.getId());
+		leastOrdersClientNameText.setText("Name: " + capitalLetter(lowUser.getFirstname()) + " " + capitalLetter(lowUser.getLastname()));
+		leastOrdersClientTotalOrdersText.setText("Total orders: " + clientReportData.get(lowUser));
+		totalPurchaseText.setText("Total Purchases: " + totalOrders);
+		avgPurchaseText.setText("Average Purchases per Client: " + totalOrders/totalClients + " (" + totalClients + " clients)");
 	}
 	
 	// return the string with first letter capital and all lowercase letters
