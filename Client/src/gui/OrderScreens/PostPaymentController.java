@@ -25,9 +25,13 @@ public class PostPaymentController extends ScreenController implements Initializ
     @FXML
     private Text orderNum;
     
+    @FXML
+    private Text machineNum;
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		orderNum.setText(ChatClient.currentOrder.getOrderID());
+		machineNum.setText(ChatClient.currentOrder.getMachineID());
 		
 	}
 
