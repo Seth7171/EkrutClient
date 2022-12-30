@@ -66,12 +66,18 @@
                               <Font name="System Bold" size="19.0" />
                            </font>
                         </Text>
-                        <Label layoutX="3.0" layoutY="57.5029296875" prefHeight="34.0" prefWidth="358.0" text="Please Choose a location to Pick Up from :">
+                        <Label layoutX="6.0" layoutY="57.5029296875" prefHeight="34.0" prefWidth="358.0" text="Please Choose a location to Pick Up from :">
                            <font>
                               <Font name="System Italic" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="360.0" layoutY="56.5029296875" prefHeight="42.0" prefWidth="295.0" />
+                        <ComboBox fx:id="location" layoutX="358.0" layoutY="57.0" prefHeight="42.0" prefWidth="111.0" promptText="Area" />
+                        <Label layoutX="2.0" layoutY="114.5029296875" prefHeight="34.0" prefWidth="358.0" text="Please Choose a machine to Pick Up from :">
+                           <font>
+                              <Font name="System Italic" size="19.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="machineID" layoutX="357.0" layoutY="114.0" prefHeight="42.0" prefWidth="112.0" promptText="MachineID" />
                      </children>
                   </Pane>
                </content>
