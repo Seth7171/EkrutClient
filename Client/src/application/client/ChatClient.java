@@ -100,6 +100,11 @@ public class ChatClient extends AbstractClient
         	  CustomerController.setCreditnumber(((String)message.getData()));
         	  break;
 
+          case "ERROR_UPDATING_FIRST_TIME_BUY_AS_SUB":
+          case "UPDATE_FIRST_TIME_AS_SUB_SUCCESSFUL":
+          case "ERROR_VERIFYING_CREDIT_CARD":
+          case "CREDIT_CARD_VERIFIED_SUCCESSFULLY":
+          case "ERROR_GETTING_CUSTOMER_DATA":
           case "SUCCESSFULLY_ASSIGNED_EMPLOYEE_TO_REFILL_REQUEST":
           case "ERROR_ASSIGNING_EMPLOYEE_TO_REFILL_REQUEST":
           case "ERROR_UPDATING_MACHINE_AMOUNT":
@@ -150,7 +155,7 @@ public class ChatClient extends AbstractClient
 //              //**********************************************************************
               break;
 
-
+          case "CUSTOMER_DATA_IMPORTED_SUCCESSFULLY":
           case "SUCCESSFULLY_IMPORTED_REFILL_ORDERS":
           case "SUCCESSFULLY_IMPORTED_CLIENT_REPORT":
           case "IMPORT_ALL_MACHINES_MONTHLY_REPORT_SUCCESSFUL":

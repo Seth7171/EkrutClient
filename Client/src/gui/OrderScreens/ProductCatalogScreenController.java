@@ -543,7 +543,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     void checkOut(MouseEvent event) {
         // Check if the cart is empty
         if (myCart.getItems().size() == 0) {
-        	super.alertHandler("Please add some products to your cart before CheackOut" , true);
+        	super.alertHandler("Please add some products to your cart before CheckOut" , true);
             return;
         }
         // Set the items in the rememberMyCart to the items in the current cart

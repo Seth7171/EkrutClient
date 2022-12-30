@@ -77,11 +77,14 @@ public class LogInScreenController extends ScreenController implements Initializ
 
 
         ArrayList<String> abcde = new ArrayList<>();
-        abcde.add("10");
-        abcde.add("2022");
+        abcde.add("316109115");
+        abcde.add("5326102323442109");
 
-        //ClientUI.chat.accept(new Message(null,MessageFromClient.UNKNOWN )); // TODO: this should be DELETED
-        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
+        Order order = new Order();
+
+
+        ClientUI.chat.accept(new Message("316109115",MessageFromClient.REQUEST_SET_FIRST_TIME_BUY_AS_SUB )); // TODO: this should be DELETED
+        //ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
             errorMessage.setText(MessageHandler.getMessage());
             MessageHandler.setMessage(null);

@@ -18,12 +18,18 @@ public enum MessageFromServer implements Serializable {
     ERROR_ADDING_PRODUCT,                                   // V
     ERROR_IMPORTING_ALL_MACHINE_PRODUCTS,                   // V
     MACHINE_PRODUCT_UPDATED_SUCCESSFULLY,                   // V
+    ERROR_UPDATING_FIRST_TIME_BUY_AS_SUB,                   // TODO
+    UPDATE_FIRST_TIME_AS_SUB_SUCCESSFUL,                    // TODO
     ERROR_UPDATING_MACHINE_AMOUNT,                          // V
     SUCCESSFULLY_UPDATED_AMOUNT_IN_MACHINE,                 // V
     ERROR_REMOVING_REFILL_ORDER,                            // V
     IMPORT_WAREHOUSE_PRODUCTS_SUCCESSFUL,   // V
-    SUCCESSFULLY_ASSIGNED_EMPLOYEE_TO_REFILL_REQUEST,       // TODO
-    ERROR_ASSIGNING_EMPLOYEE_TO_REFILL_REQUEST,             // TODO
+    SUCCESSFULLY_ASSIGNED_EMPLOYEE_TO_REFILL_REQUEST,       // V
+    ERROR_ASSIGNING_EMPLOYEE_TO_REFILL_REQUEST,             // V
+    ERROR_GETTING_CUSTOMER_DATA,                            // V
+    CUSTOMER_DATA_IMPORTED_SUCCESSFULLY,                    // V
+    CREDIT_CARD_VERIFIED_SUCCESSFULLY,                      // V
+    ERROR_VERIFYING_CREDIT_CARD,                            // V
     IMPORT_MACHINE_LOCATIONS_SUCCESSFUL,    // V
     SUCCESSFULLY_IMPORTED_CLIENT_REPORT,    // V
     IMPORT_INVENTORY_REPORT_SUCCESSFUL,     // V
