@@ -17,7 +17,7 @@
             <Image url="@../logo.png" />
          </image>
       </ImageView>
-      <BarChart fx:id="OrdersChart" layoutX="435.0" layoutY="101.0" prefHeight="442.0" prefWidth="508.0">
+      <BarChart fx:id="OrdersChart" barGap="0" categoryGap="0" layoutX="435.0" layoutY="101.0" prefHeight="442.0" prefWidth="508.0">
         <xAxis>
           <CategoryAxis label="Machine ID" side="BOTTOM" fx:id="x" />
         </xAxis>
@@ -29,7 +29,7 @@
             </NumberAxis>
         </yAxis>
       </BarChart>
-      <Label layoutX="416.0" layoutY="37.0" styleClass="text-field" text="Orders Report" underline="true">
+      <Label layoutX="416.0" layoutY="37.0" text="Orders Report" underline="true">
          <font>
             <Font size="20.0" />
          </font>
