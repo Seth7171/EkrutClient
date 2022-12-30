@@ -136,7 +136,7 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 					 amount++;
 				 if(amount>upperBound)upperBound=amount;
 			 }
-			 ser1.getData().add(new XYChart.Data<String, Integer>(Integer.toString(minOrder) + "-" + Integer.toString(minOrder+columnRange-1),amount));
+			 ser1.getData().add(new XYChart.Data<String, Integer>(Integer.toString(minOrder) + "-" + Integer.toString(minOrder+columnRange-1),amount));	
 			 minOrder=minOrder+columnRange;
 	     }
 		 
