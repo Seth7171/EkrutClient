@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -86,6 +87,7 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		final Text dataText ;
 		int totalOrders=0, totalClients=0, minOrder=9999,biggestOrder=0,topRange=0,tmpi=0,tmpj=9999999,range=0;
 		int columnRange=0,cnt=0, upperBound=0;
 		boolean prime=true;
@@ -139,8 +141,7 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 			 ser1.getData().add(new XYChart.Data<String, Integer>(Integer.toString(minOrder) + "-" + Integer.toString(minOrder+columnRange-1),amount));	
 			 minOrder=minOrder+columnRange;
 	     }
-		 
-		 y.setUpperBound(upperBound+=5);
+	     y.setUpperBound(upperBound+=5);
 		 ClientChart.getData().addAll(ser1);
 		 
 		//show analyze data on the screen
