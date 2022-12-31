@@ -113,7 +113,6 @@ public class LogInScreenController extends ScreenController implements Initializ
 
                 case"ceo":
                     root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
-
                     break;
 
                 case "operations":

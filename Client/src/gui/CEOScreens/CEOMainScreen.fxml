@@ -67,8 +67,9 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="120.0" layoutY="53.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #bfbfbf;" text="New Order" />
-                        <Button layoutX="120.0" layoutY="128.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Grab Order" />
+                        <Button fx:id="newOrderButton" layoutX="120.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#openCustomerScreen" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #bfbfbf;" text="New Order" />
+                        <Button fx:id="grabOrderButton" layoutX="120.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#openGrabOrderScreen" prefHeight="30.0" prefWidth="160.0" text="Grab Order" />
+                        <Text layoutX="291.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="should be customer or buy items!!" wrappingWidth="118.0" />
                      </children>
                   </AnchorPane>
                </content>

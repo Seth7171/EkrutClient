@@ -1,6 +1,7 @@
 package gui.CEOScreens;
 
 import application.client.ClientUI;
+import application.client.MessageHandler;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
@@ -25,6 +26,12 @@ public class CEOMainScreenController extends ScreenController implements Initial
 
     @FXML
     private Button logOutButton;
+
+    @FXML
+    private Button grabOrderButton;
+
+    @FXML
+    private Button newOrderButton;
 
     @FXML
     private Text welcomeBackText;
@@ -82,6 +89,32 @@ public class CEOMainScreenController extends ScreenController implements Initial
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/gui/ProductControlScreens/RefillOrderScreen.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        super.switchScreen(event, root);
+    }
+
+    @FXML
+    void openCustomerScreen(MouseEvent event) {
+        Parent root = null;
+        try {
+            ClientUI.chat.accept(new Message(UserController.getCurrentuser().getId(), MessageFromClient.REQUEST_CHECK_IF_SUB));
+            if (MessageHandler.getMessage().contains("not"))
+                root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
+            else
+                root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/DeliveryOprtionsScreen.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        super.switchScreen(event, root);
+    }
+
+    @FXML
+    void openGrabOrderScreen(MouseEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/GrabOrderScreen.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -100,6 +100,11 @@ public class ChatClient extends AbstractClient
         	  CustomerController.setCreditnumber(((String)message.getData()));
         	  break;
 
+
+          case "CHECK_IF_CUSTOMER_IS_SUB_SUCCESSFUL":
+          case "ERROR_CHECKING_IF_CUSTOMER_IS_SUB":
+          case "ADD_NEW_ORDER_SUCCESSFUL":
+          case "ERROR_ADDING_NEW_ORDER":
           case "ERROR_UPDATING_FIRST_TIME_BUY_AS_SUB":
           case "UPDATE_FIRST_TIME_AS_SUB_SUCCESSFUL":
           case "ERROR_VERIFYING_CREDIT_CARD":

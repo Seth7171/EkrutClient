@@ -9,6 +9,8 @@ import java.util.ResourceBundle;
 import application.client.ChatClient;
 import application.client.ClientUI;
 import application.client.MessageHandler;
+import application.user.CustomerController;
+import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import gui.ScreenController;
@@ -80,11 +82,36 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
     void goBack(MouseEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));
+            switch (UserController.getCurrentuser().getDepartment()) {
+                case "subscriber":
+                case "customer":
+                    CustomerController.setCurrentCustomer(UserController.getCurrentuser());
+                    root = FXMLLoader.load(getClass().getResource("CustomerMainScreen.fxml"));
+                    super.switchScreenWithTimerCustomersOnly(event, root);
+                    break;
+
+                case "customer_service":
+                    root = FXMLLoader.load(getClass().getResource("/gui/CustomerServiceEmployeeScreens/CustomerServiceEmployeeScreen.fxml"));
+                    super.switchScreen(event, root);
+                    break;
+
+                case"ceo":
+                    root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
+                    super.switchScreen(event, root);
+                    break;
+
+                case "operations":
+                    root = FXMLLoader.load(getClass().getResource("/gui/OperationsEmployeeScreens/operationsEmployeeMainScreen.fxml"));
+                    super.switchScreen(event, root);
+                    break;
+
+                default:
+                    System.out.println("Unknown!");
+                    // TODO: maybe add UnknownScreenException later??
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreenWithTimerCustomersOnly(event, root);        
     }
     
 	@FXML
