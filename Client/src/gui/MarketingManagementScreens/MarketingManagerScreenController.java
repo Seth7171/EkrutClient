@@ -5,7 +5,9 @@ import java.util.ResourceBundle;
 
 import gui.ScreenController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -26,12 +28,13 @@ public class MarketingManagerScreenController extends ScreenController implement
 
     @FXML
     void existingDeals(MouseEvent event) {// switch to ManagerDealsScreen.fxml
-    	
-   	
-//    	 catch (IOException exception){
-//			 exception.printStackTrace();
-//		 }
-//		 super.switchScreen(event, root);
+         Parent root = null;
+         try {
+             root = FXMLLoader.load(getClass().getResource("ManagerDealsScreen.fxml"));
+         } catch (IOException e) {
+             throw new RuntimeException(e);
+         }
+         super.switchScreen(event, root);
     }
 
     @FXML
@@ -48,6 +51,7 @@ public class MarketingManagerScreenController extends ScreenController implement
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		System.out.println("dsdsds");
 		
 	}
 

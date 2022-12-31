@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import common.orders.Product;
 import gui.ScreenController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class EmployeeDealsScreenController extends ScreenController implements Initializable {
@@ -30,7 +34,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
 
     @FXML
     private TableColumn<String, String> discountColumn;
-
+    
     @FXML
     private Button exitButton;
 
@@ -40,6 +44,8 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     @FXML
     private TableView<String> viewAllDeals;
 
+ 
+    
     @FXML
     void exit(MouseEvent event) {
     	super.closeProgram(event, true);
@@ -59,7 +65,12 @@ public class EmployeeDealsScreenController extends ScreenController implements I
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+	
 		
+	}
+	public void loadProducts() {
+		
+	
 	}
 
 }
