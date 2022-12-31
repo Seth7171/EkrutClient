@@ -38,8 +38,8 @@ public class CEOMainScreenController extends ScreenController implements Initial
 
     @FXML
     private Button viewRefilOrdersButton;
-
-
+    @FXML
+    private Button manageUsersButton;
     @FXML
     private Button viewReportsButton;
 
@@ -57,6 +57,17 @@ public class CEOMainScreenController extends ScreenController implements Initial
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/LogInScreen.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        super.switchScreen(event, root);
+    }
+
+    @FXML
+    void openUserManagementScreen(MouseEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/UserManagementScreens/userManagementScreen.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

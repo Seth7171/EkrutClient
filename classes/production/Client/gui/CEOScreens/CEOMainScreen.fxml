@@ -33,7 +33,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="227.0" layoutY="29.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="Aprrove Users" />
+                        <Button fx:id="manageUsersButton" layoutX="227.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#openUserManagementScreen" prefHeight="30.0" prefWidth="130.0" text="Manage Users" />
                         <Button layoutX="227.0" layoutY="85.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="View System Alerts" />
                         <Button fx:id="viewReportsButton" layoutX="36.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#openViewReportsScreen" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #bfbfbf;" text="View monthly reports" />
                         <Button fx:id="manageProductsButton" layoutX="36.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#openManageProductsScreen" prefHeight="30.0" prefWidth="130.0" text="Manage products" />
