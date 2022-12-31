@@ -24,6 +24,9 @@ public class ManagerDealsScreenController extends ScreenController implements In
 
 	    @FXML
 	    private TableColumn<String, String> dealNameColumn;
+	    
+	    @FXML
+	    private TableColumn<String, String> areaColumn;
 
 	    @FXML
 	    private TableColumn<String, String> descriptionColumn;
@@ -35,7 +38,8 @@ public class ManagerDealsScreenController extends ScreenController implements In
 	    private Button exitButton;
 	    
 	    @FXML
-	    private TableColumn<String, String> TypeColumn;
+	    private TableColumn<String, String> typeColumn;
+	    
 
 	    @FXML
 	    private TableColumn<String, String> statusColumn;
@@ -51,9 +55,9 @@ public class ManagerDealsScreenController extends ScreenController implements In
 //	    		new String("Subscribe sale ","20%","Congratulation for register as Subscriber get 20% off on the first order ","ALL","Activated")
 //	    		);
 	    
-    private ObservableList<String> observablesubs = FXCollections.observableArrayList();
+//  private ObservableList<String> observablesubs = FXCollections.observableArrayList();
     
-    
+    //TODO: in t 
     @FXML
     void exit(MouseEvent event) {
     	super.closeProgram(event, true);
@@ -70,15 +74,15 @@ public class ManagerDealsScreenController extends ScreenController implements In
         super.switchScreen(event, root);
     }
     
-    public void loadProducts() {//add deals manually!! -->> Deal Name  | Discount | Description | Type | Status
+    public void loadProducts() {//add deals manually!! -->> Deal Name  | Discount | Description | Type |Area | Status
     	viewAllDeals.getItems().clear();
    
     	//examples: 
-    	//1) -->  "Night time sale","10%","Special offer for late night students from 20pm to 5am ","ALL","Activated"
-    	//2) -->  "Holiday sale","25%","Going on a holiday trip ?, get a 25% discount on all products","ALL","NOT Activated"
-    	//3) -->  "Summer sale","15%","Summer has already arrived - buy something cold to drink","DRINKS"," NOT Activated"
-    	//4) -->  "World Cup sale","10%","watch France vs Argentina finals and get 10% off on SNACKS", "SNACKS" , "NOT Activated" 
-    	//5) -->  "Subscribe sale ","20%","Congratulation for register as Subscriber get 20% off on the first order ","ALL","Activated"
+    	//1) -->  "Night time sale","10%","Special offer for late night students from 20pm to 5am ","ALL", "ALL", "Activated"
+    	//2) -->  "Holiday sale","25%","Going on a holiday trip ?, get a 25% discount on all products","ALL","North","NOT Activated"
+    	//3) -->  "Summer sale","15%","Summer has already arrived - buy something cold to drink","DRINKS","South"," NOT Activated"
+    	//4) -->  "World Cup sale","10%","watch France vs Argentina finals and get 10% off on SNACKS", "SNACKS" ,"UAE", "NOT Activated" 
+    	//5) -->  "Subscribe sale ","20%","Congratulation for register as Subscriber get 20% off on the first order ","ALL","ALL","Activated"
           
           
 		
@@ -89,7 +93,8 @@ public class ManagerDealsScreenController extends ScreenController implements In
 		dealNameColumn.setCellValueFactory(new PropertyValueFactory<String,String>("Deal name"));
 		discountColumn.setCellValueFactory(new PropertyValueFactory<String,String>("Discount"));
 		descriptionColumn.setCellValueFactory(new PropertyValueFactory<String,String>("Description"));
-		TypeColumn.setCellValueFactory(new PropertyValueFactory<String,String>("Type"));
+		typeColumn.setCellValueFactory(new PropertyValueFactory<String,String>("Type"));
+		areaColumn.setCellValueFactory(new PropertyValueFactory<String,String>("Area"));
 		statusColumn.setCellValueFactory(new PropertyValueFactory<String,String>("Status"));
 	}
 
