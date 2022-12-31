@@ -523,19 +523,42 @@ public class ProductCatalogScreenController extends ScreenController implements 
         Parent root = null;
         // Try to load the user main screen scene
         try {
-        	if (UserController.getCurrentuser().getDepartment().equals("customer")) {
-        		root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));
-        	}
-        	else {
-        		root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/DeliveryOprtionsScreen.fxml"));;
-        	}
+            switch (UserController.getCurrentuser().getDepartment()) {
+                case "customer":
+                    CustomerController.setCurrentCustomer(UserController.getCurrentuser());
+                    root = FXMLLoader.load(getClass().getResource("CustomerMainScreen.fxml"));
+                    super.switchScreenWithTimerCustomersOnly(event, root);
+                    break;
+
+                case "subscriber":
+                    root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/DeliveryOprtionsScreen.fxml"));;
+                    super.switchScreenWithTimerCustomersOnly(event, root);
+                    break;
+
+                case "customer_service":
+                    root = FXMLLoader.load(getClass().getResource("/gui/CustomerServiceEmployeeScreens/CustomerServiceEmployeeScreen.fxml"));
+                    super.switchScreen(event, root);
+                    break;
+
+                case"ceo":
+                    root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
+                    super.switchScreen(event, root);
+                    break;
+
+                case "operations":
+                    root = FXMLLoader.load(getClass().getResource("/gui/OperationsEmployeeScreens/operationsEmployeeMainScreen.fxml"));
+                    super.switchScreen(event, root);
+                    break;
+
+                default:
+                    System.out.println("Unknown!");
+                    // TODO: maybe add UnknownScreenException later??
+            }
         } 
         // Catch any exceptions that may occur
         catch (IOException e) {
             e.printStackTrace();
         }
-        // Change to the user main screen scene
-        super.switchScreenWithTimerCustomersOnly(event, root);        
     }
 
 	
