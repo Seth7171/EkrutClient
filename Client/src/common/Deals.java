@@ -1,11 +1,8 @@
 package common;
 import java.io.Serializable;
 
-//import javafx.collections.ObservableList;
-//import javafx.scene.control.ComboBox;
-
-//import javafx.beans.property.SimpleIntegerProperty;
-//import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 
 
 public class Deals implements Serializable {
@@ -15,16 +12,16 @@ public class Deals implements Serializable {
     private String Description;
     private String Type; //  Drink | SNACKS | ALL
     private String Area;  // North | South | UAE
-    private String Status; //Approved | Not Approved
+    private ComboBox Status; //Approved | Not Approved
  
 
-    public Deals(String DealName,int Discount,String Description,String Type,String Area, String Status) {
+    public Deals(String DealName,int Discount,String Description,String Type,String Area ,ObservableList data) {
     	this.DealName=DealName;
     	this.Discount=Discount;
     	this.Description=Description;
     	this.Type=Type;
     	this.Area=Area;
-    	this.Status= Status;
+    	this.Status = new ComboBox(data);
       }
 
     public String getDealName() {
@@ -67,11 +64,11 @@ public class Deals implements Serializable {
         this.Area=Area;
     }
 
-    public String getStatus() {
+    public ComboBox getStatus() {
         return Status;
     }
 
-    public void setStatus(String Status) {
+    public void setStatus(ComboBox Status) {
         this.Status =Status;
     }
 
