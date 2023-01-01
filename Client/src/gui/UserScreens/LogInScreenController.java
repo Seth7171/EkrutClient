@@ -124,7 +124,7 @@ public class LogInScreenController extends ScreenController implements Initializ
                     break;
                     
                 case "marketing_employee":
-                	  root = FXMLLoader.load(getClass().getResource("/gui/MarketingManagementScreens/MarketingManagerScreen.fxml"));
+                	  root = FXMLLoader.load(getClass().getResource("/gui/MarketingManagementScreens/MarketingEmployeeScreen.fxml"));
                       break;
                       
                 default:

@@ -7,16 +7,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="873.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManagerDealsScreensController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="873.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MarketingManagementScreens.ManagerDealsScreenController">
    <children>
-      <TableView fx:id="viewAllDeals" layoutX="3.0" layoutY="69.0" prefHeight="463.0" prefWidth="865.0">
+      <TableView fx:id="viewAllDeals" editable="true" layoutX="3.0" layoutY="69.0" prefHeight="301.0" prefWidth="865.0">
          <columns>
             <TableColumn fx:id="dealNameColumn" prefWidth="92.0" text="Deal name" />
-            <TableColumn fx:id="discountColumn" prefWidth="95.0" text="Discount" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="267.0" text="Description" />
-            <TableColumn fx:id="TypeColumn" prefWidth="145.0" text="Type" />
-            <TableColumn fx:id="areaColumn" prefWidth="110.0" text="Area" />
-            <TableColumn fx:id="statusColumn" prefWidth="163.0" text="Status" />
+            <TableColumn fx:id="discountColumn" prefWidth="70.0" text="\%Discount" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="419.3333435058594" text="Description" />
+            <TableColumn fx:id="typeColumn" prefWidth="90.0" text="Type" />
+            <TableColumn fx:id="areaColumn" prefWidth="111.3333740234375" text="Area" />
+            <TableColumn fx:id="statusColumn" text="Status" />
          </columns>
       </TableView>
       <Text layoutX="380.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deals" wrappingWidth="97.79296875">
