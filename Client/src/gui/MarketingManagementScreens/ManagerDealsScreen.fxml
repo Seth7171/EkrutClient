@@ -13,9 +13,9 @@
          <columns>
             <TableColumn fx:id="dealNameColumn" prefWidth="92.0" text="Deal name" />
             <TableColumn fx:id="discountColumn" prefWidth="70.0" text="\%Discount" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="444.0000305175781" text="Description" />
-            <TableColumn fx:id="typeColumn" prefWidth="74.66668701171875" text="Type" />
-            <TableColumn fx:id="areaColumn" prefWidth="55.33331298828125" text="Area" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="380.0000305175781" text="Description" />
+            <TableColumn fx:id="typeColumn" prefWidth="114.6666259765625" text="Type" />
+            <TableColumn fx:id="areaColumn" prefWidth="80.666748046875" text="Area" />
             <TableColumn fx:id="statusColumn" prefWidth="129.3333740234375" text="Status" />
          </columns>
       </TableView>
@@ -30,5 +30,6 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <Button fx:id="apply" layoutX="328.0" layoutY="417.0" mnemonicParsing="false" onMouseClicked="#Apply" text="Apply" />
    </children>
 </AnchorPane>
