@@ -1,5 +1,5 @@
 .root{
-	-fx-background-image: url("bckgrnd.png");
+	-fx-background-image: url("backgrnd1.png");
 	-fx-background-size: cover;
 }
 
@@ -30,6 +30,10 @@
 /*	-fx-pref-width: 50;*/
 /*	-fx-pref-height: 30;*/
 /*}*/
+
+.tab-pane{
+	-fx-focus-color: transparent;
+}
 /********************************************************************************************/
 
 
@@ -48,7 +52,7 @@
 
 /****************************button style****************************************************/
 .button{
-	-fx-background-color: #bfbfbf;
+	-fx-background-color: rgba(191, 191, 191, 0.45);
 }
 .ExitButton{
 	-fx-background-image: url("exit.png");
@@ -80,12 +84,24 @@
 /*}*/
 /********************************************************************************************/
 
-
 /****************************combo box style*************************************************/
 .choice-box{
 	-fx-text-box-border: transparent;
-	-fx-background-color: #ffffff;
+	-fx-background-color: #f3f3f3;
 	-fx-text-fill: black;
 	-fx-prompt-text-fill: #707070;
 }
 /********************************************************************************************/
+
+/****************************alert **********************************************************/
+.alert .content .label{
+	-fx-background-color: #efd1c0;
+
+}
+
+/********************************************************************************************/
+
+.tab-background{
+	-fx-background-color: rgba(255, 255, 255, 0.45);
+
+}
