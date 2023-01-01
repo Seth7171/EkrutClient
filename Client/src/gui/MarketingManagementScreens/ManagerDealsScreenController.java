@@ -84,11 +84,11 @@ public class ManagerDealsScreenController extends ScreenController implements In
     
     ObservableList<Deals> observablesubs= FXCollections.observableArrayList(
 			 
-			 new Deals("Night time sale",10,"Special offer for late night students from 20pm to 5am ","ALL","ALL","Approved"),
-	    	 new Deals("Holiday sale",25,"Going on a holiday trip ?, get a 25% discount on all products","ALL","North","Approved"),
-	    	 new Deals("Summer sale",15,"Summer has already arrived - buy something cold to drink","DRINKS","South","Approved"),
-	    	 new Deals("World Cup sale",10,"watch France vs Argentina finals and get 10% off on SNACKS", "SNACKS" ,"UAE","Approved"),
-	    	 new Deals("Subscribe sale ",20,"Congratulation for register as Subscriber get 20% off on the first order ","ALL","ALL","Approved"));
+			 new Deals("Night time sale",10,"Special offer for late night students from 20pm to 5am ","ALL","ALL",FXCollections.observableArrayList("Approved","Not Aproved")),
+	    	 new Deals("Holiday sale",25,"Going on a holiday trip ?, get a 25% discount on all products","ALL","North",FXCollections.observableArrayList("Approved","Not Aproved")),
+	    	 new Deals("Summer sale",15,"Summer has already arrived - buy something cold to drink","DRINKS","South",FXCollections.observableArrayList("Approved","Not Aproved")),
+	    	 new Deals("World Cup sale",10,"watch France vs Argentina finals and get 10% off on SNACKS", "SNACKS" ,"UAE",FXCollections.observableArrayList("Approved","Not Aproved")),
+	    	 new Deals("Subscribe sale ",20,"Congratulation for register as Subscriber get 20% off on the first order ","ALL","ALL",FXCollections.observableArrayList("Approved","Not Aproved")));
 	    	
     
     

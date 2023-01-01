@@ -13,10 +13,10 @@
          <columns>
             <TableColumn fx:id="dealNameColumn" prefWidth="92.0" text="Deal name" />
             <TableColumn fx:id="discountColumn" prefWidth="70.0" text="\%Discount" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="419.3333435058594" text="Description" />
-            <TableColumn fx:id="typeColumn" prefWidth="90.0" text="Type" />
-            <TableColumn fx:id="areaColumn" prefWidth="111.3333740234375" text="Area" />
-            <TableColumn fx:id="statusColumn" text="Status" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="444.0000305175781" text="Description" />
+            <TableColumn fx:id="typeColumn" prefWidth="74.66668701171875" text="Type" />
+            <TableColumn fx:id="areaColumn" prefWidth="55.33331298828125" text="Area" />
+            <TableColumn fx:id="statusColumn" prefWidth="129.3333740234375" text="Status" />
          </columns>
       </TableView>
       <Text layoutX="380.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deals" wrappingWidth="97.79296875">
