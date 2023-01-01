@@ -28,7 +28,7 @@ public class MarketingManagerScreenController extends ScreenController implement
 
     @FXML
     void existingDeals(MouseEvent event) {// switch to ManagerDealsScreen.fxml
-         Parent root = null;
+    	 Parent root = null;
          try {
              root = FXMLLoader.load(getClass().getResource("ManagerDealsScreen.fxml"));
          } catch (IOException e) {
