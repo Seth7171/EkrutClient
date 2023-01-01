@@ -11,9 +11,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CEOScreens.CEOMainScreenController">
    <children>
-      <Text fx:id="welcomeBackText" layoutX="51.0" layoutY="88.0" stroke="#f7f3f3" strokeType="OUTSIDE" strokeWidth="2.0" text="Welcome CEO $name!" textAlignment="CENTER" underline="true" wrappingWidth="297.4000244140625">
+      <Text fx:id="welcomeBackText" layoutX="51.0" layoutY="88.0" stroke="#f7f3f3" strokeType="OUTSIDE" strokeWidth="2.0" text="Welcome back $name!" textAlignment="CENTER" underline="true" wrappingWidth="297.4000244140625">
          <font>
-            <Font size="25.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Text>
       <Button fx:id="logOutButton" alignment="CENTER" layoutX="10.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="27.0" prefWidth="69.0" style="-fx-background-color: #bfbfbf;" text="Log Out">
@@ -31,45 +31,68 @@
          <tabs>
             <Tab text="Area Manager">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tab-background">
                      <children>
-                        <Button fx:id="manageUsersButton" layoutX="227.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#openUserManagementScreen" prefHeight="30.0" prefWidth="130.0" text="Manage Users" />
-                        <Button layoutX="227.0" layoutY="85.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="View System Alerts" />
-                        <Button fx:id="viewReportsButton" layoutX="36.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#openViewReportsScreen" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #bfbfbf;" text="View monthly reports" />
-                        <Button fx:id="manageProductsButton" layoutX="36.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#openManageProductsScreen" prefHeight="30.0" prefWidth="130.0" text="Manage products" />
-                        <Button layoutX="227.0" layoutY="141.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="View/Send Messages" />
-                        <Button fx:id="viewRefilOrdersButton" layoutX="36.0" layoutY="141.0" mnemonicParsing="false" onMouseClicked="#openRefilOrdersScreen" prefHeight="30.0" prefWidth="130.0" text="view refill orders" />
+                        <Button fx:id="manageUsersButton" layoutX="217.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#openUserManagementScreen" prefHeight="30.0" prefWidth="151.0" text="Manage Users">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                        <Button layoutX="217.0" layoutY="85.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="151.0" text="View System Alerts">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                        <Button fx:id="viewReportsButton" layoutX="25.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#openViewReportsScreen" prefHeight="30.0" prefWidth="151.0" text="View monthly reports">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                        <Button fx:id="manageProductsButton" layoutX="25.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#openManageProductsScreen" prefHeight="30.0" prefWidth="151.0" text="Manage products">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                        <Button layoutX="217.0" layoutY="141.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="151.0" text="View/Send Messages">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                        <Button fx:id="viewRefilOrdersButton" layoutX="25.0" layoutY="141.0" mnemonicParsing="false" onMouseClicked="#openRefilOrdersScreen" prefHeight="30.0" prefWidth="151.0" text="view refill orders">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
             <Tab text="Marketing Department">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tab-background">
                      <children>
-                        <Button layoutX="120.0" layoutY="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #bfbfbf;" text="Create Sale" />
-                        <Button layoutX="120.0" layoutY="111.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Start Sale" />
+                        <Button layoutX="133.0" layoutY="46.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #bfbfbf;" text="Create Sale">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                        <Button layoutX="133.0" layoutY="112.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" text="Start Sale">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
             <Tab text="Employee">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tab-background">
                      <children>
-                        <Button layoutX="111.0" layoutY="34.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #bfbfbf;" text="View Product Quantity" />
-                        <Button layoutX="111.0" layoutY="102.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="View Messages" />
+                        <Button layoutX="133.0" layoutY="46.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #bfbfbf;" text="View Product Quantity" />
+                        <Button layoutX="133.0" layoutY="112.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" text="View Messages" />
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Subscriber">
+            <Tab text="customer">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tab-background">
                      <children>
-                        <Button fx:id="newOrderButton" layoutX="120.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#openCustomerScreen" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #bfbfbf;" text="New Order" />
-                        <Button fx:id="grabOrderButton" layoutX="120.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#openGrabOrderScreen" prefHeight="30.0" prefWidth="160.0" text="Grab Order" />
-                        <Text layoutX="291.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="should be customer or buy items!!" wrappingWidth="118.0" />
+                        <Button fx:id="newOrderButton" layoutX="133.0" layoutY="46.0" mnemonicParsing="false" onMouseClicked="#openCustomerScreen" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #bfbfbf;" text="New Order" />
+                        <Button fx:id="grabOrderButton" layoutX="133.0" layoutY="112.0" mnemonicParsing="false" onMouseClicked="#openGrabOrderScreen" prefHeight="30.0" prefWidth="135.0" text="Grab Order" />
                      </children>
                   </AnchorPane>
                </content>

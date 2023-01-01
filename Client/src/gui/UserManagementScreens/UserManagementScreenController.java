@@ -1,18 +1,29 @@
 package gui.UserManagementScreens;
 
+import application.client.ClientUI;
+import application.client.MessageHandler;
+import application.user.CustomerController;
 import application.user.UserController;
+import common.connectivity.Message;
+import common.connectivity.MessageFromClient;
 import common.connectivity.User;
 import gui.ScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ChoiceBoxTableCell;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
+import javafx.util.converter.IntegerStringConverter;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -20,36 +31,51 @@ import java.util.ResourceBundle;
 
 public class UserManagementScreenController extends ScreenController implements Initializable {
     @FXML
-    private TableView<User> UserManagementTable;
+    private TableView<UserRow> UserManagementTable;
     @FXML
-    private TableColumn<User, String> firstNameColumn;
+    private TableColumn<UserRow, String> firstNameColumn;
     @FXML
-    private TableColumn<User, String> LastNameColumn;
+    private TableColumn<UserRow, String> LastNameColumn;
     @FXML
-    private TableColumn<User, String> idColumn;
+    private TableColumn<UserRow, String> idColumn;
     @FXML
-    private TableColumn<User, String> statusColumn;
-
+    private TableColumn<UserRow, ChoiceBox> statusColumn;
     @FXML
     private Button backButton;
     @FXML
     private Button exitButton;
     @FXML
     private Button updateButton;
-    public static ObservableList<User> userList;
-    ArrayList<User> usersToUpdate;
+    @FXML
+    private Button revertChangesButton;
+    public static ObservableList<UserRow> userList;
+    ArrayList<UserRow> usersToUpdate;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usersToUpdate = new ArrayList<>();
         initCols();
-        getUsers();
         loadUsersToTable();
     }
 
     private void loadUsersToTable() {
         userList = FXCollections.observableArrayList();
-        userList.add(UserController.getCurrentuser());
+        if (!userList.isEmpty())
+            userList.clear();
+
+        ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_CUSTOMERS_FROM_USER_TABLE));
+        for (User user : (ArrayList<User>) MessageHandler.getData()){
+            UserRow userRow = new UserRow();
+            userRow.setFirstname(user.getFirstname());
+            userRow.setLastname(user.getLastname());
+            userRow.setId(user.getId());
+
+            ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("approved", "not approved", "frozen"));
+            status.setMinWidth(95);
+            status.setValue(user.getStatus());
+            userRow.setStatus(status);
+            userList.add(userRow);
+        }
         UserManagementTable.setItems(userList);
     }
 
@@ -63,56 +89,90 @@ public class UserManagementScreenController extends ScreenController implements 
         // id column column
         idColumn.setCellValueFactory        (new PropertyValueFactory<>("id"));
 
-        // TODO: fix it!!!!
+        // status column
         statusColumn.setCellValueFactory    (new PropertyValueFactory<>("status"));
-        ChoiceBox <String> choiceBox = new ChoiceBox<>(FXCollections.observableArrayList());
-        statusColumn.setCellFactory(ChoiceBoxTableCell.forTableColumn());
-        //    statusColumn.setOnEditCommit       (event -> {
-//            event.getTableView().getItems().get(event.getTablePosition().getRow()));
-//            checkAndReplace(event.getTableView().getItems().get(event.getTablePosition().getRow()));
-//        });
-        // TODO: /////////////////////////////////////////////////////////////////////////////
     }
 
-    private void getUsers() {
-        // todo: request users from database
-        // todo: add users to userList
+    @FXML
+    void resetChanges(MouseEvent event) {
+        loadUsersToTable();
     }
-
-    private void addDataToChangesList(){
-        // todo: add data to list
-    }
-
 
     @FXML
     void exit(MouseEvent event) {
-        usersToUpdate.add(UserController.getCurrentuser());
-        if (usersToUpdate.isEmpty())
-            super.closeProgram(event, true);
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/Stylesheet.css").toExternalForm()); // todo: fix alert appearance...
-        alert.getDialogPane().getStyleClass().add("alert");
-        alert.setTitle("Exit Confirmation");
-        alert.setHeaderText("Are you sure you want to exit?\n All changes will be lost.");
-
-        ButtonType buttonTypeYes = new ButtonType("Yes, I'm sure!");
-        ButtonType buttonTypeNo = new ButtonType("Not sure...");
-
-        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeYes){
-            super.closeProgram(event, true);
-        }
+        super.closeProgram(event, true);
     }
 
     @FXML
     void goBack(MouseEvent event) {
+        Parent root = null;
+        try {
+            switch (UserController.getCurrentuser().getDepartment()) {
+                case "customer_service":
+                    root = FXMLLoader.load(getClass().getResource("/gui/CustomerServiceEmployeeScreens/CustomerServiceEmployeeScreen.fxml"));
+                    break;
 
+                case"ceo":
+                    root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
+                    break;
+
+                default:
+                    System.out.println("Unknown!");
+                    // TODO: maybe add UnknownScreenException later??
+            }
+            super.switchScreen(event, root);
+        }
+        // Catch any exceptions that may occur
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void updateDataBase(MouseEvent event) {
-
+        ArrayList<User> users = new ArrayList<>();
+        for (UserRow user : userList){
+            User userToList = new User();
+            userToList.setFirstname(user.getFirstname());
+            userToList.setLastname(user.getLastname());
+            userToList.setId(user.getId());
+            userToList.setStatus(user.getStatus().getValue().toString());
+            users.add(userToList);
+        }
+        ClientUI.chat.accept(new Message(users, MessageFromClient.REQUEST_UPDATE_USERS_STATUSES));
+        super.alertHandler(MessageHandler.getMessage(), MessageHandler.getMessage().contains("Error"));
     }
 }
+
+
+//    private void loadUsersToTable() {
+//        if (!userList.isEmpty())
+//            userList.clear();
+//        userList = FXCollections.observableArrayList();
+//
+//        ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_CUSTOMERS_FROM_USER_TABLE));
+//        for (User user : (ArrayList<User>) MessageHandler.getData()){
+//            UserRow userRow = new UserRow();
+//            userRow.setFirstname(user.getFirstname());
+//            userRow.setLastname(user.getLastname());
+//            userRow.setId(user.getId());
+//
+//            ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("approved", "not approved", "frozen"));
+//            status.setMinWidth(95);
+//            status.setOnMouseClicked(event -> {
+//                TableCell<UserRow, ChoiceBox> cell = (TableCell<UserRow, ChoiceBox>) status.getParent();
+//                int rowIndex = cell.getTableRow().getIndex();
+//
+//                TableView<UserRow> table = cell.getTableView();
+//                ObservableList<UserRow> items = table.getItems();
+//                UserRow item = items.get(rowIndex);
+//                if (item.getStatus().getValue() != null)
+//                    addDataToChangesList(item);
+//            });
+//            status.setValue(user.getStatus());
+//            userRow.setStatus(status);
+//
+//            userList.add(userRow);
+//        }
+//        UserManagementTable.setItems(userList);
+//    }
