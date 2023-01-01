@@ -525,7 +525,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
             switch (UserController.getCurrentuser().getDepartment()) {
                 case "customer":
                     CustomerController.setCurrentCustomer(UserController.getCurrentuser());
-                    root = FXMLLoader.load(getClass().getResource("CustomerMainScreen.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));
                     super.switchScreenWithTimerCustomersOnly(event, root);
                     break;
 
