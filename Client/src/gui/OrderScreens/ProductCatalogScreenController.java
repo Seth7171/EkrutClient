@@ -324,8 +324,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	HBox hb = (HBox)(findHBoxOfproductID(idlb.getText()));
     	// If the horizontal box is found, update the quantity and total price of the product in the cart
     	if (hb != null) {
-    		// Add the product to the list of products in the cart
-        	ChatClient.cartList.add(product);
         	// Update the quantity of the product in the cart
         	ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).setAmount(
         			ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()+quantity);
@@ -429,6 +427,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	    // Update the total amount
     	    totalAmount();
     	});
+	    System.out.println(ChatClient.cartList);
     }
     		
     /**

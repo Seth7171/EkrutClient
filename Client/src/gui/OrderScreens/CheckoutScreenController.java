@@ -2,6 +2,7 @@ package gui.OrderScreens;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -9,6 +10,7 @@ import javax.swing.JOptionPane;
 import application.client.ChatClient;
 import application.user.UserController;
 import common.orders.Order;
+import common.orders.Product;
 import gui.ScreenController;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -71,6 +73,7 @@ public class CheckoutScreenController extends ScreenController implements Initia
     @FXML
     void goBack(MouseEvent event) {
     	ChatClient.rememberMyCart.setItems(myOrder.getItems());
+    	ChatClient.cartList = new ArrayList<Product>();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
