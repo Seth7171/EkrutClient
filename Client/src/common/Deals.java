@@ -14,7 +14,7 @@ public class Deals implements Serializable {
     private String Description;
     private ComboBox Type_co; //  Drink | SNACKS | ALL -->> for Manager
     private ComboBox Area_co;  // North | South | UAE  -->> for Manager
-    private ComboBox Status; //Approved | Not Approved  -->> for Manager
+    private ComboBox Status_co; //Approved | Not Approved  -->> for Manager
     private String Type; //  Drink | SNACKS | ALL  -->> for Employee
     private String Area; // North | South | UAE     -->> for Employee
     private String StatusString;
@@ -23,21 +23,29 @@ public class Deals implements Serializable {
     public Deals() {
     }
 
-    public Deals(String DealName, float Discount, String Description, ObservableList Type, ObservableList Area , ObservableList dataManager) {
+    public Deals(String DealName, float Discount, String Description, ObservableList Type, ObservableList Area , ObservableList dataManager) {//with COMBOBOX for Manager
         this.DealName=DealName;
         this.Discount=Discount;
         this.Description=Description;
         this.Type_co=new ComboBox(Type);
         this.Area_co=new ComboBox(Area);
-        this.Status = new ComboBox(dataManager);
+        this.Status_co = new ComboBox(dataManager);
     }
-
-    public Deals(String DealName, float Discount, String Description, String Type, ObservableList dataEmp) {
+    public Deals(String DealName, float Discount, String Description, String Type, String Area , String StatusString) {//result from DB
         this.DealName=DealName;
         this.Discount=Discount;
         this.Description=Description;
         this.Type=Type;
-        this.Status = new ComboBox(dataEmp);
+        this.Area=Area;
+        this.StatusString=StatusString;
+    }
+
+    public Deals(String DealName, float Discount, String Description, String Type, ObservableList dataEmp) {// for employee
+        this.DealName=DealName;
+        this.Discount=Discount;
+        this.Description=Description;
+        this.Type=Type;
+        this.Status_co = new ComboBox(dataEmp);
     }
 
     public String getDealID() {
@@ -92,12 +100,15 @@ public class Deals implements Serializable {
         this.Type =Type;
     }
 
-    public String getTypeEmp() {
+    public String getTypeStr() {
         return Type;
     }
 
     public ComboBox getArea() {
         return Area_co;
+    }
+    public String getAreaS() {
+        return Area;
     }
 
     public void setArea(String area) {
@@ -109,11 +120,11 @@ public class Deals implements Serializable {
     }
 
     public ComboBox getStatus() {
-        return Status;
+        return Status_co;
     }
 
     public void setStatus(ComboBox Status) {
-        this.Status =Status;
+        this.Status_co =Status;
     }
 
     @Override

@@ -3,6 +3,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.client.ClientUI;
+import common.connectivity.Message;
+import common.connectivity.MessageFromClient;
 import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,8 +54,8 @@ public class MarketingManagerScreenController extends ScreenController implement
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+	ClientUI.chat.accept(new Message(null,MessageFromClient.REQUEST_DISCOUNT_LIST )); 
 		System.out.println("dsdsds");
-		
 	}
 
 }
