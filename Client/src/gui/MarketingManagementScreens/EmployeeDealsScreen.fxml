@@ -14,7 +14,7 @@
             <TableColumn fx:id="dealNameColumn" prefWidth="153.0" text="Deal name" />
             <TableColumn fx:id="discountColumn" prefWidth="108.0" text="Discount" />
             <TableColumn fx:id="descriptionColumn" prefWidth="293.0" text="Description" />
-            <TableColumn fx:id="TypeColumn" prefWidth="151.0" text="Type" />
+            <TableColumn fx:id="typeColumn" prefWidth="151.0" text="Type" />
             <TableColumn fx:id="statusColumn" prefWidth="139.0" text="Status" />
          </columns>
       </TableView>

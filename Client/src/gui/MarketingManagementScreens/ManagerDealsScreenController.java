@@ -35,7 +35,7 @@ public class ManagerDealsScreenController extends ScreenController implements In
 	    private TableColumn<Deals, String> descriptionColumn;
 
 	    @FXML
-	    private TableColumn<Deals, Integer> discountColumn;
+	    private TableColumn<Deals, Float> discountColumn;
 
 	    @FXML
 	    private Button exitButton;
@@ -51,9 +51,7 @@ public class ManagerDealsScreenController extends ScreenController implements In
 	    private TableView<Deals> viewAllDeals;
 	    
 	    @FXML
-	    private Button aprroved;
-	    @FXML
-	    private Button notApproved;
+	    private Button apply;
 
 	    
     
@@ -62,15 +60,7 @@ public class ManagerDealsScreenController extends ScreenController implements In
     	super.closeProgram(event, true);
     }
 
-    @FXML
-    void Aprroved(MouseEvent event) {
-
-    }
-
-    @FXML
-    void NotApproved(MouseEvent event) {
-
-    }
+  
     @FXML
     void goBackToMarketingManagerScreen(MouseEvent event) {
     	Parent root = null;
@@ -82,16 +72,21 @@ public class ManagerDealsScreenController extends ScreenController implements In
         super.switchScreen(event, root);
     }
     
+    
     ObservableList<Deals> observablesubs= FXCollections.observableArrayList(
 			 
-			 new Deals("Night time sale",10,"Special offer for late night students from 20pm to 5am ","ALL","ALL",FXCollections.observableArrayList("Approved","Not Aproved")),
-	    	 new Deals("Holiday sale",25,"Going on a holiday trip ?, get a 25% discount on all products","ALL","North",FXCollections.observableArrayList("Approved","Not Aproved")),
-	    	 new Deals("Summer sale",15,"Summer has already arrived - buy something cold to drink","DRINKS","South",FXCollections.observableArrayList("Approved","Not Aproved")),
-	    	 new Deals("World Cup sale",10,"watch France vs Argentina finals and get 10% off on SNACKS", "SNACKS" ,"UAE",FXCollections.observableArrayList("Approved","Not Aproved")),
-	    	 new Deals("Subscribe sale ",20,"Congratulation for register as Subscriber get 20% off on the first order ","ALL","ALL",FXCollections.observableArrayList("Approved","Not Aproved")));
+			 new Deals("Night time sale",10,"Special offer for late night students from 20pm to 5am ",FXCollections.observableArrayList("Drinks","ALL","Snacks"),FXCollections.observableArrayList("North","South","UAE","ALL"),FXCollections.observableArrayList("Approved","Not Aproved")),
+	    	 new Deals("Holiday sale",25,"Going on a holiday trip ?, get a 25% discount on all products",FXCollections.observableArrayList("Drinks","ALL","Snacks"),FXCollections.observableArrayList("North","South","UAE","ALL"),FXCollections.observableArrayList("Approved","Not Aproved")),
+	    	 new Deals("Summer sale",15,"Summer has already arrived - buy something cold to drink",FXCollections.observableArrayList("Drinks","ALL","Snacks"),FXCollections.observableArrayList("North","South","UAE","ALL"),FXCollections.observableArrayList("Approved","Not Aproved")),
+	    	 new Deals("World Cup sale",10,"watch France vs Argentina finals and get 10% off on SNACKS",FXCollections.observableArrayList("Drinks","ALL","Snacks"),FXCollections.observableArrayList("North","South","UAE","ALL"),FXCollections.observableArrayList("Approved","Not Aproved")),
+	    	 new Deals("Subscribe sale ",20,"Congratulation for register as Subscriber get 20% off on the first order ",FXCollections.observableArrayList("Drinks","ALL","Snacks"),FXCollections.observableArrayList("North","South","UAE","ALL"),FXCollections.observableArrayList("Approved","Not Aproved")));
 	    	
     
     
+    @FXML
+    void Apply(MouseEvent event) {//send the data from the Table-View to DB 
+    	//TODO:///
+    }
 
 
 	@Override
@@ -99,7 +94,7 @@ public class ManagerDealsScreenController extends ScreenController implements In
 		// TODO Auto-generated method stub
 				
 		dealNameColumn.setCellValueFactory(new PropertyValueFactory<Deals,String>("DealName"));
-		discountColumn.setCellValueFactory(new PropertyValueFactory<Deals,Integer>("Discount"));
+		discountColumn.setCellValueFactory(new PropertyValueFactory<Deals,Float>("Discount"));
 		descriptionColumn.setCellValueFactory(new PropertyValueFactory<Deals,String>("Description"));
 		typeColumn.setCellValueFactory(new PropertyValueFactory<Deals,String>("Type"));
 		areaColumn.setCellValueFactory(new PropertyValueFactory<Deals,String>("Area"));

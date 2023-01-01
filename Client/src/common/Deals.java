@@ -8,23 +8,33 @@ import javafx.scene.control.ComboBox;
 public class Deals implements Serializable {
    private static final long serialVersionUID = 1L;
     private String DealName;
-    private int Discount; 
+    private float Discount; 
     private String Description;
-    private String Type; //  Drink | SNACKS | ALL
-    private String Area;  // North | South | UAE
-    private ComboBox Status; //Approved | Not Approved
- 
+    private ComboBox Type_co; //  Drink | SNACKS | ALL -->> for Manager
+    private ComboBox Area_co;  // North | South | UAE  -->> for Manager
+    private ComboBox Status; //Approved | Not Approved  -->> for Manager
+    private String Type; //  Drink | SNACKS | ALL  -->> for Employee
+    private String Area; // North | South | UAE     -->> for Employee
+    private String StatusString;
 
-    public Deals(String DealName,int Discount,String Description,String Type,String Area ,ObservableList data) {
+    public Deals(String DealName,float Discount,String Description,ObservableList Type,ObservableList Area ,ObservableList dataManager) {
+    	this.DealName=DealName;
+    	this.Discount=Discount;
+    	this.Description=Description;
+    	this.Type_co=new ComboBox(Type);
+    	this.Area_co=new ComboBox(Area);
+    	this.Status = new ComboBox(dataManager);
+      }
+
+    public Deals(String DealName, float Discount, String Description, String Type, ObservableList dataEmp) {
     	this.DealName=DealName;
     	this.Discount=Discount;
     	this.Description=Description;
     	this.Type=Type;
-    	this.Area=Area;
-    	this.Status = new ComboBox(data);
-      }
+    	this.Status = new ComboBox(dataEmp);
+	}
 
-    public String getDealName() {
+	public String getDealName() {
         return DealName;
     }
 
@@ -32,11 +42,11 @@ public class Deals implements Serializable {
         this.DealName =DealName;
     }
 
-    public int getDiscount() {
+    public float getDiscount() {
         return Discount;
     }
 
-    public void setDiscount(int Discount) {
+    public void setDiscount(float Discount) {
     	this.Discount = Discount;
     }
 
@@ -48,20 +58,27 @@ public class Deals implements Serializable {
     	this.Description = Description;
     }
 
-    public String getType() {
+    public ComboBox getType() {
+        return Type_co;
+    }
+
+    public String getTypeEmp() {
         return Type;
+    } 
+    
+    public void setType(ComboBox Type_co) {
+        this.Type_co =Type_co;
     }
 
     public void setType(String Type) {
         this.Type =Type;
     }
-
-    public String getArea() {
-        return Area;
+    public ComboBox getArea() {
+        return Area_co;
     }
-
-    public void setArea(String Area) {
-        this.Area=Area;
+    
+    public void setArea(ComboBox Area_co) {
+        this.Area_co=Area_co;
     }
 
     public ComboBox getStatus() {
