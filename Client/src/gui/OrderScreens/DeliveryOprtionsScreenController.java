@@ -1,6 +1,6 @@
 package gui.OrderScreens;
 
-import java.awt.TextField;
+import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,10 +17,14 @@ import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 public class DeliveryOprtionsScreenController extends ScreenController implements Initializable{
 
@@ -32,6 +36,15 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
     
     @FXML
     private Button proceedToShop;
+    
+    @FXML
+    private TabPane tabPane;
+    
+    @FXML
+    private Pane DynamicPane;
+    
+    @FXML
+    private Pane DeliveryPane;
     
     @FXML
     private TextField StreetAd;
@@ -118,17 +131,42 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
     void proceedToShop(MouseEvent event) {
 		
 		
-		// Dynamic Pick Up
-		ChatClient.currentOrder.setMachineID(null);
-		ChatClient.currentOrder.setAddress(null);
-		ChatClient.currentOrder.setSupplyMethod("machine pickup");
-		
-		// Delivery
-		StringBuilder sb = new StringBuilder();
-		   // FILL THE
-		   // ADRESS IN THE SB
-		ChatClient.currentOrder.setAddress(sb.toString());
-		ChatClient.currentOrder.setSupplyMethod("delivery");
+		Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+		Node content = selectedTab.getContent();
+        if (content instanceof Pane) {
+        	Pane pane = (Pane) content;
+        	String id = pane.getId();
+        	if (id.equals("DynamicPane")) { // Dynamic Pick Up
+        		ComboBox<String> comboBox = (ComboBox<String>) pane.lookup("#machineID");
+        		Object selectedItem = comboBox.getValue();
+        		String machineID = (String) selectedItem;
+        		System.out.println(machineID);
+        		ChatClient.currentOrder.setMachineID(machineID);
+        		ChatClient.currentOrder.setAddress(null); // in dynamic pickup Address is always null
+        		ChatClient.currentOrder.setSupplyMethod("machine pickup");
+        	}
+        	else { // Delivery
+            	TextField TextField = (TextField) pane.lookup("#StreetAd");
+            	String Address = TextField.getText();
+            	TextField = (TextField) pane.lookup("#City");
+            	String City = TextField.getText();
+            	TextField = (TextField) pane.lookup("#State");
+            	String State = TextField.getText();
+            	TextField = (TextField) pane.lookup("#Zip");
+            	String Zip = TextField.getText();
+        		StringBuilder sb = new StringBuilder();
+     		    sb.append(Address);
+     		    sb.append(" ");
+     		    sb.append(City);
+     		    sb.append(" ");
+     		    sb.append(State);
+     		    sb.append(" ");
+     		    sb.append(Zip);
+     		    System.out.println(sb.toString());
+     			ChatClient.currentOrder.setAddress(sb.toString());
+     			ChatClient.currentOrder.setSupplyMethod("delivery");
+        	}
+        }
 		
         Parent root = null;
         try {
