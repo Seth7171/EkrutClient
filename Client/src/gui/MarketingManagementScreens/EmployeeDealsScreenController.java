@@ -43,7 +43,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     private TableColumn<Deals, String> statusColumn;
 
     @FXML
-    private TableView<String> viewAllDeals;
+    private TableView<Deals> viewAllDeals;
 
     
     @FXML
@@ -81,8 +81,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
 		typeColumn.setCellValueFactory(new PropertyValueFactory<Deals,String>("Type"));
 		statusColumn.setCellValueFactory(new PropertyValueFactory<Deals,String>("Status"));
 		
-		
-	//	viewAllDeals.setItems(observablesubs);
+		viewAllDeals.setItems(observablesubs);
 	
 	
 		
