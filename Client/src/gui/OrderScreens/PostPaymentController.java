@@ -7,12 +7,14 @@ import java.util.ResourceBundle;
 
 import application.client.ChatClient;
 import common.orders.Order;
+import common.orders.Product;
 import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
@@ -47,6 +49,8 @@ public class PostPaymentController extends ScreenController implements Initializ
 	
 	@FXML
     void goBack(MouseEvent event) {
+		ChatClient.cartList = new ArrayList<Product>();
+		ChatClient.rememberMyCart = new ListView<Object>();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));

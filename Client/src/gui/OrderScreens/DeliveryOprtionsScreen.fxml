@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.DeliveryOprtionsScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.DeliveryOprtionsScreenController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
          <image>
@@ -77,7 +77,12 @@
                               <Font name="System Italic" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="machineID" layoutX="357.0" layoutY="114.0" prefHeight="42.0" prefWidth="112.0" promptText="MachineID" />
+                        <ComboBox fx:id="machineID" disable="true" layoutX="357.0" layoutY="114.0" prefHeight="42.0" prefWidth="112.0" promptText="MachineID" />
+                        <Label fx:id="dynamicError" layoutX="186.0" layoutY="193.0" text="Please select a location and then a machine" textFill="RED" visible="false">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                </content>
@@ -130,6 +135,11 @@
                            </font>
                         </Text>
                         <TextField fx:id="Zip" layoutX="298.0" layoutY="184.0" prefHeight="25.0" prefWidth="108.0" />
+                        <Label fx:id="deliveryError" layoutX="280.0" layoutY="236.0" text="Please fill all the fields" textFill="RED" visible="false">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                </content>

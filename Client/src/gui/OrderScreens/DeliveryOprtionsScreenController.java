@@ -21,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
@@ -28,7 +29,13 @@ import javafx.scene.layout.Pane;
 
 public class DeliveryOprtionsScreenController extends ScreenController implements Initializable{
 
-    @FXML
+	@FXML
+    private Label dynamicError;
+	
+	@FXML
+    private Label deliveryError;
+	
+	@FXML
     private Button exitButton;
 
     @FXML
@@ -83,7 +90,13 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
             machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
             machineID.getItems().clear();
             machineID.getItems().addAll(machineIDs);
+            machineID.setDisable(false);
+            dynamicError.setVisible(false);
         });
+        machineID.setOnAction(event -> {
+        	dynamicError.setVisible(false);
+        });
+        
 	}
 	
 	@FXML
@@ -99,7 +112,7 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
                 case "subscriber":
                 case "customer":
                     CustomerController.setCurrentCustomer(UserController.getCurrentuser());
-                    root = FXMLLoader.load(getClass().getResource("CustomerMainScreen.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));
                     super.switchScreenWithTimerCustomersOnly(event, root);
                     break;
 
@@ -129,8 +142,6 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
     
 	@FXML
     void proceedToShop(MouseEvent event) {
-		
-		
 		Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
 		Node content = selectedTab.getContent();
         if (content instanceof Pane) {
@@ -140,6 +151,10 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
         		ComboBox<String> comboBox = (ComboBox<String>) pane.lookup("#machineID");
         		Object selectedItem = comboBox.getValue();
         		String machineID = (String) selectedItem;
+        		if (selectedItem==null || machineID==null) {
+        			dynamicError.setVisible(true);
+        			return;
+        		}
         		System.out.println(machineID);
         		ChatClient.currentOrder.setMachineID(machineID);
         		ChatClient.currentOrder.setAddress(null); // in dynamic pickup Address is always null
@@ -154,6 +169,10 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
             	String State = TextField.getText();
             	TextField = (TextField) pane.lookup("#Zip");
             	String Zip = TextField.getText();
+            	if (Address.trim().isEmpty() || City.trim().isEmpty() || State.trim().isEmpty() || Zip.trim().isEmpty()) {
+            		deliveryError.setVisible(true);
+        			return;
+            	}
         		StringBuilder sb = new StringBuilder();
      		    sb.append(Address);
      		    sb.append(" ");

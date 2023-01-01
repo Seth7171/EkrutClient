@@ -59,12 +59,12 @@ public class GrabOrderScreenController extends ScreenController implements Initi
             switch (UserController.getCurrentuser().getDepartment()) {
                 case "customer":
                     CustomerController.setCurrentCustomer(UserController.getCurrentuser());
-                    root = FXMLLoader.load(getClass().getResource("CustomerMainScreen.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));
                     super.switchScreenWithTimerCustomersOnly(event, root);
                     break;
 
                 case "subscriber":
-                    root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/DeliveryOprtionsScreen.fxml"));;
+                    root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));;
                     super.switchScreenWithTimerCustomersOnly(event, root);
                     break;
 
