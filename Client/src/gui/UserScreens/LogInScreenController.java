@@ -1,4 +1,5 @@
 package gui.UserScreens;
+import application.client.ChatClient;
 //************************************
 //TODO CHECK WHY ENTERING LIOR 1 THAN LIOR 123 NOT WORKING
 import application.client.ClientUI;
@@ -46,6 +47,43 @@ public class LogInScreenController extends ScreenController implements Initializ
     private Text forgotPassword;
     @FXML
     private Button loginButton;
+    @FXML
+    private Button fastLoginButton;
+    
+    @FXML
+    private ComboBox<String> machinesID;
+    
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    	if (!ChatClient.isOL) {
+			ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_MACHINE_IDS));
+	        ArrayList<String> machineIDs = new ArrayList<>();
+	        machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
+	        machinesID.getItems().clear();
+	        machinesID.getItems().addAll(machineIDs);
+    	}
+    	else {
+    		machinesID.setVisible(false);
+    		fastLoginButton.setVisible(false);
+    	}
+        userNameField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent evt1) {
+                if (evt1.getCode().equals(KeyCode.ENTER)) {
+                    logIn(evt1);
+                }
+            }
+        });
+        passwordField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent evt2) {
+                if (evt2.getCode().equals(KeyCode.ENTER)) {
+                    logIn(evt2);
+                }
+            }
+        });
+    }
 
     /**
      * @param event
@@ -154,25 +192,5 @@ public class LogInScreenController extends ScreenController implements Initializ
         credentials.add(userNameField.getText());
         credentials.add(passwordField.getText());
         return credentials;
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        userNameField.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent evt1) {
-                if (evt1.getCode().equals(KeyCode.ENTER)) {
-                    logIn(evt1);
-                }
-            }
-        });
-        passwordField.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent evt2) {
-                if (evt2.getCode().equals(KeyCode.ENTER)) {
-                    logIn(evt2);
-                }
-            }
-        });
     }
 }

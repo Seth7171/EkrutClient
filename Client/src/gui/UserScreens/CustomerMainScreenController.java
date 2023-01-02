@@ -2,6 +2,7 @@ package gui.UserScreens;
 
 import application.client.ChatClient;
 import application.client.ClientUI;
+import application.client.MessageHandler;
 import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.Message;
@@ -14,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -94,6 +96,9 @@ public class CustomerMainScreenController extends ScreenController implements In
      */
     @FXML
     void NewOrder(Event event) {
+    	ChatClient.currentOrder.setSupplyMethod("instant pickup");
+        //TODO need to change to NOT hard coded
+        ChatClient.currentOrder.setMachineID("NOR1");
         Parent root = null;
         try {
         	if (UserController.getCurrentuser().getDepartment().equals("customer")) {

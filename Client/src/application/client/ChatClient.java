@@ -50,6 +50,7 @@ public class ChatClient extends AbstractClient
 	  public static String returnMonthChoose;
 	  public static String returnYearChoose;
 	  public static String returnLocationChoose;
+	  public static boolean isOL;
 //  private UserController userController  = UserController.getUserInstance();
 
   //Constructors ****************************************************

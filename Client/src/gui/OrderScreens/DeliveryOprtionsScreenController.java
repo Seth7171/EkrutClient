@@ -184,6 +184,7 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
      		    System.out.println(sb.toString());
      			ChatClient.currentOrder.setAddress(sb.toString());
      			ChatClient.currentOrder.setSupplyMethod("delivery");
+     	        ChatClient.currentOrder.setMachineID(null);
         	}
         }
 		

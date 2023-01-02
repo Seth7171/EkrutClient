@@ -24,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 
 public class PaymentScreenController extends ScreenController implements Initializable{
 	
@@ -71,6 +72,24 @@ public class PaymentScreenController extends ScreenController implements Initial
         tooltip.setShowDelay(null);
         infoCvv.setTooltip(tooltip);
         infoCvv.setStyle("-fx-background-color: transparent;");
+        
+    /* // create a TextFormatter that only allows numeric characters and has a maximum length of 19
+     // (16 digits + 3 spaces)
+        TextFormatter<String> formatter = new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("[0-9 ]{0,19}")) {
+                if ((newText.length() % 5 == 4) && newText.length()!= 19) {
+                    change.setText(change.getText() + " ");
+                    change.setAnchor(cardNumberTextField.getLength() + 2);
+                    change.setCaretPosition(cardNumberTextField.getLength() + 2);
+                    change.setText(change.getText() + "");
+                }
+                
+                return change;
+            }
+            return null;
+        });
+        cardNumberTextField.setTextFormatter(formatter);*/
 	}
 
 	private boolean callCreditCardCompany(String cardNumber, String cardName, String cardYear, String cardMonth, String cardCVV, float totalPrice) {
@@ -120,12 +139,15 @@ public class PaymentScreenController extends ScreenController implements Initial
 	        
 	        // TO DO !!!!!!! : 
 	        // IF DELIVERY :
-	        ChatClient.currentOrder.setOrderStatus("awaiting approval");
-	        ChatClient.currentOrder.setEstimatedDeliveryTime("awaiting order approval");
+	        if (ChatClient.currentOrder.getSupplyMethod().equals("delivery")) {
+		        ChatClient.currentOrder.setOrderStatus("awaiting approval");
+		        ChatClient.currentOrder.setEstimatedDeliveryTime("awaiting order approval");
+	        }
 	        // ELSE :
-	        ChatClient.currentOrder.setOrderStatus("approved");
-	        ChatClient.currentOrder.setEstimatedDeliveryTime(dateString);
-	        
+	        else {
+		        ChatClient.currentOrder.setOrderStatus("approved");
+		        ChatClient.currentOrder.setEstimatedDeliveryTime(dateString);
+	        }
 	        System.out.println(ChatClient.currentOrder);
 	        
 	        ClientUI.chat.accept(new Message(ChatClient.currentOrder, MessageFromClient.REQUEST_ADD_NEW_ORDER));
