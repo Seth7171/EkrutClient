@@ -32,11 +32,18 @@ public class PostPaymentController extends ScreenController implements Initializ
     @FXML
     private Text machineNum;
     
+    @FXML
+    private Text dynamicTxt;
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		orderNum.setText(ChatClient.currentOrder.getOrderID());
 		machineNum.setText(ChatClient.currentOrder.getMachineID());
-		
+		if (!ChatClient.currentOrder.getSupplyMethod().equals("machine pickup")) {
+			machineNum.setVisible(false);
+			dynamicTxt.setVisible(false);
+			
+		}
 		// reset the currentOrder for the next order
 		ChatClient.currentOrder = new Order();
 		

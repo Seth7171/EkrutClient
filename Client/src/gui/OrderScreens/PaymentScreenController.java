@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import application.client.ChatClient;
 import application.client.ClientUI;
+import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import gui.ScreenController;
@@ -18,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,12 +32,18 @@ public class PaymentScreenController extends ScreenController implements Initial
 	
     @FXML
     private Text Subtotal;
-	
+    
+    @FXML
+    private Label fieldswarning;
+    
     @FXML
     private Button exitButton;
 
     @FXML
     private Button backButton;
+    
+    @FXML
+    private Button delay;
     
     @FXML
     private Button paybotton;
@@ -60,6 +68,9 @@ public class PaymentScreenController extends ScreenController implements Initial
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		if (UserController.getCurrentuser().getDepartment().equals("customer")) {
+			delay.setVisible(false);
+		}
 		Subtotal.setText(String.valueOf(ChatClient.currentOrder.getOverallPrice()) + "\u20AA");
 		
 		monthCombobox.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
@@ -73,23 +84,13 @@ public class PaymentScreenController extends ScreenController implements Initial
         infoCvv.setTooltip(tooltip);
         infoCvv.setStyle("-fx-background-color: transparent;");
         
-    /* // create a TextFormatter that only allows numeric characters and has a maximum length of 19
-     // (16 digits + 3 spaces)
-        TextFormatter<String> formatter = new TextFormatter<>(change -> {
-            String newText = change.getControlNewText();
-            if (newText.matches("[0-9 ]{0,19}")) {
-                if ((newText.length() % 5 == 4) && newText.length()!= 19) {
-                    change.setText(change.getText() + " ");
-                    change.setAnchor(cardNumberTextField.getLength() + 2);
-                    change.setCaretPosition(cardNumberTextField.getLength() + 2);
-                    change.setText(change.getText() + "");
-                }
-                
-                return change;
-            }
-            return null;
-        });
-        cardNumberTextField.setTextFormatter(formatter);*/
+        //make only credit card text field
+        cardNumberTextField.setTextFormatter(new TextFormatter<>(c ->
+        c.getControlNewText().matches("\\d{0,16}") ? c : null));
+        
+      //make only cvv text field
+        cardCVVTextField.setTextFormatter(new TextFormatter<>(c ->
+        c.getControlNewText().matches("\\d{0,3}") ? c : null));
 	}
 
 	private boolean callCreditCardCompany(String cardNumber, String cardName, String cardYear, String cardMonth, String cardCVV, float totalPrice) {
@@ -113,56 +114,71 @@ public class PaymentScreenController extends ScreenController implements Initial
     }
     
 	@FXML
+    void delayPay(MouseEvent event) {
+		generateInvoice(event, true);
+	}
+    
+	@FXML
     void pay(MouseEvent event) {
-		
 		String cardNumber = cardNumberTextField.getText();
 		String cardName = cardNameTextField.getText();
 		String cardYear = yearCombobox.getValue();
 		String cardMonth = monthCombobox.getValue();
 		String cardCVV = cardCVVTextField.getText();
 		
+		if (cardNumber.trim().isEmpty() || cardNumber.length()<16 || cardName.trim().isEmpty() || 
+				cardYear.trim().isEmpty() || cardMonth.trim().isEmpty() ||
+				cardCVV.trim().isEmpty()) {
+			fieldswarning.setVisible(true);
+			return;
+		}
+			
+		
 		if(callCreditCardCompany(cardNumber, cardName ,cardYear, cardMonth, cardCVV, ChatClient.currentOrder.getOverallPrice())) {
-			
-			//GETTING THE DATE and setting it in order.
-			// Get the current time
-		    Date currentDate = new Date();
-		    // Create a SimpleDateFormat object to format the date as a string
-		    SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-		    // Format the current date as a string
-		    String dateString = formatter.format(currentDate);
-		    ChatClient.currentOrder.setOrderDate(dateString);
-			
-			// generate order number and paid with
-	        String  uuid = UUID.randomUUID().toString().substring(0, 8);
-	        ChatClient.currentOrder.setOrderID(uuid);
-	        ChatClient.currentOrder.setPaidWith("credit card");
-	        
-	        // TO DO !!!!!!! : 
-	        // IF DELIVERY :
-	        if (ChatClient.currentOrder.getSupplyMethod().equals("delivery")) {
-		        ChatClient.currentOrder.setOrderStatus("awaiting approval");
-		        ChatClient.currentOrder.setEstimatedDeliveryTime("awaiting order approval");
-	        }
-	        // ELSE :
-	        else {
-		        ChatClient.currentOrder.setOrderStatus("approved");
-		        ChatClient.currentOrder.setEstimatedDeliveryTime(dateString);
-	        }
-	        System.out.println(ChatClient.currentOrder);
-	        
-	        ClientUI.chat.accept(new Message(ChatClient.currentOrder, MessageFromClient.REQUEST_ADD_NEW_ORDER));
-			
-			Parent root = null;
-	        try {
-	            root = FXMLLoader.load(getClass().getResource("PostPaymentScreen.fxml"));
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	        super.switchScreenWithTimerCustomersOnly(event, root);
-	    }
+			generateInvoice(event, false);
+		}
 	}
 	
+	void generateInvoice(MouseEvent event, boolean isdelayed) {
+		//GETTING THE DATE and setting it in order.
+		// Get the current time
+	    Date currentDate = new Date();
+	    // Create a SimpleDateFormat object to format the date as a string
+	    SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+	    // Format the current date as a string
+	    String dateString = formatter.format(currentDate);
+	    ChatClient.currentOrder.setOrderDate(dateString);
 		
+		// generate order number and paid with
+        String  uuid = UUID.randomUUID().toString().substring(0, 8);
+        ChatClient.currentOrder.setOrderID(uuid);
+        ChatClient.currentOrder.setPaidWith("delayed payment");
+        
+        // IF DELIVERY :
+        if (ChatClient.currentOrder.getSupplyMethod().equals("delivery")) {
+	        ChatClient.currentOrder.setOrderStatus("awaiting approval");
+	        if(isdelayed)
+	        	ChatClient.currentOrder.setEstimatedDeliveryTime("awaiting order approval");
+	        else 
+	        	ChatClient.currentOrder.setEstimatedDeliveryTime("credit card");
+        }
+        // ELSE :
+        else {
+	        ChatClient.currentOrder.setOrderStatus("approved");
+	        ChatClient.currentOrder.setEstimatedDeliveryTime(dateString);
+        }
+        System.out.println(ChatClient.currentOrder);
+        
+        ClientUI.chat.accept(new Message(ChatClient.currentOrder, MessageFromClient.REQUEST_ADD_NEW_ORDER));
+		
+		Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("PostPaymentScreen.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        super.switchScreenWithTimerCustomersOnly(event, root);
+	}
 
 	
 }

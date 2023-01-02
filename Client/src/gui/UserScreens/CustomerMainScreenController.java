@@ -105,7 +105,12 @@ public class CustomerMainScreenController extends ScreenController implements In
         		root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
         	}
         	else {
+        		if (ChatClient.isOL) {
             	root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/DeliveryOprtionsScreen.fxml"));
+        		}
+        		else {
+        			root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
+        		}
         	}
         } catch (IOException e) {
             e.printStackTrace();
