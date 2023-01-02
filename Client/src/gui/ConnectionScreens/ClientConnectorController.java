@@ -1,7 +1,11 @@
 package gui.ConnectionScreens;
 
+import application.client.ChatClient;
 import application.client.ClientController;
 import application.client.ClientUI;
+import application.client.MessageHandler;
+import common.connectivity.Message;
+import common.connectivity.MessageFromClient;
 import gui.ScreenController;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -12,24 +16,36 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class ClientConnectorController extends ScreenController {
 	String temp="";
+	boolean choosen = false;
 
 	@FXML
 	private Button btnExit = null;
 	@FXML
 	private Button btnDone = null;
 	@FXML
+	private Button btnEK;
+	@FXML
+	private Button btnOL;
+	@FXML
 	private Label lbllist;
 	@FXML
 	private Label warning;
+	@FXML
+	private Label warningEKOL;
+
 	
 	@FXML
 	private TextField iptxt;
@@ -42,6 +58,11 @@ public class ClientConnectorController extends ScreenController {
 	}
 	
 	public void Done(MouseEvent event) throws Exception {
+		if (!choosen) {
+			warningEKOL.setVisible(true);
+			return;
+		}
+		warningEKOL.setVisible(false);
 		String ip;
 		FXMLLoader loader = new FXMLLoader();
 		
@@ -92,6 +113,24 @@ public class ClientConnectorController extends ScreenController {
 		primaryStage.setScene(scene);
 		
 		primaryStage.show();
+	}
+	
+	@FXML
+	public void clickedEK(MouseEvent event) {
+		choosen = true;
+		warningEKOL.setVisible(false);
+		btnEK.setStyle("-fx-background-color: #00bfff;");
+		btnOL.setStyle(null);
+		ChatClient.isOL=false;
+	}
+	
+	@FXML
+	public void clickedOL(MouseEvent event) {
+		choosen = true;
+		warningEKOL.setVisible(false);
+		btnOL.setStyle("-fx-background-color: #00bfff;");
+		btnEK.setStyle(null);
+		ChatClient.isOL=true;
 	}
 
 	@FXML
