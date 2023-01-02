@@ -15,8 +15,8 @@
          <columns>
             <TableColumn fx:id="dealNameColumn" prefWidth="92.0" text="Deal name" />
             <TableColumn fx:id="discountColumn" prefWidth="70.0" text="\%Discount" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="380.0000305175781" text="Description" />
-            <TableColumn fx:id="typeColumn" prefWidth="114.6666259765625" text="Type" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="420.0" text="Description" />
+            <TableColumn fx:id="typeColumn" prefWidth="76.0" text="Type" />
             <TableColumn fx:id="areaColumn" prefWidth="80.666748046875" text="Area" />
             <TableColumn fx:id="statusColumn" prefWidth="129.3333740234375" text="Status" />
          </columns>

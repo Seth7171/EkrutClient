@@ -87,20 +87,21 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     	Deals dealsData = new Deals();
     		ChoiceBox<String> area = new ChoiceBox<>(FXCollections.observableArrayList());
     		area.setValue(d.getAreaS());//get the area 
-    		//show data on the specific area
+    		//show data on the specific area 
     		if(area.getValue().contains(user) || area.getValue().contains("all")) { 
-    			dealsData.setDealName(d.getDealName());
-    			dealsData.setDiscount((int)(d.getDiscount()*100));
-    			dealsData.setDescription(d.getDescription());
-    			ChoiceBox<String> type = new ChoiceBox<>(FXCollections.observableArrayList());//remove the choiceBox
-    			type.setValue(d.getTypeStr());
-    			dealsData.setType(type);
-	    		ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList( "approved","not approved"));
+    			ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList( "approved","not approved"));
 	    		status.setMinWidth(95);
 	    		status.setValue(d.getStatusString());
-	    		dealsData.setStatus(status);
+    			if(status.getValue().equals("approved")) {//display only approved status
+    				dealsData.setStatus(status);
+    				dealsData.setDealName(d.getDealName());
+    				dealsData.setDiscount((int)(d.getDiscount()*100));
+    				dealsData.setDescription(d.getDescription());
+    				dealsData.setType(d.getType());
+	    		
 
 	    		observablesubs.add(dealsData);
+    		}
     	}
     }
     viewAllDeals.setItems(observablesubs);

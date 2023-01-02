@@ -95,10 +95,7 @@ public class ManagerDealsScreenController extends ScreenController implements In
     	dealsData.setDealName(d.getDealName());
     	dealsData.setDiscount(d.getDiscount());
     	dealsData.setDescription(d.getDescription());
-    	ChoiceBox<String> type = new ChoiceBox<>(FXCollections.observableArrayList("ALL", "DRINK","SNACK"));
-    	type.setMinWidth(70);
-    	type.setValue(d.getTypeStr());
-    	dealsData.setType(type);
+    	dealsData.setType(d.getType());
     	ChoiceBox<String> area = new ChoiceBox<>(FXCollections.observableArrayList("ALL", "NORTH","SOUTH","UAE"));
     	area.setMinWidth(60);
     	area.setValue(d.getAreaS().toUpperCase());

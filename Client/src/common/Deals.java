@@ -13,26 +13,18 @@ public class Deals implements Serializable {
     private String DealName;
     private float Discount;
     private String Description;
-    private ChoiceBox<String> Type_co; //  Drink | SNACKS | ALL -->> for Manager
+    private String Type; //  Drink | SNACKS | ALL 
     private ChoiceBox<String> Area_co;  // North | South | UAE  -->> for Manager
     private ChoiceBox<String> Status_co; //Approved | Not Approved  -->> for Manager
-    private String Type; //  Drink | SNACKS | ALL  -->> for Employee
-    private String Area; // North | South | UAE     -->> for Employee
+    private String Area;     //-->> for Employee
     private String StatusString;
 
 
     public Deals() {
     }
 
-//    public Deals(String DealName, float Discount, String Description, ObservableList Type, ObservableList Area , ObservableList dataManager) {//with COMBOBOX for Manager
-//        this.DealName=DealName;
-//        this.Discount=Discount;
-//        this.Description=Description;
-//        this.Type_co=new ComboBox(Type);
-//        this.Area_co=new ComboBox(Area);
-//        this.Status_co = new ComboBox(dataManager);
-//   }
-    public Deals(String DealName, float Discount, String Description, String Type, String Area , String StatusString) {//result from DB
+
+    public Deals(String DealName, float Discount, String Description,String Type, String Area , String StatusString) {//result from DB
         this.DealName=DealName;
         this.Discount=Discount;
         this.Description=Description;
@@ -41,13 +33,6 @@ public class Deals implements Serializable {
         this.StatusString=StatusString;
     }
 
-//    public Deals(String DealName, float Discount, String Description, String Type, ObservableList dataEmp) {// for employee
-//        this.DealName=DealName;
-//        this.Discount=Discount;
-//        this.Description=Description;
-//        this.Type=Type;
-//        this.Status_co = new ComboBox(dataEmp);
-//    }
 
     public String getDealID() {
         return dealID;
@@ -89,20 +74,12 @@ public class Deals implements Serializable {
         this.Description = Description;
     }
 
-    public ChoiceBox getType() {
-        return Type_co;
-    }
-
-    public void setType(ChoiceBox Type_co) {
-        this.Type_co =Type_co;
+    public String getType() {
+        return Type;
     }
 
     public void setType(String Type) {
         this.Type =Type;
-    }
-
-    public String getTypeStr() {
-        return Type;
     }
 
     public ChoiceBox getArea() {

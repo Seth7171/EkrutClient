@@ -11,11 +11,11 @@
    <children>
       <TableView fx:id="viewAllDeals" layoutX="19.0" layoutY="64.0" prefHeight="329.0" prefWidth="845.0">
          <columns>
-            <TableColumn fx:id="dealNameColumn" prefWidth="153.0" text="Deal name" />
-            <TableColumn fx:id="discountColumn" prefWidth="71.0" text="Discount" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="360.0" text="Description" />
-            <TableColumn fx:id="typeColumn" prefWidth="121.0" text="Type" />
-            <TableColumn fx:id="statusColumn" prefWidth="139.0" text="Status" />
+            <TableColumn fx:id="dealNameColumn" prefWidth="135.0" text="Deal name" />
+            <TableColumn fx:id="discountColumn" prefWidth="70.0" text=" %Discount" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="431.0" text="Description" />
+            <TableColumn fx:id="typeColumn" prefWidth="92.0" text="Type" />
+            <TableColumn fx:id="statusColumn" prefWidth="116.0" text="Status" />
          </columns>
       </TableView>
       <Text layoutX="380.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deals" wrappingWidth="97.79296875">
