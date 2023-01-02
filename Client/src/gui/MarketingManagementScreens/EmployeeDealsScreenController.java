@@ -95,7 +95,6 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     			ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList());
 	    		status.setValue(d.getStatusString());
     			if(status.getValue().equals("approved")) {//display only approved status
-    				
     				dealsData.setDealName(d.getDealName());
     				dealsData.setDiscount((int)(d.getDiscount()*100));
     				dealsData.setDescription(d.getDescription());
@@ -104,7 +103,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     				active.setMinWidth(95);
     				active.setValue(d.getActive());
     				dealsData.setActive(active);// Active | not Active
-	    		observablesubs.add(dealsData);
+    				observablesubs.add(dealsData);
     		}
     	}
     }
