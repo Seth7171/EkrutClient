@@ -530,7 +530,12 @@ public class ProductCatalogScreenController extends ScreenController implements 
                     break;
 
                 case "subscriber":
-                    root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/DeliveryOprtionsScreen.fxml"));;
+                	if (ChatClient.isOL) {
+                		 root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/DeliveryOprtionsScreen.fxml"));;
+                		}
+                		else {
+                			root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));
+                		}
                     super.switchScreenWithTimerCustomersOnly(event, root);
                     break;
 
