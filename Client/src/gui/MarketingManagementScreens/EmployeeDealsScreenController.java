@@ -52,7 +52,8 @@ public class EmployeeDealsScreenController extends ScreenController implements I
   
     
     @FXML
-    private TableColumn<Deals, String> activateColumn;
+    private TableColumn<Deals,String> activateColumn;
+
 
     @FXML
     private TableView<Deals> viewAllDeals;
@@ -102,7 +103,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     				ChoiceBox<String> active = new ChoiceBox<>(FXCollections.observableArrayList( "Active","not Active"));
     				active.setMinWidth(95);
     				active.setValue(d.getActive());
-    				dealsData.setActive(active);// Active | not Active
+    				dealsData.setActive(active.getValue());// Active | not Active
     				observablesubs.add(dealsData);
     		}
     	}
