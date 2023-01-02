@@ -11,35 +11,42 @@ public class Deals implements Serializable {
     private String DealName;
     private float Discount;
     private String Description;
-    private String Type; //  Drink | SNACKS | ALL 
+    private String Type; //  Drink | SNACKS | ALL
     private ChoiceBox<String> Area_co;  // North | South | UAE  -->> for Manager
     private ChoiceBox<String> Status_co; //Approved | Not Approved  -->> for Manager
-    private ChoiceBox<String> active_co;
     private String Area;     //-->> for Employee
     private String StatusString;
-    private String Active; //active | not active  <-- its like this in the database.
+    private String active; //active | not active  <-- its like this in the database.
 
     public Deals() {
     }
 
 
-    public Deals(String DealName, float Discount, String Description,String Type, String Area , String StatusString, String Active) {//result from DB
+    public Deals(String DealName, float Discount, String Description,String Type, String Area , String StatusString, String active) {//result from DB
         this.DealName=DealName;
         this.Discount=Discount;
         this.Description=Description;
         this.Type=Type;
         this.Area=Area;
         this.StatusString=StatusString;
-        this.Active =Active;
+        this.active =active;
     }
 
-    
+
     public String getDealID() {
         return dealID;
     }
 
     public void setDealID(String dealID) {
         this.dealID = dealID;
+    }
+
+    public String getStatusString() {
+        return StatusString;
+    }
+
+    public void setStatusString(String statusString) {
+        StatusString = statusString;
     }
 
     public String getDealName() {
@@ -77,18 +84,19 @@ public class Deals implements Serializable {
     public ChoiceBox getArea() {
         return Area_co;
     }
-    public void setArea(ChoiceBox Area_co) {
-        this.Area_co=Area_co;
-    }
-    
-    public String getAreaS() {
-        return Area;
-    }
 
     public void setArea(String area) {
         Area = area;
     }
-    
+
+    public void setArea(ChoiceBox Area_co) {
+        this.Area_co=Area_co;
+    }
+
+    public String getAreaS() {
+        return Area;
+    }
+
     public ChoiceBox getStatus() {
         return Status_co;
     }
@@ -96,28 +104,13 @@ public class Deals implements Serializable {
     public void setStatus(ChoiceBox Status) {
         this.Status_co =Status;
     }
-    public String getStatusString() {
-        return StatusString;
-    }
-
-    public void setStatusString(String statusString) {
-        StatusString = statusString;
-    }
 
     public String getActive() {
-        return Active;
+        return active;
     }
 
-    public void setActive(String Active) {
-        this.Active = Active;
-    }
-    
-    public ChoiceBox getActiveC() {
-        return active_co;
-    }
-
-    public void setActive(ChoiceBox Active) {
-        this.active_co =Active;
+    public void setActive(String active) {
+        this.active = active;
     }
 
     @Override
@@ -130,7 +123,7 @@ public class Deals implements Serializable {
                 ", Type='" + Type + '\'' +
                 ", Area='" + Area + '\'' +
                 ", StatusString='" + StatusString + '\'' +
-                ", activation status= " + Active +
+                ", activation status= " + active +
                 '}';
     }
 }
