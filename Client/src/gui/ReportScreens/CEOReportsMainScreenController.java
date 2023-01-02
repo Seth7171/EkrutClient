@@ -32,8 +32,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+/** Description of CEO Reports Main Screen Controller.
+ * @author Ravid Goldin
+ * @author Ben Ben Baruch
+ */
 
 public class CEOReportsMainScreenController extends ScreenController implements Initializable{
+	/** Flags for machine id and location combo boxes. 1 means open, 0 means close.*/
 	int MachineIDFlag=0; // MachineID ComboBox:  1=open|0=close
 	int LocationFlag=0; // Location ComboBox:  1=open|0=close
 	
@@ -78,7 +83,12 @@ public class CEOReportsMainScreenController extends ScreenController implements 
     	super.closeProgram(event, true);
     }
 
-    
+    /**
+     * Initializes the screen. Receiving all machines locations from server.
+     * The method fill all elements on the screen: set texts and combo boxes ready to use.
+     * @param arg0 the location of the root object
+     * @param arg1 the resources used to localize the root object
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -116,7 +126,11 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 	}
 	
 	
-	// go back to 
+	/**
+     * Set the right window when clicking back button.
+     * It refers to previous screen depends on role.
+     * @param event the mouse event that triggered the method call
+     */ 
 	@FXML
     void clickBackButton(MouseEvent  event) {
 		Parent root = null;
@@ -140,7 +154,11 @@ public class CEOReportsMainScreenController extends ScreenController implements 
     	super.switchScreen(event, root);
 	}
 	
-	//click on Type combo BOX
+	/**
+     * Event handler method for the Type combo box.
+     * It opens more options for reports depends on report type. (Options are location and machineID)
+     * @param event the action event that triggered the method call
+     */
 	@FXML
 	void clickOnType(ActionEvent event) {
 			if(Type.getValue().equals("Inventory"))
@@ -160,7 +178,11 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 				}
 	    }
 	
-	//click on Location combo BOX
+	/**
+     * Event handler method for the Location combo box.
+     * It opens all the machines on specific location. Based on the Location that has been chosen.
+     * @param event the action event that triggered the method call
+     */
 	@FXML
     void clickOnLocation(ActionEvent event) {
 		if(Location.getValue()!=null)
@@ -181,6 +203,13 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 			}		
     }
 	
+	/**
+     * Event handler method for the Show Report button.
+     * Checking for wrong input when Month, Year, Type, Machine ID and Location are null.
+     * Set all necessary stuff for the report screen. Sends request to server to obtain the data it needs.
+     * Move to the next window depends on Report type: Inventory, Clients or Orders.
+     * @param event the mouse event that triggered the method call
+     */
 	@FXML
     void clickShowReport(MouseEvent event) {
 		String reportType = null;
