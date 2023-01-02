@@ -269,7 +269,7 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 			            			// request report from server
 			            		ClientUI.chat.accept(new Message(monthYearMachine, MessageFromClient.REQUEST_CLIENT_REPORT));
 									//if no such report
-				            	if (MessageHandler.getMessage() != null && MessageHandler.getMessage().contains("Error")) {
+				            	if (MessageHandler.getMessage() != null && MessageHandler.getMessage().contains("error")) {
 								MessageHandler.setMessage(null);
 								Alert a = new Alert(Alert.AlertType.INFORMATION, "Sorry,No monthly report were found.");
 								a.setTitle("Report not found");
