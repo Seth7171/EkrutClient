@@ -22,49 +22,57 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
+/** Description of Orders Report Controller.
+ * @author Ravid Goldin
+ * @author Ben Ben Baruch
+ */
+
 public class OrdersReportScreenController extends ScreenController implements Initializable{
-	 @FXML
-	    private Button backButton;
-	 
-	 @FXML
-	    private Label DateChooseLabel;
+	@FXML
+	private Button backButton;
 
-	 @FXML
-	    private Button exitApp;
-	 @FXML
-	    private BarChart<String,Integer> OrdersChart;
+	@FXML
+	private Label DateChooseLabel;
 
-	    @FXML
-	    private CategoryAxis x;
+	@FXML
+	private Button exitApp;
+	@FXML
+	private BarChart<String,Integer> OrdersChart;
 
-	    @FXML
-	    private NumberAxis y;
+	@FXML
+	private CategoryAxis x;
+
+	@FXML
+	private NumberAxis y;
+
+	@FXML
+	private Label bestIDLabel;
+
+	@FXML
+	private Label bestLocationLabel;
+
+	@FXML
+	private Label totalOrdersBestLabel;
+
+	@FXML
+	private Label totalOrdersWrostLabel;
+
+	@FXML
+	private Label worstIDLabel;
+
+	@FXML
+	private Label wrostLocationLabel;
+
+	@FXML
+	private Label bestArea;
+
+	@FXML
+	private Label worstArea;
 	    
-	    @FXML
-	    private Label bestIDLabel;
-
-	    @FXML
-	    private Label bestLocationLabel;
-
-	    @FXML
-	    private Label totalOrdersBestLabel;
-
-	    @FXML
-	    private Label totalOrdersWrostLabel;
-
-	    @FXML
-	    private Label worstIDLabel;
-
-	    @FXML
-	    private Label wrostLocationLabel;
-	    
-	    @FXML
-	    private Label bestArea;
-
-	    @FXML
-	    private Label worstArea;
-	    
-	    
+	/**
+     * Goes back to Report Main Screen.
+     * @param event the mouse event that triggered the method call
+     */       
     @FXML
     void ClickBackButton(MouseEvent event) {
     	Parent root = null;
@@ -75,16 +83,26 @@ public class OrdersReportScreenController extends ScreenController implements In
     	super.switchScreen(event, root);
 	}
     
-
+    /**
+  	 * Logout from Ekrut.
+  	 * @param event the mouse event that triggered the method call
+  	 */
     @FXML
     void ClickLogOutButton(MouseEvent event) {
     	super.closeProgram(event, true);
     }
-
+    
+    /**
+     * Initializes the screen.
+     * Making BarChart for all areas that display total orders of all machines from a specific area (North, South, UAE).
+     * In addition, it finds and show: 
+     * The best and worst area depends on sales.
+     * The best and worst machine depends on sales.
+     * @param arg0 the location of the root object
+     * @param arg1 the resources used to localize the root object
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-				
 		//get the data
 		ArrayList<OrderReport> orderReportData = (ArrayList<OrderReport>)  MessageHandler.getData();
 		

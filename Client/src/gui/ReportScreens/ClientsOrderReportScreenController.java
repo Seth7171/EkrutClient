@@ -28,46 +28,55 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
+/** Description of Clients Report Controller.
+ * @author Ravid Goldin
+ * @author Ben Ben Baruch
+ */
+
 public class ClientsOrderReportScreenController extends ScreenController implements Initializable{
-	  @FXML
-	  private Button backButton;
-	  
-	  @FXML
-	  private NumberAxis y;
+	@FXML
+	private Button backButton;
 
-	  @FXML
-	  private Label DateChooseLabel;
+	@FXML
+	private NumberAxis y;
 
-	  @FXML
-	  private Button exitApp;
-	  
-	  @FXML
-	  private BarChart<String, Integer> ClientChart;
-	  
-	  @FXML
-	  private Text avgPurchaseText;
+	@FXML
+	private Label DateChooseLabel;
 
-	  @FXML
-	  private Text leastOrdersClientIDText;
+	@FXML
+	private Button exitApp;
 
-	  @FXML
-	  private Text leastOrdersClientNameText;
+	@FXML
+	private BarChart<String, Integer> ClientChart;
 
-	  @FXML
-	  private Text leastOrdersClientTotalOrdersText;
+	@FXML
+	private Text avgPurchaseText;
 
-	  @FXML
-	  private Text mostOrdersClientIDText;
+	@FXML
+	private Text leastOrdersClientIDText;
 
-	  @FXML
-	  private Text mostOrdersClientNameText;
+	@FXML
+	private Text leastOrdersClientNameText;
 
-	  @FXML
-	  private Text mostOrdersClientTotalOrdersText;
+	@FXML
+	private Text leastOrdersClientTotalOrdersText;
 
-	  @FXML
-	  private Text totalPurchaseText;
-	    
+	@FXML
+	private Text mostOrdersClientIDText;
+
+	@FXML
+	private Text mostOrdersClientNameText;
+
+	@FXML
+	private Text mostOrdersClientTotalOrdersText;
+
+	@FXML
+	private Text totalPurchaseText;
+	
+	/**
+     * Goes back to Report Main Screen.
+     * @param event the mouse event that triggered the method call
+     */
     @FXML
     void ClickBackButton(MouseEvent event) {
     	Parent root = null;
@@ -78,12 +87,24 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
     	super.switchScreen(event, root);
 	}
     
-
+    
+    /**
+     * Log out from Ekrut.
+     * @param event the mouse event that triggered the method call
+     */
     @FXML
     void ClickLogOutButton(MouseEvent event) {
     	super.closeProgram(event, true);	
     }
-
+    
+    /**
+     * Initializes the screen.
+     * Calculate the amount of bars and ranges needed to the graph based on orders statistics.
+     * Find users with highest or lowest amount of orders and show it on screen.
+     * Set all data into graph and labels.
+     * @param arg0 the location of the root object
+     * @param arg1 the resources used to localize the root object
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -156,7 +177,11 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 		avgPurchaseText.setText("Average Purchases per Client: " + totalOrders/totalClients + " (" + totalClients + " clients)");
 	}
 	
-	// return the string with first letter capital and all lowercase letters
+	/**
+	 * Make the string with capital letter first and all rest are lower-case letters. (yossi -> Yossi)
+	 * @param str String input
+	 * @return String with capital letter.
+	 */
 	public String capitalLetter(String str) {
 		return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 	}

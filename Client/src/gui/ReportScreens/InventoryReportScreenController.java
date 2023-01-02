@@ -34,6 +34,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/** Description of Inventory Report Controller.
+ * @author Ravid Goldin
+ * @author Ben Ben Baruch
+ */
+
 public class InventoryReportScreenController extends ScreenController implements Initializable{
 
 	@FXML
@@ -59,42 +64,54 @@ public class InventoryReportScreenController extends ScreenController implements
 
 	@FXML
 	private Label inStockItemsLabel;
-	
-    @FXML
-    private Label snacksAmountLabel;
-    
-    @FXML
-    private Label drinksAmountLabel;
-    
+
 	@FXML
-    private TableColumn<Product, Integer> AvailableColumn;
-	
+	private Label snacksAmountLabel;
+
 	@FXML
-    private TableColumn<Product, String> IDColumn;
+	private Label drinksAmountLabel;
 
-    @FXML
-    private TableView<Product> tbData;
+	@FXML
+	private TableColumn<Product, Integer> AvailableColumn;
 
-    @FXML
-    private TableColumn<Product, String> ProductNameColumn;
-    
-    private ArrayList<Product> tempProd = new ArrayList<>();
+	@FXML
+	private TableColumn<Product, String> IDColumn;
 
-    private ObservableList<Product> observablesubs = FXCollections.observableArrayList();
+	@FXML
+	private TableView<Product> tbData;
+
+	@FXML
+	private TableColumn<Product, String> ProductNameColumn;
+
+	private ArrayList<Product> tempProd = new ArrayList<>();
+	
+	/** Variables needed for TableView */
+	private ObservableList<Product> observablesubs = FXCollections.observableArrayList();
 	ObservableList<String> list;
-    
+
+	/** 
+	 * Load products and insert to table.
+	 */
 	public void loadProducts() {
 		tbData.getItems().clear();
 		// here we insert the data for the table.
-        for(Product p : tempProd){	
-        	Product productData = new Product();
-        	productData.setProductId(p.getProductId());
-        	productData.setDescription(p.getDescription());
-        	productData.setAmount(p.getAmount());
-            tbData.getItems().add(productData);
-        }
+		for(Product p : tempProd){	
+			Product productData = new Product();
+			productData.setProductId(p.getProductId());
+			productData.setDescription(p.getDescription());
+			productData.setAmount(p.getAmount());
+			tbData.getItems().add(productData);
+		}
 	}
-	// all stuff needed for Inventory report screen.
+	
+	/**
+     * Initializes the screen.
+     * Set all data relevant to Inventory report.
+     * Inventory report based on specific machine ID. It shows all products in that machine and more information 
+     * such as stock amounts, type of products, total worth of stock.
+     * @param arg0 the location of the root object
+     * @param arg1 the resources used to localize the root object
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		float totalWorthItems = 0;
@@ -126,7 +143,7 @@ public class InventoryReportScreenController extends ScreenController implements
 		totalWorthLabel.setText("Total worth stock: " + totalWorthItems + " ¤");
 		snacksAmountLabel.setText("Snacks: " + snacksAmount);
 		drinksAmountLabel.setText("Drinks: " + drinksAmount);
-		
+
 		// tempProd to see if I get all details(name,amount,price......) about products in the report.
 		tempProd = currentReportData.getProducts();
 		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ProductId"));
@@ -137,21 +154,27 @@ public class InventoryReportScreenController extends ScreenController implements
 	}
 
 
-// Go back to main reports screen.
-@FXML
-void clickBackButton(MouseEvent event) {
-	Parent root = null;
-	try {
-		root = FXMLLoader.load(getClass().getResource("ReportsMainScreen.fxml"));
+	/**
+     * Goes back to Report Main Screen.
+     * @param event the mouse event that triggered the method call
+     */
+	@FXML
+	void clickBackButton(MouseEvent event) {
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getResource("ReportsMainScreen.fxml"));
+		}
+		catch (IOException exception){exception.printStackTrace();}
+		super.switchScreen(event, root);
 	}
-	catch (IOException exception){exception.printStackTrace();}
-	super.switchScreen(event, root);
-}
 
-// exit from application
-@FXML
-void exitApplication(MouseEvent event) {
-	super.closeProgram(event, true);	
-}
+	/**
+  	 * exit application
+  	 * @param event the mouse event that triggered the method call
+  	 */
+	@FXML
+	void exitApplication(MouseEvent event) {
+		super.closeProgram(event, true);	
+	}
 
 }
