@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 
 public class ClientConnectorController extends ScreenController {
 	String temp="";
-	boolean choosen = false;
+	boolean choosen = true;
 
 	@FXML
 	private Button btnExit = null;
