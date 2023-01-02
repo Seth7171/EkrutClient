@@ -122,11 +122,10 @@ public class LogInScreenController extends ScreenController implements Initializ
                 case "marketing_manager"://TODO: the path is not working..!
                     root = FXMLLoader.load(getClass().getResource("/gui/MarketingManagementScreens/MarketingManagerScreen.fxml"));
                     break;
-                    
-                case "marketing_employee":
-                	  root = FXMLLoader.load(getClass().getResource("/gui/MarketingManagementScreens/MarketingEmployeeScreen.fxml"));
-                      break;
-                      
+
+                case "marketing_employee_uae":
+                	root = FXMLLoader.load(getClass().getResource("/gui/MarketingManagementScreens/MarketingEmployeeScreen.fxml"));
+                    break;
                 default:
                     System.out.println("Unknown!");
                     // TODO: maybe add UnknownScreenException later??

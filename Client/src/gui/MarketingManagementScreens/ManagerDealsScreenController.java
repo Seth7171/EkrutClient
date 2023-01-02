@@ -10,6 +10,7 @@ import common.Deals;
 import common.Reports.InventoryReport;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import common.connectivity.User;
 import common.orders.Product;
 import gui.ScreenController;
 import javafx.collections.FXCollections;
@@ -20,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -55,12 +57,13 @@ public class ManagerDealsScreenController extends ScreenController implements In
 
 	    @FXML
 	    private TableView<Deals> viewAllDeals;
-	    
+	    @FXML
+	    private Button refresh;
 	    @FXML
 	    private Button apply;
 	    
-	    private ArrayList<Deals> tempProd = new ArrayList<>();
-	    
+	    private ArrayList<Deals> tempDeal;
+	    public static  ObservableList<Deals> observablesubs;
     
     @FXML
     void exit(MouseEvent event) {
@@ -80,66 +83,61 @@ public class ManagerDealsScreenController extends ScreenController implements In
     }
     
     
-    public void loadProducts() {
-    	viewAllDeals.getItems().clear();
+    public void loadDeals() {
+    	observablesubs=FXCollections.observableArrayList();
+    	if (!observablesubs.isEmpty())
+    		observablesubs.clear();
+    	
+    	tempDeal = (ArrayList<Deals>) MessageHandler.getData();//getting data from server
 		// here we insert the data for the table.
-    for(Deals d : tempProd){	
+    for(Deals d : tempDeal){	
     	Deals dealsData = new Deals();
     	dealsData.setDealName(d.getDealName());
     	dealsData.setDiscount(d.getDiscount());
     	dealsData.setDescription(d.getDescription());
-    	System.out.println("d.getTypeStr(): " + d.getTypeStr()); 
-    	dealsData.setType(d.getTypeStr());
-    	dealsData.setArea(d.getAreaS());
-    	dealsData.setStatusString(d.getStatusString());
-    	
-    	viewAllDeals.getItems().add(dealsData);
+    	ChoiceBox<String> type = new ChoiceBox<>(FXCollections.observableArrayList("ALL", "DRINK","SNACK"));
+    	type.setMinWidth(70);
+    	type.setValue(d.getTypeStr());
+    	dealsData.setType(type);
+    	ChoiceBox<String> area = new ChoiceBox<>(FXCollections.observableArrayList("ALL", "NORTH","SOUTH","UAE"));
+    	area.setMinWidth(60);
+    	area.setValue(d.getAreaS().toUpperCase());
+    	dealsData.setArea(area);
+    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList( "approved","not approved"));
+    	status.setMinWidth(95);
+    	status.setValue(d.getStatusString());
+    	dealsData.setStatus(status);
+
+    	observablesubs.add(dealsData);
 	}
+    viewAllDeals.setItems(observablesubs);
 }
-    
-//   ObservableList<Deals> observablesubs= FXCollections.observableArrayList(
-//   
-//			 new Deals("Night time sale",10,"Special offer for late night students from 20pm to 5am ",FXCollections.observableArrayList("Drinks","ALL","Snacks"),FXCollections.observableArrayList("North","South","UAE","ALL"),FXCollections.observableArrayList("Approved","Not Aproved")),
-//	    	 new Deals("Holiday sale",25,"Going on a holiday trip ?, get a 25% discount on all products",FXCollections.observableArrayList("Drinks","ALL","Snacks"),FXCollections.observableArrayList("North","South","UAE","ALL"),FXCollections.observableArrayList("Approved","Not Aproved")),
-//	    	 new Deals("Summer sale",15,"Summer has already arrived - buy something cold to drink",FXCollections.observableArrayList("Drinks","ALL","Snacks"),FXCollections.observableArrayList("North","South","UAE","ALL"),FXCollections.observableArrayList("Approved","Not Aproved")),
-//	    	 new Deals("World Cup sale",10,"watch France vs Argentina finals and get 10% off on SNACKS",FXCollections.observableArrayList("Drinks","ALL","Snacks"),FXCollections.observableArrayList("North","South","UAE","ALL"),FXCollections.observableArrayList("Approved","Not Aproved")),
-//	    	 new Deals("Subscribe sale ",20,"Congratulation for register as Subscriber get 20% off on the first order ",FXCollections.observableArrayList("Drinks","ALL","Snacks"),FXCollections.observableArrayList("North","South","UAE","ALL"),FXCollections.observableArrayList("Approved","Not Aproved")));
-//	    	
-    
-    ;
+   
     @FXML
-    void Apply(MouseEvent event) {//send the data from the Table-View to DB 
-    	//TODO:///
+    void Refresh(MouseEvent event) {
+    	loadDeals();
+    }
+    @FXML
+    void Apply(MouseEvent event) {//send the data from the Table-View to DB  
+    	//userManagementScreenController
     }
 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		tempDeal = new ArrayList<>();
+		//init columns
+		dealNameColumn.setCellValueFactory(new PropertyValueFactory<>("DealName"));
+		discountColumn.setCellValueFactory(new PropertyValueFactory<>("Discount"));
+		descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
+		typeColumn.setCellValueFactory(new PropertyValueFactory<>("Type"));
+		areaColumn.setCellValueFactory(new PropertyValueFactory<>("Area"));
+		statusColumn.setCellValueFactory(new PropertyValueFactory<>("Status"));
+		//load deals
+		loadDeals();
 		
 		
-		tempProd = (ArrayList<Deals>) MessageHandler.getData();//getting data from server
-		
-		
-		ObservableList<Deals> observablesubs= FXCollections.observableArrayList();
-		
-				
-	
-		
-		
-		dealNameColumn.setCellValueFactory(new PropertyValueFactory<Deals,String>("DealName"));
-		discountColumn.setCellValueFactory(new PropertyValueFactory<Deals,Float>("Discount"));
-		descriptionColumn.setCellValueFactory(new PropertyValueFactory<Deals,String>("Description"));
-		typeColumn.setCellValueFactory(new PropertyValueFactory<Deals,String>("Type"));
-		areaColumn.setCellValueFactory(new PropertyValueFactory<Deals,String>("Area"));
-		statusColumn.setCellValueFactory(new PropertyValueFactory<Deals,String>("Status"));
-		
-		viewAllDeals.setItems(observablesubs);
-		
-		loadProducts();
-	
-
-
 
 	}
 }

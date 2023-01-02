@@ -1,6 +1,7 @@
 package common;
 
 import javafx.collections.ObservableList;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 
 import java.io.Serializable;
@@ -12,9 +13,9 @@ public class Deals implements Serializable {
     private String DealName;
     private float Discount;
     private String Description;
-    private ComboBox Type_co; //  Drink | SNACKS | ALL -->> for Manager
-    private ComboBox Area_co;  // North | South | UAE  -->> for Manager
-    private ComboBox Status_co; //Approved | Not Approved  -->> for Manager
+    private ChoiceBox<String> Type_co; //  Drink | SNACKS | ALL -->> for Manager
+    private ChoiceBox<String> Area_co;  // North | South | UAE  -->> for Manager
+    private ChoiceBox<String> Status_co; //Approved | Not Approved  -->> for Manager
     private String Type; //  Drink | SNACKS | ALL  -->> for Employee
     private String Area; // North | South | UAE     -->> for Employee
     private String StatusString;
@@ -23,14 +24,14 @@ public class Deals implements Serializable {
     public Deals() {
     }
 
-    public Deals(String DealName, float Discount, String Description, ObservableList Type, ObservableList Area , ObservableList dataManager) {//with COMBOBOX for Manager
-        this.DealName=DealName;
-        this.Discount=Discount;
-        this.Description=Description;
-        this.Type_co=new ComboBox(Type);
-        this.Area_co=new ComboBox(Area);
-        this.Status_co = new ComboBox(dataManager);
-    }
+//    public Deals(String DealName, float Discount, String Description, ObservableList Type, ObservableList Area , ObservableList dataManager) {//with COMBOBOX for Manager
+//        this.DealName=DealName;
+//        this.Discount=Discount;
+//        this.Description=Description;
+//        this.Type_co=new ComboBox(Type);
+//        this.Area_co=new ComboBox(Area);
+//        this.Status_co = new ComboBox(dataManager);
+//   }
     public Deals(String DealName, float Discount, String Description, String Type, String Area , String StatusString) {//result from DB
         this.DealName=DealName;
         this.Discount=Discount;
@@ -40,13 +41,13 @@ public class Deals implements Serializable {
         this.StatusString=StatusString;
     }
 
-    public Deals(String DealName, float Discount, String Description, String Type, ObservableList dataEmp) {// for employee
-        this.DealName=DealName;
-        this.Discount=Discount;
-        this.Description=Description;
-        this.Type=Type;
-        this.Status_co = new ComboBox(dataEmp);
-    }
+//    public Deals(String DealName, float Discount, String Description, String Type, ObservableList dataEmp) {// for employee
+//        this.DealName=DealName;
+//        this.Discount=Discount;
+//        this.Description=Description;
+//        this.Type=Type;
+//        this.Status_co = new ComboBox(dataEmp);
+//    }
 
     public String getDealID() {
         return dealID;
@@ -88,11 +89,11 @@ public class Deals implements Serializable {
         this.Description = Description;
     }
 
-    public ComboBox getType() {
+    public ChoiceBox getType() {
         return Type_co;
     }
 
-    public void setType(ComboBox Type_co) {
+    public void setType(ChoiceBox Type_co) {
         this.Type_co =Type_co;
     }
 
@@ -104,7 +105,7 @@ public class Deals implements Serializable {
         return Type;
     }
 
-    public ComboBox getArea() {
+    public ChoiceBox getArea() {
         return Area_co;
     }
     public String getAreaS() {
@@ -115,15 +116,15 @@ public class Deals implements Serializable {
         Area = area;
     }
 
-    public void setArea(ComboBox Area_co) {
+    public void setArea(ChoiceBox Area_co) {
         this.Area_co=Area_co;
     }
 
-    public ComboBox getStatus() {
+    public ChoiceBox getStatus() {
         return Status_co;
     }
 
-    public void setStatus(ComboBox Status) {
+    public void setStatus(ChoiceBox Status) {
         this.Status_co =Status;
     }
 
