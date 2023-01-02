@@ -122,7 +122,7 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 		}
 		if(prime)topRange+=1;//if a the range is prime --> topRange+=1	
 		System.out.println("prime: "+prime);
-		for(int i=1; i<topRange/2; i++)//find the lowest  range between topRange multiplies number
+		for(int i=1; i<(topRange/2)+1; i++)//find the lowest  range between topRange multiplies number
 			 	for(int j=0; j<=topRange;j++)
 			 		if(i*j==(float)topRange) //
 			 			if(tmpj-tmpi>j-i &&j-i>1 ) {tmpj=j; tmpi=i;}

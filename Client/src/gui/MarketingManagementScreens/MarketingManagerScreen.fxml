@@ -7,7 +7,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="664.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MarketingManagementScreens.MarketingManagerScreenController">
    <children>
       <ImageView fitHeight="69.0" fitWidth="128.0" layoutX="264.0" pickOnBounds="true" preserveRatio="true">
@@ -20,7 +19,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="existingDeals" layoutX="256.0" layoutY="167.0" mnemonicParsing="false" onMouseClicked="#existingDeals" text="View existing deals">
+      <Button fx:id="existingDeals" layoutX="255.0" layoutY="160.0" mnemonicParsing="false" onMouseClicked="#existingDeals" text="View existing deals">
          <font>
             <Font size="15.0" />
          </font>
@@ -31,5 +30,20 @@
          </font>
       </Button>
       <Button fx:id="exitButton" layoutX="626.0" layoutY="2.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exitApp" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <Button fx:id="viewReport" layoutX="260.0" layoutY="304.0" mnemonicParsing="false" onMouseClicked="#viewReports" text="View reports">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="103.0" fitWidth="84.0" layoutX="143.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sale.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="105.0" fitWidth="84.0" layoutX="143.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ReportScreens/Histogram_report2.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

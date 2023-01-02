@@ -18,22 +18,23 @@ public class Deals implements Serializable {
     private ChoiceBox<String> Status_co; //Approved | Not Approved  -->> for Manager
     private String Area;     //-->> for Employee
     private String StatusString;
-
+    private String Activate; //Activate | not Activate
 
     public Deals() {
     }
 
 
-    public Deals(String DealName, float Discount, String Description,String Type, String Area , String StatusString) {//result from DB
+    public Deals(String DealName, float Discount, String Description,String Type, String Area , String StatusString, String Activate) {//result from DB
         this.DealName=DealName;
         this.Discount=Discount;
         this.Description=Description;
         this.Type=Type;
         this.Area=Area;
         this.StatusString=StatusString;
+        this.Activate=Activate;
     }
 
-
+    
     public String getDealID() {
         return dealID;
     }

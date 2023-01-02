@@ -30,5 +30,10 @@
          </font>
       </Button>
       <Button fx:id="exitButton" layoutX="626.0" layoutY="2.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exitApp" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <ImageView fitHeight="104.0" fitWidth="103.0" layoutX="142.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sale.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

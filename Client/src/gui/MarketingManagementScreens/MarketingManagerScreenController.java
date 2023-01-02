@@ -1,6 +1,7 @@
 package gui.MarketingManagementScreens;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.client.ClientUI;
@@ -29,6 +30,9 @@ public class MarketingManagerScreenController extends ScreenController implement
 
     @FXML
     private Text welcomeText;
+    @FXML
+    private Button viewReport;
+
 
     @FXML
     void existingDeals(MouseEvent event) {// switch to ManagerDealsScreen.fxml
@@ -48,9 +52,31 @@ public class MarketingManagerScreenController extends ScreenController implement
 
 
     @FXML
-    void logOut(MouseEvent event) {
-    	 
+    void logOut(MouseEvent event) {//logOut
+    	 ArrayList<String> cred = new ArrayList<String>();
+         cred.add(UserController.getCurrentuser().getUsername());
+         ClientUI.chat.accept(new Message(cred, MessageFromClient.REQUEST_LOGOUT));
+
+         Parent root = null;
+         try {
+             root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/LogInScreen.fxml"));
+         } catch (IOException e) {
+             throw new RuntimeException(e);
+         }
+         super.switchScreen(event, root);
     }
+    
+    @FXML
+    void viewReports(MouseEvent event) {//view Report
+    	Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/ReportScreens/ReportsMainScreen.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        super.switchScreen(event, root);
+    }
+    
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
