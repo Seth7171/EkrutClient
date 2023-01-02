@@ -1,8 +1,6 @@
 package common;
 
-import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 
 import java.io.Serializable;
 
@@ -18,20 +16,20 @@ public class Deals implements Serializable {
     private ChoiceBox<String> Status_co; //Approved | Not Approved  -->> for Manager
     private String Area;     //-->> for Employee
     private String StatusString;
-    private String Activate; //Activate | not Activate
+    private String active; //active | not active  <-- its like this in the database.
 
     public Deals() {
     }
 
 
-    public Deals(String DealName, float Discount, String Description,String Type, String Area , String StatusString, String Activate) {//result from DB
+    public Deals(String DealName, float Discount, String Description,String Type, String Area , String StatusString, String active) {//result from DB
         this.DealName=DealName;
         this.Discount=Discount;
         this.Description=Description;
         this.Type=Type;
         this.Area=Area;
         this.StatusString=StatusString;
-        this.Activate=Activate;
+        this.active =active;
     }
 
     
@@ -106,6 +104,14 @@ public class Deals implements Serializable {
         this.Status_co =Status;
     }
 
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "Deals{" +
@@ -116,6 +122,7 @@ public class Deals implements Serializable {
                 ", Type='" + Type + '\'' +
                 ", Area='" + Area + '\'' +
                 ", StatusString='" + StatusString + '\'' +
+                ", activation status= " + active +
                 '}';
     }
 }

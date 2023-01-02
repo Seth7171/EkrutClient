@@ -6,6 +6,7 @@ import application.client.ClientUI;
 import application.client.MessageHandler;
 import application.user.CustomerController;
 import application.user.UserController;
+import common.Deals;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import common.connectivity.MessageFromServer;
@@ -114,15 +115,19 @@ public class LogInScreenController extends ScreenController implements Initializ
             return;
 
 
-        ArrayList<String> abcde = new ArrayList<>();
-        abcde.add("316109115");
-        abcde.add("5326102323442109");
+        Deals deal = new Deals();
+        deal.setDealID("001");
+        deal.setDealName("Night time sale");
+        deal.setDiscount(0.1F);
+        deal.setDescription("Special offer for late night students from 20pm to 5am");
+        deal.setType("ALL");
+        deal.setArea("north");
+        deal.setStatusString("approved");
+        deal.setActive("active");
 
-        Order order = new Order();
 
-
-        //ClientUI.chat.accept(new Message("316109115",MessageFromClient.REQUEST_DISCOUNT_LIST )); // TODO: this should be DELETED
-        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
+        ClientUI.chat.accept(new Message(deal,MessageFromClient.REQUEST_UPDATE_DEALS )); // TODO: this should be DELETED
+        //ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
             errorMessage.setText(MessageHandler.getMessage());
             MessageHandler.setMessage(null);
@@ -147,7 +152,6 @@ public class LogInScreenController extends ScreenController implements Initializ
                 case "customer_service":
                     root = FXMLLoader.load(getClass().getResource("/gui/CustomerServiceEmployeeScreens/CustomerServiceEmployeeScreen.fxml"));
                     break;
-
 
                 case"ceo":
                     root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
