@@ -116,12 +116,25 @@ public class CEOReportsMainScreenController extends ScreenController implements 
 	}
 	
 	
-	// go back to ceo main screen
+	// go back to 
 	@FXML
     void clickBackButton(MouseEvent  event) {
 		Parent root = null;
     	try {
-    		root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
+    		 switch (UserController.getCurrentuser().getDepartment()) {
+             case "marketing_manager":
+                 root = FXMLLoader.load(getClass().getResource("/gui/MarketingManagementScreens/MarketingManagerScreen.fxml"));
+                 break;
+
+             case "marketing_employee_uae":
+            	 root = FXMLLoader.load(getClass().getResource("/gui/MarketingManagementScreens/MarketingEmployeeScreen.fxml"));
+            	 break;
+            	 
+             case"ceo":
+                 root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
+                 break;
+    		
+    		 }
 		}
     	catch (IOException exception){exception.printStackTrace();}
     	super.switchScreen(event, root);

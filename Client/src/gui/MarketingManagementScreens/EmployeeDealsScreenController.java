@@ -48,9 +48,11 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     
     @FXML
     private Button exitButton;
-
+    
+  
+    
     @FXML
-    private TableColumn<Deals, ChoiceBox> statusColumn;
+    private TableColumn<Deals, ChoiceBox> activateColumn;
 
     @FXML
     private TableView<Deals> viewAllDeals;
@@ -87,13 +89,15 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     	Deals dealsData = new Deals();
     		ChoiceBox<String> area = new ChoiceBox<>(FXCollections.observableArrayList());
     		area.setValue(d.getAreaS());//get the area 
-    		//show data on the specific area 
+    		
+    		//display specific area + approved  dataDeals 
     		if(area.getValue().contains(user) || area.getValue().contains("all")) { 
-    			ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList( "approved","not approved"));
+    			ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList( "Active","not Active"));
 	    		status.setMinWidth(95);
 	    		status.setValue(d.getStatusString());
     			if(status.getValue().equals("approved")) {//display only approved status
-    				dealsData.setStatus(status);
+    				status.setValue(null);
+    				dealsData.setStatus(status);// Active | not Active
     				dealsData.setDealName(d.getDealName());
     				dealsData.setDiscount((int)(d.getDiscount()*100));
     				dealsData.setDescription(d.getDescription());
@@ -117,7 +121,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
 		discountColumn.setCellValueFactory(new PropertyValueFactory<>("Discount"));
 		descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
 		typeColumn.setCellValueFactory(new PropertyValueFactory<>("Type"));
-		statusColumn.setCellValueFactory(new PropertyValueFactory<>("Status"));
+		activateColumn.setCellValueFactory(new PropertyValueFactory<>("Activate"));
 		//load deals
 	    loadDeals();
 			
