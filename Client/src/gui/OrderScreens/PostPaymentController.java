@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -107,23 +108,32 @@ public class PostPaymentController extends ScreenController implements Initializ
 
 	    // Create a key frame to remove an item from the ListView and refresh the display
 	    KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), event -> {
-	        items.remove(0);
-	        listView.refresh();
+	        // Only remove an item if the list is not empty
+	        if (!items.isEmpty()) {
+	            items.remove(0);
+	            listView.refresh();
+	        }
 	    });
 
 	    // Add the key frame to the timeline
 	    timeline.getKeyFrames().add(keyFrame);
 
 	    // Close the window after the timeline has finished
-	    timeline.setOnFinished(event -> stage.close());
+	    timeline.setOnFinished(event -> {
+	        // Add a 2 second delay before closing the stage
+	        timeline.pause();
+	        KeyFrame keyFrame2 = new KeyFrame(Duration.seconds(1), event2 -> stage.close());
+	        timeline.getKeyFrames().add(keyFrame2);
+	        timeline.play();
+	    });
 
 	    // Start the timeline when the stage is shown
 	    stage.setOnShown(event -> timeline.play());
-	    
-	 // Close the window after the stage has been hidden
-	    stage.setOnHidden(event -> stage.close());
 
 	    stage.show();
+
+
 	}
+
 
 }
