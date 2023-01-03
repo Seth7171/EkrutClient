@@ -107,7 +107,7 @@ public class PostPaymentController extends ScreenController implements Initializ
 	    timeline.setCycleCount(items.size());
 
 	    // Create a key frame to remove an item from the ListView and refresh the display
-	    KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), event -> {
+	    KeyFrame keyFrame = new KeyFrame(Duration.seconds(2), event -> {
 	        // Only remove an item if the list is not empty
 	        if (!items.isEmpty()) {
 	            items.remove(0);
