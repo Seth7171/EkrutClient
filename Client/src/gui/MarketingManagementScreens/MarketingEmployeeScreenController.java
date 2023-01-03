@@ -66,9 +66,18 @@ public class MarketingEmployeeScreenController extends ScreenController implemen
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		welcomeText.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
+		welcomeText.setText("Welcome back, " + capitalLetter(UserController.getCurrentuser().getFirstname()));
 		ClientUI.chat.accept(new Message(null,MessageFromClient.REQUEST_DISCOUNT_LIST )); 
 		
+	}
+	
+	/**
+	 * Make the string with capital letter first and all rest are lower-case letters. (yossi -> Yossi)
+	 * @param str String input
+	 * @return String with capital letter.
+	 */
+	public String capitalLetter(String str) {
+		return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 	}
 
 }
