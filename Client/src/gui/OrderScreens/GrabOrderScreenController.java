@@ -120,15 +120,26 @@ public class GrabOrderScreenController extends ScreenController implements Initi
     	 // we check if the order exist.
     	 if(ChatClient.currentOrder.getOrderID()== null) {
     		 fieldswarning1.setVisible(true);
+    		 ChatClient.currentOrder = new Order();
  			 return;
     	 }
     	 // here we check that the order is type DynamicPickUp, else we dont give it to the user.
     	 if(!ChatClient.currentOrder.getSupplyMethod().equals("machine pickup")){
     		 fieldswarning.setVisible(true);
+    		 ChatClient.currentOrder = new Order();
+ 			 return;
+    	 }
+    	 //check if the user is in the correct machine for pickup.
+    	 if(!ChatClient.currentOrder.getMachineID().equals(CustomerController.getmachineID())){
+    		 fieldswarning.setVisible(true);
+    		 ChatClient.currentOrder = new Order();
  			 return;
     	 }
     	// TODO : send the order to be exe by ekrut, and tell that to the user. + send to DB that the order has been given and change that accordingly
     	 System.out.println(ChatClient.currentOrder); 
+    	 
+    	 //change currentOrder back to empty.
+    	 ChatClient.currentOrder = new Order();
     }
     
     

@@ -7,6 +7,7 @@ public class CustomerController {
 
     private static Customer currentCustomer = null;
     private static String creditnumber = null;
+    private static String machineID = null;
 
     public static void setCurrentCustomer(User currentUser) {
     	if (currentUser==null) {
@@ -32,4 +33,10 @@ public class CustomerController {
 	public static Customer getCurrentCustomer() {
         return currentCustomer;
     }
+    public static void setmachineID(String machineID) {
+    	CustomerController.machineID = machineID;
+	}
+    public static String getmachineID() {
+		return machineID;
+	}
 }
