@@ -47,7 +47,18 @@ public class CEOMainScreenController extends ScreenController implements Initial
     void exit(MouseEvent event) {
         super.closeProgram(event, true);
     }
-
+    
+    @FXML
+    void viewExsitingDeals(MouseEvent event) {
+    	Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/MarketingManagementScreens/ManagerDealsScreen.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        super.switchScreen(event, root);
+    }
+    
     @FXML
     void logOut(MouseEvent event) {
         ArrayList<String> cred = new ArrayList<String>();
