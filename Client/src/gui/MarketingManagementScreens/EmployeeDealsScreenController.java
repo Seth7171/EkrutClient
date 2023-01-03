@@ -137,7 +137,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
 		  for (Deals deal : observablesubs){
 	             Deals dealToList = new Deals();
 	             dealToList.setDealName(deal.getDealName());
-	             dealToList.setDiscount(deal.getDiscount());
+	             dealToList.setDiscount((float)deal.getDiscount()/100);
 	             dealToList.setDescription(deal.getDescription());
 	             dealToList.setType(deal.getType());
 	             dealToList.setArea(deal.getAreaS());
