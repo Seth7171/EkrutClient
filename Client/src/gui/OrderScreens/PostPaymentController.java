@@ -50,14 +50,15 @@ public class PostPaymentController extends ScreenController implements Initializ
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		orderNum.setText(ChatClient.currentOrder.getOrderID());
 		machineNum.setText(ChatClient.currentOrder.getMachineID());
-		if (ChatClient.currentOrder.getSupplyMethod().equals("instant pickup")) {
+		if (!ChatClient.currentOrder.getSupplyMethod().equals("machine pickup")) {
 			machineNum.setVisible(false);
 			dynamicTxt.setVisible(false);
-	        Platform.runLater(() -> {
-	            // Run this method on the JavaFX application thread
-	        	executeOrder(ChatClient.currentOrder);
-	        });
-			
+			if (ChatClient.currentOrder.getSupplyMethod().equals("instant pickup")) {
+		        Platform.runLater(() -> {
+		            // Run this method on the JavaFX application thread
+		        	executeOrder(ChatClient.currentOrder);
+		        });
+			}
 		}
 		// reset the currentOrder for the next order
 		ChatClient.currentOrder = new Order();
