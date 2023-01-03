@@ -13,6 +13,7 @@ import common.connectivity.MessageFromClient;
 import common.connectivity.User;
 import common.orders.Product;
 import gui.ScreenController;
+import gui.UserManagementScreens.UserRow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -87,7 +88,7 @@ public class ManagerDealsScreenController extends ScreenController implements In
     	observablesubs=FXCollections.observableArrayList();
     	if (!observablesubs.isEmpty())
     		observablesubs.clear();
-    	
+    	ClientUI.chat.accept(new Message(null,MessageFromClient.REQUEST_DISCOUNT_LIST )); 
     	tempDeal = (ArrayList<Deals>) MessageHandler.getData();//getting data from server
 		// here we insert the data for the table.
     for(Deals d : tempDeal){	
@@ -103,8 +104,10 @@ public class ManagerDealsScreenController extends ScreenController implements In
     	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList( "approved","not approved"));
     	status.setMinWidth(95);
     	status.setValue(d.getStatusString());
+    	
     	dealsData.setStatus(status);
-
+    	dealsData.setDealID(d.getDealID());
+    	dealsData.setActive(d.getActive());
     	observablesubs.add(dealsData);
 	}
     viewAllDeals.setItems(observablesubs);
@@ -116,7 +119,26 @@ public class ManagerDealsScreenController extends ScreenController implements In
     }
     @FXML
     void Apply(MouseEvent event) {//send the data from the Table-View to DB  
-    	//userManagementScreenController
+   
+         for (Deals deal : observablesubs){
+             Deals dealToList = new Deals();
+             dealToList.setDealName(deal.getDealName());
+             dealToList.setDiscount(deal.getDiscount());
+             dealToList.setDescription(deal.getDescription());
+             dealToList.setType(deal.getType());
+             dealToList.setArea(deal.getArea().getValue().toString());
+             dealToList.setStatusString(deal.getStatus().getValue().toString());
+             if(deal.getStatus().getValue().toString().equals("not approved"))//if not approved -change the active status to "not active"
+                  dealToList.setActive("not active");
+             else 
+            	 dealToList.setActive(deal.getActive());
+             dealToList.setDealID(deal.getDealID());
+             
+          
+            ClientUI.chat.accept(new Message(dealToList,MessageFromClient.REQUEST_UPDATE_DEALS ));//send new DB
+            super.alertHandler(MessageHandler.getMessage(), MessageHandler.getMessage().contains("Error"));
+         }
+       
     }
 
 
