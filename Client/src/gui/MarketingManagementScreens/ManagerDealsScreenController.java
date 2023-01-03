@@ -94,7 +94,7 @@ public class ManagerDealsScreenController extends ScreenController implements In
     for(Deals d : tempDeal){	
     	Deals dealsData = new Deals();
     	dealsData.setDealName(d.getDealName());
-    	dealsData.setDiscount(d.getDiscount());
+    	dealsData.setDiscount((int)(d.getDiscount()*100));
     	dealsData.setDescription(d.getDescription());
     	dealsData.setType(d.getType());
     	ChoiceBox<String> area = new ChoiceBox<>(FXCollections.observableArrayList("ALL", "NORTH","SOUTH","UAE"));
@@ -123,7 +123,7 @@ public class ManagerDealsScreenController extends ScreenController implements In
          for (Deals deal : observablesubs){
              Deals dealToList = new Deals();
              dealToList.setDealName(deal.getDealName());
-             dealToList.setDiscount(deal.getDiscount());
+             dealToList.setDiscount((float)deal.getDiscount()/100);
              dealToList.setDescription(deal.getDescription());
              dealToList.setType(deal.getType());
              dealToList.setArea(deal.getArea().getValue().toString());
