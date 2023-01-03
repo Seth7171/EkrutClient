@@ -132,6 +132,12 @@ public class ChatClient extends AbstractClient
           case "ERROR_IMPORTING_ALL_MACHINES_MONTHLY_REPORT":
           case "ERROR_IMPORTING_INVENTORY_REPORT":
           case "ERROR_IMPORTING_MACHINE_LOCATIONS":
+        	  
+          case "IMPORT_ORDER_BY_ORDER_ID_AND_CUSTOMER_ID_SUCCESSFUL":
+        	  MessageHandler.setData((Order)message.getData());
+        	  currentOrder = (Order)message.getData();
+        	  break;
+        	  
           case "ERROR_ADDING_USER_EXISTS":
               MessageHandler.setMessage((String)message.getData());
               break;
@@ -173,7 +179,6 @@ public class ChatClient extends AbstractClient
           case "SUCCESSFULLY_IMPORTED_CLIENT_REPORT":
           case "IMPORT_ALL_MACHINES_MONTHLY_REPORT_SUCCESSFUL":
           case "ERROR_IMPORTING_ORDER":
-          case "IMPORT_ORDER_BY_ORDER_ID_AND_CUSTOMER_ID_SUCCESSFUL":
           case "IMPORT_INVENTORY_REPORT_SUCCESSFUL":
           case "IMPORT_MACHINE_ID_SUCCESSFUL":
           case "IMPORT_MACHINE_LOCATIONS_SUCCESSFUL":

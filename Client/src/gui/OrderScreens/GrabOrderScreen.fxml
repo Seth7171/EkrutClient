@@ -32,7 +32,7 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="grabNow" layoutX="344.0" layoutY="379.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="230.0" text="Collect Order Now">
+      <Button fx:id="grabNow" layoutX="344.0" layoutY="379.0" mnemonicParsing="false" onMouseClicked="#GrabOrder" prefHeight="63.0" prefWidth="230.0" text="Collect Order Now">
          <font>
             <Font size="20.0" />
          </font>
@@ -48,5 +48,15 @@
             <Font size="20.0" />
          </font>
       </Button>
+      <Label fx:id="fieldswarning" layoutX="309.0" layoutY="460.0" text="Please enter your Order Number" textFill="RED" visible="false">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="fieldswarning1" layoutX="275.0" layoutY="480.0" prefHeight="31.0" prefWidth="369.0" text="Wrong Order Number, Please try again" textFill="RED" visible="false">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
