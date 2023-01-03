@@ -54,7 +54,7 @@ public class PostPaymentController extends ScreenController implements Initializ
 			dynamicTxt.setVisible(false);
 	        Platform.runLater(() -> {
 	            // Run this method on the JavaFX application thread
-	        	executeOrder();
+	        	executeOrder(ChatClient.currentOrder);
 	        });
 			
 		}
@@ -80,11 +80,11 @@ public class PostPaymentController extends ScreenController implements Initializ
         super.switchScreenWithTimerCustomersOnly(event, root);        
     }
 	
-	void executeOrder() {
+	public static void executeOrder(Order order) {
 	    // Load the FXML file
 	    Parent root = null;
 	    try {
-	        root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ExecuteScene.fxml"));
+	        root = FXMLLoader.load(PostPaymentController.class.getResource("/gui/OrderScreens/ExecuteScene.fxml"));
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
@@ -124,8 +124,6 @@ public class PostPaymentController extends ScreenController implements Initializ
 	    stage.setOnHidden(event -> stage.close());
 
 	    stage.show();
-
-	    backButton.fire();
 	}
 
 }
