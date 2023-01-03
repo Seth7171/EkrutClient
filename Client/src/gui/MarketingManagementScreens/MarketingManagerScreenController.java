@@ -93,7 +93,6 @@ public class MarketingManagerScreenController extends ScreenController implement
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		welcomeText.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
-	ClientUI.chat.accept(new Message(null,MessageFromClient.REQUEST_DISCOUNT_LIST )); 
 	}
 
 }

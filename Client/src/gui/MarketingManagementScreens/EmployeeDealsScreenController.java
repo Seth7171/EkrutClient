@@ -5,9 +5,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import application.client.ClientUI;
 import application.client.MessageHandler;
 import application.user.UserController;
 import common.Deals;
+import common.connectivity.Message;
+import common.connectivity.MessageFromClient;
 import common.orders.Product;
 import gui.ScreenController;
 import gui.UserScreens.LogInScreenController;
@@ -49,11 +52,9 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     @FXML
     private Button exitButton;
     
-  
-    
-    @FXML
-    private TableColumn<Deals, String> activeColumn;
 
+    @FXML
+    private TableColumn<Deals,String> statusColumn;
 
     @FXML
     private TableView<Deals> viewAllDeals;
@@ -83,6 +84,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     	observablesubs=FXCollections.observableArrayList();
     	if (!observablesubs.isEmpty())
     		observablesubs.clear();
+    	ClientUI.chat.accept(new Message(null,MessageFromClient.REQUEST_DISCOUNT_LIST )); 
     	String user=UserController.getCurrentuser().getFirstname();
     	tempDeal = (ArrayList<Deals>) MessageHandler.getData();//getting data from server
 		// insert the data for the table.
@@ -100,17 +102,13 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     				dealsData.setDiscount((int)(d.getDiscount()*100));
     				dealsData.setDescription(d.getDescription());
     				dealsData.setType(d.getType());
-//    				ChoiceBox<String> active = new ChoiceBox<>(FXCollections.observableArrayList( "Active","not Active"));
-//    				active.setMinWidth(95);
-//    				active.setValue(d.getActive());
-//    				dealsData.setActive(active);// Active | not Active
-    				
-    				ChoiceBox<String> active = new ChoiceBox<>(FXCollections.observableArrayList( "2321321","3132132"));
+    				ChoiceBox<String> active = new ChoiceBox<>(FXCollections.observableArrayList( "active","not active"));
     				active.setMinWidth(95);
     				active.setValue(d.getActive());
-    		    	dealsData.setActive(active.getValue());
-    		    	ChoiceBox<String> tmp = new ChoiceBox<>(FXCollections.observableArrayList( "2321321","3132132"));
-    		    	dealsData.setActive(tmp);
+    		    	dealsData.setStatus(active);//active
+    		    	dealsData.setStatusString(d.getStatusString());
+    		    	dealsData.setArea(d.getAreaS());
+    		    	dealsData.setDealID(d.getDealID());
     				observablesubs.add(dealsData);
     		}
     	}
@@ -128,7 +126,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
 		discountColumn.setCellValueFactory(new PropertyValueFactory<>("Discount"));
 		descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
 		typeColumn.setCellValueFactory(new PropertyValueFactory<>("Type"));
-		activeColumn.setCellValueFactory(new PropertyValueFactory<>("Active"));
+		statusColumn.setCellValueFactory(new PropertyValueFactory<>("Status"));
 		//load deals
 	    loadDeals();
 			
@@ -136,7 +134,20 @@ public class EmployeeDealsScreenController extends ScreenController implements I
 	
 	  @FXML
 	    void Apply(MouseEvent event) {//send the new data to DB
-
+		  for (Deals deal : observablesubs){
+	             Deals dealToList = new Deals();
+	             dealToList.setDealName(deal.getDealName());
+	             dealToList.setDiscount(deal.getDiscount());
+	             dealToList.setDescription(deal.getDescription());
+	             dealToList.setType(deal.getType());
+	             dealToList.setArea(deal.getAreaS());
+	             dealToList.setStatusString(deal.getStatusString());
+	             dealToList.setDealID(deal.getDealID());
+	             dealToList.setActive(deal.getStatus().getValue().toString());
+	             dealToList.toString();
+	            ClientUI.chat.accept(new Message(dealToList,MessageFromClient.REQUEST_UPDATE_DEALS ));//send new DB
+	            super.alertHandler(MessageHandler.getMessage(), MessageHandler.getMessage().contains("Error"));
+	         }
 	    }
 
 	    @FXML
