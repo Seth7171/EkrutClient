@@ -52,7 +52,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
   
     
     @FXML
-    private TableColumn<Deals,String> activateColumn;
+    private TableColumn<Deals, String> activeColumn;
 
 
     @FXML
@@ -100,10 +100,17 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     				dealsData.setDiscount((int)(d.getDiscount()*100));
     				dealsData.setDescription(d.getDescription());
     				dealsData.setType(d.getType());
-    				ChoiceBox<String> active = new ChoiceBox<>(FXCollections.observableArrayList( "Active","not Active"));
+//    				ChoiceBox<String> active = new ChoiceBox<>(FXCollections.observableArrayList( "Active","not Active"));
+//    				active.setMinWidth(95);
+//    				active.setValue(d.getActive());
+//    				dealsData.setActive(active);// Active | not Active
+    				
+    				ChoiceBox<String> active = new ChoiceBox<>(FXCollections.observableArrayList( "2321321","3132132"));
     				active.setMinWidth(95);
     				active.setValue(d.getActive());
-    				dealsData.setActive(active.getValue());// Active | not Active
+    		    	dealsData.setActive(active.getValue());
+    		    	ChoiceBox<String> tmp = new ChoiceBox<>(FXCollections.observableArrayList( "2321321","3132132"));
+    		    	dealsData.setActive(tmp);
     				observablesubs.add(dealsData);
     		}
     	}
@@ -121,7 +128,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
 		discountColumn.setCellValueFactory(new PropertyValueFactory<>("Discount"));
 		descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
 		typeColumn.setCellValueFactory(new PropertyValueFactory<>("Type"));
-		activateColumn.setCellValueFactory(new PropertyValueFactory<>("Activate"));
+		activeColumn.setCellValueFactory(new PropertyValueFactory<>("Active"));
 		//load deals
 	    loadDeals();
 			

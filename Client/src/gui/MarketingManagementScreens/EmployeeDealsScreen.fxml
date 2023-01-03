@@ -17,7 +17,7 @@
             <TableColumn fx:id="discountColumn" prefWidth="70.0" text=" %Discount" />
             <TableColumn fx:id="descriptionColumn" prefWidth="431.0" text="Description" />
             <TableColumn fx:id="typeColumn" prefWidth="92.0" text="Type" />
-            <TableColumn fx:id="activateColumn" prefWidth="92.0" text="Activate" />
+            <TableColumn fx:id="activeColumn" prefWidth="116.0" text="Active" />
          </columns>
       </TableView>
       <Text layoutX="380.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deals" wrappingWidth="97.79296875">
