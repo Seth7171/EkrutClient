@@ -46,6 +46,9 @@ public class GrabOrderScreenController extends ScreenController implements Initi
     @FXML
     private Label fieldswarning1;
 
+    @FXML
+    private Label successLabel;
+
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -138,6 +141,7 @@ public class GrabOrderScreenController extends ScreenController implements Initi
     	// TODO : send the order to be exe by ekrut, and tell that to the user. + send to DB that the order has been given and change that accordingly
     	// so that if he type the order again it will fail to work!!!!!!
     	 PostPaymentController.executeOrder(ChatClient.currentOrder);
+    	 successLabel.setVisible(true);
     	 System.out.println(ChatClient.currentOrder); 
     	 
     	 //change currentOrder back to empty.

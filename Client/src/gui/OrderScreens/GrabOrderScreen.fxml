@@ -58,5 +58,10 @@
             <Font size="21.0" />
          </font>
       </Label>
+      <Label fx:id="successLabel" layoutX="253.0" layoutY="548.0" text="Your Order Has been transferred to EK-OP!" textFill="#009819" visible="false">
+         <font>
+            <Font name="System Bold Italic" size="21.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
