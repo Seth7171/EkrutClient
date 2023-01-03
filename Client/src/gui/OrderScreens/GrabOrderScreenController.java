@@ -2,10 +2,16 @@ package gui.OrderScreens;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import application.client.ChatClient;
+import application.client.ClientUI;
 import application.user.CustomerController;
 import application.user.UserController;
+import common.connectivity.Message;
+import common.connectivity.MessageFromClient;
+import common.orders.Order;
 import gui.ScreenController;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -14,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -32,6 +39,12 @@ public class GrabOrderScreenController extends ScreenController implements Initi
     
     @FXML
     private Button grabNow;
+    
+    @FXML
+    private Label fieldswarning;
+    
+    @FXML
+    private Label fieldswarning1;
 
 	
 	@Override
@@ -94,13 +107,22 @@ public class GrabOrderScreenController extends ScreenController implements Initi
     
     @FXML
     void GrabOrder(Event event) {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        super.switchScreenWithTimerCustomersOnly(event, root);        
+    	String UserID = CustomerController.getCurrentCustomer().getId();
+    	String orderNum = orderNumField.getText();  
+    	ArrayList<String> msg = new ArrayList<String>();
+    	msg.add(UserID);
+    	msg.add(orderNum);
+    	if (orderNum.trim().isEmpty()) {
+			fieldswarning.setVisible(true);
+			return;
+		}	
+    	 ClientUI.chat.accept(new Message(msg, MessageFromClient.REQUEST_ORDER_BY_ORDER_ID_AND_CUSTOMER_ID));
+    	 if(ChatClient.currentOrder.getOrderID()== null) {
+    		 fieldswarning1.setVisible(true);
+ 			 return;
+    	 }
+    	 System.out.println(ChatClient.currentOrder);
     }
+    
     
 }
