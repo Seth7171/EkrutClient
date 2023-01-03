@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import application.client.ClientUI;
 import application.client.MessageHandler;
+import application.user.UserController;
 import common.Deals;
 import common.Reports.InventoryReport;
 import common.connectivity.Message;
@@ -76,8 +77,19 @@ public class ManagerDealsScreenController extends ScreenController implements In
     void goBackToMarketingManagerScreen(MouseEvent event) {
     	Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("MarketingManagerScreen.fxml"));
-        } catch (IOException e) {
+        	switch (UserController.getCurrentuser().getDepartment()) {
+            case "marketing_manager":
+          	  root = FXMLLoader.load(getClass().getResource("MarketingManagerScreen.fxml.fxml"));
+          	  break;
+           case "ceo":
+          	 root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
+          	 break;
+          	 
+           default:
+               System.out.println("Unknown!");
+               // TODO: maybe add UnknownScreenException later??
+        	} 	
+      }catch (IOException e) {
             throw new RuntimeException(e);
         }
         super.switchScreen(event, root);

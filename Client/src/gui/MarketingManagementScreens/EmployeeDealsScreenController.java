@@ -105,7 +105,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     				ChoiceBox<String> active = new ChoiceBox<>(FXCollections.observableArrayList( "active","not active"));
     				active.setMinWidth(95);
     				active.setValue(d.getActive());
-    		    	dealsData.setStatus(active);//active
+    				dealsData.setStatus(active);//active
     		    	dealsData.setStatusString(d.getStatusString());
     		    	dealsData.setArea(d.getAreaS());
     		    	dealsData.setDealID(d.getDealID());
