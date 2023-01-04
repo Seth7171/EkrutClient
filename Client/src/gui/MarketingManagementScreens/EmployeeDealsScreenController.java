@@ -156,6 +156,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
 	    	loadDeals();
 	    }
 	    
+	    // extract department from string like "marketing_employee_uae" -> uae
 	    public String extractDepartment() {
 	    	String userDepartment = UserController.getCurrentuser().getDepartment();
 	    	return userDepartment.substring(userDepartment.lastIndexOf("_")+1);
