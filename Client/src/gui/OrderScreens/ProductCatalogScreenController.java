@@ -306,7 +306,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     		priceofproduct = productPrice*(1-product.getDiscount())*spinnerQuantity.getValue();
     	}
     	// Set the text of the total price text to the calculated total price
-    	productTotalPrice.setText(String.valueOf(priceofproduct) + "\u20AA");
+    	productTotalPrice.setText(String.format("%.2f", priceofproduct) + "\u20AA");
     	// Create a new spinner for the quantity of the product
     	Spinner<Integer> spinnerQuantitynew = new Spinner<Integer>(0,product.getAmount(),spinnerQuantity.getValue());
     	// Set the maximum width of the quantity spinner
@@ -339,14 +339,14 @@ public class ProductCatalogScreenController extends ScreenController implements 
     		// If the product has a discount, update the total price text to reflect the discounted price
     		if (product.getDiscount() != 0) { 
     			((Text)hb.getChildren().get(3)).setText(
-    					String.valueOf(product.getPrice()*(1-product.getDiscount())*
-    							ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()) + "\u20AA");
+    					String.format("%.2f",(product.getPrice()*(1-product.getDiscount())*
+    							ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount())) + "\u20AA");
 	    	}
     		// If the product does not have a discount, update the total price text to the regular price
     		else {
     			((Text)hb.getChildren().get(3)).setText(
-    					String.valueOf(product.getPrice()*
-    							ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()) + "\u20AA");
+    					String.format("%.2f",(product.getPrice()*
+    							ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount())) + "\u20AA");
     		}
     		// Call the totalAmount method to update the total price of all items in the cart
     		totalAmount();
@@ -408,11 +408,13 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	    if (product.getDiscount() != 0) {
     	        // If the product has a discount, apply it to the total price
     	        ((Text) ((HBox) spinnerQuantitynew.getParent()).getChildren().get(3)).setText(
-    	            String.valueOf(product.getPrice()*(1-product.getDiscount())*ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()) + "\u20AA");
+    	        		String.format("%.2f",(product.getPrice()*(1-product.getDiscount())
+    	        				*ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount())) + "\u20AA");
     	    } else {
     	        // If the product doesn't have a discount, just multiply the price by the quantity
     	        ((Text) ((HBox) spinnerQuantitynew.getParent()).getChildren().get(3)).setText(
-    	            String.valueOf(product.getPrice()*(ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount())) + "\u20AA");
+    	        		String.format("%.2f",(product.getPrice()*
+    	        				(ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()))) + "\u20AA");
     	    }
     	    // Get the maximum value of the quantity spinner
     	    SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = (SpinnerValueFactory.IntegerSpinnerValueFactory) spinnerQuantitynew.getValueFactory();
@@ -488,7 +490,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
 	    	}
     	}
     	// Set the text of the total amount label to the calculated total price
-		totalAmount.setText(String.valueOf(totalprice) + "\u20AA");
+		totalAmount.setText(String.format("%.2f",(totalprice)) + "\u20AA");
     }
     
     /**
