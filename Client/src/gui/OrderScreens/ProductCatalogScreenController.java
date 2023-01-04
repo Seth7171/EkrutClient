@@ -108,12 +108,14 @@ public class ProductCatalogScreenController extends ScreenController implements 
     		ArrayList<String> machine = new ArrayList<String>();
     		if (ChatClient.currentOrder.getSupplyMethod().equals("delivery")){
     			machine.add(null);
+        		machine.add("0");
+        		ClientUI.chat.accept(new Message(machine, MessageFromClient.REQUEST_WAREHOUSE_PRODUCTS));
     		}
     		else {
     			machine.add(CustomerController.getmachineID());
+        		machine.add("0");
+        		ClientUI.chat.accept(new Message(machine, MessageFromClient.REQUEST_MACHINE_PRODUCTS));
     		}
-    		machine.add("0");
-    		ClientUI.chat.accept(new Message(machine, MessageFromClient.REQUEST_MACHINE_PRODUCTS));
     	}
         // Request the list of products from the warehouse
     	else
