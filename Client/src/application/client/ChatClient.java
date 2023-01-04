@@ -150,7 +150,7 @@ public class ChatClient extends AbstractClient
               MessageHandler.setMessage("user added successfully!");
               break;
 
-          case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
+         /* case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
               MessageHandler.setData(message.getData());  // @Lior, added this line because product catalog screen controller was searching for the product arraylist in message handler instead of productList
               productList = (ArrayList<Product>)message.getData();
               // TODO: decide if the below block is necessary.
@@ -170,7 +170,7 @@ public class ChatClient extends AbstractClient
 //
 //              }
 //              //**********************************************************************
-              break;
+              break;*/
 
           case "IMPORT_ORDER_BY_ORDER_ID_AND_CUSTOMER_ID_SUCCESSFUL":
               currentOrder = (Order)message.getData();
@@ -189,6 +189,7 @@ public class ChatClient extends AbstractClient
           case "ERROR_IMPORTING_MACHINE_PRODUCTS":
           case "ERROR_IMPORTING_ALL_MACHINE_PRODUCTS":
           case "IMPORT_WAREHOUSE_PRODUCTS_SUCCESSFUL":
+          case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
               MessageHandler.setData(message.getData());
               break;
       }
