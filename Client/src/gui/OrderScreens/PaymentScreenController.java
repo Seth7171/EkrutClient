@@ -9,7 +9,10 @@ import java.util.UUID;
 
 import application.client.ChatClient;
 import application.client.ClientUI;
+import application.client.MessageHandler;
+import application.user.CustomerController;
 import application.user.UserController;
+import common.connectivity.Customer;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import gui.ScreenController;
@@ -29,7 +32,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 
 public class PaymentScreenController extends ScreenController implements Initializable{
-	
+	private boolean remember = true;
     @FXML
     private Text Subtotal;
     
@@ -47,6 +50,9 @@ public class PaymentScreenController extends ScreenController implements Initial
     
     @FXML
     private Button paybotton;
+    
+    @FXML
+    private Button rememberMyCard;
     
     @FXML
     private Button infoCvv;
@@ -96,6 +102,25 @@ public class PaymentScreenController extends ScreenController implements Initial
 	private boolean callCreditCardCompany(String cardNumber, String cardName, String cardYear, String cardMonth, String cardCVV, float totalPrice) {
 		return true;
 	}
+	
+	@FXML
+    void rememberMyCard(MouseEvent event) {
+		if (remember) {
+			rememberMyCard.setText("Pay with another card");
+			ClientUI.chat.accept(new Message(CustomerController.getCurrentCustomer().getId(), MessageFromClient.REQUEST_CUSTOMER_DATA));
+			cardNumberTextField.setText(((Customer)MessageHandler.getData()).getCreditCardNumber());
+			cardNameTextField.setText(CustomerController.getCurrentCustomer().getFirstname()
+					+" "+ CustomerController.getCurrentCustomer().getLastname());
+			remember = false;
+			return;
+		}
+		else {
+			rememberMyCard.setText("Pay with your saved Credit Card");
+			cardNumberTextField.clear();;
+			cardNameTextField.clear();
+			remember = true;
+		}
+    }
 	
 	@FXML
     void exit(MouseEvent event) {
@@ -160,13 +185,13 @@ public class PaymentScreenController extends ScreenController implements Initial
 	        ChatClient.currentOrder.setOrderStatus("awaiting approval");
         }
         // IF dynamic pickup :
-        else if(ChatClient.currentOrder.getSupplyMethod().equals("machine pickup")) {
+        if(ChatClient.currentOrder.getSupplyMethod().equals("machine pickup")) {
         	ChatClient.currentOrder.setOrderStatus("awaiting pickup");
     		ChatClient.currentOrder.setEstimatedDeliveryTime(null);
     		ChatClient.currentOrder.setConfirmationDate(dateString);
         }
         // ELSE :
-        else {
+        if(ChatClient.currentOrder.getSupplyMethod().equals("instant pickup")) {
 	        ChatClient.currentOrder.setOrderStatus("processing");
 	        ChatClient.currentOrder.setEstimatedDeliveryTime(dateString);
 	        ChatClient.currentOrder.setConfirmationDate(dateString);
