@@ -127,7 +127,7 @@ public class GrabOrderScreenController extends ScreenController implements Initi
  			 return;
     	 }
     	 
-    	 if(!ChatClient.currentOrder.getOrderStatus().equals("processing")){
+    	 if(!ChatClient.currentOrder.getOrderStatus().equals("awaiting pickup")){
     		 fieldswarning.setVisible(true);
     		 ChatClient.currentOrder = new Order();
  			 return;
