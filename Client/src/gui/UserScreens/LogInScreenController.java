@@ -115,7 +115,10 @@ public class LogInScreenController extends ScreenController implements Initializ
         if(credentials == null)
             return;
 
-
+        if(machinesID.getValue()==null && !ChatClient.isOL) {
+			errorMessage.setText("Please choose a machine");
+			 return;
+        }
         Deals deal = new Deals();
         deal.setDealID("001");
         deal.setDealName("Night time sale");
