@@ -93,7 +93,7 @@ public class CheckoutScreenController extends ScreenController implements Initia
     		 productTotalPrice = productTotalPrice.replace('\u20AA', '\0');
     		 totalprice += Float.parseFloat(productTotalPrice);
     	}
-		totalPrice.setText(String.valueOf(totalprice) + "\u20AA");
+		totalPrice.setText(String.format("%.2f",(totalprice)) + "\u20AA");
     }
     
 	@FXML
