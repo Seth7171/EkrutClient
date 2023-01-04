@@ -526,7 +526,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
                 case "customer":
                     CustomerController.setCurrentCustomer(UserController.getCurrentuser());
                     root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));
-                    super.switchScreenWithTimerCustomersOnly(event, root);
+                    super.switchScreen(event, root);
                     break;
 
                 case "subscriber":
@@ -536,7 +536,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
                 		else {
                 			root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));
                 		}
-                    super.switchScreenWithTimerCustomersOnly(event, root);
+                    super.switchScreen(event, root);
                     break;
 
                 case "customer_service":
@@ -594,7 +594,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
             e.printStackTrace();
         }
         // Switch to the CheckoutScreen
-        super.switchScreenWithTimerCustomersOnly(event, root);        
+        super.switchScreen(event, root);        
     }
 
 }

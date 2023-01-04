@@ -113,7 +113,7 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
                 case "customer":
                     CustomerController.setCurrentCustomer(UserController.getCurrentuser());
                     root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/CustomerMainScreen.fxml"));
-                    super.switchScreenWithTimerCustomersOnly(event, root);
+                    super.switchScreen(event, root);
                     break;
 
                 case "customer_service":
@@ -195,7 +195,7 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreenWithTimerCustomersOnly(event, root); 
+        super.switchScreen(event, root); 
     }
     
 }

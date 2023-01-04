@@ -139,7 +139,7 @@ public class LogInScreenController extends ScreenController implements Initializ
         }
 		CustomerController.setmachineID(machinesID.getValue());
         Parent root = loadRoot();
-        super.switchScreenWithTimerCustomersOnly(event,root);
+        super.switchScreen(event,root);
     }
 
     private Parent loadRoot(){
