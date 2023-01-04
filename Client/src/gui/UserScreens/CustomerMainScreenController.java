@@ -63,6 +63,8 @@ public class CustomerMainScreenController extends ScreenController implements In
     		grabOrderButton.setVisible(false);
         welcomeBackText.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
         userStatusText.setText("User Status: " + UserController.getCurrentuser().getStatus());
+        if (ChatClient.isOL)
+        	grabOrderButton.setVisible(false);
     }
     
     @FXML
