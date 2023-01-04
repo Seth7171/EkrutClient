@@ -8,6 +8,8 @@ public class CustomerController {
     private static Customer currentCustomer = null;
     private static String creditnumber = null;
     private static String machineID = null;
+    private static boolean isFirstTimeBuyasSub = false;
+    private static String subscribernNumber = null;
 
     public static void setCurrentCustomer(User currentUser) {
     	if (currentUser==null) {
@@ -38,5 +40,17 @@ public class CustomerController {
 	}
     public static String getmachineID() {
 		return machineID;
+	}
+    public static void setisFirstTimeBuyasSub(Boolean isFirstTimeBuyasSub) {
+    	CustomerController.isFirstTimeBuyasSub = isFirstTimeBuyasSub;
+	}
+    public static Boolean getisFirstTimeBuyasSub() {
+		return isFirstTimeBuyasSub;
+	}
+    public static void setsubscribernNumber(String subscribernNumber) {
+    	CustomerController.subscribernNumber = subscribernNumber;
+	}
+    public static String getsubscribernNumber() {
+		return subscribernNumber;
 	}
 }

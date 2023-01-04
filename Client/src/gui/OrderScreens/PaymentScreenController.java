@@ -102,13 +102,11 @@ public class PaymentScreenController extends ScreenController implements Initial
 	private boolean callCreditCardCompany(String cardNumber, String cardName, String cardYear, String cardMonth, String cardCVV, float totalPrice) {
 		return true;
 	}
-	
 	@FXML
     void rememberMyCard(MouseEvent event) {
 		if (remember) {
 			rememberMyCard.setText("Pay with another card");
-			ClientUI.chat.accept(new Message(CustomerController.getCurrentCustomer().getId(), MessageFromClient.REQUEST_CUSTOMER_DATA));
-			cardNumberTextField.setText(((Customer)MessageHandler.getData()).getCreditCardNumber());
+			cardNumberTextField.setText(CustomerController.getCurrentCustomer().getCreditCardNumber());
 			cardNameTextField.setText(CustomerController.getCurrentCustomer().getFirstname()
 					+" "+ CustomerController.getCurrentCustomer().getLastname());
 			remember = false;
@@ -179,6 +177,10 @@ public class PaymentScreenController extends ScreenController implements Initial
 		// generate order number and paid with
         String  uuid = UUID.randomUUID().toString().substring(0, 8);
         ChatClient.currentOrder.setOrderID(uuid);
+        
+        // if the subscriber bought for the first time, here we are saying goodbye to the discount.
+        CustomerController.setisFirstTimeBuyasSub(false);
+        //TODO: SEND TO SERVER AND UPDATE THAT FIELD.
         
         // IF DELIVERY :
         if (ChatClient.currentOrder.getSupplyMethod().equals("delivery")) {

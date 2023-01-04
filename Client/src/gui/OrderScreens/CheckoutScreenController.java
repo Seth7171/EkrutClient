@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import application.client.ChatClient;
 import application.client.ClientUI;
+import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
@@ -39,6 +40,9 @@ public class CheckoutScreenController extends ScreenController implements Initia
     
     @FXML
     private Text totalPrice;
+    
+    @FXML
+    private Text totalPriceDiss;
     
     @FXML
     private ListView<Object> myOrder = new ListView<Object>();
@@ -93,7 +97,16 @@ public class CheckoutScreenController extends ScreenController implements Initia
     		 productTotalPrice = productTotalPrice.replace('\u20AA', '\0');
     		 totalprice += Float.parseFloat(productTotalPrice);
     	}
-		totalPrice.setText(String.format("%.2f",(totalprice)) + "\u20AA");
+    	totalPrice.setText(String.format("%.2f",(totalprice)) + "\u20AA");
+    	if(CustomerController.getisFirstTimeBuyasSub()) {
+    		totalPrice.setStrikethrough(true);
+    		totalPriceDiss.setVisible(true);
+    		totalPriceDiss.setText(String.format("%.2f",(totalprice*0.8)) + "\u20AA");
+    		String TotalPriceDiss = totalPriceDiss.getText();
+    		TotalPriceDiss = TotalPriceDiss.replace('\u20AA', '\0');
+   		    totalprice = Float.parseFloat(TotalPriceDiss);
+   		    totalPriceDiss.setText(String.format("%.2f",(totalprice)) + "\u20AA" + "NEW SUBSCRIBER DISCOUNT!");
+    	}
     }
     
 	@FXML
