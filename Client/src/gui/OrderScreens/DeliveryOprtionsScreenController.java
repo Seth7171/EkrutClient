@@ -157,6 +157,7 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
         		}
         		System.out.println(machineID);
         		ChatClient.currentOrder.setMachineID(machineID);
+        		CustomerController.setmachineID(machineID);
         		ChatClient.currentOrder.setAddress(null); // in dynamic pickup Address is always null
         		ChatClient.currentOrder.setSupplyMethod("machine pickup");
         		ChatClient.currentOrder.setOrderStatus("awaiting pickup");
@@ -186,6 +187,7 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
      			ChatClient.currentOrder.setAddress(sb.toString());
      			ChatClient.currentOrder.setSupplyMethod("delivery");
      	        ChatClient.currentOrder.setMachineID(null);
+     	        CustomerController.setmachineID(null);
         	}
         }
 		
