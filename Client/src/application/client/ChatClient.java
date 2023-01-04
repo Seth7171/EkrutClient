@@ -132,10 +132,7 @@ public class ChatClient extends AbstractClient
           case "ERROR_IMPORTING_ALL_MACHINES_MONTHLY_REPORT":
           case "ERROR_IMPORTING_INVENTORY_REPORT":
           case "ERROR_IMPORTING_MACHINE_LOCATIONS":
-        	  
-          case "IMPORT_ORDER_BY_ORDER_ID_AND_CUSTOMER_ID_SUCCESSFUL":
-        	  MessageHandler.setData((Order)message.getData());
-        	  currentOrder = (Order)message.getData();
+        	  MessageHandler.setMessage((String) message.getData());
         	  break;
         	  
           case "ERROR_ADDING_USER_EXISTS":
@@ -151,7 +148,6 @@ public class ChatClient extends AbstractClient
               break;
 
           case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
-              MessageHandler.setData((ArrayList<Product>)message.getData());
         	  productList = (ArrayList<Product>)message.getData();
               // TODO: decide if the below block is necessary.
 //              //TODO: you should take the following block and put it where you need it or you can even leave it here.
@@ -170,6 +166,10 @@ public class ChatClient extends AbstractClient
 //
 //              }
 //              //**********************************************************************
+              break;
+
+          case "IMPORT_ORDER_BY_ORDER_ID_AND_CUSTOMER_ID_SUCCESSFUL":
+              currentOrder = (Order)message.getData();
               break;
 
           case "DEALS_IMPORTED_SUCCESSFULLY":
