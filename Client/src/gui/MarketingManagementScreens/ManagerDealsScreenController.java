@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import application.client.ClientUI;
 import application.client.MessageHandler;
+import application.user.UserController;
 import common.Deals;
 import common.Reports.InventoryReport;
 import common.connectivity.Message;
@@ -76,8 +77,19 @@ public class ManagerDealsScreenController extends ScreenController implements In
     void goBackToMarketingManagerScreen(MouseEvent event) {
     	Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("MarketingManagerScreen.fxml"));
-        } catch (IOException e) {
+        	switch (UserController.getCurrentuser().getDepartment()) {
+            case "marketing_manager":
+          	  root = FXMLLoader.load(getClass().getResource("MarketingManagerScreen.fxml.fxml"));
+          	  break;
+           case "ceo":
+          	 root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
+          	 break;
+          	 
+           default:
+               System.out.println("Unknown!");
+               // TODO: maybe add UnknownScreenException later??
+        	} 	
+      }catch (IOException e) {
             throw new RuntimeException(e);
         }
         super.switchScreen(event, root);
@@ -94,7 +106,7 @@ public class ManagerDealsScreenController extends ScreenController implements In
     for(Deals d : tempDeal){	
     	Deals dealsData = new Deals();
     	dealsData.setDealName(d.getDealName());
-    	dealsData.setDiscount(d.getDiscount());
+    	dealsData.setDiscount((int)(d.getDiscount()*100));
     	dealsData.setDescription(d.getDescription());
     	dealsData.setType(d.getType());
     	ChoiceBox<String> area = new ChoiceBox<>(FXCollections.observableArrayList("ALL", "NORTH","SOUTH","UAE"));
@@ -123,7 +135,7 @@ public class ManagerDealsScreenController extends ScreenController implements In
          for (Deals deal : observablesubs){
              Deals dealToList = new Deals();
              dealToList.setDealName(deal.getDealName());
-             dealToList.setDiscount(deal.getDiscount());
+             dealToList.setDiscount((float)deal.getDiscount()/100);
              dealToList.setDescription(deal.getDescription());
              dealToList.setType(deal.getType());
              dealToList.setArea(deal.getArea().getValue().toString());

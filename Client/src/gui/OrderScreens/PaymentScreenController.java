@@ -115,11 +115,13 @@ public class PaymentScreenController extends ScreenController implements Initial
     
 	@FXML
     void delayPay(MouseEvent event) {
+        ChatClient.currentOrder.setPaidWith("delayed payment");
 		generateInvoice(event, true);
 	}
     
 	@FXML
     void pay(MouseEvent event) {
+		ChatClient.currentOrder.setPaidWith("credit card");
 		String cardNumber = cardNumberTextField.getText();
 		String cardName = cardNameTextField.getText();
 		String cardYear = yearCombobox.getValue();
@@ -152,7 +154,6 @@ public class PaymentScreenController extends ScreenController implements Initial
 		// generate order number and paid with
         String  uuid = UUID.randomUUID().toString().substring(0, 8);
         ChatClient.currentOrder.setOrderID(uuid);
-        ChatClient.currentOrder.setPaidWith("delayed payment");
         
         // IF DELIVERY :
         if (ChatClient.currentOrder.getSupplyMethod().equals("delivery")) {
