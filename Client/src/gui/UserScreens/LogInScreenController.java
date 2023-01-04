@@ -26,6 +26,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -133,6 +134,7 @@ public class LogInScreenController extends ScreenController implements Initializ
             MessageHandler.setMessage(null);
             return;
         }
+		CustomerController.setmachineID(machinesID.getValue());
         Parent root = loadRoot();
         super.switchScreenWithTimerCustomersOnly(event,root);
     }
