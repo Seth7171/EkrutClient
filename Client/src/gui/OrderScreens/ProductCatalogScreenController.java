@@ -117,7 +117,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         tabPane.setTabMinWidth(220);
         tabPane.setTabMaxWidth(220);
         // Iterate through the list of products received from the warehouse
-        for (Product product : (ArrayList<Product>) MessageHandler.getData()) {
+        for (Product product : ChatClient.productList) {
             // Only add products that are in stock (amount != 0) to the UI
             if(product.getAmount() != 0 ) {
                 // Add products of type "SNACK" to the snacks pane
