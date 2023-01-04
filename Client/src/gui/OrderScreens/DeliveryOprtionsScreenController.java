@@ -159,6 +159,7 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
         		ChatClient.currentOrder.setMachineID(machineID);
         		ChatClient.currentOrder.setAddress(null); // in dynamic pickup Address is always null
         		ChatClient.currentOrder.setSupplyMethod("machine pickup");
+        		ChatClient.currentOrder.setOrderStatus("awaiting pickup");
         	}
         	else { // Delivery
             	TextField TextField = (TextField) pane.lookup("#StreetAd");

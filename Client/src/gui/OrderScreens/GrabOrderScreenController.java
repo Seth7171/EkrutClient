@@ -126,6 +126,12 @@ public class GrabOrderScreenController extends ScreenController implements Initi
     		 ChatClient.currentOrder = new Order();
  			 return;
     	 }
+    	 
+    	 if(!ChatClient.currentOrder.getOrderStatus().equals("processing")){
+    		 fieldswarning.setVisible(true);
+    		 ChatClient.currentOrder = new Order();
+ 			 return;
+    	 }
     	 // here we check that the order is type DynamicPickUp, else we dont give it to the user.
     	 if(!ChatClient.currentOrder.getSupplyMethod().equals("machine pickup")){
     		 fieldswarning.setVisible(true);
@@ -133,7 +139,7 @@ public class GrabOrderScreenController extends ScreenController implements Initi
  			 return;
     	 }
     	 //check if the user is in the correct machine for pickup.
-    	 if(!ChatClient.currentOrder.getMachineID().equals(CustomerController.getmachineID())){ // todo: seems like there is a problem in this line,  CustomerController.getmachineID() is null, maybe it is getting override by something??
+    	 if(!ChatClient.currentOrder.getMachineID().equals(CustomerController.getmachineID())){ 
     		 fieldswarning.setVisible(true);
     		 ChatClient.currentOrder = new Order();
  			 return;
@@ -143,7 +149,10 @@ public class GrabOrderScreenController extends ScreenController implements Initi
     	 PostPaymentController.executeOrder(ChatClient.currentOrder);
     	 successLabel.setVisible(true);
     	 System.out.println(ChatClient.currentOrder); 
-    	 
+    	 msg = new ArrayList<String>();
+     	 msg.add(orderNum);
+     	 msg.add("picked up");
+    	 ClientUI.chat.accept(new Message(msg, MessageFromClient.REQUEST_UPDATE_ORDER_STATUS));
     	 //change currentOrder back to empty.
     	 ChatClient.currentOrder = new Order();
     }

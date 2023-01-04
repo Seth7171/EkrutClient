@@ -8,7 +8,10 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import application.client.ChatClient;
+import application.client.ClientUI;
 import application.user.UserController;
+import common.connectivity.Message;
+import common.connectivity.MessageFromClient;
 import common.orders.Order;
 import common.orders.Product;
 import gui.ScreenController;
@@ -51,6 +54,10 @@ public class CheckoutScreenController extends ScreenController implements Initia
           spinner.setOnMouseClicked(event -> {
             // update the total amount when the spinner is clicked
             totalAmount();
+            ArrayList<String> msg = new ArrayList<String>();
+       	 	msg.add(ChatClient.currentOrder.getOrderID());
+       	 	msg.add("picked up");
+       	 	ClientUI.chat.accept(new Message(msg, MessageFromClient.REQUEST_UPDATE_ORDER_STATUS));
           });
         }
 
