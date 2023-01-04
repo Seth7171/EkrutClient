@@ -126,9 +126,12 @@ public class LogInScreenController extends ScreenController implements Initializ
         deal.setStatusString("approved");
         deal.setActive("active");
 
+        ArrayList<String> abc = new ArrayList<>();
+        abc.add("517b1a47");
+        abc.add("approved");
 
-        //ClientUI.chat.accept(new Message(deal,MessageFromClient.REQUEST_UPDATE_DEALS )); // TODO: this should be DELETED
-        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
+        ClientUI.chat.accept(new Message(abc,MessageFromClient.REQUEST_UPDATE_ORDER_STATUS )); // TODO: this should be DELETED
+        //ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
             errorMessage.setText(MessageHandler.getMessage());
             MessageHandler.setMessage(null);
