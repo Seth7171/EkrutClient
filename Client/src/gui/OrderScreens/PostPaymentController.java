@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.client.ChatClient;
+import application.client.ClientUI;
+import common.connectivity.Message;
+import common.connectivity.MessageFromClient;
 import common.orders.Order;
 import common.orders.Product;
 import gui.ScreenController;
@@ -57,6 +60,10 @@ public class PostPaymentController extends ScreenController implements Initializ
 		        Platform.runLater(() -> {
 		            // Run this method on the JavaFX application thread
 		        	executeOrder(ChatClient.currentOrder);
+		            ArrayList<String> msg = new ArrayList<String>();
+		       	 	msg.add(ChatClient.currentOrder.getOrderID());
+		       	 	msg.add("picked up");
+		       	 	ClientUI.chat.accept(new Message(msg, MessageFromClient.REQUEST_UPDATE_ORDER_STATUS));
 		        });
 			}
 		}
