@@ -160,12 +160,16 @@ public class PaymentScreenController extends ScreenController implements Initial
 	        ChatClient.currentOrder.setOrderStatus("awaiting approval");
         }
         // IF dynamic pickup :
-        if(ChatClient.currentOrder.getSupplyMethod().equals("machine pickup"))
+        else if(ChatClient.currentOrder.getSupplyMethod().equals("machine pickup")) {
         	ChatClient.currentOrder.setOrderStatus("awaiting pickup");
+    		ChatClient.currentOrder.setEstimatedDeliveryTime(null);
+    		ChatClient.currentOrder.setConfirmationDate(dateString);
+        }
         // ELSE :
         else {
 	        ChatClient.currentOrder.setOrderStatus("processing");
 	        ChatClient.currentOrder.setEstimatedDeliveryTime(dateString);
+	        ChatClient.currentOrder.setConfirmationDate(dateString);
         }
         System.out.println(ChatClient.currentOrder);
         
