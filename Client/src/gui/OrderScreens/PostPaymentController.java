@@ -57,13 +57,13 @@ public class PostPaymentController extends ScreenController implements Initializ
 			machineNum.setVisible(false);
 			dynamicTxt.setVisible(false);
 			if (ChatClient.currentOrder.getSupplyMethod().equals("instant pickup")) {
+		        ArrayList<String> msg = new ArrayList<String>();
+		   	 	msg.add(ChatClient.currentOrder.getOrderID());
+		   	 	msg.add("collected");
+		   	 	ClientUI.chat.accept(new Message(msg, MessageFromClient.REQUEST_UPDATE_ORDER_STATUS));
 		        Platform.runLater(() -> {
 		            // Run this method on the JavaFX application thread
 		        	executeOrder(ChatClient.currentOrder);
-		            ArrayList<String> msg = new ArrayList<String>();
-		       	 	msg.add(ChatClient.currentOrder.getOrderID());
-		       	 	msg.add("picked up");
-		       	 	ClientUI.chat.accept(new Message(msg, MessageFromClient.REQUEST_UPDATE_ORDER_STATUS));
 		        });
 			}
 		}
@@ -104,13 +104,15 @@ public class PostPaymentController extends ScreenController implements Initializ
 	    // Add items to the ListView
 	    listView.setItems(ChatClient.rememberMyCart.getItems());
 	    ObservableList<Object> items = listView.getItems();
+	    
+	    
 
 	    // Show the window
 	    Scene scene = new Scene(root);
 	    Stage stage = new Stage();
 	    stage.setScene(scene);
 
-	    // Create a timeline to remove the items from the ListView
+	 // Create a timeline to remove the items from the ListView
 	    Timeline timeline = new Timeline();
 	    timeline.setCycleCount(items.size());
 
@@ -129,10 +131,11 @@ public class PostPaymentController extends ScreenController implements Initializ
 	    // Close the window after the timeline has finished
 	    timeline.setOnFinished(event -> {
 	        // Add a 2 second delay before closing the stage
-	        timeline.pause();
-	        KeyFrame keyFrame2 = new KeyFrame(Duration.seconds(1), event2 -> stage.close());
-	        timeline.getKeyFrames().add(keyFrame2);
-	        timeline.play();
+	        Timeline delayTimeline = new Timeline();
+	        delayTimeline.setCycleCount(1);
+	        KeyFrame delayKeyFrame = new KeyFrame(Duration.seconds(2), event2 -> stage.close());
+	        delayTimeline.getKeyFrames().add(delayKeyFrame);
+	        delayTimeline.play();
 	    });
 
 	    // Start the timeline when the stage is shown
