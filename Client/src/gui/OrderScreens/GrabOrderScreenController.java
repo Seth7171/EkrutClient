@@ -144,8 +144,8 @@ public class GrabOrderScreenController extends ScreenController implements Initi
     		 ChatClient.currentOrder = new Order();
  			 return;
     	 }
-    	// TODO : send the order to be exe by ekrut, and tell that to the user. + send to DB that the order has been given and change that accordingly
-    	// so that if he type the order again it will fail to work!!!!!!
+    	 
+    	 // send the order to be exe by ek op
     	 PostPaymentController.executeOrder(ChatClient.currentOrder);
     	 successLabel.setVisible(true);
     	 System.out.println(ChatClient.currentOrder); 

@@ -115,7 +115,7 @@ public class CustomerMainScreenController extends ScreenController implements In
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreenWithTimerCustomersOnly(event, root);
+        super.switchScreen(event, root);
     }
     
     /**
@@ -129,7 +129,7 @@ public class CustomerMainScreenController extends ScreenController implements In
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreenWithTimerCustomersOnly(event, root);
+        super.switchScreen(event, root);
     }
 
 }

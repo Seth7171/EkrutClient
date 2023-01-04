@@ -136,7 +136,7 @@ public class ScreenController {
         });
         
         // start of timer code
-        PauseTransition delay = new PauseTransition(Duration.seconds(600));
+        PauseTransition delay = new PauseTransition(Duration.seconds(900));
         
 	    delay.setOnFinished( event2 -> {        ClientUI.chat.accept("disconnect");
             									ArrayList<String> cred = new ArrayList<String>();

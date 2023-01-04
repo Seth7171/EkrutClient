@@ -86,7 +86,7 @@ public class PostPaymentController extends ScreenController implements Initializ
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreenWithTimerCustomersOnly(event, root);        
+        super.switchScreen(event, root);        
     }
 	
 	public static void executeOrder(Order order) {

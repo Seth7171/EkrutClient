@@ -110,7 +110,7 @@ public class PaymentScreenController extends ScreenController implements Initial
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreenWithTimerCustomersOnly(event, root);        
+        super.switchScreen(event, root);        
     }
     
 	@FXML
@@ -177,7 +177,7 @@ public class PaymentScreenController extends ScreenController implements Initial
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreenWithTimerCustomersOnly(event, root);
+        super.switchScreen(event, root);
 	}
 
 	

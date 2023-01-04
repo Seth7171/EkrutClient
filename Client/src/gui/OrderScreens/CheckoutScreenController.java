@@ -83,7 +83,7 @@ public class CheckoutScreenController extends ScreenController implements Initia
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreenWithTimerCustomersOnly(event, root);        
+        super.switchScreen(event, root);        
     }
     
     void totalAmount() {
@@ -110,6 +110,6 @@ public class CheckoutScreenController extends ScreenController implements Initia
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreenWithTimerCustomersOnly(event, root);   
+        super.switchScreen(event, root);   
 	}
 }
