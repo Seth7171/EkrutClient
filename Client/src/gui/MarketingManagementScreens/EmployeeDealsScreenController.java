@@ -87,6 +87,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     	ClientUI.chat.accept(new Message(null,MessageFromClient.REQUEST_DISCOUNT_LIST )); 
     	String user=UserController.getCurrentuser().getFirstname();
     	tempDeal = (ArrayList<Deals>) MessageHandler.getData();//getting data from server
+    	
 		// insert the data for the table.
     for(Deals d : tempDeal){	
     	Deals dealsData = new Deals();
@@ -94,7 +95,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     		area.setValue(d.getAreaS());//get the area 
     		
     		//display specific area + approved  dataDeals 
-    		if(area.getValue().contains(user) || area.getValue().contains("all")) { 
+    		if(area.getValue().contains(extractDepartment()) || area.getValue().contains("all")) { 
     			ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList());
 	    		status.setValue(d.getStatusString());
     			if(status.getValue().equals("approved")) {//display only approved status
@@ -154,6 +155,10 @@ public class EmployeeDealsScreenController extends ScreenController implements I
 	    void Refresh(MouseEvent event) {
 	    	loadDeals();
 	    }
-	
+	    
+	    public String extractDepartment() {
+	    	String userDepartment = UserController.getCurrentuser().getDepartment();
+	    	return userDepartment.substring(userDepartment.lastIndexOf("_")+1);
+	    }
 
 }
