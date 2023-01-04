@@ -106,7 +106,12 @@ public class ProductCatalogScreenController extends ScreenController implements 
         totalAmount.setText("0.0\u20AA");
     	if (CustomerController.isLogged()) {
     		ArrayList<String> machine = new ArrayList<String>();
-    		machine.add("NOR1");
+    		if (ChatClient.currentOrder.getSupplyMethod().equals("delivery")){
+    			machine.add(null);
+    		}
+    		else {
+    			machine.add(CustomerController.getmachineID());
+    		}
     		machine.add("0");
     		ClientUI.chat.accept(new Message(machine, MessageFromClient.REQUEST_MACHINE_PRODUCTS));
     	}
