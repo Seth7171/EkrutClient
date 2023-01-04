@@ -79,7 +79,7 @@ public class ManagerDealsScreenController extends ScreenController implements In
         try {
         	switch (UserController.getCurrentuser().getDepartment()) {
             case "marketing_manager":
-          	  root = FXMLLoader.load(getClass().getResource("MarketingManagerScreen.fxml.fxml"));
+          	  root = FXMLLoader.load(getClass().getResource("MarketingManagerScreen.fxml"));
           	  break;
            case "ceo":
           	 root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
