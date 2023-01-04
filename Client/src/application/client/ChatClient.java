@@ -134,7 +134,7 @@ public class ChatClient extends AbstractClient
           case "ERROR_IMPORTING_MACHINE_LOCATIONS":
         	  MessageHandler.setMessage((String) message.getData());
         	  break;
-        	  
+
           case "ERROR_ADDING_USER_EXISTS":
               MessageHandler.setMessage((String)message.getData());
               break;
@@ -148,7 +148,8 @@ public class ChatClient extends AbstractClient
               break;
 
           case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
-        	  productList = (ArrayList<Product>)message.getData();
+              MessageHandler.setData(message.getData());  // @Lior, added this line because product catalog screen controller was searching for the product arraylist in message handler instead of productList
+              productList = (ArrayList<Product>)message.getData();
               // TODO: decide if the below block is necessary.
 //              //TODO: you should take the following block and put it where you need it or you can even leave it here.
 //              //***********************************************************************

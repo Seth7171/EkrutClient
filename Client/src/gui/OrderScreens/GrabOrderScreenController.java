@@ -120,8 +120,8 @@ public class GrabOrderScreenController extends ScreenController implements Initi
 			return;
 		}	
     	 ClientUI.chat.accept(new Message(msg, MessageFromClient.REQUEST_ORDER_BY_ORDER_ID_AND_CUSTOMER_ID));
-    	 // we check if the order exist.
-    	 if(ChatClient.currentOrder.getOrderID()== null) {
+    	 // we check if the order we received is the order we asked for
+    	 if(!ChatClient.currentOrder.getOrderID().equals(orderNum)) {
     		 fieldswarning1.setVisible(true);
     		 ChatClient.currentOrder = new Order();
  			 return;
@@ -133,7 +133,7 @@ public class GrabOrderScreenController extends ScreenController implements Initi
  			 return;
     	 }
     	 //check if the user is in the correct machine for pickup.
-    	 if(!ChatClient.currentOrder.getMachineID().equals(CustomerController.getmachineID())){
+    	 if(!ChatClient.currentOrder.getMachineID().equals(CustomerController.getmachineID())){ // todo: seems like there is a problem in this line,  CustomerController.getmachineID() is null, maybe it is getting override by something??
     		 fieldswarning.setVisible(true);
     		 ChatClient.currentOrder = new Order();
  			 return;
