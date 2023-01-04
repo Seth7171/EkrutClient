@@ -148,8 +148,8 @@ public class LogInScreenController extends ScreenController implements Initializ
             // TODO: expand next screen switch case
             switch (UserController.getCurrentuser().getDepartment()) {
 
+            	case "customer":
                 case "subscriber":
-                case "customer":
                 	CustomerController.setCurrentCustomer(UserController.getCurrentuser());
                     root = FXMLLoader.load(getClass().getResource("CustomerMainScreen.fxml"));
                     break;
