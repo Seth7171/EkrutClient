@@ -178,7 +178,6 @@ public class ChatClient extends AbstractClient
 
           case "DEALS_IMPORTED_SUCCESSFULLY":
           case "IMPORTING_CUSTOMERS_FROM_USER_TABLE_SUCCESSFUL":
-          case "CUSTOMER_DATA_IMPORTED_SUCCESSFULLY":
           case "SUCCESSFULLY_IMPORTED_REFILL_ORDERS":
           case "SUCCESSFULLY_IMPORTED_CLIENT_REPORT":
           case "IMPORT_ALL_MACHINES_MONTHLY_REPORT_SUCCESSFUL":
@@ -192,6 +191,12 @@ public class ChatClient extends AbstractClient
           case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
               MessageHandler.setData(message.getData());
               break;
+          case "CUSTOMER_DATA_IMPORTED_SUCCESSFULLY":
+        	  CustomerController.setisFirstTimeBuyasSub(((Customer)message.getData()).isFirstBuyAsSub());
+        	  CustomerController.setCreditnumber(((Customer)message.getData()).getCreditCardNumber());
+        	  //TODO : LIOR FIX YOUR SERVER COMMON CUSTOMER 
+        	 // CustomerController.setsubscribernNumber(((Customer)message.getData()).getsubscribernNumber()); 
+        	  break;
       }
   }
   
