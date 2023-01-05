@@ -42,27 +42,50 @@ public class AreaManagerScreenController extends ScreenController implements Ini
 
     @FXML
     void openManageProductsScreen(MouseEvent event) {
-    	
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/ProductControlScreens/productManagementScreen.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        super.switchScreen(event, root);
     }
 
     @FXML
     void openRefilOrdersScreen(MouseEvent event) {
-
+    	Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/ProductControlScreens/RefillOrderScreen.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        super.switchScreen(event, root);
     }
 
     @FXML
     void openUserManagementScreen(MouseEvent event) {
-
+    	 Parent root = null;
+         try {
+             root = FXMLLoader.load(getClass().getResource("/gui/UserManagementScreens/userManagementScreen.fxml"));
+         } catch (IOException e) {
+             throw new RuntimeException(e);
+         }
+         super.switchScreen(event, root);
     }
-
     @FXML
     void openViewReportsScreen(MouseEvent event) {
-
+    	 Parent root = null;
+         try {
+             root = FXMLLoader.load(getClass().getResource("/gui/ReportScreens/ReportsMainScreen.fxml"));
+         } catch (IOException e) {
+             throw new RuntimeException(e);
+         }
+         super.switchScreen(event, root);
     }
 
     @FXML
     void exit(MouseEvent event) {
-
+    	super.closeProgram(event, true);
     }
 
     @FXML
