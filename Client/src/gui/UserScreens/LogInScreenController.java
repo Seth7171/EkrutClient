@@ -187,7 +187,15 @@ public class LogInScreenController extends ScreenController implements Initializ
                 case "marketing_employee_uae":
                 	root = FXMLLoader.load(getClass().getResource("/gui/MarketingManagementScreens/MarketingEmployeeScreen.fxml"));
                     break;
-
+                case "area_manager_uae":
+                	root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
+                    break;
+                case "area_manager_north":
+                	root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
+                    break;
+                case "area_manager_south":
+                	root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
+                    break;
                 default:
                     System.out.println("Unknown!");
                     // TODO: maybe add UnknownScreenException later??
