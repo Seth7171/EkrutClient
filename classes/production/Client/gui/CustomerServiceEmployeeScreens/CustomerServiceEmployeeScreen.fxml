@@ -20,7 +20,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="addNewUserButton" layoutX="87.0" layoutY="156.0" mnemonicParsing="false" onMouseClicked="#openAddUserScreen" text="Add new user">
+      <Button fx:id="addNewUserButton" layoutX="83.0" layoutY="156.0" mnemonicParsing="false" onMouseClicked="#openAddUserScreen" prefHeight="31.0" prefWidth="119.0" text="Add customer">
          <font>
             <Font size="15.0" />
          </font>
@@ -30,7 +30,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="addNewUserButton" layoutX="86.0" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#openManageUsersScreen" text="manage users">
+      <Button fx:id="addSubscriberButton" layoutX="83.0" layoutY="235.0" mnemonicParsing="false" onMouseClicked="#openAddSubscriberScreen" text="Add subscriber">
          <font>
             <Font size="15.0" />
          </font>

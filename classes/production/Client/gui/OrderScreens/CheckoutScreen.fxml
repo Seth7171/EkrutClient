@@ -52,5 +52,10 @@
          </font>
       </Text>
       <ListView fx:id="myOrder" layoutX="129.0" layoutY="114.0" prefHeight="479.0" prefWidth="688.0" />
+      <Text fx:id="totalPriceDiss" fill="RED" layoutX="265.0" layoutY="650.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$$$$" visible="false" wrappingWidth="200.0000043658074">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

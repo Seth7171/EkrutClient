@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserManagementScreens.AddSubscriberScreenController">
+   <children>
+      <ImageView fitHeight="76.0" fitWidth="135.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../logo.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" layoutX="14.0" layoutY="768.0" mnemonicParsing="false" onMouseClicked="#goBack" text="back">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="exitButton" layoutX="877.0" layoutY="11.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <TableView fx:id="customerTable" layoutX="43.0" layoutY="90.0" prefHeight="589.0" prefWidth="832.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="90.0" text="ID" />
+          <TableColumn fx:id="fnameCol" prefWidth="90.0" text="first name" />
+            <TableColumn fx:id="LnameCol" prefWidth="90.0" text="Last name" />
+            <TableColumn fx:id="PhoneCol" prefWidth="100.0" text="Phone number" />
+            <TableColumn fx:id="eMailCol" prefWidth="109.0" text="E-mail" />
+            <TableColumn fx:id="creditCol" prefWidth="120.0" text="Credit card number" />
+            <TableColumn fx:id="customerStatusCol" minWidth="8.0" prefWidth="120.0" text="customer status" />
+            <TableColumn fx:id="subNumberCol" prefWidth="112.0" text="subscriber number" />
+        </columns>
+      </TableView>
+      <Button fx:id="updateUserButton" layoutX="433.0" layoutY="715.0" mnemonicParsing="false" onMouseClicked="#updateCustomerInDatabase" text="Update">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Text layoutX="358.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add subscriber" underline="true">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>
