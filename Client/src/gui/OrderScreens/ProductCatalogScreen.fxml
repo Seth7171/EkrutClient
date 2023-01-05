@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.ProductCatalogScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.ProductCatalogScreenController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
          <image>
@@ -61,7 +61,7 @@
             <Font size="33.0" />
          </font>
       </Label>
-      <TabPane fx:id="tabPane" layoutX="-1.0" layoutY="114.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="481.0" prefWidth="918.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="60.0">
+      <TabPane fx:id="tabPane" layoutX="-1.0" layoutY="114.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="481.0" prefWidth="918.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="80.0">
         <tabs>
           <Tab closable="false">
                <graphic>

@@ -26,6 +26,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -194,12 +197,15 @@ public class ProductCatalogScreenController extends ScreenController implements 
         nameLabel.getStyleClass().add("name-label");
         nameLabel.setWrapText(true);
         nameLabel.setPrefWidth(150);
+        nameLabel.setAlignment(Pos.CENTER_RIGHT);
+        nameLabel.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        nameLabel.setUnderline(true);
 
         // Create a label to display the product ID
         Label idLable = new Label("ID: " + product.getProductId());
         idLable.getStyleClass().add("id-label");
         idLable.setWrapText(true);
-        idLable.setPrefWidth(150);
+        idLable.setPrefWidth(50);
 
         // Create a spinner to select the quantity of the product to add to the cart
         Spinner<Integer> SpinnerQuantity = new Spinner<>(0,product.getAmount(),0);
@@ -218,7 +224,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
             SpinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, (valueFactory.getMax()-quant), 0));
         }
         SpinnerQuantity.getStyleClass().add("combo-color");
-        Text newPrice = new Text();
+        Label newPrice = new Label();
         Text priceLabel = new Text("Price: " + product.getPrice());
         priceLabel.getStyleClass().add("price-label");
         SpinnerQuantity.setMaxWidth(75);
@@ -227,18 +233,26 @@ public class ProductCatalogScreenController extends ScreenController implements 
             priceLabel.setStrikethrough(true);
             // Calculate the discounted price of the product
             float dis = product.getPrice()*(1-product.getDiscount());
-            String present = String.format("%.0f%%OFF - Discount Price: %.1f",product.getDiscount()*100, dis);
+            String present = String.format("%.0f%%OFF - Discount Price: %.2f",product.getDiscount()*100, dis);
             newPrice.setText(present + "\u20AA");
             newPrice.getStyleClass().add("new-price-label");
+            newPrice.setTextFill(Color.RED);
+            newPrice.setPrefWidth(150);
+            newPrice.setWrapText(true);
         }
-        vBox.getChildren().addAll(nameLabel, idLable, detBtn, priceLabel, newPrice, SpinnerQuantity, addBtn);
+        HBox hBox1 = new HBox();
+        hBox1.getChildren().addAll(detBtn, idLable);
+        hBox1.setAlignment(Pos.CENTER_RIGHT);
+        vBox.getChildren().addAll(nameLabel, hBox1, priceLabel, newPrice, SpinnerQuantity, addBtn);
         hBox.getChildren().addAll(imageview, vBox);
         vBox.setSpacing(15);
         // Set the ID of the vertical box to the product ID
         vBox.setId(String.valueOf(product.getProductId()));
         imageview.setTranslateY(50);
-        hBox.setPadding(new Insets(0, 0, 0, 0));
-        vBox.setPadding(new Insets(0, 0, 20, 5));
+        hBox.setPadding(new Insets(0, 0, 0, 5));
+        vBox.setPadding(new Insets(0, 0, 30, 5));
+        vBox.setSpacing(5);
+        vBox.setAlignment(Pos.CENTER_RIGHT);
         addBtn.setOnAction(event -> {
             // If a non-zero quantity of the product is selected, add it to the cart
             if (SpinnerQuantity.getValue() != 0 ) {
