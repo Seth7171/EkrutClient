@@ -5,17 +5,13 @@ import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import gui.ScreenController;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,20 +22,14 @@ import java.util.ResourceBundle;
  * @author Lior Jigalo
  */
 public class CustomerServiceEmployeeScreenController extends ScreenController implements Initializable {
-
     @FXML
     private Button addNewUserButton;
-
     @FXML
     private Button backButton;
-
     @FXML
     private Button exitButton;
-
     @FXML
     private Text welcomeText;
-    private double xoffset;
-    private double yoffset;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,7 +40,18 @@ public class CustomerServiceEmployeeScreenController extends ScreenController im
     protected void openAddUserScreen(MouseEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/gui/CustomerServiceEmployeeScreens/AddUserScreen.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/gui/UserManagementScreens/AddUserScreen.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        super.switchScreen(event, root);
+    }
+
+    @FXML
+    void openAddSubscriberScreen(MouseEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/UserManagementScreens/AddSubscriberScreenController.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
