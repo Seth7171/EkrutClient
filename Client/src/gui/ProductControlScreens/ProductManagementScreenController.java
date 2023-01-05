@@ -211,6 +211,7 @@ public class ProductManagementScreenController extends ScreenController implemen
 
     @FXML
     void addProductToDatabase(MouseEvent event) {
+    	
         Product product = new Product();
         if (locationChoiceBox.getValue().equals("New Product")){
             if (productIDTextField.getText().equals("") || productImageTextField.getText().equals("") || productPriceTextField.getText().equals("") || availableAmountTextField.getText().equals("")){
