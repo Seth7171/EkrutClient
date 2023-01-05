@@ -49,10 +49,10 @@ public class DeliveriesScreenController extends ScreenController implements Init
     private TableColumn<Order, String> orderidColumn;
     
     @FXML
-    private TableColumn<Order, String> priceColumn;
+    private TableColumn<Order, Float> overallpriceColumn;
 
     @FXML
-    private TableColumn<Order, Float> productsColumn;
+    private TableColumn<Order, String> productsColumn;
     
     @FXML
     private TableColumn<Order, String> orderdateColumn;
@@ -73,11 +73,11 @@ public class DeliveriesScreenController extends ScreenController implements Init
     private TableColumn<Order, String> customeridColumn;
 
     @FXML
-    private TableView<Order> viewAllOrders;
+    private TableView<Object> viewAllOrders;
    
     
     private ArrayList<Order> tempDeliveries;
-    public static  ObservableList<Order> observableDeliveries;
+    public static ObservableList<Object> observableDeliveries;
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -85,7 +85,7 @@ public class DeliveriesScreenController extends ScreenController implements Init
 		tempDeliveries = new ArrayList<>();
 		//init columns
 		orderidColumn.setCellValueFactory(new PropertyValueFactory<>("Order ID"));
-		priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+		overallpriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
 		productsColumn.setCellValueFactory(new PropertyValueFactory<>("Products"));
 		orderdateColumn.setCellValueFactory(new PropertyValueFactory<>("Order Date"));
 		addressColumn.setCellValueFactory(new PropertyValueFactory<>("Address"));
@@ -127,32 +127,7 @@ public class DeliveriesScreenController extends ScreenController implements Init
     
     
     public void loadDeliveries() {
-    	observableDeliveries=FXCollections.observableArrayList();
-    	if (!observableDeliveries.isEmpty())
-    		observableDeliveries.clear();
-    	ClientUI.chat.accept(new Message(null,MessageFromClient.REQUEST_DISCOUNT_LIST )); 
-    	tempDeliveries = (ArrayList<Order>) MessageHandler.getData();//getting data from server
-		// here we insert the data for the table.
-    for(Order o : tempDeliveries){	
-    	Order orderData = new Order();
-    	orderData.setOrderID(o.getOrderID());
-    	orderData.setOverallPrice((o.getOverallPrice()));
-    	orderData.setDescription(d.getDescription());
-    	orderData.setType(d.getType());
-    	ChoiceBox<String> area = new ChoiceBox<>(FXCollections.observableArrayList("ALL", "NORTH","SOUTH","UAE"));
-    	area.setMinWidth(60);
-    	area.setValue(d.getAreaS().toUpperCase());
-    	orderData.setArea(area);
-    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList( "approved","not approved"));
-    	status.setMinWidth(95);
-    	status.setValue(d.getStatusString());
-    	
-    	orderData.setStatus(status);
-    	orderData.setDealID(d.getDealID());
-    	orderData.setActive(d.getActive());
-    	observableDeliveries.add(orderData);
-	}
-    viewAllDeals.setItems(observableDeliveries);
+
 }
    
     @FXML
@@ -161,25 +136,6 @@ public class DeliveriesScreenController extends ScreenController implements Init
     }
     @FXML
     void Apply(MouseEvent event) {//send the data from the Table-View to DB  
-   
-         for (Order deal : observableDeliveries){
-        	 Order dealToList = new Order();
-             dealToList.setDealName(deal.getDealName());
-             dealToList.setDiscount((float)deal.getDiscount()/100);
-             dealToList.setDescription(deal.getDescription());
-             dealToList.setType(deal.getType());
-             dealToList.setArea(deal.getArea().getValue().toString());
-             dealToList.setStatusString(deal.getStatus().getValue().toString());
-             if(deal.getStatus().getValue().toString().equals("not approved"))//if not approved -change the active status to "not active"
-                  dealToList.setActive("not active");
-             else 
-            	 dealToList.setActive(deal.getActive());
-             dealToList.setDealID(deal.getDealID());
-             
-          
-            ClientUI.chat.accept(new Message(dealToList,MessageFromClient.REQUEST_UPDATE_DEALS ));//send new DB
-            super.alertHandler(MessageHandler.getMessage(), MessageHandler.getMessage().contains("Error"));
-         }
-       
+
     }
 }
