@@ -2,7 +2,6 @@ package gui.UserManagementScreens;
 
 import application.client.ClientUI;
 import application.client.MessageHandler;
-import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
@@ -14,19 +13,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.ChoiceBoxTableCell;
-import javafx.scene.control.cell.ComboBoxTableCell;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Region;
-import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class UserManagementScreenController extends ScreenController implements Initializable {

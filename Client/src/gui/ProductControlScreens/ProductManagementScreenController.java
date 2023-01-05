@@ -377,11 +377,11 @@ public class ProductManagementScreenController extends ScreenController implemen
 
         // discount column
         discountColumn.setCellValueFactory      (new PropertyValueFactory<>("discount"));
-        discountColumn.setCellFactory           (TextFieldTableCell.forTableColumn(new FloatStringConverter()));
-        discountColumn.setOnEditCommit          (event -> {
-            event.getTableView().getItems().get(event.getTablePosition().getRow()).setDiscount(event.getNewValue());
-            checkAndReplace(event.getTableView().getItems().get(event.getTablePosition().getRow()));
-        });
+//        discountColumn.setCellFactory           (TextFieldTableCell.forTableColumn(new FloatStringConverter()));
+//        discountColumn.setOnEditCommit          (event -> {
+//            event.getTableView().getItems().get(event.getTablePosition().getRow()).setDiscount(event.getNewValue());
+//            checkAndReplace(event.getTableView().getItems().get(event.getTablePosition().getRow()));
+//        });
 
 
         // current available amount column

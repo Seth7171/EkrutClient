@@ -94,7 +94,7 @@
             <Font size="19.0" />
          </font>
       </Text>
-      <Button layoutX="528.0" layoutY="279.0" mnemonicParsing="false" text="Pay with your saved Credit Card" />
+      <Button fx:id="rememberMyCard" layoutX="528.0" layoutY="279.0" mnemonicParsing="false" onMouseClicked="#rememberMyCard" text="Pay with your saved Credit Card" />
       <Button fx:id="infoCvv" layoutX="567.0" layoutY="416.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="22.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
