@@ -269,7 +269,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
                 return;
             }
         });
-
+        hBox.setStyle("-fx-border-color: #FFC0CB; -fx-border-width: 2 2 2 2; -fx-border-style: solid;");
         return hBox;
     }
    
