@@ -101,7 +101,8 @@ public class ChatClient extends AbstractClient
         	  CustomerController.setCreditnumber(((String)message.getData()));
         	  break;
 
-
+          case "ERROR_UPDATING_CUSTOMER":
+          case "ERROR_IMPORTING_CUSTOMER_DATA":
           case "ORDER_STATUS_UPDATED_SUCCESSFULLY":
           case "ERROR_UPDATING_ORDER_STATUS":
           case "ERROR_UPDATING_DEAL":
@@ -135,12 +136,9 @@ public class ChatClient extends AbstractClient
           case "ERROR_IMPORTING_ALL_MACHINES_MONTHLY_REPORT":
           case "ERROR_IMPORTING_INVENTORY_REPORT":
           case "ERROR_IMPORTING_MACHINE_LOCATIONS":
-        	  MessageHandler.setMessage((String) message.getData());
-        	  break;
-
           case "ERROR_ADDING_USER_EXISTS":
-              MessageHandler.setMessage((String)message.getData());
-              break;
+              MessageHandler.setMessage((String) message.getData());
+        	  break;
 
           case "ERROR_ADDING_USER":
               MessageHandler.setMessage("Unknown Error");
@@ -176,6 +174,9 @@ public class ChatClient extends AbstractClient
               currentOrder = (Order)message.getData();
               break;
 
+
+          case "CUSTOMER_UPDATE_SUCCESSFUL":
+          case "CUSTOMER_IMPORTED_SUCCESSFULLY":
           case "DEALS_IMPORTED_SUCCESSFULLY":
           case "IMPORTING_CUSTOMERS_FROM_USER_TABLE_SUCCESSFUL":
           case "SUCCESSFULLY_IMPORTED_REFILL_ORDERS":
@@ -191,6 +192,8 @@ public class ChatClient extends AbstractClient
           case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
               MessageHandler.setData(message.getData());
               break;
+
+
           case "CUSTOMER_DATA_IMPORTED_SUCCESSFULLY":
         	  CustomerController.setisFirstTimeBuyasSub(((Customer)message.getData()).isFirstBuyAsSub());
         	  CustomerController.setCreditnumber(((Customer)message.getData()).getCreditCardNumber());

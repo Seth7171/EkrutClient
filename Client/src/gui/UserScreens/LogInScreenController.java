@@ -58,6 +58,10 @@ public class LogInScreenController extends ScreenController implements Initializ
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // reset user on logout
+        if (UserController.getCurrentuser() != null)
+            UserController.setCurrentuser(null);
+
     	if (!ChatClient.isOL) {
 			ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_MACHINE_IDS));
 	        ArrayList<String> machineIDs = new ArrayList<>();
