@@ -108,7 +108,7 @@ public class OrdersReportScreenController extends ScreenController implements In
 		
 		 int totalOrdersBestSeller=0,NorthMachinesAmount=0,SouthMachinesAmount=0,UAEMachinesAmount=0,totalOrdersNorth=0,totalOrdersSouth=0,totalOrdersUAE=0,totalOrdersBestArea=0;
 		 String strIDofBestSeller=null, strLocationOfBest=null ,strBestArea=null;
-		 int totalOrdersWrostSeller = 999999;
+		 int totalOrdersWrostSeller = 999999, totalBorder=0;
 		 String strIDofWrostSeller=null, strLocationOfWrost=null,strWorstArea=null;
 		 float totalNorth=0,totalSouth=0, totalUAE=0;
 		 
@@ -151,8 +151,8 @@ public class OrdersReportScreenController extends ScreenController implements In
 			}	
 			
 		}
-		
-		y.setUpperBound(totalOrdersBestSeller+=5);
+		totalBorder=totalOrdersBestSeller+5;
+		y.setUpperBound(totalBorder);
 		OrdersChart.getData().addAll(ser1,ser2,ser3);
 		
 		//calculate data for who is the best area
