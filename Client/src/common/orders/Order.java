@@ -10,6 +10,7 @@ public class Order implements Serializable {
     private float overallPrice;
     private ArrayList<Product> products;
     private String machineID;
+    private String area;
     private String orderDate;
     private String estimatedDeliveryTime;
     private String confirmationDate;
@@ -150,4 +151,12 @@ public class Order implements Serializable {
                 ", address='" + address + '\'' +
                 '}';
     }
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
 }
