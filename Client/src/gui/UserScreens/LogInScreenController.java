@@ -200,7 +200,10 @@ public class LogInScreenController extends ScreenController implements Initializ
                     break;
                     //TODO: delivery per location
                     // @Lior all delivery employees have the same screen, just the data displayed is being changed accordingly
-                case "delivery":
+                    // @Nitsan ma ata omerrrrrrrrrr liorrrrrrrrrrr leh la server///!!!!!!
+                case "delivery_north":
+                case "delivery_south":
+                case "delivery_uae":
                 	root = FXMLLoader.load(getClass().getResource("/gui/DeliveryEmployeeScreens/DeliveryEmployeeScreen.fxml"));
                     break;
                 default:
