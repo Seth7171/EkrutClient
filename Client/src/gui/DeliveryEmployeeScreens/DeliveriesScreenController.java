@@ -127,8 +127,28 @@ public class DeliveriesScreenController extends ScreenController implements Init
     
     
     public void loadDeliveries() {
+	    observableDeliveries = FXCollections.observableArrayList();
+    	if (!observableDeliveries.isEmpty())
+    		observableDeliveries.clear();
+    	String areaaofuser = UserController.getCurrentuser().getFirstname();
+    	int index = areaaofuser.indexOf('_');
+    	areaaofuser = areaaofuser.substring(index + 1);
+    	ClientUI.chat.accept(new Message(areaaofuser,MessageFromClient.REQUEST_ORDERS_BY_AREA )); 
+    	tempDeliveries = (ArrayList<Order>) MessageHandler.getData();//getting data from server
 
-}
+
+	    // Add orders from tempDeliveries to observableDeliveries
+	    for (Order order : tempDeliveries) {
+	    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("approved","not approved", "awaiting approval"));
+    		status.setValue(order.getOrderStatus());
+    		order.setOrderStatus(status);
+	    	observableDeliveries.add(order);
+	        
+	    }
+
+	    // Set the items of the viewAllOrders table to be the observableDeliveries list
+	    viewAllOrders.setItems(observableDeliveries);
+    }
    
     @FXML
     void Refresh(MouseEvent event) {
