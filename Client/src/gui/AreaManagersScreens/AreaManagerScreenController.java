@@ -20,26 +20,20 @@ import javafx.scene.text.Text;
 
 public class AreaManagerScreenController extends ScreenController implements Initializable {
 
-	  @FXML
-	    private Button exitButton;
-
-	    @FXML
-	    private Button logOutButton;
+    @FXML
+    private Button exitButton;
+    @FXML
+    private Button logOutButton;
     @FXML
     private Button manageProductsButton;
-
     @FXML
     private Button manageUsersButton;
-
     @FXML
     private Button viewRefilOrdersButton;
-
     @FXML
     private Button viewReportsButton;
-
     @FXML
     private Text welcomeText;
-
     @FXML
     void openManageProductsScreen(MouseEvent event) {
         Parent root = null;

@@ -137,7 +137,7 @@ public class LogInScreenController extends ScreenController implements Initializ
         abc.add("517b1a47");
         abc.add("approved");
 
-        //ClientUI.chat.accept(new Message(abc,MessageFromClient.REQUEST_UPDATE_ORDER_STATUS )); // TODO: this should be DELETED
+        //ClientUI.chat.accept(new Message("north",MessageFromClient.REQUEST_ORDERS_BY_AREA )); // TODO: this should be DELETED
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
             errorMessage.setText(MessageHandler.getMessage());
@@ -199,6 +199,7 @@ public class LogInScreenController extends ScreenController implements Initializ
                 	root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
                     break;
                     //TODO: delivery per location
+                    // @Lior all delivery employees have the same screen, just the data displayed is being changed accordingly
                 case "delivery":
                 	root = FXMLLoader.load(getClass().getResource("/gui/DeliveryEmployeeScreens/DeliveryEmployeeScreen.fxml"));
                     break;
