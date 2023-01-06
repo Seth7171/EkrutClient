@@ -9,14 +9,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CEOScreens.CEOMainScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CEOScreens.CEOMainScreenController">
    <children>
       <Text fx:id="welcomeBackText" layoutX="51.0" layoutY="88.0" stroke="#f7f3f3" strokeType="OUTSIDE" strokeWidth="2.0" text="Welcome back $name!" textAlignment="CENTER" underline="true" wrappingWidth="297.4000244140625">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Text>
-      <Button fx:id="logOutButton" alignment="CENTER" layoutX="10.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="27.0" prefWidth="69.0" style="-fx-background-color: #bfbfbf;" text="Log Out">
+      <Button fx:id="logOutButton" alignment="CENTER" layoutX="10.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="27.0" prefWidth="69.0" text="Log Out">
          <font>
             <Font size="13.0" />
          </font>
@@ -65,7 +65,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tab-background">
                      <children>
-                        <Button layoutX="122.0" layoutY="63.0" mnemonicParsing="false" onMouseClicked="#viewExsitingDeals" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #bfbfbf;" text="View exsiting deals">
+                        <Button layoutX="122.0" layoutY="63.0" mnemonicParsing="false" onMouseClicked="#viewExsitingDeals" prefHeight="30.0" prefWidth="135.0" text="View exsiting deals">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
@@ -77,7 +77,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tab-background">
                      <children>
-                        <Button layoutX="133.0" layoutY="46.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #bfbfbf;" text="View Product Quantity" />
+                        <Button layoutX="133.0" layoutY="46.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" text="View Product Quantity" />
                         <Button layoutX="133.0" layoutY="112.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" text="View Messages" />
                      </children>
                   </AnchorPane>
@@ -87,7 +87,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tab-background">
                      <children>
-                        <Button fx:id="newOrderButton" layoutX="133.0" layoutY="46.0" mnemonicParsing="false" onMouseClicked="#openCustomerScreen" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #bfbfbf;" text="New Order" />
+                        <Button fx:id="newOrderButton" layoutX="133.0" layoutY="46.0" mnemonicParsing="false" onMouseClicked="#openCustomerScreen" prefHeight="30.0" prefWidth="135.0" text="New Order" />
                         <Button fx:id="grabOrderButton" layoutX="133.0" layoutY="112.0" mnemonicParsing="false" onMouseClicked="#openGrabOrderScreen" prefHeight="30.0" prefWidth="135.0" text="Grab Order" />
                      </children>
                   </AnchorPane>
