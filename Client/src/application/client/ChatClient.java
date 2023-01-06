@@ -101,6 +101,8 @@ public class ChatClient extends AbstractClient
         	  CustomerController.setCreditnumber(((String)message.getData()));
         	  break;
 
+
+          case "ERROR_IMPORTING_ORDERS_BY_AREA":
           case "ERROR_UPDATING_CUSTOMER":
           case "ERROR_IMPORTING_CUSTOMER_DATA":
           case "ORDER_STATUS_UPDATED_SUCCESSFULLY":
@@ -175,6 +177,8 @@ public class ChatClient extends AbstractClient
               break;
 
 
+
+          case "ORDERS_IMPORTED_SUCCESSFULLY":
           case "CUSTOMER_UPDATE_SUCCESSFUL":
           case "CUSTOMER_IMPORTED_SUCCESSFULLY":
           case "DEALS_IMPORTED_SUCCESSFULLY":
