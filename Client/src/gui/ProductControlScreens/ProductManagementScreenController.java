@@ -1,7 +1,9 @@
 package gui.ProductControlScreens;
 
+import application.client.ChatClient;
 import application.client.ClientUI;
 import application.client.MessageHandler;
+import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
@@ -45,10 +47,7 @@ public class ProductManagementScreenController extends ScreenController implemen
     private TextField availableAmountTextField;
     @FXML
     private TextArea descriptionTextArea;
-    @FXML
-    private ChoiceBox<String> discountChoiceBox;
-    @FXML
-    private Text discountTXT;
+
     @FXML
     private Text locationToAdd;
     @FXML
@@ -143,11 +142,19 @@ public class ProductManagementScreenController extends ScreenController implemen
         Locations.add("Warehouse");
         Locations.addAll((ArrayList<String>) MessageHandler.getData());
         locationChoiceBox.getItems().addAll(Locations);//add all Locations to Location comboBox
-        if (UserController.getCurrentuser().getDepartment().contains("manager"))
+        if (UserController.getCurrentuser().getDepartment().contains("manager")){
             locationChoiceBox.setValue(UserController.getCurrentuser().getDepartment().split("_")[2]);
-        else {
-
+            locationChoiceBox.setDisable(true);
+            machineIDTXT.setVisible(true);
+            machineIDChoiceBox.setVisible(true);
+            ClientUI.chat.accept(new Message(locationChoiceBox.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
+            ArrayList<String> machineIDs = new ArrayList<>();
+            machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
+            machineIDChoiceBox.getItems().clear();
+            machineIDChoiceBox.getItems().addAll(machineIDs);
         }
+        else
+            locationChoiceBox.setValue("New Product");
 
         locationChoiceBox.setOnAction(event -> {
             if (locationChoiceBox.getValue() != null && locationChoiceBox.getValue().equals("New Product")){
@@ -157,9 +164,6 @@ public class ProductManagementScreenController extends ScreenController implemen
 
                 alertAmountTXT.setVisible(false);
                 alertAmountTextField.setVisible(false);
-
-                discountTXT.setVisible(false);
-                discountChoiceBox.setVisible(false);
 
 
                 productDescriptionTXT.setVisible(true);
@@ -182,8 +186,6 @@ public class ProductManagementScreenController extends ScreenController implemen
                 alertAmountTXT.setVisible(true);
                 alertAmountTextField.setVisible(true);
 
-                discountTXT.setVisible(true);
-                discountChoiceBox.setVisible(true);
 
                 ClientUI.chat.accept(new Message(locationChoiceBox.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
                 ArrayList<String> machineIDs = new ArrayList<>();
@@ -192,23 +194,6 @@ public class ProductManagementScreenController extends ScreenController implemen
                 machineIDChoiceBox.getItems().addAll(machineIDs);
             }
         });
-        locationChoiceBox.setValue("New Product");
-
-
-        ArrayList<String> discounts = new ArrayList<>();
-        discounts.add("No discount");
-        discounts.add("5%");
-        discounts.add("10%");
-        discounts.add("15%");
-        discounts.add("20%");
-        discounts.add("25%");
-        discounts.add("30%");
-        discounts.add("35%");
-        discounts.add("40%");
-        discounts.add("45%");
-        discounts.add("50%");
-        discountChoiceBox.getItems().addAll(discounts);
-        discountChoiceBox.setValue("No discount");
 
         ArrayList<String> types = new ArrayList<>();
         types.add("snack");
@@ -273,10 +258,6 @@ public class ProductManagementScreenController extends ScreenController implemen
         }
         product.setDescription(descriptionTextArea.getText());
         product.setType(productTypeChoiceBox.getValue().toUpperCase()); //TODO: if i will change it in the database then i will need to delete the: toUppercase function
-        if (!discountChoiceBox.getValue().equals("No discount")){
-            product.setDiscount(Float.parseFloat(discountChoiceBox.getValue().substring(0, discountChoiceBox.getValue().length() - 1)) / 100);
-        }else
-            product.setDiscount(0);
         if (locationChoiceBox.getValue() != null && !locationChoiceBox.getValue().equals("New Product")  && !locationChoiceBox.getValue().equals("Warehouse")){
             product.setMachineID(machineIDChoiceBox.getValue());
         }
@@ -550,13 +531,34 @@ public class ProductManagementScreenController extends ScreenController implemen
 
     @FXML
     void goBackToCEOMainScreen(MouseEvent event) { // todo: fix going back to ceo screen...
+        // Initialize the root node of the new scene to null
         Parent root = null;
+        // Try to load the user main screen scene
         try {
-            root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            switch (UserController.getCurrentuser().getDepartment()) {
+                case"ceo":
+                    root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
+                    super.switchScreen(event, root);
+                    break;
+
+
+                case"area_manager_north":
+                case"area_manager_south":
+                case"area_manager_uae":
+                    root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
+                    super.switchScreen(event, root);
+                    break;
+
+
+                default:
+                    System.out.println("Unknown!");
+                    // TODO: maybe add UnknownScreenException later??
+            }
         }
-        super.switchScreen(event, root);
+        // Catch any exceptions that may occur
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

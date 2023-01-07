@@ -119,11 +119,6 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <Text fx:id="discountTXT" layoutX="300.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="discount">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Text>
                         <TextArea fx:id="descriptionTextArea" layoutX="11.0" layoutY="399.0" prefHeight="89.0" prefWidth="222.0" wrapText="true" />
                         <Text fx:id="productDescriptionTXT" layoutX="12.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product description:">
                            <font>
@@ -165,7 +160,6 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <ChoiceBox fx:id="discountChoiceBox" layoutX="300.0" layoutY="399.0" prefWidth="150.0" />
                         <ChoiceBox fx:id="machineIDChoiceBox" layoutX="556.0" layoutY="202.0" prefWidth="150.0" />
                      </children>
                   </AnchorPane>

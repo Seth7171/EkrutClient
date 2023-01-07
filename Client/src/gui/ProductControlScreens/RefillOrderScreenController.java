@@ -81,6 +81,9 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         });
         initCols();
         switch (UserController.getCurrentuser().getDepartment()){
+            case"area_manager_north":
+            case"area_manager_south":
+            case"area_manager_uae":
             case "ceo":
                 initManagerCol();
                 break;
@@ -204,6 +207,13 @@ public class RefillOrderScreenController extends ScreenController implements Ini
                     root = FXMLLoader.load(getClass().getResource("/gui/OperationsEmployeeScreens/operationsEmployeeMainScreen.fxml"));
                     break;
 
+                case"area_manager_north":
+                case"area_manager_south":
+                case"area_manager_uae":
+                    root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
+                    super.switchScreen(event, root);
+                    break;
+
                 default:
                     break;
             }
@@ -221,7 +231,9 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         }
 
         switch (UserController.getCurrentuser().getDepartment()){
-            case "area_manager":
+            case"area_manager_north":
+            case"area_manager_south":
+            case"area_manager_uae":
             case "ceo":
                 for (RefillOrder refOrd : changesToBeMade) {
                     MessageHandler.setMessage(null);
