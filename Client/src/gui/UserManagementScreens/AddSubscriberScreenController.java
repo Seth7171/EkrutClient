@@ -93,6 +93,7 @@ public class AddSubscriberScreenController  extends ScreenController implements 
         ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_ALL_CUSTOMER_DATA));
 
         for (Customer customer : (ArrayList<Customer>) MessageHandler.getData()){
+            //if (custome)
             TableCustomer tableCustomer = new TableCustomer();
             tableCustomer.setId(customer.getId());
             tableCustomer.setFirstname(customer.getFirstname());
