@@ -59,8 +59,6 @@ public class CustomerMainScreenController extends ScreenController implements In
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	if (UserController.getCurrentuser().getDepartment().equals("customer"))
-    		grabOrderButton.setVisible(false);
         welcomeBackText.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
         userStatusText.setText("User Status: " + UserController.getCurrentuser().getStatus());
         ClientUI.chat.accept(new Message(CustomerController.getCurrentCustomer().getId(), MessageFromClient.REQUEST_CUSTOMER_DATA));
@@ -101,20 +99,15 @@ public class CustomerMainScreenController extends ScreenController implements In
     void NewOrder(Event event) {
     	ChatClient.currentOrder.setSupplyMethod("instant pickup");
         //TODO need to change to NOT hard coded
-        ChatClient.currentOrder.setMachineID("NOR1");
+        //ChatClient.currentOrder.setMachineID("NOR1");
         Parent root = null;
         try {
-        	if (UserController.getCurrentuser().getDepartment().equals("customer")) {
-        		root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
-        	}
-        	else {
-        		if (ChatClient.isOL) {
+    		if (ChatClient.isOL) {
             	root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/DeliveryOprtionsScreen.fxml"));
         		}
-        		else {
-        			root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
+        	else {
+        		root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ProductCatalogScreen.fxml"));
         		}
-        	}
         } catch (IOException e) {
             e.printStackTrace();
         }
