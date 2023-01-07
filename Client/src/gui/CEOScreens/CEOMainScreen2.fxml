@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="599.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CEOScreens.CEOMainScreenController2">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="599.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CEOScreens.CEOMainScreenController2">
    <children>
       <Text fx:id="welcomeBackText" layoutX="150.0" layoutY="87.0" stroke="#f7f3f3" strokeType="OUTSIDE" strokeWidth="2.0" text="Welcome back $name!" textAlignment="CENTER" underline="true" wrappingWidth="297.4000244140625">
          <font>
@@ -20,11 +20,6 @@
             <Font size="13.0" />
          </font>
       </Button>
-      <ImageView fitHeight="58.0" fitWidth="103.0" layoutX="9.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
-         <image>
-            <Image url="@../logo.png" />
-         </image>
-      </ImageView>
       <Button fx:id="exitButton" layoutX="566.0" layoutY="-1.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
       <Button fx:id="viewReportsButton" layoutX="238.0" layoutY="143.0" mnemonicParsing="false" onMouseClicked="#openViewReportsScreen" prefHeight="30.0" prefWidth="151.0" text="View monthly reports">
          <font>

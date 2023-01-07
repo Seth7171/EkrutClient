@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="873.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MarketingManagementScreens.ManagerDealsScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="873.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MarketingManagementScreens.ManagerDealsScreenController">
    <children>
       <TableView fx:id="viewAllDeals" editable="true" layoutX="4.0" layoutY="102.0" prefHeight="301.0" prefWidth="865.0">
          <columns>
@@ -43,11 +43,6 @@
       <ImageView fitHeight="55.0" fitWidth="104.0" layoutX="339.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@credit-card.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="68.0" fitWidth="146.0" layoutX="4.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@logo.png" />
          </image>
       </ImageView>
    </children>
