@@ -36,7 +36,7 @@
             <Font size="19.0" />
          </font>
       </Text>
-      <Button fx:id="exitButton" layoutX="885.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="16.0" prefWidth="30.0" text="X">
+      <Button fx:id="exitButton" layoutX="878.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">
          <font>
             <Font size="17.0" />
          </font>

@@ -43,11 +43,6 @@
             <Image url="@orders.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="68.0" fitWidth="146.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../logo.png" />
-         </image>
-      </ImageView>
       <Button fx:id="backButton" layoutX="9.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
          <font>
             <Font size="20.0" />
