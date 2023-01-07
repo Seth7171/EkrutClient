@@ -193,7 +193,7 @@ public class LogInScreenController extends ScreenController implements Initializ
                 case "area_manager_north":
                 	root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
                     break;*/	//NOOBS
-                case "area_manager_uae":  
+                case "area_manager_uae":
                 case "area_manager_north":
                 case "area_manager_south":
                 	root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
