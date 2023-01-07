@@ -170,7 +170,7 @@ public class PaymentScreenController extends ScreenController implements Initial
 		// Get the current time
 	    Date currentDate = new Date();
 	    // Create a SimpleDateFormat object to format the date as a string
-	    SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd");
 	    // Format the current date as a string
 	    String dateString = formatter.format(currentDate);
 	    ChatClient.currentOrder.setOrderDate(dateString);
