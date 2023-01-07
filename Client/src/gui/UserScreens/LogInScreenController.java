@@ -109,6 +109,48 @@ public class LogInScreenController extends ScreenController implements Initializ
         a.setTitle("Functionality Error");
         a.show();
     }
+    
+    
+    @FXML
+    private void FastlogIn(Event event){
+        ArrayList<String> credentials = new ArrayList<String>();
+        credentials.add("ron");
+        credentials.add("123");
+        if(machinesID.getValue()==null && !ChatClient.isOL) {
+			errorMessage.setText("Please choose a machine");
+			 return;
+        }
+        Deals deal = new Deals();
+        deal.setDealID("001");
+        deal.setDealName("Night time sale");
+        deal.setDiscount(0.1F);
+        deal.setDescription("Special offer for late night students from 20pm to 5am");
+        deal.setType("ALL");
+        deal.setArea("north");
+        deal.setStatusString("approved");
+        deal.setActive("active");
+
+        ArrayList<String> abc = new ArrayList<>();
+        abc.add("517b1a47");
+        abc.add("approved");
+
+        //ClientUI.chat.accept(new Message("north",MessageFromClient.REQUEST_ORDERS_BY_AREA )); // TODO: this should be DELETED
+        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
+        if(!UserController.isLogged()){
+            errorMessage.setText(MessageHandler.getMessage());
+            MessageHandler.setMessage(null);
+            return;
+        }
+        if(ChatClient.isOL && UserController.getCurrentuser().getDepartment().equals("customer")) {
+			errorMessage.setText("Unauthorized account");
+			 ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
+			 return;
+		}	
+		CustomerController.setmachineID(machinesID.getValue());
+        Parent root = loadRoot();
+        super.switchScreen(event,root);
+    }
+    
 
     /**
      * @param event
