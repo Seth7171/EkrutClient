@@ -10,11 +10,6 @@
 
 <Pane prefHeight="600.0" prefWidth="600.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ConnectionScreens.ClientConnectorController">
    <children>
-      <ImageView fitHeight="69.0" fitWidth="128.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../logo.png" />
-         </image>
-      </ImageView>
       <Button fx:id="btnDone" layoutX="247.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#Done" prefHeight="43.0" prefWidth="106.0" text="Connect">
          <font>
             <Font size="14.0" />
