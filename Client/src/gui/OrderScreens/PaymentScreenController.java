@@ -3,6 +3,7 @@ package gui.OrderScreens;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.UUID;
@@ -179,9 +180,15 @@ public class PaymentScreenController extends ScreenController implements Initial
         ChatClient.currentOrder.setOrderID(uuid);
         
         // if the subscriber bought for the first time, here we are saying goodbye to the discount.
-        CustomerController.setisFirstTimeBuyasSub(false);
-        //TODO: SEND TO SERVER AND UPDATE THAT FIELD.
-        
+        if(CustomerController.getisSub()) {
+        	if(CustomerController.getisFirstTimeBuyasSub()) {
+        		CustomerController.setisFirstTimeBuyasSub(false);
+        		ArrayList<String> msg = new ArrayList<String>();
+        		msg.add("false");
+        		msg.add(CustomerController.getCurrentCustomer().getId());
+        		ClientUI.chat.accept(new Message(msg, MessageFromClient.REQUEST_SET_FIRST_TIME_BUY_AS_SUB));
+        	}
+        }        
         // IF DELIVERY :
         if (ChatClient.currentOrder.getSupplyMethod().equals("delivery")) {
 	        ChatClient.currentOrder.setOrderStatus("awaiting approval");
