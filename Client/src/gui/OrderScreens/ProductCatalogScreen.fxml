@@ -83,23 +83,27 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="207.0" layoutY="603.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@agala.png" />
-         </image>
-      </ImageView>
-      <Circle fill="#ff1f1f" layoutX="236.0" layoutY="611.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
-      <Text fx:id="cartCounter" fill="WHITE" layoutX="221.0" layoutY="615.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
+      <Pane fx:id="backmycart" layoutX="360.0" layoutY="606.0" prefHeight="30.0" prefWidth="138.0">
+         <children>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="93.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@agala.png" />
+               </image>
+            </ImageView>
+            <Circle fill="#ff1f1f" layoutX="124.0" layoutY="8.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+            <Text fx:id="cartCounter" fill="WHITE" layoutX="108.0" layoutY="12.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
+            <Label alignment="CENTER" layoutX="1.0" layoutY="-1.0" prefHeight="35.0" prefWidth="94.0" text="My Cart" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
       <ListView fx:id="myCart" layoutX="113.0" layoutY="636.0" prefHeight="185.0" prefWidth="649.0" />
       <ImageView fitHeight="71.0" fitWidth="72.0" layoutX="300.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@catalogIcon.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="114.0" layoutY="601.0" prefHeight="35.0" prefWidth="94.0" text="My Cart" textAlignment="CENTER">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
    </children>
 </Pane>

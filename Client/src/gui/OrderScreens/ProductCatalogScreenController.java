@@ -88,6 +88,9 @@ public class ProductCatalogScreenController extends ScreenController implements 
     
     @FXML
     private ScrollPane drinksScroll;
+    
+    @FXML
+    private Pane backmycart;
 
     /**
      * Initializes the screen by setting the focus traversable property of the list view to false, 
@@ -100,6 +103,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	backmycart.setStyle("-fx-background-color: rgba(255,255,255,0.84); -fx-background-radius: 13");
         // Set the focus traversable property of the list view to false
         myCart.setFocusTraversable( false );
         
