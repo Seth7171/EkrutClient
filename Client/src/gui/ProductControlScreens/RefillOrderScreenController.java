@@ -98,7 +98,6 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         loadData();
     }
 
-
     private void initCols(){
         // order ID column
         orderidColumn.setCellValueFactory       (new PropertyValueFactory<>("orderID"));
@@ -155,21 +154,52 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         assignedEmployeeColumn.setVisible(true);
     }
 
-
     private void loadData(){
         requestList = FXCollections.observableArrayList();
         ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_REFILL_ORDERS));
         ArrayList<RefillOrder> list = new ArrayList<>();
         list = (ArrayList<RefillOrder>) MessageHandler.getData();
-        if (UserController.getCurrentuser().getDepartment().equals("operations")){
-            for (RefillOrder refillOrder : list){
-                if (refillOrder.getAssignedEmployee().equals(UserController.getCurrentuser().getId())){
-                    requestList.add(refillOrder);
+        switch (UserController.getCurrentuser().getDepartment()){
+            case "operations":
+                for (RefillOrder refillOrder : list){
+                    if (refillOrder.getAssignedEmployee().equals(UserController.getCurrentuser().getId())){
+                        requestList.add(refillOrder);
+                    }
                 }
-            }
-            requestTable.setItems(requestList);
-            return;
+                requestTable.setItems(requestList);
+                return;
+
+            case "area_manager_south":
+                for (RefillOrder refillOrder : list){
+                    if (refillOrder.getMachineID().startsWith("SOU")){
+                        requestList.add(refillOrder);
+                    }
+                }
+                requestTable.setItems(requestList);
+                return;
+
+
+            case "area_manager_north":
+                for (RefillOrder refillOrder : list){
+                    if (refillOrder.getMachineID().startsWith("NOR")){
+                        requestList.add(refillOrder);
+                    }
+                }
+                requestTable.setItems(requestList);
+                return;
+
+            case "area_manager_uae":
+                for (RefillOrder refillOrder : list){
+                    if (refillOrder.getMachineID().startsWith("UAE")){
+                        requestList.add(refillOrder);
+                    }
+                }
+                requestTable.setItems(requestList);
+                return;
+
         }
+
+
         requestList.addAll(list);
         requestTable.setItems(requestList);
     }
@@ -192,7 +222,6 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         changesToBeMade.add(refillOrder);
         System.out.println("");
     }
-
 
     @FXML
     void backToMainScreen(MouseEvent event) {

@@ -21,11 +21,12 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <TableView fx:id="tbData" layoutX="510.0" layoutY="110.0" prefHeight="454.0" prefWidth="421.0">
+      <TableView fx:id="tbData" layoutX="458.0" layoutY="97.0" prefHeight="467.0" prefWidth="499.0">
         <columns>
           <TableColumn fx:id="IDColumn" prefWidth="66.0" text="ID" />
           <TableColumn fx:id="ProductNameColumn" prefWidth="252.0" text="Product Name" />
-            <TableColumn fx:id="AvailableColumn" prefWidth="102.0" text="Available" />
+            <TableColumn fx:id="AvailableColumn" prefWidth="80.6666259765625" text="Available" />
+            <TableColumn fx:id="CriticalTimesColumn" prefWidth="99.3333740234375" text="Critical Times" />
         </columns>
       </TableView>
       <Button fx:id="backButton" layoutY="575.0" mnemonicParsing="false" onMouseClicked="#clickBackButton" prefHeight="26.0" prefWidth="81.0" text="Back" />

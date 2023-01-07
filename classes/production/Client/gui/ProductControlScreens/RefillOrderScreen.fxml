@@ -16,7 +16,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="exitButton" layoutX="467.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <Button fx:id="exitButton" layoutX="467.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
       <ImageView fitHeight="57.0" fitWidth="107.0" layoutX="12.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../logo.png" />

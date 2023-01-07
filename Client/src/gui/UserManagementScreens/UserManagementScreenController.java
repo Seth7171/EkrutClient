@@ -116,7 +116,6 @@ public class UserManagementScreenController extends ScreenController implements 
                 case"area_manager_south":
                 case"area_manager_uae":
                     root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
-                    super.switchScreen(event, root);
                     break;
 
                 default:
