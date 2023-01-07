@@ -9,7 +9,8 @@ public class CustomerController {
     private static String creditnumber = null;
     private static String machineID = null;
     private static boolean isFirstTimeBuyasSub = false;
-    private static String subscribernNumber = null;
+    private static boolean isSub = false;
+    private static int subscribernNumber;
 
     public static void setCurrentCustomer(User currentUser) {
     	if (currentUser==null) {
@@ -47,10 +48,16 @@ public class CustomerController {
     public static Boolean getisFirstTimeBuyasSub() {
 		return isFirstTimeBuyasSub;
 	}
-    public static void setsubscribernNumber(String subscribernNumber) {
+    public static Boolean getisSub() {
+		return isSub;
+	}
+    public static void setisSub(boolean isSub) {
+    	CustomerController.isSub = isSub;
+	}
+    public static void setsubscribernNumber(int subscribernNumber) {
     	CustomerController.subscribernNumber = subscribernNumber;
 	}
-    public static String getsubscribernNumber() {
+    public static int getsubscribernNumber() {
 		return subscribernNumber;
 	}
 }

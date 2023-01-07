@@ -199,10 +199,10 @@ public class ChatClient extends AbstractClient
 
 
           case "CUSTOMER_DATA_IMPORTED_SUCCESSFULLY":
+        	  CustomerController.setisSub(((Customer)message.getData()).isSub());
         	  CustomerController.setisFirstTimeBuyasSub(((Customer)message.getData()).isFirstBuyAsSub());
         	  CustomerController.setCreditnumber(((Customer)message.getData()).getCreditCardNumber());
-        	  //TODO : LIOR FIX YOUR SERVER COMMON CUSTOMER 
-        	 // CustomerController.setsubscribernNumber(((Customer)message.getData()).getsubscribernNumber()); 
+        	  CustomerController.setsubscribernNumber(((Customer)message.getData()).getSubscriberNumber()); 
         	  break;
       }
   }
