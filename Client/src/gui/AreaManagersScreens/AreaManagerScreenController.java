@@ -59,9 +59,10 @@ public class AreaManagerScreenController extends ScreenController implements Ini
 
     @FXML
     private Button viewReportsButton;
-
     @FXML
     private Text welcomeText;
+
+    @FXML
     void openManageProductsScreen(MouseEvent event) {
         Parent root = null;
         try {
