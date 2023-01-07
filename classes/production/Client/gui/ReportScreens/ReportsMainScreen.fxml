@@ -25,7 +25,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <ComboBox fx:id="Month" layoutX="74.0" layoutY="132.0" prefHeight="25.0" prefWidth="79.0" promptText="Month" styleClass="choice-box" />
+      <ComboBox fx:id="Month" layoutX="74.0" layoutY="132.0" prefHeight="25.0" prefWidth="85.0" promptText="Month" styleClass="choice-box" />
       <ComboBox fx:id="YearComboBox" layoutX="235.0" layoutY="132.0" prefHeight="25.0" prefWidth="79.0" promptText="Year" styleClass="choice-box" />
       <ComboBox fx:id="Type" layoutX="125.0" layoutY="187.0" onAction="#clickOnType" prefWidth="150.0" promptText="Type" styleClass="choice-box" />
       <Button fx:id="showReportButton" layoutX="149.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#clickShowReport" prefHeight="25.0" prefWidth="97.0" text="Show report" />
