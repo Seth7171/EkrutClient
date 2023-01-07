@@ -78,8 +78,8 @@ public class ClientConnectorController extends ScreenController {
 		ClientUI.chat = new ClientController(ip, 5555);
 		ClientUI.chat.getClient().openConnection();
 		}
-		catch (Exception e) {
-			System.out.printf("Exception 1");
+		catch (java.net.ConnectException e) {
+			super.alertHandler("server refused to connect", true);
 			e.printStackTrace();
 			return;
 		}
