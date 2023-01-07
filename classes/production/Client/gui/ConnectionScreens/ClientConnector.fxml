@@ -15,16 +15,12 @@
             <Image url="@../logo.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnDone" layoutX="207.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#Done" prefHeight="30.0" prefWidth="73.0" text="Connect">
+      <Button fx:id="btnDone" layoutX="247.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#Done" prefHeight="43.0" prefWidth="106.0" text="Connect">
          <font>
             <Font size="14.0" />
          </font></Button>
       <TextField fx:id="iptxt" alignment="CENTER" layoutX="187.0" layoutY="289.0" prefHeight="43.0" prefWidth="226.0" promptText="Enter Server IP" text="localhost" />
       <Label fx:id="warning" layoutX="244.0" layoutY="365.0" prefHeight="17.0" prefWidth="128.0" text="Wrong IP / Server Down" textAlignment="CENTER" textFill="RED" visible="false" />
-      <Button fx:id="btnExit" layoutX="320.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#getExitBtn" prefHeight="30.0" prefWidth="73.0" text="Exit">
-         <font>
-            <Font size="14.0" />
-         </font></Button>
       <Button fx:id="btnOL" layoutX="357.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#clickedOL">
          <graphic>
             <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
@@ -49,5 +45,10 @@
          </font>
       </Label>
       <Label fx:id="warningEKOL" layoutX="256.0" layoutY="119.0" prefHeight="17.0" prefWidth="106.0" text="Please Choose one:" textAlignment="CENTER" textFill="RED" visible="false" />
+      <Button fx:id="btnExit" layoutX="560.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#getExitBtn" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
