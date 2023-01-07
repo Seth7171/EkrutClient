@@ -12,6 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -21,17 +24,38 @@ import java.util.ResourceBundle;
 
 public class CEOMainScreenController2 extends ScreenController implements Initializable {
 
-    @FXML
-    private Button exitButton;
+	 @FXML
+	    private Text depText;
 
-    @FXML
-    private Button logOutButton;
-      
-    @FXML
-    private Text welcomeBackText;
+	    @FXML
+	    private Text emailText;
 
-    @FXML
-    private Button viewReportsButton;
+	    @FXML
+	    private Button exitButton;
+
+	    @FXML
+	    private Text fullNameText;
+
+	    @FXML
+	    private Text idText;
+
+	    @FXML
+	    private Button logOutButton;
+
+	    @FXML
+	    private Button viewReportsButton;
+
+	    @FXML
+	    private Text welcomeBackText;
+	    @FXML
+	    private Text phoneText;
+	    @FXML
+	    private AnchorPane anchor1;
+
+	    @FXML
+	    private AnchorPane anchor2;
+
+
 
     @FXML
     void exit(MouseEvent event) {
@@ -68,6 +92,12 @@ public class CEOMainScreenController2 extends ScreenController implements Initia
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	anchor1.setStyle("-fx-background-color: white");//change color if we need
         welcomeBackText.setText("Welcome back " + UserController.getCurrentuser().getFirstname());
+        fullNameText.setText(UserController.getCurrentuser().getFirstname() +" " + UserController.getCurrentuser().getLastname());
+        idText.setText("ID: " + UserController.getCurrentuser().getId());
+        depText.setText(UserController.getCurrentuser().getDepartment());
+        emailText.setText(UserController.getCurrentuser().getEmailaddress());
+        phoneText.setText(UserController.getCurrentuser().getPhonenumber());
     }
 }
