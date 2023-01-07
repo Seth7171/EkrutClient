@@ -61,13 +61,13 @@
             <Font size="33.0" />
          </font>
       </Label>
-      <TabPane fx:id="tabPane" layoutX="3.0" layoutY="114.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="481.0" prefWidth="904.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="80.0">
+      <TabPane fx:id="tabPane" layoutX="3.0" layoutY="114.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="523.0" prefWidth="904.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="80.0">
         <tabs>
           <Tab fx:id="snackTab" closable="false">
                <content>
-                  <ScrollPane fx:id="snacksScroll" prefHeight="200.0" prefWidth="850.0">
+                  <ScrollPane fx:id="snacksScroll" prefHeight="200.0" prefWidth="904.0">
                      <content>
-                        <TilePane fx:id="snacksPane" prefHeight="480.0" prefWidth="859.0" />
+                        <TilePane fx:id="snacksPane" prefHeight="478.0" prefWidth="859.0" />
                      </content>
                   </ScrollPane>
                </content>
