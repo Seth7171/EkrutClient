@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.DeliveryOprtionsScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.DeliveryOprtionsScreenController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
          <image>
@@ -25,7 +25,7 @@
             <Font size="33.0" />
          </font>
       </Label>
-      <Text layoutX="354.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dear Subscriber,">
+      <Text layoutX="386.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dear User,">
          <font>
             <Font size="32.0" />
          </font>
