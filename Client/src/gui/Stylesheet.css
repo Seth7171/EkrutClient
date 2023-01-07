@@ -19,19 +19,7 @@
 	-fx-background-color: transparent;
 }
 
-/*.label{*/
-/*	-fx-background-color: transparent;*/
-/*}*/
-
-
-/* will be used later */
 /****************************tab pane style***************************************************/
-/*.tab{*/
-/*	-fx-pref-width: 50;*/
-/*	-fx-pref-height: 30;*/
-/*}*/
-
-
 .tab-pane{
 	-fx-focus-color: transparent;
 }
@@ -43,6 +31,7 @@
 #snackTab{
 	-fx-background-image: url("Untitled-3.png");
 	-fx-background-color: rgba(255, 255, 255, 0.47);
+	-fx-background-radius: 13;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
 	-fx-pref-width: 150;
@@ -52,6 +41,7 @@
 #drinkTab{
 	-fx-background-image: url("Untitled-4.png");
 	-fx-background-color: rgba(255, 255, 255, 0.47);
+	-fx-background-radius: 13;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
 	-fx-pref-width: 150;
@@ -68,11 +58,13 @@
 
 
 /****************************scroll pane style************************************************/
-.scroll-pane > .viewport {
+.scroll-pane {
 	-fx-background-color: transparent;
+	-fx-hbar-policy: never;
+	-fx-vbar-policy: never;
 }
 
-.scroll-pane {
+.scroll-pane > .viewport {
 	-fx-background-color: transparent;
 }
 /********************************************************************************************/
@@ -101,16 +93,13 @@
 /********************************************************************************************/
 
 
-/****************************text field style*************************************************/
+/****************************text field style************************************************/
 .text-field{
 	-fx-text-box-border: transparent;
 	-fx-background-color: #ffffff;
 	-fx-text-fill: black;
 	-fx-prompt-text-fill: #707070;
 }
-/*.text-field: disabled{*/
-/*	-fx-opacity: 60%;*/
-/*}*/
 /********************************************************************************************/
 
 
@@ -142,17 +131,7 @@
 
 /************************list view **********************************************************/
 .list-view{
-	-fx-background-color: rgba(255, 255, 255, 0.53);
-}
-
-.list-view-row:odd{
-	-fx-background-color:  rgba(165, 245, 205, 0.27);
-	-fx-background-insets: 0, 0 0 1 0;
-	-fx-padding: 0.0em;
-}
-.list-view-row:even{
-	-fx-background-color: rgba(56, 77, 75, 0.27);
-	-fx-background-insets: 0, 0 0 1 0;
-	-fx-padding: 0.0em;
+	-fx-background-color: rgba(255, 255, 255, 0.74);
+	-fx-background-radius: 25;
 }
 /********************************************************************************************/

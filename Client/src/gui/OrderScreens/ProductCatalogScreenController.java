@@ -138,6 +138,12 @@ public class ProductCatalogScreenController extends ScreenController implements 
                     drinksPane.getChildren().add(createProductTile(product));
             }
         }
+        snacksPane.setHgap(10);
+        snacksPane.setVgap(10);
+        drinksPane.setHgap(10);
+        drinksPane.setVgap(10);
+
+
         // Enable horizontal scrolling for the snacks and drinks panes
         snacksScroll.setFitToWidth(true);
         drinksScroll.setFitToWidth(true);
@@ -269,7 +275,8 @@ public class ProductCatalogScreenController extends ScreenController implements 
                 return;
             }
         });
-        hBox.setStyle("-fx-border-color: rgba(255,192,203,0.7); -fx-border-width: 2 2 2 2; -fx-border-style: solid; -fx-border-radius: 13; -fx-background-color: rgba(255,255,255,0.64)");
+        hBox.setStyle("-fx-border-color: rgba(255,192,203,0.7); -fx-border-width: 2 2 2 2; -fx-border-style: solid; -fx-border-radius: 13; -fx-background-color: rgba(255,255,255,0.64); -fx-background-radius: 13");
+
         return hBox;
     }
    
