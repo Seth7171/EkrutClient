@@ -115,8 +115,7 @@ public class ReportsMainScreenController extends ScreenController implements Ini
 		
 		
 	}
-	
-	
+
 	/**
      * Set the right window when clicking back button.
      * It refers to previous screen depends on role.
@@ -139,12 +138,12 @@ public class ReportsMainScreenController extends ScreenController implements Ini
 			 case"area_manager_south":
 			 case"area_manager_uae":
 				 root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
-				 super.switchScreen(event, root);
 				 break;
     		
     		 }
 		}
     	catch (IOException exception){exception.printStackTrace();}
+		super.switchScreen(event, root);
 	}
 	
 	/**
