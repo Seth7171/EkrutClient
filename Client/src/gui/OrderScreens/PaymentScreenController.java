@@ -188,7 +188,7 @@ public class PaymentScreenController extends ScreenController implements Initial
         		msg.add(CustomerController.getCurrentCustomer().getId());
         		ClientUI.chat.accept(new Message(msg, MessageFromClient.REQUEST_SET_FIRST_TIME_BUY_AS_SUB));
         	}
-        }        
+        }
         // IF DELIVERY :
         if (ChatClient.currentOrder.getSupplyMethod().equals("delivery")) {
 	        ChatClient.currentOrder.setOrderStatus("awaiting approval");
