@@ -109,6 +109,33 @@ public class LogInScreenController extends ScreenController implements Initializ
         a.setTitle("Functionality Error");
         a.show();
     }
+    
+    
+    @FXML
+    private void FastlogIn(Event event){
+        ArrayList<String> credentials = new ArrayList<String>();
+        credentials.add("ron");
+        credentials.add("123");
+        if(machinesID.getValue()==null && !ChatClient.isOL) {
+			errorMessage.setText("Please choose a machine");
+			 return;
+        }
+        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
+        if(!UserController.isLogged()){
+            errorMessage.setText(MessageHandler.getMessage());
+            MessageHandler.setMessage(null);
+            return;
+        }
+        if(ChatClient.isOL && UserController.getCurrentuser().getDepartment().equals("customer")) {
+			errorMessage.setText("Unauthorized account");
+			 ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
+			 return;
+		}	
+		CustomerController.setmachineID(machinesID.getValue());
+        Parent root = loadRoot();
+        super.switchScreen(event,root);
+    }
+    
 
     /**
      * @param event
@@ -144,11 +171,6 @@ public class LogInScreenController extends ScreenController implements Initializ
             MessageHandler.setMessage(null);
             return;
         }
-        if(ChatClient.isOL && UserController.getCurrentuser().getDepartment().equals("customer")) {
-			errorMessage.setText("Unauthorized account");
-			 ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
-			 return;
-		}	
 		CustomerController.setmachineID(machinesID.getValue());
         Parent root = loadRoot();
         super.switchScreen(event,root);
