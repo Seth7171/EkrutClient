@@ -74,7 +74,13 @@ public class DeliveryEmployeeScreenController extends ScreenController implement
 
 	@FXML
     void viewOrders(MouseEvent event) {
-		super.closeProgram(event, true);
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/DeliveryEmployeeScreens/DeliveriesScreen.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        super.switchScreen(event, root);
     }
 
 }

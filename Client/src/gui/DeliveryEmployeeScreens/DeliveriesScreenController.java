@@ -107,18 +107,7 @@ public class DeliveriesScreenController extends ScreenController implements Init
     void goBack(MouseEvent event) {
     	Parent root = null;
         try {
-        	switch (UserController.getCurrentuser().getDepartment()) {
-            case "marketing_manager":
-          	  root = FXMLLoader.load(getClass().getResource("MarketingManagerScreen.fxml"));
-          	  break;
-           case "ceo":
-          	 root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
-          	 break;
-          	 
-           default:
-               System.out.println("Unknown!");
-               // TODO: maybe add UnknownScreenException later??
-        	} 	
+          	  root = FXMLLoader.load(getClass().getResource("DeliveryEmployeeScreen.fxml"));
       }catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -130,22 +119,17 @@ public class DeliveriesScreenController extends ScreenController implements Init
 	    observableDeliveries = FXCollections.observableArrayList();
     	if (!observableDeliveries.isEmpty())
     		observableDeliveries.clear();
-    	String areaaofuser = UserController.getCurrentuser().getFirstname();
-    	int index = areaaofuser.indexOf('_');
-    	areaaofuser = areaaofuser.substring(index + 1);
-    	ClientUI.chat.accept(new Message(areaaofuser,MessageFromClient.REQUEST_ORDERS_BY_AREA )); 
+    	String areaaofuser = UserController.getCurrentuser().getDepartment().split("_")[1];
+    	ClientUI.chat.accept(new Message(areaaofuser,MessageFromClient.REQUEST_ORDERS_BY_AREA)); 
     	tempDeliveries = (ArrayList<Order>) MessageHandler.getData();//getting data from server
-
-
 	    // Add orders from tempDeliveries to observableDeliveries
 	    for (Order order : tempDeliveries) {
+	    	TableOrder torder = new TableOrder(order);
 	    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("approved","not approved", "awaiting approval"));
     		status.setValue(order.getOrderStatus());
-    		order.setOrderStatus(status.getValue());
-	    	observableDeliveries.add(order);
-	        
+    		torder.setOrderStatus(status.getValue());
+	    	observableDeliveries.add(torder);   
 	    }
-
 	    // Set the items of the viewAllOrders table to be the observableDeliveries list
 	    viewAllOrders.setItems(observableDeliveries);
     }
@@ -156,6 +140,13 @@ public class DeliveriesScreenController extends ScreenController implements Init
     }
     @FXML
     void Apply(MouseEvent event) {//send the data from the Table-View to DB  
-
+    	tempDeliveries.clear();
+    	for (Object torder : observableDeliveries){
+    		((TableOrder)torder).setOrderStatus(((TableOrder)torder).getStatus_co().getValue());
+    		Order ordertoupdate = (Order)torder;
+    		tempDeliveries.add(ordertoupdate);
+    	}
+        ClientUI.chat.accept(new Message(tempDeliveries,MessageFromClient.REQUEST_UPDATE_MULTIPLE_ORDER_STATUSES));//send new DB
+        super.alertHandler(MessageHandler.getMessage(), MessageHandler.getMessage().contains("Error"));
     }
 }

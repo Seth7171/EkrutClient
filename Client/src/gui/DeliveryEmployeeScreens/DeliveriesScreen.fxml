@@ -14,7 +14,7 @@
       <TableView fx:id="viewAllDeals" editable="true" layoutX="4.0" layoutY="102.0" prefHeight="301.0" prefWidth="865.0">
          <columns>
             <TableColumn fx:id="orderidColumn" prefWidth="53.0" text="Order ID" />
-            <TableColumn fx:id="priceColumn" prefWidth="41.0" text="Price" />
+            <TableColumn fx:id="overallpriceColumn" prefWidth="41.0" text="Price" />
             <TableColumn fx:id="productsColumn" prefWidth="82.0" text="Products" />
             <TableColumn fx:id="orderdateColumn" prefWidth="104.0" text="Order Date" />
             <TableColumn fx:id="addressColumn" prefWidth="72.0" text="Address" />
@@ -24,7 +24,7 @@
             <TableColumn fx:id="customeridColumn" prefWidth="119.0" text="Customer ID" />
          </columns>
       </TableView>
-      <Button fx:id="exitButton" layoutX="829.0" layoutY="11.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <Button fx:id="exitButton" layoutX="833.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
       <Button fx:id="apply" layoutX="258.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#Apply" prefHeight="43.0" prefWidth="128.0" text="Apply">
          <font>
             <Font size="18.0" />
@@ -43,12 +43,12 @@
             <Image url="@orders.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="68.0" fitWidth="146.0" layoutX="4.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="68.0" fitWidth="146.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../logo.png" />
          </image>
       </ImageView>
-      <Button fx:id="backButton" layoutY="517.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
+      <Button fx:id="backButton" layoutX="9.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
          <font>
             <Font size="20.0" />
          </font>
