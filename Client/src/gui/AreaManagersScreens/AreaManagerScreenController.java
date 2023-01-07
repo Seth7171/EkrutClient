@@ -16,25 +16,52 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 public class AreaManagerScreenController extends ScreenController implements Initializable {
 
+	@FXML
+    private AnchorPane anchor1;
+
+    @FXML
+    private AnchorPane anchor2;
+
+    @FXML
+    private Text depText;
+
+    @FXML
+    private Text emailText;
+
     @FXML
     private Button exitButton;
+
+    @FXML
+    private Text fullNameText;
+
+    @FXML
+    private Text idText;
+
     @FXML
     private Button logOutButton;
+
     @FXML
     private Button manageProductsButton;
+
     @FXML
     private Button manageUsersButton;
+
+    @FXML
+    private Text phoneText;
+
     @FXML
     private Button viewRefilOrdersButton;
+
     @FXML
     private Button viewReportsButton;
+
     @FXML
     private Text welcomeText;
-    @FXML
     void openManageProductsScreen(MouseEvent event) {
         Parent root = null;
         try {
@@ -100,6 +127,11 @@ public class AreaManagerScreenController extends ScreenController implements Ini
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		welcomeText.setText("Welcome back " + UserController.getCurrentuser().getFirstname());
+		 fullNameText.setText(UserController.getCurrentuser().getFirstname() +" " + UserController.getCurrentuser().getLastname());
+	        idText.setText("ID: " + UserController.getCurrentuser().getId());
+	        depText.setText(UserController.getCurrentuser().getDepartment());
+	        emailText.setText(UserController.getCurrentuser().getEmailaddress());
+	        phoneText.setText(UserController.getCurrentuser().getPhonenumber());
 	}
 
 	
