@@ -31,24 +31,52 @@
 /*	-fx-pref-height: 30;*/
 /*}*/
 
+
 .tab-pane{
 	-fx-focus-color: transparent;
+}
+
+.tab-background{
+	-fx-background-color: rgba(255, 255, 255, 0.45);
+}
+
+#snackTab{
+	-fx-background-image: url("Untitled-3.png");
+	-fx-background-color: rgba(255, 255, 255, 0.47);
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: stretch;
+	-fx-pref-width: 150;
+	-fx-pref-height: 40;
+}
+
+#drinkTab{
+	-fx-background-image: url("Untitled-4.png");
+	-fx-background-color: rgba(255, 255, 255, 0.47);
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: stretch;
+	-fx-pref-width: 150;
+	-fx-pref-height: 40;
 }
 /********************************************************************************************/
 
 
-
+/****************************tableview style**************************************************/
+.table-cell:filled:focused {
+	-fx-border-color: transparent;
+}
+/********************************************************************************************/
 
 
 /****************************scroll pane style************************************************/
 .scroll-pane > .viewport {
-	-fx-background-color: rgba(255, 255, 255, 0.33);
+	-fx-background-color: transparent;
 }
 
 .scroll-pane {
-	-fx-background-color: rgba(241, 241, 241, 0.45);
+	-fx-background-color: transparent;
 }
 /********************************************************************************************/
+
 
 /****************************button style****************************************************/
 .button{
@@ -72,6 +100,7 @@
 }
 /********************************************************************************************/
 
+
 /****************************text field style*************************************************/
 .text-field{
 	-fx-text-box-border: transparent;
@@ -84,6 +113,7 @@
 /*}*/
 /********************************************************************************************/
 
+
 /****************************combo box style*************************************************/
 .choice-box{
 	-fx-text-box-border: transparent;
@@ -92,17 +122,37 @@
 	-fx-text-fill: black;
 	-fx-prompt-text-fill: #707070;
 }
+
+.choice-box:focused {
+	-fx-border-color: transparent;
+}
+
+.combo-box:focused{
+	-fx-border-color: transparent;
+}
 /********************************************************************************************/
+
 
 /****************************alert **********************************************************/
 .alert .content .label{
 	-fx-background-color: #efd1c0;
-
 }
-
 /********************************************************************************************/
 
-.tab-background{
-	-fx-background-color: rgba(255, 255, 255, 0.45);
 
+/************************list view **********************************************************/
+.list-view{
+	-fx-background-color: rgba(255, 255, 255, 0.53);
 }
+
+.list-view-row:odd{
+	-fx-background-color:  rgba(165, 245, 205, 0.27);
+	-fx-background-insets: 0, 0 0 1 0;
+	-fx-padding: 0.0em;
+}
+.list-view-row:even{
+	-fx-background-color: rgba(56, 77, 75, 0.27);
+	-fx-background-insets: 0, 0 0 1 0;
+	-fx-padding: 0.0em;
+}
+/********************************************************************************************/
