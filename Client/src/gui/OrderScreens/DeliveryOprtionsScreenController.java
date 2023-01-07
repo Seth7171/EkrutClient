@@ -14,12 +14,14 @@ import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import gui.ScreenController;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -60,7 +62,7 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
     private TextField City;
     
     @FXML
-    private TextField State;
+    private ComboBox<String> State;
     
     @FXML
     private TextField Zip;
@@ -74,8 +76,7 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		showMachineLocationAndMachineID();
-
-		
+		State.getItems().addAll("ISR/north","ISR/south", "UAE/uae");
 	}
 
 	private void showMachineLocationAndMachineID(){
@@ -83,7 +84,6 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
         ArrayList<String> Locations = new ArrayList<>();
         Locations.addAll((ArrayList<String>) MessageHandler.getData());
         location.getItems().addAll(Locations);//add all Locations to Location comboBox
-        
         location.setOnAction(event -> {
             ClientUI.chat.accept(new Message(location.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
             ArrayList<String> machineIDs = new ArrayList<>();
@@ -96,7 +96,6 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
         machineID.setOnAction(event -> {
         	dynamicError.setVisible(false);
         });
-        
 	}
 	
 	@FXML
@@ -167,11 +166,9 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
             	String Address = TextField.getText();
             	TextField = (TextField) pane.lookup("#City");
             	String City = TextField.getText();
-            	TextField = (TextField) pane.lookup("#State");
-            	String State = TextField.getText();
             	TextField = (TextField) pane.lookup("#Zip");
             	String Zip = TextField.getText();
-            	if (Address.trim().isEmpty() || City.trim().isEmpty() || State.trim().isEmpty() || Zip.trim().isEmpty()) {
+            	if (Address.trim().isEmpty() || City.trim().isEmpty() || State.getSelectionModel().isEmpty()|| Zip.trim().isEmpty()) {
             		deliveryError.setVisible(true);
         			return;
             	}
@@ -180,13 +177,15 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
      		    sb.append(" ");
      		    sb.append(City);
      		    sb.append(" ");
-     		    sb.append(State);
+     		    sb.append(State.getValue());
      		    sb.append(" ");
      		    sb.append(Zip);
+     		   String state = State.getValue().split("/")[1];
      		    System.out.println(sb.toString());
      			ChatClient.currentOrder.setAddress(sb.toString());
      			ChatClient.currentOrder.setSupplyMethod("delivery");
      	        ChatClient.currentOrder.setMachineID(null);
+     	       ChatClient.currentOrder.setArea(state);
      	        CustomerController.setmachineID(null);
         	}
         }
