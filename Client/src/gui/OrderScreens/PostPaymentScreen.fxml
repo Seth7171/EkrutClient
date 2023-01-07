@@ -10,28 +10,24 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.PostPaymentController">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="143.0" layoutX="313.0" layoutY="295.0" pickOnBounds="true">
+      <Pane fx:id="asd" layoutX="147.0" layoutY="129.0" prefHeight="513.0" prefWidth="731.0" />
+      <ImageView fitHeight="150.0" fitWidth="143.0" layoutX="380.0" layoutY="348.0" pickOnBounds="true">
          <image>
             <Image url="@Receipt.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
-         <image>
-            <Image url="@../logo.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="chooseOrderType" alignment="CENTER" contentDisplay="CENTER" layoutX="263.0" layoutY="278.0" prefHeight="33.0" prefWidth="393.0" text="Payment completed" textAlignment="CENTER">
+      <Label fx:id="chooseOrderType" alignment="CENTER" contentDisplay="CENTER" layoutX="330.0" layoutY="331.0" prefHeight="33.0" prefWidth="393.0" text="Payment completed" textAlignment="CENTER">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Text layoutX="221.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THANK YOU FOR YOUR PURCHASE!">
+      <Text layoutX="288.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THANK YOU FOR YOUR PURCHASE!">
          <font>
             <Font size="30.0" />
          </font>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text layoutX="443.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Number :">
+      <Text layoutX="67.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text layoutX="510.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Number :">
          <font>
             <Font size="19.0" />
          </font>
@@ -41,27 +37,27 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="backButton" layoutX="346.0" layoutY="511.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="63.0" prefWidth="230.0" text="Back to menu screen">
+      <Button fx:id="backButton" layoutX="413.0" layoutY="564.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="63.0" prefWidth="230.0" text="Back to menu screen">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="384.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="451.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
          <image>
             <Image url="@GreenCheckMark.png" />
          </image>
       </ImageView>
-      <Text fx:id="orderNum" layoutX="578.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="######">
+      <Text fx:id="orderNum" layoutX="645.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="######">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Text>
-      <Text fx:id="dynamicTxt" layoutX="84.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please write down you Order Number and insert it in Ekrut machine number :">
+      <Text fx:id="dynamicTxt" layoutX="151.0" layoutY="506.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please write down you Order Number and insert it in Ekrut machine number :">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <Text fx:id="machineNum" layoutX="731.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="######">
+      <Text fx:id="machineNum" layoutX="798.0" layoutY="506.0" strokeType="OUTSIDE" strokeWidth="0.0" text="######">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>

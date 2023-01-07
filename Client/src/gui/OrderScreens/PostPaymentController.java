@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -49,8 +50,13 @@ public class PostPaymentController extends ScreenController implements Initializ
     @FXML
     private ListView<Object> getOrder = new ListView<Object>();
     
+    @FXML
+    private Pane asd;
+    
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		asd.setStyle("-fx-border-color: rgba(65,65,65,0.63); -fx-border-width: 2 2 2 2; -fx-border-style: solid; -fx-border-radius: 13; -fx-background-color: rgba(255,255,255,0.84); -fx-background-radius: 13");
 		orderNum.setText(ChatClient.currentOrder.getOrderID());
 		machineNum.setText(ChatClient.currentOrder.getMachineID());
 		if (!ChatClient.currentOrder.getSupplyMethod().equals("machine pickup")) {
