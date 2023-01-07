@@ -52,7 +52,7 @@ public class DeliveriesScreenController extends ScreenController implements Init
     private TableColumn<Order, Float> overallpriceColumn;
 
     @FXML
-    private TableColumn<Order, String> productsColumn;
+    private TableColumn<Order, ArrayList<Product>> productsColumn;
     
     @FXML
     private TableColumn<Order, String> orderdateColumn;
@@ -84,15 +84,15 @@ public class DeliveriesScreenController extends ScreenController implements Init
 		// TODO Auto-generated method stub
 		tempDeliveries = new ArrayList<>();
 		//init columns
-		orderidColumn.setCellValueFactory(new PropertyValueFactory<>("Order ID"));
-		overallpriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
-		productsColumn.setCellValueFactory(new PropertyValueFactory<>("Products"));
-		orderdateColumn.setCellValueFactory(new PropertyValueFactory<>("Order Date"));
-		addressColumn.setCellValueFactory(new PropertyValueFactory<>("Address"));
-		estimatedateColumn.setCellValueFactory(new PropertyValueFactory<>("Estimated Delivery Date"));
-		confirmationdateColumn.setCellValueFactory(new PropertyValueFactory<>("Confirmation Date"));
-		orderstatusColumn.setCellValueFactory(new PropertyValueFactory<>("Order Status"));
-		customeridColumn.setCellValueFactory(new PropertyValueFactory<>("Customer ID"));
+		orderidColumn.setCellValueFactory(new PropertyValueFactory<>("orderID"));
+		overallpriceColumn.setCellValueFactory(new PropertyValueFactory<>("overallPrice"));
+		productsColumn.setCellValueFactory(new PropertyValueFactory<>("products"));
+		orderdateColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
+		addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+		estimatedateColumn.setCellValueFactory(new PropertyValueFactory<>("estimatedDeliveryTime"));
+		confirmationdateColumn.setCellValueFactory(new PropertyValueFactory<>("confirmationDate"));
+		orderstatusColumn.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
+		customeridColumn.setCellValueFactory(new PropertyValueFactory<>("customerID"));
 		//load deals
 		loadDeliveries();
 	}
@@ -113,7 +113,8 @@ public class DeliveriesScreenController extends ScreenController implements Init
         }
         super.switchScreen(event, root);
     }
-
+    
+    
     public void loadDeliveries() {
 	    observableDeliveries = FXCollections.observableArrayList();
     	if (!observableDeliveries.isEmpty())
@@ -123,11 +124,13 @@ public class DeliveriesScreenController extends ScreenController implements Init
     	tempDeliveries = (ArrayList<Order>) MessageHandler.getData();//getting data from server
 	    // Add orders from tempDeliveries to observableDeliveries
 	    for (Order order : tempDeliveries) {
-	    	TableOrder torder = new TableOrder(order);
-	    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("approved","not approved", "awaiting approval"));
-    		status.setValue(order.getOrderStatus());
-    		torder.setOrderStatus(status.getValue());
-	    	observableDeliveries.add(torder);   
+	    	if (order.getSupplyMethod().equals("delivery")) {
+		    	TableOrder torder = new TableOrder(order);
+		    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("approved","not approved", "awaiting approval"));
+	    		status.setValue(order.getOrderStatus());
+	    		torder.setOrderStatus(status.getValue());
+		    	observableDeliveries.add(torder);
+	    	}
 	    }
 	    // Set the items of the viewAllOrders table to be the observableDeliveries list
 	    viewAllOrders.setItems(observableDeliveries);
