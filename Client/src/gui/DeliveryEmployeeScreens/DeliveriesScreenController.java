@@ -113,8 +113,7 @@ public class DeliveriesScreenController extends ScreenController implements Init
         }
         super.switchScreen(event, root);
     }
-    
-    
+
     public void loadDeliveries() {
 	    observableDeliveries = FXCollections.observableArrayList();
     	if (!observableDeliveries.isEmpty())
