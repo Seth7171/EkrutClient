@@ -171,7 +171,7 @@ public class LogInScreenController extends ScreenController implements Initializ
                     break;
 
                 case"ceo":
-                    root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen2.fxml"));
                     break;
 
                 case "operations":

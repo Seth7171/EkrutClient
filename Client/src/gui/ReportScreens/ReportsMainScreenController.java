@@ -130,13 +130,9 @@ public class ReportsMainScreenController extends ScreenController implements Ini
              case "marketing_manager":
                  root = FXMLLoader.load(getClass().getResource("/gui/MarketingManagementScreens/MarketingManagerScreen.fxml"));
                  break;
-
-             case "marketing_employee_uae":
-            	 root = FXMLLoader.load(getClass().getResource("/gui/MarketingManagementScreens/MarketingEmployeeScreen.fxml"));
-            	 break;
             	 
              case"ceo":
-                 root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
+                 root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen2.fxml"));
                  break;
 
 			 case"area_manager_north":
@@ -274,8 +270,7 @@ public class ReportsMainScreenController extends ScreenController implements Ini
 			            case "Orders":
 			            	//Fix month 
 			            	
-			            //	TODO: need to replace the month if we got 02 to 2 ...
-			                if(monthYearMachine.get(0).startsWith("0"))
+				                if(monthYearMachine.get(0).startsWith("0"))
 			            		monthYearMachine.set(0, monthYearMachine.get(0).substring(1));
 			            	
 			            	// request report from server

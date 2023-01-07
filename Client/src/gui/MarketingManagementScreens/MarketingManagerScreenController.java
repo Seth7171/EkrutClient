@@ -30,9 +30,7 @@ public class MarketingManagerScreenController extends ScreenController implement
 
     @FXML
     private Text welcomeText;
-    @FXML
-    private Button viewReport;
-
+ 
 
     @FXML
     void existingDeals(MouseEvent event) {// switch to ManagerDealsScreen.fxml
@@ -75,17 +73,6 @@ public class MarketingManagerScreenController extends ScreenController implement
              throw new RuntimeException(e);
          }
          super.switchScreen(event, root);
-    }
-    
-    @FXML
-    void viewReports(MouseEvent event) {//view Report
-    	Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/gui/ReportScreens/ReportsMainScreen.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        super.switchScreen(event, root);
     }
     
 
