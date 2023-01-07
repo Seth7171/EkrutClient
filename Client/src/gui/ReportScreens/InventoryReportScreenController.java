@@ -74,6 +74,9 @@ public class InventoryReportScreenController extends ScreenController implements
 	@FXML
 	private TableColumn<Product, Integer> AvailableColumn;
 
+    @FXML
+    private TableColumn<Product, Integer> CriticalTimesColumn;
+
 	@FXML
 	private TableColumn<Product, String> IDColumn;
 
@@ -82,6 +85,7 @@ public class InventoryReportScreenController extends ScreenController implements
 
 	@FXML
 	private TableColumn<Product, String> ProductNameColumn;
+	
 
 	private ArrayList<Product> tempProd = new ArrayList<>();
 	
@@ -100,6 +104,7 @@ public class InventoryReportScreenController extends ScreenController implements
 			productData.setProductId(p.getProductId());
 			productData.setDescription(p.getDescription());
 			productData.setAmount(p.getAmount());
+			productData.setNumOfTimesBelowCritical(p.getNumOfTimesBelowCritical());
 			tbData.getItems().add(productData);
 		}
 	}
@@ -149,6 +154,7 @@ public class InventoryReportScreenController extends ScreenController implements
 		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ProductId"));
 		ProductNameColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
 		AvailableColumn.setCellValueFactory(new PropertyValueFactory<>("Amount"));
+		CriticalTimesColumn.setCellValueFactory(new PropertyValueFactory<>("numOfTimesBelowCritical"));
 		tbData.setItems(observablesubs);
 		loadProducts();
 	}
