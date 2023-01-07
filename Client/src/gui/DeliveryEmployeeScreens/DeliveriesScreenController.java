@@ -141,7 +141,7 @@ public class DeliveriesScreenController extends ScreenController implements Init
 	    for (Order order : tempDeliveries) {
 	    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("approved","not approved", "awaiting approval"));
     		status.setValue(order.getOrderStatus());
-    		order.setOrderStatus(status);
+    		order.setOrderStatus(status.getValue());
 	    	observableDeliveries.add(order);
 	        
 	    }

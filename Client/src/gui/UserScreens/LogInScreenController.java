@@ -198,9 +198,12 @@ public class LogInScreenController extends ScreenController implements Initializ
                 case "area_manager_south":
                 	root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
                     break;
-                    //TODO: delivery per location
-                    // @Lior all delivery employees have the same screen, just the data displayed is being changed accordingly
+
+                //TODO: delivery per location
+                // @Lior all delivery employees have the same screen, just the data displayed is being changed accordingly
                     // @Nitsan ma ata omerrrrrrrrrr liorrrrrrrrrrr leh la server///!!!!!!
+                        // @Lior I will stop this before there will be a huge ktata here. ):<
+
                 case "delivery_north":
                 case "delivery_south":
                 case "delivery_uae":

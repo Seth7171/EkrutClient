@@ -2,12 +2,14 @@ package gui.ProductControlScreens;
 
 import application.client.ClientUI;
 import application.client.MessageHandler;
+import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import common.orders.Product;
 import gui.ScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -72,8 +74,8 @@ public class ProductManagementScreenController extends ScreenController implemen
     @FXML
     private Button addProductButton;
 
-
-
+    @FXML
+    private Button refreshTableButton;
 
     @FXML
     private Button backButton;
@@ -141,6 +143,11 @@ public class ProductManagementScreenController extends ScreenController implemen
         Locations.add("Warehouse");
         Locations.addAll((ArrayList<String>) MessageHandler.getData());
         locationChoiceBox.getItems().addAll(Locations);//add all Locations to Location comboBox
+        if (UserController.getCurrentuser().getDepartment().contains("manager"))
+            locationChoiceBox.setValue(UserController.getCurrentuser().getDepartment().split("_")[2]);
+        else {
+
+        }
 
         locationChoiceBox.setOnAction(event -> {
             if (locationChoiceBox.getValue() != null && locationChoiceBox.getValue().equals("New Product")){
@@ -299,28 +306,30 @@ public class ProductManagementScreenController extends ScreenController implemen
     }
 
     @FXML
-    void refreshTable(MouseEvent event) {
+    void refreshTable(ActionEvent event) {
         changesToBeMade.clear();
         dataTable = FXCollections.observableArrayList();
         if (machineProductsTab.isSelected()){
             ArrayList<String > data = new ArrayList<>();
-            if (areaComboBox.getValue() != null && (machineIDComboBox.getValue() == null  || machineIDComboBox.getValue().equals("All"))){
+            if (areaComboBox.getValue().equals("All") && machineIDComboBox.getValue().equals("All")){
+                ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_LOCATION_PRODUCTS));
+                data.clear();
+            }else if (!areaComboBox.getValue().equals("All") && machineIDComboBox.getValue().equals("All")){
                 data.add(areaComboBox.getValue());
                 data.add("1");
                 ClientUI.chat.accept(new Message(data, MessageFromClient.REQUEST_LOCATION_PRODUCTS));
                 data.clear();
-            }else if (areaComboBox.getValue() != null && machineIDComboBox.getValue() != null){
+            }
+            else if (!machineIDComboBox.getValue().equals("All")){
                 data.add(machineIDComboBox.getValue());
                 data.add("0");
                 ClientUI.chat.accept(new Message(data, MessageFromClient.REQUEST_LOCATION_PRODUCTS));
                 data.clear();
             }
-            else if (areaComboBox.getValue() == null && machineIDComboBox.getValue() == null){
-                ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_LOCATION_PRODUCTS));
-            }
         }
         else
             ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_WAREHOUSE_PRODUCTS));
+
 
         ArrayList<Product> products = new ArrayList<>();
         if (MessageHandler.getData() instanceof String){
@@ -357,7 +366,6 @@ public class ProductManagementScreenController extends ScreenController implemen
 
         }
 
-
         // alert amount column
         alertAmountColumn.setCellValueFactory   (new PropertyValueFactory<>("criticalAmount"));
         alertAmountColumn.setCellFactory        (TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
@@ -365,7 +373,6 @@ public class ProductManagementScreenController extends ScreenController implemen
             event.getTableView().getItems().get(event.getTablePosition().getRow()).setCriticalAmount(event.getNewValue());
             checkAndReplace(event.getTableView().getItems().get(event.getTablePosition().getRow()));
         });
-
 
         // price column
         priceColumn.setCellValueFactory         (new PropertyValueFactory<>("price"));
@@ -375,7 +382,6 @@ public class ProductManagementScreenController extends ScreenController implemen
             checkAndReplace(event.getTableView().getItems().get(event.getTablePosition().getRow()));
         });
 
-
         // discount column
         discountColumn.setCellValueFactory      (new PropertyValueFactory<>("discount"));
 //        discountColumn.setCellFactory           (TextFieldTableCell.forTableColumn(new FloatStringConverter()));
@@ -383,7 +389,6 @@ public class ProductManagementScreenController extends ScreenController implemen
 //            event.getTableView().getItems().get(event.getTablePosition().getRow()).setDiscount(event.getNewValue());
 //            checkAndReplace(event.getTableView().getItems().get(event.getTablePosition().getRow()));
 //        });
-
 
         // current available amount column
         currentAmountColumn.setCellValueFactory (new PropertyValueFactory<>("amount"));
@@ -393,7 +398,6 @@ public class ProductManagementScreenController extends ScreenController implemen
             checkAndReplace(event.getTableView().getItems().get(event.getTablePosition().getRow()));
         });
 
-
         // description column
         descriptionColumn.setCellValueFactory   (new PropertyValueFactory<>("description"));
 //        descriptionColumn.setCellFactory        (TextFieldTableCell.forTableColumn());
@@ -402,7 +406,6 @@ public class ProductManagementScreenController extends ScreenController implemen
 //            checkAndReplace(event.getTableView().getItems().get(event.getTablePosition().getRow()));
 //        });
 
-
         // type column
         typeColumn.setCellValueFactory (new PropertyValueFactory<>("Type"));
 //        typeColumn.setCellFactory      (TextFieldTableCell.forTableColumn());
@@ -410,7 +413,6 @@ public class ProductManagementScreenController extends ScreenController implemen
 //            event.getTableView().getItems().get(event.getTablePosition().getRow()).setType(event.getNewValue());
 //            checkAndReplace(event.getTableView().getItems().get(event.getTablePosition().getRow()));
 //        });
-
 
         try {
             machineProductTable.setEditable(true);
@@ -446,7 +448,6 @@ public class ProductManagementScreenController extends ScreenController implemen
                     return;
                 }
             }
-
         }
         changesToBeMade.add(product);
     }
@@ -466,11 +467,39 @@ public class ProductManagementScreenController extends ScreenController implemen
     private void setComboBoxes(){
         ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_ALL_MACHINE_LOCATIONS));
         ArrayList<String> Locations = (ArrayList<String>) MessageHandler.getData();
+        areaComboBox.getItems().add("All");
         areaComboBox.getItems().addAll(Locations);//add all Locations to Location comboBox
+        areaComboBox.setValue("All");
     }
 
-
     void initLocationBox(){
+        if (UserController.getCurrentuser().getDepartment().contains("manager")){
+            areaComboBox.setValue(UserController.getCurrentuser().getDepartment().split("_")[2]);
+            areaComboBox.setDisable(true);
+            ClientUI.chat.accept(new Message(UserController.getCurrentuser().getDepartment().split("_")[2], MessageFromClient.REQUEST_MACHINE_IDS));
+            ArrayList<String> machineIDs = new ArrayList<>();
+            machineIDs.add("All");
+            machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
+            machineIDComboBox.getItems().clear();
+            machineIDComboBox.getItems().addAll(machineIDs);
+            machineIDComboBox.setValue("All");
+            return;
+        }
+
+        if (areaComboBox.getValue() != null){
+            ClientUI.chat.accept(new Message(areaComboBox.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
+            ArrayList<String> machineIDs = new ArrayList<>();
+            machineIDs.add("All");
+            machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
+            machineIDComboBox.getItems().clear();
+            machineIDComboBox.getItems().addAll(machineIDs);
+            machineIDComboBox.setValue("All");
+        }
+
+        machineIDComboBox.setOnAction(event -> {
+            refreshTable(event);
+        });
+
         areaComboBox.setOnAction(event -> {
             if (areaComboBox.getValue() != null){
                 ClientUI.chat.accept(new Message(areaComboBox.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
@@ -479,6 +508,8 @@ public class ProductManagementScreenController extends ScreenController implemen
                 machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
                 machineIDComboBox.getItems().clear();
                 machineIDComboBox.getItems().addAll(machineIDs);
+                machineIDComboBox.setValue("All");
+                refreshTable(event);
             }
         });
     }
@@ -486,7 +517,7 @@ public class ProductManagementScreenController extends ScreenController implemen
     @FXML
     void uploadChangesToDataBase(MouseEvent event) {
         if (changesToBeMade.isEmpty()){
-            super.alertHandler("You have no changes to upload", false);
+            super.alertHandler("You have no changes to upload", true);
             return;
         }
 
@@ -506,11 +537,19 @@ public class ProductManagementScreenController extends ScreenController implemen
 
     @FXML
     void exit(MouseEvent event) {
+        if (!changesToBeMade.isEmpty()){
+            Alert confirmExit = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?\nAll unsaved changes will be lost", ButtonType.YES, ButtonType.NO);
+            confirmExit.showAndWait();
+
+            if (confirmExit.getResult() == ButtonType.NO)
+                return;
+        }
+
         super.closeProgram(event, true);
     }
 
     @FXML
-    void goBackToCEOMainScreen(MouseEvent event) {
+    void goBackToCEOMainScreen(MouseEvent event) { // todo: fix going back to ceo screen...
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
@@ -522,59 +561,59 @@ public class ProductManagementScreenController extends ScreenController implemen
 }
 
 
-
-// init backup:
-//@Override
-//public void initialize(URL location, ResourceBundle resources) {
-//    ScrollPane scrollPane = new ScrollPane();
-//    GridPane gridPane = new GridPane();
-//    gridPane.setPrefSize(500, 421);
-//    //gridPane.setLayoutX(140);
-//    gridPane.setLayoutX(0);
-//    gridPane.setLayoutY(0);
-//    //gridPane.setGridLinesVisible(true);
-//    Text productID = new Text("Product ID");
-//    Text alertAmount = new Text("Alert amount");
-//    Text price = new Text("Price");
-//    Text discount = new Text("Discount");
-//    Text currentAmount = new Text("Current amount");
-//    Text description = new Text("description");
-//
-//    gridPane.setHgap(10);
-//    gridPane.setVgap(7);
-//
-//    // generate the header row:
-//    gridPane.add(productID, 0, 0);
-//    gridPane.add(alertAmount, 1, 0);
-//    gridPane.add(price, 2, 0);
-//    gridPane.add(discount, 3, 0);
-//    gridPane.add(currentAmount, 4, 0);
-//    gridPane.add(description, 5, 0);
-//
-//
-//    // generate all rows using data from products:
-//    ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_WAREHOUSE_PRODUCTS));
-//    ArrayList<Product> products = (ArrayList<Product>)MessageHandler.getData();
-//    int index = 1;
-//
-//    TextArea textField = new TextArea();
-//    for (Product product : products){
-//        gridPane.add(createNewArea(product.getProductId(), true, 50), 0, index);
-//        gridPane.add(createNewArea(product.getCriticalAmount() + "", true, 60), 1, index);
-//        gridPane.add(createNewArea(product.getPrice() + "", true, 70), 2, index);
-//        gridPane.add(createNewArea(product.getDiscount() * 100 + "%", true, 100), 3, index);
-//        gridPane.add(createNewArea(product.getAmount() + "", true, 50), 4, index);
-//        gridPane.add(createNewArea(product.getDescription(), false, 150), 5, index);
-//
-//        index += 1;
+//    backup
+//    void initLocationBox(){
+//        areaComboBox.setOnAction(event -> {
+//            if (areaComboBox.getValue() != null){
+//                ClientUI.chat.accept(new Message(areaComboBox.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
+//                ArrayList<String> machineIDs = new ArrayList<>();
+//                machineIDs.add("All");
+//                machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
+//                machineIDComboBox.getItems().clear();
+//                machineIDComboBox.getItems().addAll(machineIDs);
+//            }
+//        });
 //    }
+
+
+
+//    void refreshTable(MouseEvent event) {
+//        changesToBeMade.clear();
+//        dataTable = FXCollections.observableArrayList();
+//        if (machineProductsTab.isSelected()){
+//            ArrayList<String > data = new ArrayList<>();
+//            if (areaComboBox.getValue() != null && (machineIDComboBox.getValue() == null  || machineIDComboBox.getValue().equals("All"))){
+//                data.add(areaComboBox.getValue());
+//                data.add("1");
+//                ClientUI.chat.accept(new Message(data, MessageFromClient.REQUEST_LOCATION_PRODUCTS));
+//                data.clear();
+//            }else if (areaComboBox.getValue() != null && machineIDComboBox.getValue() != null){
+//                data.add(machineIDComboBox.getValue());
+//                data.add("0");
+//                ClientUI.chat.accept(new Message(data, MessageFromClient.REQUEST_LOCATION_PRODUCTS));
+//                data.clear();
+//            }
+//            else if (areaComboBox.getValue() == null && machineIDComboBox.getValue() == null){
+//                ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_LOCATION_PRODUCTS));
+//            }
+//        }
+//        else
+//            ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_WAREHOUSE_PRODUCTS));
 //
+//        ArrayList<Product> products = new ArrayList<>();
+//        if (MessageHandler.getData() instanceof String){
+//            if (!dataTable.isEmpty())
+//                dataTable.clear();
+//            super.alertHandler("No info was found for your choice", false);
+//            return;
+//        }
+//        products = (ArrayList<Product>) MessageHandler.getData(); // check if I won't have reference errors when communicating with the server.
+//        dataTable.addAll(products);
 //
-//    scrollPane.setPrefSize(520, 421);
-//    scrollPane.setLayoutX(141);
-//    scrollPane.setLayoutY(0);
+//        if (machineProductsTab.isSelected()){
+//            machineProductTable.setItems(dataTable);
+//            return;
+//        }
 //
-//    scrollPane.setContent(gridPane);
-//    warehouseProducts.getChildren().add(scrollPane);
-//
-//}
+//        warehouseProductsTable.setItems(dataTable);
+//    }

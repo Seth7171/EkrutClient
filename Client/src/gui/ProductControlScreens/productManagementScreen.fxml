@@ -76,7 +76,7 @@
                         </TableView>
                         <ChoiceBox fx:id="areaComboBox" layoutX="6.0" layoutY="558.0" prefWidth="150.0" />
                         <ChoiceBox fx:id="machineIDComboBox" layoutX="201.0" layoutY="558.0" prefWidth="150.0" />
-                        <Button fx:id="refreshTableButton" layoutX="379.0" layoutY="531.0" mnemonicParsing="false" onMouseClicked="#refreshTable" prefHeight="53.0" prefWidth="100.0" text="refresh table">
+                        <Button fx:id="refreshTableButton" layoutX="379.0" layoutY="531.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="53.0" prefWidth="100.0" text="refresh table">
                            <font>
                               <Font size="14.0" />
                            </font></Button>

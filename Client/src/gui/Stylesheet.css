@@ -87,6 +87,7 @@
 /****************************combo box style*************************************************/
 .choice-box{
 	-fx-text-box-border: transparent;
+	-fx-opacity: 90%;
 	-fx-background-color: #ececec;
 	-fx-text-fill: black;
 	-fx-prompt-text-fill: #707070;
