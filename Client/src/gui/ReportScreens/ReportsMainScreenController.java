@@ -1,10 +1,8 @@
 package gui.ReportScreens;
 import java.time.Year;
-import javafx.event.EventHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import application.client.ChatClient;
@@ -13,31 +11,24 @@ import application.client.MessageHandler;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
-import common.connectivity.User;
 import gui.ScreenController;
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 /** Description of CEO Reports Main Screen Controller.
  * @author Ravid Goldin
  * @author Ben Ben Baruch
  */
 
-public class CEOReportsMainScreenController extends ScreenController implements Initializable{
+public class ReportsMainScreenController extends ScreenController implements Initializable{
 	/** Flags for machine id and location combo boxes. 1 means open, 0 means close.*/
 	int MachineIDFlag=0; // MachineID ComboBox:  1=open|0=close
 	int LocationFlag=0; // Location ComboBox:  1=open|0=close
@@ -147,11 +138,17 @@ public class CEOReportsMainScreenController extends ScreenController implements 
              case"ceo":
                  root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
                  break;
+
+			 case"area_manager_north":
+			 case"area_manager_south":
+			 case"area_manager_uae":
+				 root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
+				 super.switchScreen(event, root);
+				 break;
     		
     		 }
 		}
     	catch (IOException exception){exception.printStackTrace();}
-    	super.switchScreen(event, root);
 	}
 	
 	/**

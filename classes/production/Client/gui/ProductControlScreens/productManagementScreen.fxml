@@ -76,7 +76,7 @@
                         </TableView>
                         <ChoiceBox fx:id="areaComboBox" layoutX="6.0" layoutY="558.0" prefWidth="150.0" />
                         <ChoiceBox fx:id="machineIDComboBox" layoutX="201.0" layoutY="558.0" prefWidth="150.0" />
-                        <Button fx:id="refreshTableButton" layoutX="379.0" layoutY="531.0" mnemonicParsing="false" onMouseClicked="#refreshTable" prefHeight="53.0" prefWidth="100.0" text="refresh table">
+                        <Button fx:id="refreshTableButton" layoutX="379.0" layoutY="531.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="53.0" prefWidth="100.0" text="refresh table">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
@@ -115,11 +115,6 @@
                         </Text>
                         <ChoiceBox fx:id="locationChoiceBox" layoutX="556.0" layoutY="84.0" prefWidth="150.0" />
                         <Text fx:id="locationToAdd" layoutX="554.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location to add:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="discountTXT" layoutX="300.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="discount">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -165,7 +160,6 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <ChoiceBox fx:id="discountChoiceBox" layoutX="300.0" layoutY="399.0" prefWidth="150.0" />
                         <ChoiceBox fx:id="machineIDChoiceBox" layoutX="556.0" layoutY="202.0" prefWidth="150.0" />
                      </children>
                   </AnchorPane>
