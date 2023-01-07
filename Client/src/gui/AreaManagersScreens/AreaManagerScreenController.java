@@ -102,4 +102,5 @@ public class AreaManagerScreenController extends ScreenController implements Ini
 		welcomeText.setText("Welcome back " + UserController.getCurrentuser().getFirstname());
 	}
 
+	
 }

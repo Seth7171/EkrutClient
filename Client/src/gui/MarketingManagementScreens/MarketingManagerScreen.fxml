@@ -14,7 +14,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="existingDeals" layoutX="291.0" layoutY="174.0" mnemonicParsing="false" onMouseClicked="#existingDeals" text="View existing deals">
+      <Button fx:id="existingDeals" layoutX="291.0" layoutY="216.0" mnemonicParsing="false" onMouseClicked="#existingDeals" text="View existing deals">
          <font>
             <Font size="15.0" />
          </font>
@@ -25,19 +25,9 @@
          </font>
       </Button>
       <Button fx:id="exitButton" layoutX="626.0" layoutY="2.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exitApp" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <Button fx:id="viewReport" layoutX="291.0" layoutY="268.0" mnemonicParsing="false" onMouseClicked="#viewReports" prefHeight="31.0" prefWidth="146.0" text="View reports">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <ImageView fitHeight="64.0" fitWidth="55.0" layoutX="211.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="64.0" fitWidth="55.0" layoutX="211.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@credit-card.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="82.0" layoutX="211.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../ReportScreens/Histogram_report2.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="76.0" fitWidth="158.0" layoutX="255.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
