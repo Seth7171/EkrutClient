@@ -201,7 +201,7 @@ public class ChatClient extends AbstractClient
           case "CUSTOMER_DATA_IMPORTED_SUCCESSFULLY":
         	  CustomerController.setisSub(((Customer)message.getData()).isSub());
         	  CustomerController.setisFirstTimeBuyasSub(((Customer)message.getData()).isFirstBuyAsSub());
-        	  CustomerController.setCreditnumber(((Customer)message.getData()).getCreditCardNumber());
+        	  CustomerController.getCurrentCustomer().setCreditCardNumber(((Customer)message.getData()).getCreditCardNumber());
         	  CustomerController.setsubscribernNumber(((Customer)message.getData()).getSubscriberNumber()); 
         	  break;
       }
