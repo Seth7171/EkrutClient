@@ -1,6 +1,7 @@
 .root{
-	-fx-background-image: url("pinkback.png");
-	-fx-background-size: cover;
+	/*-fx-background-image: url("pinkback.png");*/
+	-fx-background-image: url("Untitled-5.png");
+	-fx-background-size: stretch;
 }
 
 .text-field{
@@ -17,6 +18,11 @@
 
 .tab-pane .tab-header-area .tab-header-background{
 	-fx-background-color: transparent;
+}
+
+
+#gradientPane{
+	-fx-background-color: linear-gradient(to top, rgba(255, 255, 255, 0.61), transparent);
 }
 
 /****************************tab pane style***************************************************/
@@ -63,7 +69,6 @@
 	-fx-hbar-policy: never;
 	-fx-vbar-policy: never;
 }
-
 .scroll-pane > .viewport {
 	-fx-background-color: transparent;
 }
@@ -72,10 +77,10 @@
 
 /****************************button style****************************************************/
 .button{
-	-fx-background-color: rgba(191, 191, 191, 0.45);
+	-fx-background-color: rgba(91, 91, 91, 0.62);
 }
 .ExitButton{
-	-fx-background-image: url("exit.png");
+	-fx-background-image: url("exit1.png");
 	-fx-background-color: transparent;
 }
 .notification{
@@ -83,7 +88,6 @@
 	-fx-background-color: transparent;
 	-fx-background-size: cover;
 }
-
 .button:hover{
 	-fx-cursor: hand;
 	-fx-scale-x: 0.97;
@@ -131,7 +135,7 @@
 
 /************************list view **********************************************************/
 .list-view{
-	-fx-background-color: rgba(255, 255, 255, 0.74);
+	-fx-background-color: rgb(255, 255, 255);
 	-fx-background-radius: 25;
 }
 /********************************************************************************************/
