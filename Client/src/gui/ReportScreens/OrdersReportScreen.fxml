@@ -10,13 +10,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="957.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.OrdersReportScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="957.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.OrdersReportScreenController">
    <children>
-      <ImageView fitHeight="77.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
-         <image>
-            <Image url="@../logo.png" />
-         </image>
-      </ImageView>
       <BarChart fx:id="OrdersChart" barGap="0" categoryGap="0" layoutX="435.0" layoutY="101.0" prefHeight="442.0" prefWidth="508.0">
         <xAxis>
           <CategoryAxis label="Machine ID" side="BOTTOM" fx:id="x" />
@@ -34,8 +29,8 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutY="576.0" mnemonicParsing="false" onMouseClicked="#ClickBackButton" text="Back" />
-      <Button layoutX="931.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#ClickLogOutButton" styleClass="ExitButton" text="X" />
+      <Button layoutX="10.0" layoutY="567.0" mnemonicParsing="false" onMouseClicked="#ClickBackButton" text="Back" />
+      <Button layoutX="917.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#ClickLogOutButton" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
       <Label layoutX="116.0" layoutY="124.0" prefHeight="30.0" prefWidth="164.0" text="Best Seller Machine:" underline="true">
          <font>
             <Font size="18.0" />
