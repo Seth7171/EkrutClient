@@ -9,7 +9,6 @@ import javafx.scene.control.ChoiceBox;
 
 public class TableOrder extends Order {
     private ChoiceBox<String> status_co;
-    
 	public TableOrder(Order order) {
 		super(order.getOrderID(), 
 				order.getOverallPrice(), 
