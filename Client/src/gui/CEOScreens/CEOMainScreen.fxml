@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CEOScreens.CEOMainScreenController">
    <children>
-      <Text fx:id="welcomeBackText" layoutX="51.0" layoutY="88.0" stroke="#f7f3f3" strokeType="OUTSIDE" strokeWidth="2.0" text="Welcome back $name!" textAlignment="CENTER" underline="true" wrappingWidth="297.4000244140625">
+      <Text fx:id="welcomeBackText" layoutX="51.0" layoutY="88.0" stroke="#f7f3f3" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome back $name!" textAlignment="CENTER" underline="true" wrappingWidth="297.4000244140625">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
