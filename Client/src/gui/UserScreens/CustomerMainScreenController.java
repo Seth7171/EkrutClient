@@ -141,7 +141,7 @@ public class CustomerMainScreenController extends ScreenController implements In
     void ViewDeliveries(Event event) {
                 Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/gui/DeliveryEmployeeScreens/DeliveriesScreen.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ViewDeliveriesScreen.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
