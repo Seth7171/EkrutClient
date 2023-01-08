@@ -92,8 +92,8 @@ public class ViewDeliveriesScreenController extends ScreenController implements 
 		confirmationdateColumn.setCellValueFactory(new PropertyValueFactory<>("confirmationDate"));
 		orderstatusColumn.setCellValueFactory(new PropertyValueFactory<>("status_co"));
 		customeridColumn.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-		//load deals
-		//loadDeliveries();
+		//load user orders for the first time
+		loadDeliveries();
 	}
 	
     @FXML
@@ -118,8 +118,8 @@ public class ViewDeliveriesScreenController extends ScreenController implements 
 	    observableDeliveries = FXCollections.observableArrayList();
     	if (!observableDeliveries.isEmpty())
     		observableDeliveries.clear();
-    	String areaaofuser = UserController.getCurrentuser().getDepartment().split("_")[1];
-    	ClientUI.chat.accept(new Message(areaaofuser,MessageFromClient.REQUEST_ORDERS_BY_AREA)); 
+    	String userID = UserController.getCurrentuser().getId();
+    	ClientUI.chat.accept(new Message(userID,MessageFromClient.REQUEST_ORDERS_BY_CUSTOMER_ID)); 
     	tempDeliveries = (ArrayList<Order>) MessageHandler.getData();//getting data from server
 	    // Add orders from tempDeliveries to observableDeliveries
 	    for (Order order : tempDeliveries) {
