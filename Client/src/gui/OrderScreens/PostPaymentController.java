@@ -56,7 +56,6 @@ public class PostPaymentController extends ScreenController implements Initializ
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		asd.setStyle("-fx-border-color: rgba(65,65,65,0.63); -fx-border-width: 2 2 2 2; -fx-border-style: solid; -fx-border-radius: 13; -fx-background-color: rgba(255,255,255,0.84); -fx-background-radius: 13");
 		orderNum.setText(ChatClient.currentOrder.getOrderID());
 		machineNum.setText(ChatClient.currentOrder.getMachineID());
 		if (!ChatClient.currentOrder.getSupplyMethod().equals("machine pickup")) {
