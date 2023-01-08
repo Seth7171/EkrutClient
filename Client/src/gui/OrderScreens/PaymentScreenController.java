@@ -201,6 +201,7 @@ public class PaymentScreenController extends ScreenController implements Initial
         }
         // ELSE :
         if(ChatClient.currentOrder.getSupplyMethod().equals("instant pickup")) {
+        	ChatClient.currentOrder.setMachineID(CustomerController.getmachineID());
 	        ChatClient.currentOrder.setOrderStatus("processing");
 	        ChatClient.currentOrder.setEstimatedDeliveryTime(dateString);
 	        ChatClient.currentOrder.setConfirmationDate(dateString);
