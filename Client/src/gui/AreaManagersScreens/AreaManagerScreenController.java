@@ -124,21 +124,24 @@ public class AreaManagerScreenController extends ScreenController implements Ini
          }
          super.switchScreen(event, root);
     }
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		welcomeText.setText("Welcome back " + UserController.getCurrentuser().getFirstname());
-		 fullNameText.setText(capitalLetter(UserController.getCurrentuser().getFirstname()) +" " + capitalLetter(UserController.getCurrentuser().getLastname()));
-	        idText.setText("ID: " + UserController.getCurrentuser().getId());
-	        depText.setText(capitalLetter(extractDepartment())+ " Area Manager");
-	        emailText.setText(UserController.getCurrentuser().getEmailaddress());
-	        phoneText.setText(UserController.getCurrentuser().getPhonenumber());
+		welcomeText.setText("Welcome back " + capitalLetter(UserController.getCurrentuser().getFirstname()));
+		fullNameText.setText(capitalLetter(UserController.getCurrentuser().getFirstname()) +" " + capitalLetter(UserController.getCurrentuser().getLastname()));
+		idText.setText("ID: " + UserController.getCurrentuser().getId());
+		depText.setText(capitalLetter(extractDepartment())+ " Area Manager");
+		emailText.setText(UserController.getCurrentuser().getEmailaddress());
+		phoneText.setText(UserController.getCurrentuser().getPhonenumber());
 	}
+	
 	public String capitalLetter(String str) {
 		return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 	}
-	 public String extractDepartment() {
-	    	String userDepartment = UserController.getCurrentuser().getDepartment();
-	    	return userDepartment.substring(userDepartment.lastIndexOf("_")+1);
-	    }
+	
+	public String extractDepartment() {
+		String userDepartment = UserController.getCurrentuser().getDepartment();
+		return userDepartment.substring(userDepartment.lastIndexOf("_")+1);
+	}
 }
