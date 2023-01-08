@@ -82,7 +82,8 @@ public class ReportsMainScreenController extends ScreenController implements Ini
      */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		
+	
 		//request all machines locations
 		ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_ALL_MACHINE_LOCATIONS));
 		ArrayList<String> Locations = (ArrayList<String>) MessageHandler.getData();
@@ -153,12 +154,28 @@ public class ReportsMainScreenController extends ScreenController implements Ini
      */
 	@FXML
 	void clickOnType(ActionEvent event) {
-			if(Type.getValue().equals("Inventory"))
-			{
+			if(Type.getValue().equals("Inventory")) {
+
+				 switch (UserController.getCurrentuser().getDepartment()) {
+		            case "area_manager_north":
+		            	Location.setValue("north");
+		            	Location.setDisable(true);
+		           	     break;
+					 case"area_manager_south":
+			             Location.setValue("south");
+			             Location.setDisable(true);
+			             break;
+					 case"area_manager_uae":
+						 Location.setValue("uae");
+						 Location.setDisable(true);
+						 break;
+		   		
+		   		 }
+				
 				Location.setVisible(true);
 				LocationFlag=1;//Location comboBox is open
-				MachineID.setVisible(false);
-				MachineIDFlag=0;//MachindID comboBox is close
+				MachineID.setVisible(true);
+				MachineIDFlag=1;//MachindID comboBox is close
 				
 			}
 			else 
@@ -252,6 +269,7 @@ public class ReportsMainScreenController extends ScreenController implements Ini
 			 		{
 			            case "Inventory":
 			            	 monthYearMachine.add(MachineID.getValue());
+			            	 
 							// request report from server
 							ClientUI.chat.accept(new Message(monthYearMachine, MessageFromClient.REQUEST_MACHINE_MONTHLY_INVENTORY_REPORT));
 							//if no such report
