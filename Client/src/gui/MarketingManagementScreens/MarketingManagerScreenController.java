@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 public class MarketingManagerScreenController extends ScreenController implements Initializable{
@@ -30,7 +31,24 @@ public class MarketingManagerScreenController extends ScreenController implement
 
     @FXML
     private Text welcomeText;
- 
+    @FXML
+    private AnchorPane anchor1;
+
+    @FXML
+    private AnchorPane anchor2;
+
+    @FXML
+    private Text depText;
+
+    @FXML
+    private Text emailText;
+    @FXML
+    private Text fullNameText;
+    @FXML
+    private Text phoneText;
+    @FXML
+    private Text idText;
+
 
     @FXML
     void existingDeals(MouseEvent event) {// switch to ManagerDealsScreen.fxml
@@ -80,6 +98,12 @@ public class MarketingManagerScreenController extends ScreenController implement
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		welcomeText.setText("Welcome back, " + capitalLetter(UserController.getCurrentuser().getFirstname()));
+		anchor1.setStyle("-fx-background-color: white");//change color if we need
+        fullNameText.setText(capitalLetter(UserController.getCurrentuser().getFirstname()) +" " + capitalLetter(UserController.getCurrentuser().getLastname()));
+        idText.setText("ID: " + UserController.getCurrentuser().getId());
+        depText.setText("Marketing Manager");
+        emailText.setText(UserController.getCurrentuser().getEmailaddress());
+        phoneText.setText(UserController.getCurrentuser().getPhonenumber());
 	}
 	
 	/**
