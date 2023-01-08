@@ -198,5 +198,6 @@ public class DeliveriesScreenController extends ScreenController implements Init
     	}
         ClientUI.chat.accept(new Message(tempDeliveries,MessageFromClient.REQUEST_UPDATE_MULTIPLE_ORDER_STATUSES));//send new DB
         super.alertHandler(MessageHandler.getMessage(), MessageHandler.getMessage().contains("Error"));
+        Refresh(event);
     }
 }
