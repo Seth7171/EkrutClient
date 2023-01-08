@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -31,6 +32,24 @@ public class OperationsEmployeeMainScreenController extends ScreenController imp
 
     @FXML
     private Text welcomeBackTXT;
+    @FXML
+    private AnchorPane anchor1;
+
+    @FXML
+    private AnchorPane anchor2;
+
+    @FXML
+    private Text depText;
+
+    @FXML
+    private Text emailText;
+    @FXML
+    private Text fullNameText;
+
+    @FXML
+    private Text idText;
+    @FXML
+    private Text phoneText;
 
     @FXML
     void exit(MouseEvent event) {
@@ -40,6 +59,11 @@ public class OperationsEmployeeMainScreenController extends ScreenController imp
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         welcomeBackTXT.setText("Welcome back " + UserController.getCurrentuser().getFirstname());
+        fullNameText.setText(capitalLetter(UserController.getCurrentuser().getFirstname()) +" " + capitalLetter(UserController.getCurrentuser().getLastname()));
+		idText.setText("ID: " + UserController.getCurrentuser().getId());
+		depText.setText(capitalLetter(UserController.getCurrentuser().getDepartment()) + " Employee");
+		emailText.setText(UserController.getCurrentuser().getEmailaddress());
+		phoneText.setText(UserController.getCurrentuser().getPhonenumber());
     }
 
     @FXML
@@ -68,4 +92,7 @@ public class OperationsEmployeeMainScreenController extends ScreenController imp
         }
         super.switchScreen(event, root);
     }
+    public String capitalLetter(String str) {
+		return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+	}
 }

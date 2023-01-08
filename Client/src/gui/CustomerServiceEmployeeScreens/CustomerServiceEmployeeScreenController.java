@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -30,10 +31,33 @@ public class CustomerServiceEmployeeScreenController extends ScreenController im
     private Button exitButton;
     @FXML
     private Text welcomeText;
+    @FXML
+    private AnchorPane anchor1;
+
+    @FXML
+    private AnchorPane anchor2;
+    @FXML
+    private Text depText;
+
+    @FXML
+    private Text emailText;
+    @FXML
+    private Text fullNameText;
+
+    @FXML
+    private Text idText;
+
+    @FXML
+    private Text phoneText;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        welcomeText.setText("Welcome back " + UserController.getCurrentuser().getFirstname());
+        welcomeText.setText("Welcome back " + capitalLetter(UserController.getCurrentuser().getFirstname()));
+    	fullNameText.setText(capitalLetter(UserController.getCurrentuser().getFirstname()) +" " + capitalLetter(UserController.getCurrentuser().getLastname()));
+		idText.setText("ID: " + UserController.getCurrentuser().getId());
+		depText.setText("Customer Service");
+		emailText.setText(UserController.getCurrentuser().getEmailaddress());
+		phoneText.setText(UserController.getCurrentuser().getPhonenumber());
     }
 
     @FXML
@@ -82,4 +106,7 @@ public class CustomerServiceEmployeeScreenController extends ScreenController im
     @FXML
     protected void openManageUsersScreen(MouseEvent event) {
     }
+    public String capitalLetter(String str) {
+		return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+	}
 }
