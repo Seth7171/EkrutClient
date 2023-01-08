@@ -6,6 +6,7 @@ import java.util.*;
 
 import application.client.ChatClient;
 import application.client.MessageHandler;
+import application.user.UserController;
 import common.Reports.InventoryReport;
 import common.Reports.OrderReport;
 import common.orders.Order;
@@ -112,13 +113,97 @@ public class OrdersReportScreenController extends ScreenController implements In
 		 String strIDofWrostSeller=null, strLocationOfWrost=null,strWorstArea=null;
 		 float totalNorth=0,totalSouth=0, totalUAE=0;
 		 
-		//making the BarChart from data
-		 XYChart.Series<String, Integer> ser1= new XYChart.Series<>();// North
-		 XYChart.Series<String, Integer> ser2= new XYChart.Series<>();//South
-		 XYChart.Series<String, Integer> ser3= new XYChart.Series<>();//UAE
-		 ser1.setName("North");	
-		 ser2.setName("South");
-		 ser3.setName("UAE");	
+		//making the BarChart from data for specific department : CEO | SOUTH | NORTH | UAE
+	 switch (UserController.getCurrentuser().getDepartment()) {
+		 
+		  	//NORTH manager Screen
+           case"area_manager_north":
+        	 XYChart.Series<String, Integer> north= new XYChart.Series<>();// North
+        	 north.setName("North");
+        	 for(OrderReport ordrep : orderReportData){
+     			if (ordrep.getMachineLocation().equals("north")) {
+     					north.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+     			if(ordrep.getNumberOfOrders() > totalOrdersBestSeller) {
+    				totalOrdersBestSeller = ordrep.getNumberOfOrders(); // get total orders of best machine
+    				strIDofBestSeller = ordrep.getMachineid(); //get ID of best machine
+     				}
+    			   	if(ordrep.getNumberOfOrders() < totalOrdersWrostSeller) {
+        				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
+        				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
+                   	  }	
+                 }
+             }
+        	 totalBorder=totalOrdersBestSeller+5;
+     		y.setUpperBound(totalBorder);
+     		OrdersChart.getData().addAll(north);
+        	 wrostLocationLabel.setText("Location: North" );
+     		bestLocationLabel.setText("Location: North" );
+     		bestArea.setVisible(false);
+     		worstArea.setVisible(false);
+        	
+        	 break;
+        	 
+        	 //SOUTH manager Screen
+           case"area_manager_south":
+        	 XYChart.Series<String, Integer> south= new XYChart.Series<>();// south
+          	 south.setName("South");
+          	 for(OrderReport ordrep : orderReportData){
+               	if (ordrep.getMachineLocation().equals("south")) {
+               			south.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+               	if(ordrep.getNumberOfOrders() > totalOrdersBestSeller) {
+    				totalOrdersBestSeller = ordrep.getNumberOfOrders(); // get total orders of best machine
+    				strIDofBestSeller = ordrep.getMachineid(); //get ID of best machine
+               		}
+               	if(ordrep.getNumberOfOrders() < totalOrdersWrostSeller) {
+    				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
+    				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
+               	  }	
+               	}
+              }
+          	totalBorder=totalOrdersBestSeller+1;
+     		y.setUpperBound(totalBorder);
+     		OrdersChart.getData().addAll(south);
+          	wrostLocationLabel.setText("Location:  South");
+    		bestLocationLabel.setText("Location:  South");
+    		bestArea.setVisible(false);
+     		worstArea.setVisible(false);
+          	 break;
+          	 
+          	//UAE manager Screen
+           case"area_manager_uae":
+        	 XYChart.Series<String, Integer> uae= new XYChart.Series<>();// uae
+          	 uae.setName("UAE");
+          	 for(OrderReport ordrep : orderReportData){
+          		 if (ordrep.getMachineLocation().equals("uae")) {
+          			 uae.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+          		if(ordrep.getNumberOfOrders() > totalOrdersBestSeller) {
+    				totalOrdersBestSeller = ordrep.getNumberOfOrders(); // get total orders of best machine
+    				strIDofBestSeller = ordrep.getMachineid(); //get ID of best machine
+          			}
+          	 	if(ordrep.getNumberOfOrders() < totalOrdersWrostSeller) {
+    				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
+    				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
+               	  }	
+               	}
+              }
+          	totalBorder=totalOrdersBestSeller+5;
+     		y.setUpperBound(totalBorder);
+     		OrdersChart.getData().addAll(uae);
+           	wrostLocationLabel.setText("Location:  UAE");
+    		bestLocationLabel.setText("Location:  UAE");
+    		bestArea.setVisible(false);
+     		worstArea.setVisible(false);
+          	 	break;
+          	 	
+          	//CEO Screen
+           case"ceo":
+          	 XYChart.Series<String, Integer> ser1= new XYChart.Series<>();// North
+        		 XYChart.Series<String, Integer> ser2= new XYChart.Series<>();//South
+        		 XYChart.Series<String, Integer> ser3= new XYChart.Series<>();//UAE
+        		 ser1.setName("North");	
+        		 ser2.setName("South");
+        		 ser3.setName("UAE");	
+       
 		for(OrderReport ordrep : orderReportData){
 
 			if (ordrep.getMachineLocation().equals("north")) {
@@ -151,10 +236,11 @@ public class OrdersReportScreenController extends ScreenController implements In
 			}	
 			
 		}
-		totalBorder=totalOrdersBestSeller+5;
+ 
+        	totalBorder=totalOrdersBestSeller+5;
 		y.setUpperBound(totalBorder);
 		OrdersChart.getData().addAll(ser1,ser2,ser3);
-		
+ 
 		//calculate data for who is the best area
 		totalNorth=(float)totalOrdersNorth/NorthMachinesAmount;
 		totalSouth=(float)totalOrdersSouth/SouthMachinesAmount;
@@ -171,20 +257,26 @@ public class OrdersReportScreenController extends ScreenController implements In
 		{strBestArea="UAE"; strWorstArea="North";System.out.println("5");}
 		if((totalUAE>=totalNorth) && (totalSouth<=totalNorth))//UAE is best area + South is the worst	
 		{strBestArea="UAE"; strWorstArea="South";System.out.println("6");}
-	
-		//show analyze data on the screen
+		break;
+    default:
+     System.out.println("Unknown!");
+                      // TODO: maybe add UnknownScreenException later??
+}
+		//show analyze data on the screen (all screens)
 		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);//show the date
 		bestIDLabel.setText("ID: " + strIDofBestSeller);// show the ID  of the BEST seller
-		strLocationOfBest = strLocationOfBest.substring(0, 1).toUpperCase() + strLocationOfBest.substring(1).toLowerCase();// make the location with capital letter
-		bestLocationLabel.setText("Location: " + strLocationOfBest);
 		totalOrdersBestLabel.setText("Total orders: " + totalOrdersBestSeller);
 		worstIDLabel.setText("ID: " + strIDofWrostSeller);// show the ID  of the WORST seller
-		strLocationOfWrost = strLocationOfWrost.substring(0, 1).toUpperCase() + strLocationOfWrost.substring(1).toLowerCase();// make the location with capital letter
-		wrostLocationLabel.setText("Location: " + strLocationOfWrost);
 		totalOrdersWrostLabel.setText("Total orders: " + totalOrdersWrostSeller);
-		bestArea.setText("The area with the MOST orders is: " + strBestArea);// show the Best area
-		worstArea.setText("The area with the LOWEST orders is: " + strWorstArea);// show the worst area
-		
+		//only for ceo screen
+		if(UserController.getCurrentuser().getDepartment().equals("ceo")) {
+			strLocationOfBest = strLocationOfBest.substring(0, 1).toUpperCase() + strLocationOfBest.substring(1).toLowerCase();// make the location with capital letter *for CEO*
+			bestLocationLabel.setText("Location: " + strLocationOfBest);
+			strLocationOfWrost = strLocationOfWrost.substring(0, 1).toUpperCase() + strLocationOfWrost.substring(1).toLowerCase();// make the location with capital letter
+			wrostLocationLabel.setText("Location: " + strLocationOfWrost);
+			bestArea.setText("The area with the MOST orders is: " + strBestArea);// show the Best area
+			worstArea.setText("The area with the LOWEST orders is: " + strWorstArea);// show the worst area
+		}
 	}
 }		
 		
