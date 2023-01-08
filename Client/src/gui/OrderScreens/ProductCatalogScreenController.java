@@ -204,7 +204,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         detBtn.setStyle("-fx-background-color: transparent;");
 
         // Create a label to display the product name
-        Label nameLabel = new Label(product.getName());
+        Label nameLabel = new Label(product.getProductName()); //CHANGED FROM getName TO getProductName
         nameLabel.getStyleClass().add("name-label");
         nameLabel.setWrapText(true);
         nameLabel.setPrefWidth(150);
@@ -312,7 +312,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         // Set the image for the image view
         imageview.setImage(image);
         // Create a label to display the product's name
-        Label namelb = new Label(product.getName());
+        Label namelb = new Label(product.getProductName()); // CHANGED getName to getProductName
         // Set the width of the name label
         namelb.setPrefWidth(100);
         // Create a label to display the product's ID
