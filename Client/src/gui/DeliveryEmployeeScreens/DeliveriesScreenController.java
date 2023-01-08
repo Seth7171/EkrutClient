@@ -29,13 +29,19 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
+import javafx.scene.control.Labeled;
+import javafx.scene.control.OverrunStyle;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 public class DeliveriesScreenController extends ScreenController implements Initializable{
-
+	int prods;
  	@FXML
     private Button backButton;
  
@@ -55,7 +61,7 @@ public class DeliveriesScreenController extends ScreenController implements Init
     private TableColumn<Order, Float> overallpriceColumn;
 
     @FXML
-    private TableColumn<Order, ArrayList<Product>> productsColumn;
+    private TableColumn<String, String> productsColumn;
     
     @FXML
     private TableColumn<Order, String> orderdateColumn;
@@ -119,6 +125,7 @@ public class DeliveriesScreenController extends ScreenController implements Init
     
     
     public void loadDeliveries() {
+    	prods=0;
 	    observableDeliveries = FXCollections.observableArrayList();
     	if (!observableDeliveries.isEmpty())
     		observableDeliveries.clear();
@@ -132,6 +139,9 @@ public class DeliveriesScreenController extends ScreenController implements Init
 		    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("approved","not approved", "awaiting approval"));
 	    		status.setValue(order.getOrderStatus());
 	    		torder.setStatus_co(status);
+		    	if (!order.getOrderStatus().equals("awaiting approval")) {
+		    		status.setDisable(true);
+		    	}
 		    	observableDeliveries.add(torder);
 	    	}
 	    }

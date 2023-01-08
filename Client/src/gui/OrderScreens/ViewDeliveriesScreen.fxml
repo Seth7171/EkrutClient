@@ -33,12 +33,12 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Text layoutX="394.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orders" wrappingWidth="114.39300537109375">
+      <Text layoutX="357.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Orders" wrappingWidth="158.39291381835938">
          <font>
             <Font size="32.0" />
          </font>
       </Text>
-      <ImageView fitHeight="79.0" fitWidth="86.0" layoutX="307.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="79.0" fitWidth="86.0" layoutX="271.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@orders.png" />
          </image>
