@@ -81,29 +81,6 @@
 }
 /********************************************************************************************/
 
-/************************ animations ********************************************************/
-@keyframes floating {
-	0% {
-		-fx-translate-y: -30px;
-	}
-	50% {
-		-fx-translate-y: 0px;
-	}
-	100% {
-		-fx-translate-y: 30px;
-	}
-}
-
-@keyframes splash-fill {
-	0% {
-		-fx-fill: white;
-	}
-	100% {
-		-fx-fill: red;
-	}
-}
-/********************************************************************************************/
-
 
 /****************************button style****************************************************/
 .button{
@@ -134,15 +111,16 @@
 	-fx-background-image: url("/gui/ConnectionScreens/EK.png");
 	-fx-background-color: transparent;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: 50;
+	-fx-background-size: 70;
 	-fx-background-radius: 30;
 	-fx-background-position: center;
 }
+
 #btnOL{
 	-fx-background-image: url("/gui/ConnectionScreens/OL.png");
 	-fx-background-color: transparent;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: 50;
+	-fx-background-size: 70;
 	-fx-background-radius: 30;
 	-fx-background-position: center;
 }
