@@ -176,8 +176,7 @@ public class ChatClient extends AbstractClient
               currentOrder = (Order)message.getData();
               break;
 
-
-
+          case "IMPORT_ORDER_BY_CUSTOMER_ID_SUCCESSFUL":
           case "ORDERS_IMPORTED_SUCCESSFULLY":
           case "CUSTOMER_UPDATE_SUCCESSFUL":
           case "CUSTOMER_IMPORTED_SUCCESSFULLY":

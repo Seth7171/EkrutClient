@@ -5,13 +5,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserScreens.CustomerMainScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserScreens.CustomerMainScreenController">
    <children>
       <Button fx:id="newOrderButton" layoutX="232.0" layoutY="247.0" mnemonicParsing="false" onMouseClicked="#NewOrder" prefHeight="33.0" prefWidth="128.0" text="New order">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="grabOrderButton" layoutX="234.0" layoutY="362.0" mnemonicParsing="false" onMouseClicked="#GrabOrder" prefHeight="33.0" prefWidth="128.0" text="Grab order">
+      <Button fx:id="grabOrderButton" layoutX="232.0" layoutY="308.0" mnemonicParsing="false" onMouseClicked="#GrabOrder" prefHeight="33.0" prefWidth="128.0" text="Grab order">
          <font>
             <Font size="14.0" />
          </font></Button>
@@ -30,5 +30,10 @@
          </font>
       </Text>
       <Button fx:id="exitButton" layoutX="560.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <Button fx:id="ViewDeliveriesButton" layoutX="221.0" layoutY="370.0" mnemonicParsing="false" onMouseClicked="#ViewDeliveries" prefHeight="33.0" prefWidth="149.0" text="View Your Deliveries">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

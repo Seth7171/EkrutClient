@@ -1,5 +1,4 @@
 .root{
-	/*-fx-background-image: url("pinkback.png");*/
 	-fx-background-image: url("Untitled-5.png");
 	-fx-background-size: stretch;
 }
@@ -55,6 +54,14 @@
 }
 /********************************************************************************************/
 
+#asd{
+	-fx-border-color: rgba(65,65,65,0.63); 
+	-fx-border-width: 2 2 2 2; 
+	-fx-border-style: solid; 
+	-fx-border-radius: 13; 
+	-fx-background-color: rgba(255,255,255,0.84); 
+	-fx-background-radius: 13;
+}
 
 /****************************tableview style**************************************************/
 .table-cell:filled:focused {
