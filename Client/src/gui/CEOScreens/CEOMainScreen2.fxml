@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="599.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CEOScreens.CEOMainScreenController2">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="599.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CEOScreens.CEOMainScreenController2">
    <children>
       <Text fx:id="welcomeBackText" layoutX="150.0" layoutY="87.0" stroke="#f7f3f3" strokeType="OUTSIDE" strokeWidth="2.0" text="Welcome back $name!" textAlignment="CENTER" underline="true" wrappingWidth="297.4000244140625">
          <font>
@@ -31,45 +31,50 @@
             <Image url="@../ReportScreens/Histogram_report2.png" />
          </image>
       </ImageView>
-      <SplitPane dividerPositions="0.5" layoutX="390.0" layoutY="284.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="175.0">
-        <items>
-          <AnchorPane fx:id="anchor1" minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="304.0">
+      <SplitPane dividerPositions="0.5" layoutX="409.0" layoutY="304.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="175.0">
+         <items>
+            <AnchorPane fx:id="anchor1" minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="304.0">
                <children>
-                  <ImageView fitHeight="58.0" fitWidth="53.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
+                  <ImageView fitHeight="47.0" fitWidth="50.0" layoutX="5.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
                      <image>
-                        <Image url="@CEO.png" />
+                        <Image url="@../CEO.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="fullNameText" layoutX="54.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$name  " underline="true" wrappingWidth="118.137939453125">
+                  <Text fx:id="fullNameText" layoutX="1.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$name  " textAlignment="CENTER" underline="true" wrappingWidth="173.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Text fx:id="depText" layoutX="62.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$department ">
+                  <Text fx:id="depText" layoutX="65.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$department " wrappingWidth="87.970703125">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="10.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-          <AnchorPane fx:id="anchor2" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+            <AnchorPane fx:id="anchor2" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Text fx:id="idText" layoutX="8.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID :      $id" />
+                  <Text fx:id="idText" layoutX="35.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$id" wrappingWidth="76.0" />
                   <ImageView fitHeight="30.0" fitWidth="20.0" layoutX="4.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
                      <image>
                         <Image url="@../email.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="emailText" layoutX="35.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$email" />
-                  <Text fx:id="phoneText" layoutX="36.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$phone" />
-                  <ImageView fitHeight="20.0" fitWidth="28.0" layoutX="1.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
+                  <Text fx:id="emailText" layoutX="35.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$email" />
+                  <Text fx:id="phoneText" layoutX="35.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$phone" />
+                  <ImageView fitHeight="16.0" fitWidth="20.0" layoutX="6.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
                      <image>
                         <Image url="@../phone.png" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="20.0" layoutX="5.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
+                     <image>
+                        <Image url="@../id.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
-        </items>
+         </items>
       </SplitPane>
    </children>
 </AnchorPane>

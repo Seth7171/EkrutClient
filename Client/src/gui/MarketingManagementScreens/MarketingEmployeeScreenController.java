@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 public class MarketingEmployeeScreenController extends ScreenController implements Initializable { 
@@ -31,6 +32,24 @@ public class MarketingEmployeeScreenController extends ScreenController implemen
 
     @FXML
     private Text welcomeText;
+    @FXML
+    private AnchorPane anchor1;
+
+    @FXML
+    private AnchorPane anchor2;
+
+    @FXML
+    private Text depText;
+
+    @FXML
+    private Text emailText;
+    @FXML
+    private Text fullNameText;
+
+    @FXML
+    private Text idText;
+    @FXML
+    private Text phoneText;
 
     @FXML
     void existingDeals(MouseEvent event) {
@@ -68,6 +87,12 @@ public class MarketingEmployeeScreenController extends ScreenController implemen
 		// TODO Auto-generated method stub
 		welcomeText.setText("Welcome back, " + capitalLetter(UserController.getCurrentuser().getFirstname()));
 		ClientUI.chat.accept(new Message(null,MessageFromClient.REQUEST_DISCOUNT_LIST )); 
+		anchor1.setStyle("-fx-background-color: white");//change color if we need
+        fullNameText.setText(capitalLetter(UserController.getCurrentuser().getFirstname()) +" " + capitalLetter(UserController.getCurrentuser().getLastname()));
+        idText.setText("ID: " + UserController.getCurrentuser().getId());
+        depText.setText(capitalLetter(extractDepartment())+" Marketing Employee");
+        emailText.setText(UserController.getCurrentuser().getEmailaddress());
+        phoneText.setText(UserController.getCurrentuser().getPhonenumber());
 		
 	}
 	
@@ -79,5 +104,9 @@ public class MarketingEmployeeScreenController extends ScreenController implemen
 	public String capitalLetter(String str) {
 		return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 	}
+	   public String extractDepartment() {
+	    	String userDepartment = UserController.getCurrentuser().getDepartment();
+	    	return userDepartment.substring(userDepartment.lastIndexOf("_")+1);
+	    }
 
 }
