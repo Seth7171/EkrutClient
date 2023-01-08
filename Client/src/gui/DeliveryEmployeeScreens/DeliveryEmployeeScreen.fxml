@@ -11,10 +11,6 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="grabOrderButton" layoutX="234.0" layoutY="362.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="128.0" text="Grab order">
-         <font>
-            <Font size="14.0" />
-         </font></Button>
       <Button fx:id="LogOutButton" layoutX="10.0" layoutY="561.0" mnemonicParsing="false" onMouseClicked="#logOut" text="Log Out">
          <font>
             <Font size="14.0" />

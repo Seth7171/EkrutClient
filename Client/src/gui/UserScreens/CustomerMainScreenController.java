@@ -40,6 +40,9 @@ public class CustomerMainScreenController extends ScreenController implements In
     private Button newOrderButton;
     
     @FXML
+    private Button ViewDeliveriesButton;
+    
+    @FXML
     private Button exitButton;
 
     @FXML
@@ -59,11 +62,14 @@ public class CustomerMainScreenController extends ScreenController implements In
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	ViewDeliveriesButton.setVisible(false);
         welcomeBackText.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
         userStatusText.setText("User Status: " + UserController.getCurrentuser().getStatus());
         ClientUI.chat.accept(new Message(CustomerController.getCurrentCustomer().getId(), MessageFromClient.REQUEST_CUSTOMER_DATA));
-        if (ChatClient.isOL)
+        if (ChatClient.isOL) {
         	grabOrderButton.setVisible(false);
+        	ViewDeliveriesButton.setVisible(true);
+        }
     }
     
     @FXML
@@ -122,6 +128,20 @@ public class CustomerMainScreenController extends ScreenController implements In
                 Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/GrabOrderScreen.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        super.switchScreen(event, root);
+    }
+    
+    /**
+     * @param event
+     */
+    @FXML
+    void ViewDeliveries(Event event) {
+                Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui/OrderScreens/ViewDeliveriesScreen.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
