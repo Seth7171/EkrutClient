@@ -30,7 +30,7 @@
          </font>
       </Text>
       <Button fx:id="exitButton" layoutX="560.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <Button fx:id="ViewDeliveriesButton" layoutX="221.0" layoutY="370.0" mnemonicParsing="false" onMouseClicked="#ViewDeliveries" prefHeight="33.0" prefWidth="149.0" text="View Your Deliveries">
+      <Button fx:id="ViewDeliveriesButton" layoutX="221.0" layoutY="370.0" mnemonicParsing="false" onMouseClicked="#ViewDeliveries" prefHeight="33.0" prefWidth="149.0" text="View My Deliveries">
          <font>
             <Font size="14.0" />
          </font>
