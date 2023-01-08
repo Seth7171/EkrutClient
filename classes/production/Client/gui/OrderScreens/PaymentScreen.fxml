@@ -17,11 +17,6 @@
             <Image url="@cardpay.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
-         <image>
-            <Image url="@../logo.png" />
-         </image>
-      </ImageView>
       <Label fx:id="chooseOrderType" alignment="CENTER" contentDisplay="CENTER" layoutX="273.0" layoutY="152.0" prefHeight="33.0" prefWidth="393.0" text="Payment method : Credit card" textAlignment="CENTER">
          <font>
             <Font size="22.0" />
@@ -62,12 +57,12 @@
          <font>
             <Font name="System Italic" size="12.0" />
          </font></TextField>
-      <Button fx:id="exitButton" layoutX="885.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="16.0" prefWidth="30.0" text="X">
+      <Button fx:id="exitButton" layoutX="878.0" layoutY="9.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="backButton" layoutY="776.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
+      <Button fx:id="backButton" layoutX="10.0" layoutY="768.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
          <font>
             <Font size="20.0" />
          </font>

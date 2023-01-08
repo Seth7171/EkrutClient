@@ -11,48 +11,40 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserScreens.LogInScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserScreens.LogInScreenController">
    <children>
-      <TextField fx:id="userNameField" layoutX="144.0" layoutY="218.0" prefHeight="25.0" prefWidth="174.0" promptText="Username">
+      <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="157.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true" rotate="10.0">
+         <image>
+            <Image url="@../saltBae.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="userNameField" layoutX="211.0" layoutY="218.0" prefHeight="25.0" prefWidth="174.0" promptText="Username">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="passwordField" layoutX="144.0" layoutY="318.0" prefHeight="31.0" prefWidth="174.0" promptText="Password">
+      <PasswordField fx:id="passwordField" layoutX="211.0" layoutY="313.0" prefHeight="31.0" prefWidth="174.0" promptText="Password">
          <font>
             <Font size="16.0" />
          </font>
       </PasswordField>
-      <Button fx:id="loginButton" layoutX="271.0" layoutY="515.0" mnemonicParsing="false" onMouseClicked="#logIn" text="Log in">
+      <ComboBox fx:id="machinesID" layoutX="225.0" layoutY="404.0" prefWidth="150.0" promptText="EKrutMachineID" />
+      <Button fx:id="loginButton" layoutX="265.0" layoutY="474.0" mnemonicParsing="false" onMouseClicked="#logIn" text="Log in">
          <font>
-            <Font size="14.0" />
+            <Font size="16.0" />
          </font>
       </Button>
-      <ImageView fitHeight="69.0" fitWidth="128.0" layoutX="16.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
-         <image>
-            <Image url="@../logo.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="144.0" layoutY="145.0" text="Log In">
+      <Button fx:id="fastLoginButton" layoutX="406.0" layoutY="227.0" maxHeight="111.0" maxWidth="111.0" minHeight="90.0" minWidth="90.0" mnemonicParsing="false" onMouseClicked="#FastlogIn" prefHeight="111.0" prefWidth="111.0" />
+      <Label layoutX="211.0" layoutY="144.0" text="Log In" underline="true">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Text fx:id="errorMessage" fill="RED" layoutX="168.0" layoutY="466.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="264.0">
+      <Text fx:id="errorMessage" fill="RED" layoutX="168.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="264.0">
          <font>
             <Font size="17.0" />
          </font>
       </Text>
       <Button layoutX="560.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <Button fx:id="fastLoginButton" layoutX="371.0" layoutY="213.0" mnemonicParsing="false" onMouseClicked="#FastlogIn">
-         <graphic>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@fastConnect.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <ComboBox fx:id="machinesID" layoutX="225.0" layoutY="408.0" prefWidth="150.0" promptText="EKrutMachineID" />
    </children>
 </Pane>

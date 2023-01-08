@@ -119,7 +119,8 @@ public class ClientConnectorController extends ScreenController {
 	public void clickedEK(MouseEvent event) {
 		choosen = true;
 		warningEKOL.setVisible(false);
-		btnEK.setStyle("-fx-background-color: #00bfff;");
+		// btnEK.setStyle("-fx-background-color: rgba(239,83,246,0.5);");
+		btnEK.setStyle("-fx-background-color: radial-gradient(center 50% 50%, radius 50%, #dd00ff, transparent);");
 		btnOL.setStyle(null);
 		ChatClient.isOL=false;
 	}
@@ -128,7 +129,8 @@ public class ClientConnectorController extends ScreenController {
 	public void clickedOL(MouseEvent event) {
 		choosen = true;
 		warningEKOL.setVisible(false);
-		btnOL.setStyle("-fx-background-color: #00bfff;");
+		// btnOL.setStyle("-fx-background-color: rgba(0,191,255,0.5);");
+		btnOL.setStyle("-fx-background-color: radial-gradient(center 50% 50%, radius 50%, #02f8f8, transparent);");
 		btnEK.setStyle(null);
 		ChatClient.isOL=true;
 	}
