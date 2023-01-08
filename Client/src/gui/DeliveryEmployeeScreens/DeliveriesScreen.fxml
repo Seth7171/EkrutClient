@@ -9,41 +9,41 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="873.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DeliveryEmployeeScreens.DeliveriesScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DeliveryEmployeeScreens.DeliveriesScreenController">
    <children>
-      <TableView fx:id="viewAllOrders" editable="true" layoutX="4.0" layoutY="102.0" prefHeight="301.0" prefWidth="865.0">
+      <TableView fx:id="viewAllOrders" layoutX="8.0" layoutY="167.0" prefHeight="425.0" prefWidth="934.0">
          <columns>
-            <TableColumn fx:id="orderidColumn" prefWidth="53.0" text="Order ID" />
-            <TableColumn fx:id="overallpriceColumn" prefWidth="41.0" text="Price" />
-            <TableColumn fx:id="productsColumn" prefWidth="82.0" text="Products" />
-            <TableColumn fx:id="orderdateColumn" prefWidth="104.0" text="Order Date" />
-            <TableColumn fx:id="addressColumn" prefWidth="72.0" text="Address" />
-            <TableColumn fx:id="estimatedateColumn" prefWidth="161.0" text="Estimated Delivery Date" />
-            <TableColumn fx:id="confirmationdateColumn" prefWidth="117.0" text="Confirmation Date" />
-            <TableColumn fx:id="orderstatusColumn" prefWidth="119.0" text="Order Status" />
-            <TableColumn fx:id="customeridColumn" prefWidth="119.0" text="Customer ID" />
+            <TableColumn fx:id="orderidColumn" editable="false" prefWidth="62.0" resizable="false" text="Order ID" />
+            <TableColumn fx:id="overallpriceColumn" editable="false" minWidth="5.0" prefWidth="38.0" resizable="false" text="Price" />
+            <TableColumn fx:id="productsColumn" editable="false" prefWidth="213.0" resizable="false" text="Products" />
+            <TableColumn fx:id="orderdateColumn" editable="false" prefWidth="78.0" resizable="false" text="Order Date" />
+            <TableColumn fx:id="addressColumn" editable="false" prefWidth="126.0" resizable="false" text="Address" />
+            <TableColumn fx:id="estimatedateColumn" editable="false" prefWidth="101.0" resizable="false" text="Estimated Date" />
+            <TableColumn fx:id="confirmationdateColumn" editable="false" prefWidth="111.0" resizable="false" text="Confirmation Date" />
+            <TableColumn fx:id="orderstatusColumn" editable="false" prefWidth="128.0" resizable="false" text="Order Status" />
+            <TableColumn fx:id="customeridColumn" editable="false" prefWidth="76.0" resizable="false" text="Customer ID" />
          </columns>
       </TableView>
-      <Button fx:id="exitButton" layoutX="833.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <Button fx:id="apply" layoutX="258.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#Apply" prefHeight="43.0" prefWidth="128.0" text="Apply">
+      <Button fx:id="exitButton" layoutX="910.0" layoutY="9.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <Button fx:id="apply" layoutX="283.0" layoutY="607.0" mnemonicParsing="false" onMouseClicked="#Apply" prefHeight="43.0" prefWidth="128.0" text="Apply">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button fx:id="refresh" layoutX="485.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#Refresh" prefHeight="43.0" prefWidth="128.0" text="Refresh">
+      <Button fx:id="refresh" layoutX="547.0" layoutY="607.0" mnemonicParsing="false" onMouseClicked="#Refresh" prefHeight="43.0" prefWidth="128.0" text="Refresh">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Text layoutX="394.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orders" wrappingWidth="114.39300537109375">
+      <Text layoutX="461.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orders" wrappingWidth="114.39300537109375">
          <font>
             <Font size="32.0" />
          </font>
       </Text>
-      <ImageView fitHeight="79.0" fitWidth="86.0" layoutX="307.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="79.0" fitWidth="86.0" layoutX="374.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@orders.png" />
          </image>
       </ImageView>
-      <Button fx:id="backButton" layoutX="9.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
+      <Button fx:id="backButton" layoutX="10.0" layoutY="796.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
          <font>
             <Font size="20.0" />
          </font>
