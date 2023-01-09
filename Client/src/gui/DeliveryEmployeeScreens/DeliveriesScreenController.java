@@ -41,7 +41,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class DeliveriesScreenController extends ScreenController implements Initializable{
-	int prods;
+	private int prods;
  	@FXML
     private Button backButton;
  
@@ -137,7 +137,7 @@ public class DeliveriesScreenController extends ScreenController implements Init
 	    	if (order.getSupplyMethod().equals("delivery")) {
 		    	TableOrder torder = new TableOrder(order);
 		    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("approved","not approved", "awaiting approval"));
-	    		status.setValue(order.getOrderStatus());
+		    	status.setValue(order.getOrderStatus());
 	    		torder.setStatus_co(status);
 		    	if (!order.getOrderStatus().equals("awaiting approval")) {
 		    		status.setDisable(true);
@@ -160,12 +160,11 @@ public class DeliveriesScreenController extends ScreenController implements Init
     void Refresh(MouseEvent event) {
     	loadDeliveries();
     }
+    
     @FXML
     void Apply(MouseEvent event) {//send the data from the Table-View to DB  
     	tempDeliveries.clear();
     	for (Object torder : observableDeliveries){
-    		((TableOrder)torder).setOrderStatus(((TableOrder)torder).getStatus_co().getValue());
-    		
     		//GETTING THE DATE to set it in order.
     		// Get the current time
     	    Date currentDate = new Date();
@@ -188,11 +187,13 @@ public class DeliveriesScreenController extends ScreenController implements Init
     		if (((TableOrder)torder).getStatus_co().getValue().equals("approved")){
     			((TableOrder)torder).setConfirmationDate(dateString.toString());
     			((TableOrder)torder).setEstimatedDeliveryTime(estimateddateString.toString());
-    			alertSMSMAIL(event, (String.format("SMS/MAIL was sent to customer number %s: "
-    					+ "\nDear customer,"
-    					+ "\nOrder number: %s is on its way"
-    					+ "\nEstimate delivery time is: %s", 
-    					((TableOrder)torder).getCustomerID(), ((TableOrder)torder).getOrderID(), estimateddateString.toString())));
+	    	    if (!((TableOrder)torder).getOrderStatus().equals("approved")) {
+	    	    	alertSMSMAIL(event, (String.format("SMS/MAIL was sent to customer number %s: "
+	    					+ "\nDear customer,"
+	    					+ "\nOrder number: %s is on its way"
+	    					+ "\nEstimate delivery time is: %s", 
+	    					((TableOrder)torder).getCustomerID(), ((TableOrder)torder).getOrderID(), estimateddateString.toString())));
+	    	    }
     		}
     		//if delivery NOT approved
     		if (((TableOrder)torder).getStatus_co().getValue().equals("not approved")){
@@ -204,6 +205,7 @@ public class DeliveriesScreenController extends ScreenController implements Init
     			((TableOrder)torder).setConfirmationDate(null);
     			((TableOrder)torder).setEstimatedDeliveryTime(null);
     		}
+    		((TableOrder)torder).setOrderStatus(((TableOrder)torder).getStatus_co().getValue());
     		Order ordertoupdate = new Order(((TableOrder)torder).getOrderID(), 
     				((TableOrder)torder).getOverallPrice(), 
     				((TableOrder)torder).getProducts(), 

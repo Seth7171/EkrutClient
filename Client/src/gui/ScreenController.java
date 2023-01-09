@@ -22,8 +22,10 @@ import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -208,11 +210,11 @@ public class ScreenController {
     }
     
     public void alertSMSMAIL(Event event, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+	    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	    alert.setTitle("Information Dialog");
+	    alert.setHeaderText(null);
+	    alert.setContentText(message);
+	    alert.showAndWait();
     }
     
     public void alertHandler(String allertMessage , boolean isBad){
@@ -234,7 +236,7 @@ public class ScreenController {
 	    layout.getChildren().add(label);
 	    layout.setAlignment(Pos.CENTER);
 	    label.setStyle("-fx-font-size: 25");
-	
+	    
 	    // Show the popup window
 	    Scene scene = new Scene(layout);
 	    popupWindow.initStyle(StageStyle.UNDECORATED);
