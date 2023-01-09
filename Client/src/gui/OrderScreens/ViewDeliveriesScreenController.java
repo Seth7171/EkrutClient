@@ -81,8 +81,9 @@ public class ViewDeliveriesScreenController extends ScreenController implements 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		tempDeliveries = new ArrayList<>();
+		tempDeliveries = new ArrayList<Order>();
 		//init columns
+		customeridColumn.setCellValueFactory(new PropertyValueFactory<>("customerID"));
 		orderidColumn.setCellValueFactory(new PropertyValueFactory<>("orderID"));
 		overallpriceColumn.setCellValueFactory(new PropertyValueFactory<>("overallPrice"));
 		productsColumn.setCellValueFactory(new PropertyValueFactory<>("products"));
@@ -91,7 +92,6 @@ public class ViewDeliveriesScreenController extends ScreenController implements 
 		estimatedateColumn.setCellValueFactory(new PropertyValueFactory<>("estimatedDeliveryTime"));
 		confirmationdateColumn.setCellValueFactory(new PropertyValueFactory<>("confirmationDate"));
 		orderstatusColumn.setCellValueFactory(new PropertyValueFactory<>("status_co"));
-		customeridColumn.setCellValueFactory(new PropertyValueFactory<>("customerID"));
 		//load user orders for the first time
 		loadDeliveries();
 	}
@@ -125,9 +125,12 @@ public class ViewDeliveriesScreenController extends ScreenController implements 
 	    for (Order order : tempDeliveries) {
 	    	if (order.getSupplyMethod().equals("delivery")) {
 		    	TableOrder torder = new TableOrder(order);
-		    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("approved","not approved", "awaiting approval"));
+		    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("collected"));
 	    		status.setValue(order.getOrderStatus());
 	    		torder.setStatus_co(status);
+		    	if (!order.getOrderStatus().equals("approved")) {
+		    		status.setDisable(true);
+		    	}
 		    	observableDeliveries.add(torder);
 	    	}
 	    }

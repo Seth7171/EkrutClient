@@ -8,10 +8,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="957.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.OrdersReportScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="957.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.OrdersReportScreenController">
    <children>
+      <Pane fx:id="asd" layoutX="4.0" layoutY="116.0" prefHeight="442.0" prefWidth="392.0" />
       <BarChart fx:id="OrdersChart" barGap="0" categoryGap="0" layoutX="435.0" layoutY="101.0" prefHeight="442.0" prefWidth="508.0">
         <xAxis>
           <CategoryAxis label="Machine ID" side="BOTTOM" fx:id="x" />
@@ -44,7 +46,8 @@
       <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="21.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@like.png" />
-         </image></ImageView>
+         </image>
+      </ImageView>
       <Label fx:id="bestIDLabel" layoutX="116.0" layoutY="166.0" prefHeight="30.0" prefWidth="185.0" text="ID: $id">
          <font>
             <Font size="18.0" />
@@ -81,7 +84,7 @@
          </font>
       </Label>
       <Label fx:id="DateChooseLabel" layoutX="41.0" layoutY="533.0" prefHeight="27.0" prefWidth="225.0" text="Date: $Month , $Year" />
-      <ImageView fitHeight="116.0" fitWidth="164.0" layoutX="289.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="102.0" fitWidth="92.0" layoutX="302.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Histogram_report2.png" />
          </image>
