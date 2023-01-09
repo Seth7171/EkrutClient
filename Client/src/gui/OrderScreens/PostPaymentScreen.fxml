@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.PostPaymentController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.PostPaymentController">
    <children>
-      <Pane fx:id="asd" layoutX="147.0" layoutY="129.0" prefHeight="513.0" prefWidth="731.0">
+      <Pane fx:id="asd" layoutX="98.0" layoutY="148.0" prefHeight="513.0" prefWidth="731.0">
          <children>
             <ImageView fitHeight="75.0" fitWidth="68.0" layoutX="138.0" layoutY="269.0" pickOnBounds="true">
                <image>
@@ -27,42 +27,41 @@
                   <Font name="System Bold" size="19.0" />
                </font>
             </Text>
+            <Label fx:id="chooseOrderType" alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="196.0" prefHeight="33.0" prefWidth="393.0" text="Payment completed" textAlignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Text layoutX="127.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THANK YOU FOR YOUR PURCHASE!">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="142.0" fitWidth="141.0" layoutX="295.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+               <image>
+                  <Image url="@GreenCheckMark.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="backButton" layoutX="262.0" layoutY="436.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="63.0" prefWidth="230.0" text="Back to menu screen">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Button>
+            <Text fx:id="dynamicTxt" layoutX="137.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please write down you Order Number, You can insert it in Ekrut machine number :" wrappingWidth="500.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="machineNum" layoutX="343.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="######">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Text>
          </children></Pane>
-      <Label fx:id="chooseOrderType" alignment="CENTER" contentDisplay="CENTER" layoutX="330.0" layoutY="331.0" prefHeight="33.0" prefWidth="393.0" text="Payment completed" textAlignment="CENTER">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Text layoutX="288.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THANK YOU FOR YOUR PURCHASE!">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Text>
-      <Text layoutX="69.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
       <Button fx:id="exitButton" layoutX="878.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="backButton" layoutX="400.0" layoutY="564.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="63.0" prefWidth="230.0" text="Back to menu screen">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
-      <ImageView fitHeight="142.0" fitWidth="141.0" layoutX="451.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
-         <image>
-            <Image url="@GreenCheckMark.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="dynamicTxt" layoutX="291.0" layoutY="506.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please write down you Order Number, You can insert it in Ekrut machine number :" wrappingWidth="500.0">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Text>
-      <Text fx:id="machineNum" layoutX="498.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="######">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font>
-      </Text>
    </children>
 </Pane>
