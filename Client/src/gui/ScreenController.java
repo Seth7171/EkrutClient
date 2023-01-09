@@ -16,6 +16,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseEvent;
@@ -204,6 +205,14 @@ public class ScreenController {
         }
         Platform.exit();
         System.exit(0);
+    }
+    
+    public void alertSMSMAIL(Event event, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
     
     public void alertHandler(String allertMessage , boolean isBad){
