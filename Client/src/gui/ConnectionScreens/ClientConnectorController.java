@@ -28,8 +28,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ClientConnectorController extends ScreenController {
-	String temp="";
-	boolean choosen;
+	private String temp="";
+	private boolean choosen;
+	private boolean isEK;
+	private boolean isConnected;
 
 	@FXML
 	private Button btnExit = null;
@@ -45,6 +47,8 @@ public class ClientConnectorController extends ScreenController {
 	private Label warning;
 	@FXML
 	private Label warningEKOL;
+    @FXML
+    private ComboBox<String> machinesID;
 
 	
 	@FXML
@@ -65,7 +69,6 @@ public class ClientConnectorController extends ScreenController {
 		warningEKOL.setVisible(false);
 		String ip;
 		FXMLLoader loader = new FXMLLoader();
-		
 		ip=getip();
 		if(ip.trim().isEmpty()) {
 			System.out.println("You Must enter an ip number");
@@ -82,6 +85,19 @@ public class ClientConnectorController extends ScreenController {
 			super.alertHandler("server refused to connect", true);
 			e.printStackTrace();
 			return;
+		}
+		isConnected = true;
+		if (isEK) {
+			ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_MACHINE_IDS));
+	        ArrayList<String> machineIDs = new ArrayList<>();
+	        machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
+	        machinesID.getItems().clear();
+	        machinesID.getItems().addAll(machineIDs);
+	        btnOL.setVisible(false);
+	        iptxt.setVisible(false);
+	        btnDone.setVisible(false);
+	        machinesID.setVisible(true);
+	        return;
 		}
 		Parent root = null;
 		try {
@@ -118,6 +134,7 @@ public class ClientConnectorController extends ScreenController {
 	@FXML
 	public void clickedEK(MouseEvent event) {
 		choosen = true;
+		isEK = true;
 		warningEKOL.setVisible(false);
 		// btnEK.setStyle("-fx-background-color: rgba(239,83,246,0.5);");
 		btnEK.setStyle("-fx-background-color: radial-gradient(center 50% 50%, radius 50%, #dd00ff, transparent);");
@@ -128,15 +145,32 @@ public class ClientConnectorController extends ScreenController {
 	@FXML
 	public void clickedOL(MouseEvent event) {
 		choosen = true;
+		isEK = false;
 		warningEKOL.setVisible(false);
 		// btnOL.setStyle("-fx-background-color: rgba(0,191,255,0.5);");
 		btnOL.setStyle("-fx-background-color: radial-gradient(center 50% 50%, radius 50%, #02f8f8, transparent);");
 		btnEK.setStyle(null);
 		ChatClient.isOL=true;
 	}
+	
+    @FXML
+    void machidWasChoosen(ActionEvent event) {
+		ChatClient.currentMachineID = machinesID.getValue();
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getResource("/gui/UserScreens/LogInScreen.fxml"));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		super.switchScreen(event, root);
+    }
 
 	@FXML
 	public void getExitBtn(MouseEvent event) throws Exception {
+		if(isConnected) {
+			closeProgram(event,false);
+			return;
+		}
 		Platform.exit();
 		System.exit(0);
 	}
