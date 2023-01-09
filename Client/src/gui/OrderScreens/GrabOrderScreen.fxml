@@ -11,25 +11,44 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.GrabOrderScreenController">
    <children>
-      <Label fx:id="chooseOrderType" alignment="CENTER" contentDisplay="CENTER" layoutX="263.0" layoutY="277.0" prefHeight="33.0" prefWidth="393.0" text="Please insert you Order Number here :" textAlignment="CENTER">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Text layoutX="280.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Collect your order">
-         <font>
-            <Font name="System Bold Italic" size="43.0" />
-         </font>
-      </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Pane fx:id="asd" layoutX="243.0" layoutY="216.0" prefHeight="328.0" prefWidth="440.0" styleClass="background-blank">
+         <children>
+            <Text layoutX="41.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Collect your order">
+               <font>
+                  <Font name="System Bold Italic" size="43.0" />
+               </font>
+            </Text>
+            <Label fx:id="chooseOrderType" alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="71.0" prefHeight="33.0" prefWidth="393.0" text="Please insert you Order Number here :" textAlignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="orderNumField" layoutX="134.0" layoutY="120.0" prefHeight="25.0" prefWidth="173.0" promptText="Order Number #" />
+            <Button fx:id="grabNow" layoutX="106.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#GrabOrder" prefHeight="63.0" prefWidth="230.0" text="Collect Order Now">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Label fx:id="fieldswarning" layoutX="69.0" layoutY="246.0" text="Please enter your Order Number" textFill="RED" visible="false">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="fieldswarning1" layoutX="37.0" layoutY="246.0" prefHeight="31.0" prefWidth="369.0" text="Wrong Order Number, Please try again" textFill="RED" visible="false">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="successLabel" layoutX="10.0" layoutY="277.0" text="Your Order Has been transferred to EK-OP!" textFill="#009819" visible="false">
+               <font>
+                  <Font name="System Bold Italic" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
       <Button fx:id="exitButton" layoutX="878.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">
          <font>
             <Font size="17.0" />
-         </font>
-      </Button>
-      <Button fx:id="grabNow" layoutX="344.0" layoutY="379.0" mnemonicParsing="false" onMouseClicked="#GrabOrder" prefHeight="63.0" prefWidth="230.0" text="Collect Order Now">
-         <font>
-            <Font size="20.0" />
          </font>
       </Button>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="384.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
@@ -37,26 +56,10 @@
             <Image url="@collectOrder.png" />
          </image>
       </ImageView>
-      <TextField fx:id="orderNumField" layoutX="373.0" layoutY="333.0" prefHeight="25.0" prefWidth="173.0" promptText="Order Number #" />
       <Button fx:id="backButton" layoutX="10.0" layoutY="767.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Label fx:id="fieldswarning" layoutX="309.0" layoutY="460.0" text="Please enter your Order Number" textFill="RED" visible="false">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <Label fx:id="fieldswarning1" layoutX="275.0" layoutY="480.0" prefHeight="31.0" prefWidth="369.0" text="Wrong Order Number, Please try again" textFill="RED" visible="false">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <Label fx:id="successLabel" layoutX="253.0" layoutY="548.0" text="Your Order Has been transferred to EK-OP!" textFill="#009819" visible="false">
-         <font>
-            <Font name="System Bold Italic" size="21.0" />
-         </font>
-      </Label>
    </children>
 </Pane>

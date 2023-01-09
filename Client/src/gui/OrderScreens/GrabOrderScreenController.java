@@ -7,11 +7,13 @@ import java.util.ResourceBundle;
 
 import application.client.ChatClient;
 import application.client.ClientUI;
+import application.client.MessageHandler;
 import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import common.orders.Order;
+import common.orders.Product;
 import gui.ScreenController;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -116,31 +118,36 @@ public class GrabOrderScreenController extends ScreenController implements Initi
     	msg.add(UserID);
     	msg.add(orderNum);
     	if (orderNum.trim().isEmpty()) {
-			fieldswarning.setVisible(true);
+    		super.alertHandler("Enter An Order Number!", true);
 			return;
 		}	
     	 ClientUI.chat.accept(new Message(msg, MessageFromClient.REQUEST_ORDER_BY_ORDER_ID_AND_CUSTOMER_ID));
+    	 if (MessageHandler.getData().equals("Error importing your order")) {
+    		 super.alertHandler("Worng Order Number!", true);
+    		 return;
+    	 }
+    	 ChatClient.currentOrder = (Order)MessageHandler.getData();
     	 // we check if the order we received is the order we asked for
     	 if(!ChatClient.currentOrder.getOrderID().equals(orderNum)) {
-    		 fieldswarning1.setVisible(true);
-    		 ChatClient.currentOrder = new Order();
- 			 return;
-    	 }
-    	 
-    	 if(!ChatClient.currentOrder.getOrderStatus().equals("awaiting pickup")){
-    		 fieldswarning.setVisible(true);
+    		 super.alertHandler("Worng Order Has Recived Call Customer Services!", true);
     		 ChatClient.currentOrder = new Order();
  			 return;
     	 }
     	 // here we check that the order is type DynamicPickUp, else we dont give it to the user.
     	 if(!ChatClient.currentOrder.getSupplyMethod().equals("machine pickup")){
-    		 fieldswarning.setVisible(true);
+    		 super.alertHandler("This order is not a machine pickup order!", true);
+    		 ChatClient.currentOrder = new Order();
+ 			 return;
+    	 }
+    	 // we check if the order is not a machine pickup
+    	 if(!ChatClient.currentOrder.getOrderStatus().equals("awaiting pickup")){
+    		 super.alertHandler("Your order was already picked up!", true);
     		 ChatClient.currentOrder = new Order();
  			 return;
     	 }
     	 //check if the user is in the correct machine for pickup.
     	 if(!ChatClient.currentOrder.getMachineID().equals(CustomerController.getmachineID())){ 
-    		 fieldswarning.setVisible(true);
+    		 super.alertHandler(String.format("Your order is mented to be picked at %s!", ChatClient.currentOrder.getMachineID()), true);
     		 ChatClient.currentOrder = new Order();
  			 return;
     	 }
