@@ -142,6 +142,13 @@ public class DeliveriesScreenController extends ScreenController implements Init
 		    	if (!order.getOrderStatus().equals("awaiting approval")) {
 		    		status.setDisable(true);
 		    	}
+		    	if (order.getOrderStatus().equals("collected")) {
+		    		torder = new TableOrder(order);
+			    	status = new ChoiceBox<>(FXCollections.observableArrayList("delivered","collected"));
+		    		status.setValue(order.getOrderStatus());
+		    		torder.setStatus_co(status);
+		    		status.setDisable(false);
+		    	}
 		    	observableDeliveries.add(torder);
 	    	}
 	    }
