@@ -188,6 +188,11 @@ public class DeliveriesScreenController extends ScreenController implements Init
     		if (((TableOrder)torder).getStatus_co().getValue().equals("approved")){
     			((TableOrder)torder).setConfirmationDate(dateString.toString());
     			((TableOrder)torder).setEstimatedDeliveryTime(estimateddateString.toString());
+    			alertSMSMAIL(event, (String.format("SMS/MAIL was sent to customer number %s: "
+    					+ "\nDear customer,"
+    					+ "\nOrder number: %s is on its way"
+    					+ "\nEstimate delivery time is: %s", 
+    					((TableOrder)torder).getCustomerID(), ((TableOrder)torder).getOrderID(), estimateddateString.toString())));
     		}
     		//if delivery NOT approved
     		if (((TableOrder)torder).getStatus_co().getValue().equals("not approved")){
