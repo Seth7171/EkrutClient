@@ -52,8 +52,7 @@ public class LogInScreenController extends ScreenController implements Initializ
     @FXML
     private Button fastLoginButton;
     
-    @FXML
-    private ComboBox<String> machinesID;
+
     
 
     @Override
@@ -62,15 +61,7 @@ public class LogInScreenController extends ScreenController implements Initializ
         if (UserController.getCurrentuser() != null)
             UserController.setCurrentuser(null);
 
-    	if (!ChatClient.isOL) {
-			ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_MACHINE_IDS));
-	        ArrayList<String> machineIDs = new ArrayList<>();
-	        machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
-	        machinesID.getItems().clear();
-	        machinesID.getItems().addAll(machineIDs);
-    	}
-    	else {
-    		machinesID.setVisible(false);
+    	if (ChatClient.isOL) {
     		fastLoginButton.setVisible(false);
     	}
         userNameField.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -116,10 +107,6 @@ public class LogInScreenController extends ScreenController implements Initializ
         ArrayList<String> credentials = new ArrayList<String>();
         credentials.add("ron");
         credentials.add("123");
-        if(machinesID.getValue()==null && !ChatClient.isOL) {
-			errorMessage.setText("Please choose a machine");
-			 return;
-        }
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
             errorMessage.setText(MessageHandler.getMessage());
@@ -131,7 +118,7 @@ public class LogInScreenController extends ScreenController implements Initializ
 			 ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
 			 return;
 		}	
-		CustomerController.setmachineID(machinesID.getValue());
+		CustomerController.setmachineID(ChatClient.currentMachineID);
         Parent root = loadRoot();
         super.switchScreen(event,root);
     }
@@ -145,11 +132,6 @@ public class LogInScreenController extends ScreenController implements Initializ
         ArrayList<String> credentials = getUsernameAndPassword();
         if(credentials == null)
             return;
-
-        if(machinesID.getValue()==null && !ChatClient.isOL) {
-			errorMessage.setText("Please choose a machine");
-			 return;
-        }
         Deals deal = new Deals();
         deal.setDealID("001");
         deal.setDealName("Night time sale");
@@ -171,7 +153,7 @@ public class LogInScreenController extends ScreenController implements Initializ
             MessageHandler.setMessage(null);
             return;
         }
-		CustomerController.setmachineID(machinesID.getValue());
+		CustomerController.setmachineID(ChatClient.currentMachineID);
         Parent root = loadRoot();
         super.switchScreen(event,root);
     }
