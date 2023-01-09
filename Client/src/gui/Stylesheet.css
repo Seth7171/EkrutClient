@@ -84,7 +84,18 @@
 
 /****************************button style****************************************************/
 .button{
-	-fx-background-color: rgba(91, 91, 91, 0.62);
+	/*-fx-background-color: rgba(91, 91, 91, 0.62);*/
+}
+
+.button {
+    -fx-background-color:
+            #c3c4c4,
+            linear-gradient(#d6d6d6 50%, white 100%),
+            radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
+    -fx-background-radius: 5;
+    -fx-background-insets: 0,1,1;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
 }
 
 .ExitButton{
@@ -104,7 +115,15 @@
 	-fx-scale-y: 0.96;
 	-fx-scale-z: 0.96;
 	-fx-font-scale: 0.96;
-	-fx-background-color: rgba(143, 143, 143, 0.8);
+		-fx-background-color:
+            #c3c4c4,
+            linear-gradient(#d6d6d6 50%, rgba(143, 143, 143, 0.8) 100%),
+            radial-gradient(center 50% -40%, radius 200%, rgba(143, 143, 143, 0.8) 20%, rgba(230,230,230,0) 50%);
+}
+
+.button:pressed
+{
+     -fx-background-insets: 2;
 }
 
 #btnEK{

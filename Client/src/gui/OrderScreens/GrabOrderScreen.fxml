@@ -29,16 +29,6 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Label fx:id="fieldswarning" layoutX="69.0" layoutY="246.0" text="Please enter your Order Number" textFill="RED" visible="false">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Label>
-            <Label fx:id="fieldswarning1" layoutX="37.0" layoutY="246.0" prefHeight="31.0" prefWidth="369.0" text="Wrong Order Number, Please try again" textFill="RED" visible="false">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Label>
             <Label fx:id="successLabel" layoutX="10.0" layoutY="277.0" text="Your Order Has been transferred to EK-OP!" textFill="#009819" visible="false">
                <font>
                   <Font name="System Bold Italic" size="21.0" />
