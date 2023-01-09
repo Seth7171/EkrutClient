@@ -54,7 +54,7 @@
 }
 /********************************************************************************************/
 
-#asd{
+.background-blank{
 	-fx-border-color: rgba(65,65,65,0.63); 
 	-fx-border-width: 2 2 2 2; 
 	-fx-border-style: solid; 
