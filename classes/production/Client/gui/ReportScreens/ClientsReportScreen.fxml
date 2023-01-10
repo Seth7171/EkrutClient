@@ -14,7 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="957.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.ClientsOrderReportScreenController">
    <children>
-      <Pane fx:id="asd" layoutX="3.0" layoutY="92.0" prefHeight="476.0" prefWidth="363.0" />
+      <Pane fx:id="asd" layoutX="3.0" layoutY="92.0" prefHeight="476.0" prefWidth="363.0" styleClass="background-blank" />
       <BarChart fx:id="ClientChart" layoutX="435.0" layoutY="101.0" prefHeight="442.0" prefWidth="508.0">
         <xAxis>
           <CategoryAxis label="Range of purchase" side="BOTTOM" />
