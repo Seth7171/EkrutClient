@@ -231,11 +231,13 @@ public class LogInScreenController extends ScreenController implements Initializ
      */
     private ArrayList<String> getUsernameAndPassword() {
         if(userNameField.getText().equals("") || passwordField.getText().equals("")){
-            errorMessage.setText("Username AND Password\nMUST be filled");
+        	alertHandler("Username AND Password\n\tMUST be filled", true);
+            //errorMessage.setText("Username AND Password\nMUST be filled");
             return null;
         }
         if(userNameField.getText().contains(" ") || passwordField.getText().contains(" ")){
-            errorMessage.setText("username AND password fields\nMust not contain spaces");
+        	alertHandler("username AND password fields\nMust not contain spaces", true);
+            //errorMessage.setText("username AND password fields\nMust not contain spaces");
             return null;
         }
         ArrayList<String> credentials = new ArrayList<String>();
