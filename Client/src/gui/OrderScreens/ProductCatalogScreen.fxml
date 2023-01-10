@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="productsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="940.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.ProductCatalogScreenController">
+<Pane fx:id="productsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="940.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.ProductCatalogScreenController">
    <children>
       <Pane layoutX="552.0" layoutY="841.0" prefHeight="79.0" prefWidth="378.0">
          <children>
@@ -110,6 +110,6 @@
             </Label>
          </children>
       </Pane>
-      <Text fx:id="cartCounter" fill="WHITE" layoutX="8.0" layoutY="636.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
+      <Text fx:id="cartCounter" fill="WHITE" layoutX="-45.0" layoutY="642.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
    </children>
 </Pane>
