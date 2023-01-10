@@ -12,51 +12,41 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.PaymentScreenController">
    <children>
-      <ImageView fitHeight="134.0" fitWidth="142.0" layoutX="171.0" layoutY="102.0" pickOnBounds="true">
-         <image>
-            <Image url="@cardpay.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="chooseOrderType" alignment="CENTER" contentDisplay="CENTER" layoutX="273.0" layoutY="152.0" prefHeight="33.0" prefWidth="393.0" text="Payment method : Credit card" textAlignment="CENTER">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Text layoutX="394.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checkout">
-         <font>
-            <Font size="32.0" />
-         </font>
-      </Text>
+      <Pane fx:id="asd" layoutX="132.0" layoutY="117.0" prefHeight="0.0" prefWidth="0.0" styleClass="background-blank">
+         <children>
+            <ImageView fitHeight="134.0" fitWidth="142.0" layoutX="448.0" layoutY="1.0" pickOnBounds="true">
+               <image>
+                  <Image url="@cardpay.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="226.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checkout">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Text>
+            <Label fx:id="chooseOrderType" alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" layoutY="52.0" prefHeight="33.0" prefWidth="393.0" text="Payment method : Credit card" textAlignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="63.0" fitWidth="200.0" layoutX="193.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+               <image>
+                  <Image url="@visa.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="paybotton" layoutX="169.0" layoutY="501.0" mnemonicParsing="false" onMouseClicked="#pay" prefHeight="63.0" prefWidth="230.0" text="Pay">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="delay" layoutX="417.0" layoutY="501.0" mnemonicParsing="false" onMouseClicked="#delayPay" prefHeight="63.0" prefWidth="230.0" text="Delayed Payment">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <TextField fx:id="cardNumberTextField" layoutX="343.0" layoutY="279.0" prefHeight="25.0" prefWidth="166.0" promptText="0000 0000 0000 0000">
-         <font>
-            <Font name="System Italic" size="12.0" />
-         </font></TextField>
-      <TextField fx:id="cardNameTextField" layoutX="343.0" layoutY="361.0" prefHeight="25.0" prefWidth="211.0" />
-      <Text layoutX="343.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card number">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Text>
-      <Text layoutX="339.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name on card">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Text>
-      <Text layoutX="339.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiry date">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Text>
-      <Text layoutX="505.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CVC">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Text>
-      <TextField fx:id="cardCVVTextField" layoutX="504.0" layoutY="437.0" prefHeight="25.0" prefWidth="71.0" promptText="000">
-         <font>
-            <Font name="System Italic" size="12.0" />
-         </font></TextField>
       <Button fx:id="exitButton" layoutX="878.0" layoutY="9.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">
          <font>
             <Font size="17.0" />
@@ -67,30 +57,46 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="paybotton" layoutX="355.0" layoutY="609.0" mnemonicParsing="false" onMouseClicked="#pay" prefHeight="63.0" prefWidth="230.0" text="Pay">
+      <Label fx:id="fieldswarning" layoutX="397.0" layoutY="506.0" text="Please fill all fields above" textFill="RED" visible="false">
          <font>
-            <Font size="20.0" />
+            <Font size="18.0" />
          </font>
-      </Button>
-      <ImageView fitHeight="63.0" fitWidth="200.0" layoutX="370.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
-         <image>
-            <Image url="@visa.png" />
-         </image>
-      </ImageView>
-      <Text layoutX="355.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal :">
+      </Label>
+      <TextField fx:id="cardNumberTextField" layoutX="319.0" layoutY="314.0" prefHeight="25.0" prefWidth="166.0" promptText="0000 0000 0000 0000" styleClass="background-blank">
          <font>
-            <Font size="19.0" />
+            <Font name="System Italic" size="12.0" />
          </font>
-      </Text>
-      <ComboBox fx:id="yearCombobox" layoutX="424.0" layoutY="436.0" prefHeight="25.0" prefWidth="71.0" promptText="Year" />
-      <ComboBox fx:id="monthCombobox" layoutX="338.0" layoutY="436.0" prefHeight="25.0" prefWidth="80.0" promptText="Month" />
-      <Text fx:id="Subtotal" layoutX="444.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$$$$" wrappingWidth="155.0498046875">
+      </TextField>
+      <Text layoutX="316.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card number">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <Button fx:id="rememberMyCard" layoutX="528.0" layoutY="279.0" mnemonicParsing="false" onMouseClicked="#rememberMyCard" text="Pay with your saved Credit Card" />
-      <Button fx:id="infoCvv" layoutX="567.0" layoutY="416.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="22.0">
+      <Button fx:id="rememberMyCard" layoutX="489.0" layoutY="313.0" mnemonicParsing="false" onMouseClicked="#rememberMyCard" text="Pay with your saved Credit Card" />
+      <Text layoutX="319.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name on card">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <TextField fx:id="cardNameTextField" layoutX="316.0" layoutY="396.0" prefHeight="25.0" prefWidth="211.0" styleClass="background-blank" />
+      <Text layoutX="316.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiry date">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="monthCombobox" layoutX="326.0" layoutY="467.0" prefHeight="29.0" prefWidth="92.0" promptText="Month" styleClass="background-blank" />
+      <ComboBox fx:id="yearCombobox" layoutX="427.0" layoutY="467.0" prefHeight="25.0" prefWidth="71.0" promptText="Year" styleClass="background-blank" />
+      <TextField fx:id="cardCVVTextField" layoutX="510.0" layoutY="467.0" prefHeight="25.0" prefWidth="71.0" promptText="000" styleClass="background-blank">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </TextField>
+      <Text layoutX="509.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CVC">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Button fx:id="infoCvv" layoutX="569.0" layoutY="448.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="22.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -99,15 +105,15 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="delay" layoutX="603.0" layoutY="609.0" mnemonicParsing="false" onMouseClicked="#delayPay" prefHeight="63.0" prefWidth="230.0" text="Delayed Payment">
+      <Text layoutX="409.0" layoutY="553.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal :">
          <font>
-            <Font size="20.0" />
+            <Font size="19.0" />
          </font>
-      </Button>
-      <Label fx:id="fieldswarning" layoutX="397.0" layoutY="506.0" text="Please fill all fields above" textFill="RED" visible="false">
+      </Text>
+      <Text fx:id="Subtotal" layoutX="495.0" layoutY="553.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$$$$" wrappingWidth="155.0498046875">
          <font>
-            <Font size="18.0" />
+            <Font size="19.0" />
          </font>
-      </Label>
+      </Text>
    </children>
 </Pane>

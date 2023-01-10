@@ -11,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.GrabOrderScreenController">
    <children>
-      <Pane fx:id="asd" layoutX="243.0" layoutY="216.0" prefHeight="328.0" prefWidth="440.0" styleClass="background-blank">
+      <Pane fx:id="asd" layoutX="239.0" layoutY="228.0" prefHeight="2.0" prefWidth="0.0" styleClass="background-blank">
          <children>
             <Text layoutX="41.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Collect your order">
                <font>
@@ -23,17 +23,12 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <TextField fx:id="orderNumField" layoutX="134.0" layoutY="120.0" prefHeight="25.0" prefWidth="173.0" promptText="Order Number #" />
+            <TextField fx:id="orderNumField" layoutX="134.0" layoutY="120.0" prefHeight="25.0" prefWidth="173.0" promptText="Order Number #" styleClass="background-blank" />
             <Button fx:id="grabNow" layoutX="106.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#GrabOrder" prefHeight="63.0" prefWidth="230.0" text="Collect Order Now">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Label fx:id="successLabel" layoutX="10.0" layoutY="277.0" text="Your Order Has been transferred to EK-OP!" textFill="#009819" visible="false">
-               <font>
-                  <Font name="System Bold Italic" size="21.0" />
-               </font>
-            </Label>
          </children>
       </Pane>
       <Button fx:id="exitButton" layoutX="878.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">
@@ -51,5 +46,10 @@
             <Font size="20.0" />
          </font>
       </Button>
+      <Label fx:id="successLabel" layoutX="265.0" layoutY="506.0" text="Your Order Has been transferred to EK-OP!" textFill="#009819" visible="false">
+         <font>
+            <Font name="System Bold Italic" size="21.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
