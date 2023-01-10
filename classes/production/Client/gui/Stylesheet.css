@@ -1,5 +1,5 @@
 .root{
-	-fx-background-image: url("Untitled-5.png");
+	-fx-background-image: url("Untitled-7.png");
 	-fx-background-size: stretch;
 }
 
@@ -22,43 +22,7 @@
 	-fx-border-color: black;
 	-fx-border-style: solid solid none solid;
 	-fx-border-radius: 13 13 0 0;
-
 }
-
-#myCart{
-	-fx-background-color: linear-gradient(to bottom, rgba(224, 224, 224, 0.77), transparent);
-	-fx-background-radius: 0 13 13 13;
-	-fx-border-color: black;
-	-fx-border-radius: 0 13 13 13;
-}
-
-
-
-
-.list-cell {
-	-fx-border-radius: 0;
-	-fx-border-width: 0 0 1 0;
-	-fx-border-color: -fx-outer-border;
-	-fx-background-insets: 0 0 -1 0, 0, 1, 0;
-	-fx-padding: 0.166667em; /* 2 */
-}
-
-.list-view .list-cell:filled:selected {
-	-fx-background-color: -fx-selection-bar;
-	-fx-background-insets: 0 0 -1 0, 0, 2, 0;
-	-fx-text-fill: -fx-selection-bar-text;
-}
-
-
-
-
-
-
-
-
-
-
-
 
 .tab-pane .tab-header-area .tab-header-background{
 	-fx-background-color: transparent;
@@ -280,10 +244,39 @@
 
 
 /************************list view **********************************************************/
-.list-view{
-	-fx-background-color: rgba(255, 255, 255, 0.8);
-	-fx-background-radius: 25;
+#myCart{
+	-fx-background-color: linear-gradient(to bottom, rgba(224, 224, 224, 0.77), rgba(255, 255, 255, 0.09));
+	-fx-pref-width: 880;
+	-fx-pref-height: 180;
+	-fx-border-color: black;
+	-fx-background-radius: 0 13 13 13;
+	-fx-border-radius: 0 13 13 13;
+	-fx-border-width: 1;
+	-fx-padding: 5;
 }
+
+myCart .list-cell{
+	-fx-alignment: center;
+	-fx-font-size: 14pt;
+}
+
+#myCart .list-cell:odd {
+	-fx-background-color: rgba(255, 228, 237, 0.66);
+	-fx-alignment: center;
+	-fx-text-fill: black;
+}
+
+#myCart .list-cell:even {
+	-fx-background-color: rgba(236, 230, 225, 0.46);
+	-fx-alignment: center;
+	-fx-text-fill: black;
+}
+
+#myCart .list-cell:hover {
+	-fx-background-color: rgba(176, 255, 244, 0.52);
+	-fx-text-fill: white;
+}
+
 /********************************************************************************************/
 
 
