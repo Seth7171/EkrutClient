@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="957.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.OrdersReportScreenController">
    <children>
-      <Pane fx:id="asd" layoutX="4.0" layoutY="116.0" prefHeight="442.0" prefWidth="392.0" />
+      <Pane fx:id="asd" layoutX="4.0" layoutY="116.0" prefHeight="442.0" prefWidth="392.0" styleClass="background-blank" />
       <BarChart fx:id="OrdersChart" barGap="0" categoryGap="0" layoutX="435.0" layoutY="101.0" prefHeight="442.0" prefWidth="508.0">
         <xAxis>
           <CategoryAxis label="Machine ID" side="BOTTOM" fx:id="x" />

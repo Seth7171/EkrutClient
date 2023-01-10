@@ -107,7 +107,7 @@ public class CustomerServiceEmployeeScreenController extends ScreenController im
         super.switchScreen(event, root);
     }
 
-    // TODO: here tarek should add his customer management screen.
+    
     @FXML
     protected void openManageUsersScreen(MouseEvent event) {
     }
