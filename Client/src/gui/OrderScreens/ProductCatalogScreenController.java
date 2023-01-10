@@ -270,7 +270,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         priceLabel.getStyleClass().add("price-label");
         SpinnerQuantity.setMaxWidth(75);
         imageview.setImage(image);
-        if(product.getDiscount()!= 0) {
+        if(product.getDiscount()!= 0 && CustomerController.getisSub()) {
             priceLabel.setStrikethrough(true);
             // Calculate the discounted price of the product
             float dis = product.getPrice()*(1-product.getDiscount());
@@ -359,7 +359,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         // Calculate the total price of the product based on the quantity selected
         float priceofproduct = productPrice*spinnerQuantity.getValue();
         // If the product has a discount, apply the discount to the total price
-        if (product.getDiscount()!=0) {
+        if (product.getDiscount()!= 0 && CustomerController.getisSub()) {
     		priceofproduct = productPrice*(1-product.getDiscount())*spinnerQuantity.getValue();
     	}
     	// Set the text of the total price text to the calculated total price
@@ -394,7 +394,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     		// Increment the quantity spinner by the selected quantity
     		((Spinner<Integer>)hb.getChildren().get(5)).increment(quantity);
     		// If the product has a discount, update the total price text to reflect the discounted price
-    		if (product.getDiscount() != 0) { 
+    		if (product.getDiscount()!= 0 && CustomerController.getisSub()) { 
     			((Text)hb.getChildren().get(3)).setText(
     					String.format("%.2f",(product.getPrice()*(1-product.getDiscount())*
     							ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount())) + "\u20AA");
@@ -462,7 +462,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	    // Update the quantity of the product in the cartList
     	    ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).setAmount(spinnerQuantitynew.getValue());
     	    // Update the price label with the new total price
-    	    if (product.getDiscount() != 0) {
+    	    if (product.getDiscount()!= 0 && CustomerController.getisSub()) {
     	        // If the product has a discount, apply it to the total price
     	        ((Text) ((HBox) spinnerQuantitynew.getParent()).getChildren().get(3)).setText(
     	        		String.format("%.2f",(product.getPrice()*(1-product.getDiscount())
