@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.ReportsMainScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.ReportsMainScreenController">
    <children>
       <Label fx:id="welcomeReportsLabel" layoutX="173.0" layoutY="34.0" prefHeight="32.0" prefWidth="202.0" text="Welcome back $Fname">
          <font>
@@ -25,7 +25,6 @@
       <Button fx:id="backButton" layoutX="10.0" layoutY="365.0" mnemonicParsing="false" onMouseClicked="#clickBackButton" prefHeight="25.0" prefWidth="52.0" text="Back" />
       <Button fx:id="exitButton" layoutX="360.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#exitApp" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" stylesheets="@../Stylesheet.css" />
       <ComboBox fx:id="MachineID" layoutX="228.0" layoutY="236.0" prefHeight="25.0" prefWidth="109.0" promptText="MachineID" styleClass="choice-box" />
-      <Label fx:id="errorLabel" layoutX="99.0" layoutY="350.0" prefHeight="17.0" prefWidth="208.0" textAlignment="CENTER" textFill="RED" />
       <ComboBox fx:id="Location" layoutX="53.0" layoutY="236.0" onAction="#clickOnLocation" prefHeight="25.0" prefWidth="109.0" promptText="Location" styleClass="choice-box" />
    </children>
 </AnchorPane>

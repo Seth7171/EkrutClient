@@ -60,8 +60,8 @@ public class ReportsMainScreenController extends ScreenController implements Ini
     @FXML
     private Label welcomeReportsLabel;
     
-    @FXML
-    private Label errorLabel;
+//    @FXML
+//    private Label errorLabel;
     
   
     /**
@@ -228,23 +228,23 @@ public class ReportsMainScreenController extends ScreenController implements Ini
 		
 		// Check first for valid inputs
 		if (Month.getValue() == null) {
-			errorLabel.setText("You didn't choose Month!");
+        	super.alertHandler("You didn't choose Month!" , true);
 			return;
 		}
 		if (YearComboBox.getValue() == null) {
-			errorLabel.setText("You didn't choose Year!");
+			super.alertHandler("You didn't choose Year!" , true);
 			return;
 		}
 		if (Type.getValue() == null) {
-			errorLabel.setText("You didn't choose Report Type!");
+			super.alertHandler("You didn't choose Report Type!" , true);
 			return;
 		}
 		if (Location.getValue() == null && LocationFlag==1) {
-			errorLabel.setText("You didn't choose Location !");
+			super.alertHandler("You didn't choose Location !" , true);
 			return;
 		}
 		if (MachineID.getValue() == null && MachineIDFlag==1) {
-			errorLabel.setText("You didn't choose Machine ID!");
+			super.alertHandler("You didn't choose Machine ID!" , true);
 			return;
 		}
 		
