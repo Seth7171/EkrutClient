@@ -274,12 +274,13 @@ public class ProductCatalogScreenController extends ScreenController implements 
             priceLabel.setStrikethrough(true);
             // Calculate the discounted price of the product
             float dis = product.getPrice()*(1-product.getDiscount());
-            String present = String.format("%.0f%%OFF - Discount Price: %.2f",product.getDiscount()*100, dis);
+            String present = String.format("%.0f%%OFF - %.2f",product.getDiscount()*100, dis);
             newPrice.setText(present + "\u20AA");
             newPrice.getStyleClass().add("new-price-label");
             newPrice.setTextFill(Color.RED);
             newPrice.setPrefWidth(150);
             newPrice.setWrapText(true);
+            newPrice.setAlignment(Pos.CENTER_RIGHT);
         }
         HBox hBox1 = new HBox();
         hBox1.getChildren().addAll(detBtn, idLable);
