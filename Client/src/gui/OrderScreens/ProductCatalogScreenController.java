@@ -11,6 +11,7 @@ import common.connectivity.MessageFromClient;
 import common.orders.Order;
 import common.orders.Product;
 import gui.ScreenController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -54,7 +55,11 @@ public class ProductCatalogScreenController extends ScreenController implements 
     
     // Declare FXML variables
     @FXML
+    private Pane productsPane;
+
     private Text cartCounter;
+//    @FXML
+//    private Text cartCounter;
     
     @FXML
     private Text totalAmount;
@@ -88,7 +93,14 @@ public class ProductCatalogScreenController extends ScreenController implements 
     
     @FXML
     private ScrollPane drinksScroll;
-    
+
+    @FXML
+    private Tab drinkTab;
+
+    @FXML
+    private Tab snackTab;
+
+
     @FXML
     private Pane backmycart;
 
@@ -103,7 +115,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	backmycart.setStyle("-fx-background-color: rgba(255,255,255,0.84); -fx-background-radius: 13");
         // Set the focus traversable property of the list view to false
         myCart.setFocusTraversable( false );
         
@@ -143,15 +154,36 @@ public class ProductCatalogScreenController extends ScreenController implements 
                     drinksPane.getChildren().add(createProductTile(product));
             }
         }
-        snacksPane.setHgap(10);
-        snacksPane.setVgap(10);
-        drinksPane.setHgap(10);
-        drinksPane.setVgap(10);
-
+        snacksPane.setHgap(25);
+        snacksPane.setVgap(15);
+        drinksPane.setHgap(25);
+        drinksPane.setVgap(15);
 
         // Enable horizontal scrolling for the snacks and drinks panes
         snacksScroll.setFitToWidth(true);
         drinksScroll.setFitToWidth(true);
+
+
+
+
+        // Lower product gradient cheats:
+        cartCounter = new Text("0");
+        cartCounter.setLayoutX(184);
+        cartCounter.setLayoutY(636);
+        cartCounter.setFill(Color.WHITE);
+        cartCounter.setStyle("-fx-font-size: 12");
+
+        ImageView viewportGradient = new ImageView("/gui/OrderScreens/viewport-gradient.png");
+        viewportGradient.setLayoutX(-2);
+        viewportGradient.setLayoutY(633);
+
+        ImageView cartOverlay = new ImageView("/gui/OrderScreens/cart-overlay.png");
+        cartOverlay.setLayoutX(47);
+        cartOverlay.setLayoutY(617);
+
+        productsPane.getChildren().add(viewportGradient);
+        productsPane.getChildren().add(cartOverlay);
+        productsPane.getChildren().add(cartCounter);
     }
 
     @FXML
@@ -260,8 +292,8 @@ public class ProductCatalogScreenController extends ScreenController implements 
         // Set the ID of the vertical box to the product ID
         vBox.setId(String.valueOf(product.getProductId()));
         imageview.setTranslateY(50);
-        hBox.setPadding(new Insets(0, 0, 0, 5));
-        vBox.setPadding(new Insets(0, 0, 30, 5));
+        hBox.setPadding(new Insets(0, 5, 0, 5));
+        vBox.setPadding(new Insets(0, 5, 30, 5));
         vBox.setSpacing(5);
         vBox.setAlignment(Pos.CENTER_RIGHT);
         addBtn.setOnAction(event -> {

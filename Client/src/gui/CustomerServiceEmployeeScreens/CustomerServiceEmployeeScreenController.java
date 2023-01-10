@@ -1,6 +1,7 @@
 package gui.CustomerServiceEmployeeScreens;
 
 import application.client.ClientUI;
+import application.client.MessageHandler;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
@@ -36,6 +37,10 @@ public class CustomerServiceEmployeeScreenController extends ScreenController im
 
     @FXML
     private AnchorPane anchor2;
+
+    @FXML
+    private Button importButton;
+
     @FXML
     private Text depText;
 
@@ -109,4 +114,10 @@ public class CustomerServiceEmployeeScreenController extends ScreenController im
     public String capitalLetter(String str) {
 		return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 	}
+
+    @FXML
+    void importUsersFromExternalSource(MouseEvent event) {
+        ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_IMPORT_USERS));
+        super.alertHandler(MessageHandler.getMessage(), MessageHandler.getMessage().contains("Error"));
+    }
 }
