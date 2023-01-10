@@ -63,7 +63,8 @@ public class ClientConnectorController extends ScreenController {
 	
 	public void Done(MouseEvent event) throws Exception {
 		if (!choosen) {
-			warningEKOL.setVisible(true);
+			super.alertHandler("Please Chooce One EK / OL", true);
+			//warningEKOL.setVisible(true);
 			return;
 		}
 		warningEKOL.setVisible(false);
@@ -73,7 +74,8 @@ public class ClientConnectorController extends ScreenController {
 		if(ip.trim().isEmpty()) {
 			System.out.println("You Must enter an ip number");
 			iptxt.clear();
-			warning.setVisible(true);
+			super.alertHandler("You Must Enter An IP Number", true);
+			//warning.setVisible(true);
 			return;
 		}
 
@@ -82,7 +84,17 @@ public class ClientConnectorController extends ScreenController {
 		ClientUI.chat.getClient().openConnection();
 		}
 		catch (java.net.ConnectException e) {
-			super.alertHandler("server refused to connect", true);
+			super.alertHandler("Server Refused To Connect", true);
+			e.printStackTrace();
+			return;
+		}
+		catch (java.net.SocketException e) {
+			super.alertHandler("IP Is Unreachable", true);
+			e.printStackTrace();
+			return;
+		}
+		catch (java.net.UnknownHostException e) {
+			super.alertHandler("Unknown Local Host", true);
 			e.printStackTrace();
 			return;
 		}
