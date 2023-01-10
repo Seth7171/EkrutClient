@@ -123,6 +123,14 @@ public class ProductCatalogScreenController extends ScreenController implements 
         
         // Set the total amount text to 0
         totalAmount.setText("0.0\u20AA");
+        
+        // Lower product gradient cheats:
+        cartCounter = new Text("0");
+        cartCounter.setLayoutX(184);
+        cartCounter.setLayoutY(636);
+        cartCounter.setFill(Color.WHITE);
+        cartCounter.setStyle("-fx-font-size: 12");
+        
     	if (CustomerController.isLogged()) {
     		ArrayList<String> machine = new ArrayList<String>();
     		if (ChatClient.currentOrder.getSupplyMethod().equals("delivery")){
@@ -162,16 +170,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
         // Enable horizontal scrolling for the snacks and drinks panes
         snacksScroll.setFitToWidth(true);
         drinksScroll.setFitToWidth(true);
-
-
-
-
-        // Lower product gradient cheats:
-        cartCounter = new Text("0");
-        cartCounter.setLayoutX(184);
-        cartCounter.setLayoutY(636);
-        cartCounter.setFill(Color.WHITE);
-        cartCounter.setStyle("-fx-font-size: 12");
 
         ImageView viewportGradient = new ImageView("/gui/OrderScreens/viewport-gradient.png");
         viewportGradient.setLayoutX(-2);
