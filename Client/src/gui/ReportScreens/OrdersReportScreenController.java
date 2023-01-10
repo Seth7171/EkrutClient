@@ -69,6 +69,9 @@ public class OrdersReportScreenController extends ScreenController implements In
 
 	@FXML
 	private Label worstArea;
+	 @FXML
+	    private Label valueLabel;
+
 	    
 	/**
      * Goes back to Report Main Screen.
