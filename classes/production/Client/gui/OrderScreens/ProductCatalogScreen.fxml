@@ -14,54 +14,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="830.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.ProductCatalogScreenController">
+<Pane fx:id="productsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="940.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.ProductCatalogScreenController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="279.0" layoutY="22.0" prefHeight="33.0" prefWidth="393.0" text="Create Order" textAlignment="CENTER">
-         <font>
-            <Font size="33.0" />
-         </font>
-      </Label>
-      <TabPane fx:id="tabPane" layoutX="3.0" layoutY="114.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="523.0" prefWidth="904.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="80.0">
-        <tabs>
-          <Tab fx:id="snackTab" closable="false">
-               <content>
-                  <ScrollPane fx:id="snacksScroll" prefHeight="200.0" prefWidth="904.0">
-                     <content>
-                        <TilePane fx:id="snacksPane" prefHeight="478.0" prefWidth="859.0" />
-                     </content>
-                  </ScrollPane>
-               </content>
-          </Tab>
-          <Tab fx:id="drinkTab">
-               <content>
-                  <ScrollPane fx:id="drinksScroll" prefHeight="200.0" prefWidth="850.0">
-                     <content>
-                        <TilePane fx:id="drinksPane" prefHeight="480.0" prefWidth="859.0" />
-                     </content>
-                  </ScrollPane>
-               </content>
-          </Tab>
-        </tabs>
-      </TabPane>
-      <Pane layoutX="727.0" layoutY="602.0" prefHeight="218.0" prefWidth="265.0">
+      <Pane layoutX="552.0" layoutY="841.0" prefHeight="79.0" prefWidth="378.0">
          <children>
-            <Label layoutX="46.0" layoutY="123.0" prefHeight="26.0" prefWidth="80.0" text="Total amount :" />
-            <Text fx:id="totalAmount" layoutX="126.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$$$$$$" wrappingWidth="87.4700927734375" />
-            <Button fx:id="checkOutButton" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="47.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#checkOut" prefHeight="49.0" prefWidth="166.0" text="Checkout">
+            <Button fx:id="checkOutButton" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="215.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#checkOut" prefHeight="49.0" prefWidth="145.0" text="Checkout">
                <font>
                   <Font size="20.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@agalacheckout.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
-            <Button fx:id="emptyMyCartButton" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="47.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#emptyMyCart" prefHeight="47.0" prefWidth="166.0" text="Empty My Cart">
+            <Button fx:id="emptyMyCartButton" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#emptyMyCart" prefHeight="47.0" prefWidth="145.0" text="Empty cart">
                <font>
-                  <Font size="16.0" />
+                  <Font size="17.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
@@ -71,6 +35,11 @@
                   </ImageView>
                </graphic>
             </Button>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="314.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@agalacheckout.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Button fx:id="exitButton" layoutX="910.0" layoutY="10.0" maxHeight="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">
@@ -78,32 +47,69 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="backButton" layoutX="10.0" layoutY="776.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="87.0" text="Back">
+      <Button fx:id="backButton" layoutX="13.0" layoutY="885.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="87.0" text="Back">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Pane fx:id="backmycart" layoutX="360.0" layoutY="606.0" prefHeight="30.0" prefWidth="138.0">
+      <ListView fx:id="myCart" layoutX="48.0" layoutY="656.0" prefHeight="185.0" prefWidth="883.0" />
+      <ImageView fitHeight="71.0" fitWidth="72.0" layoutX="300.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@catalogIcon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="114.0" layoutY="891.0" prefHeight="30.0" prefWidth="138.0" text="Total amount :">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Text fx:id="totalAmount" layoutX="263.0" layoutY="915.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$$$$$$" wrappingWidth="87.4700927734375">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="279.0" layoutY="22.0" prefHeight="33.0" prefWidth="393.0" text="Create Order" textAlignment="CENTER">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <TabPane fx:id="tabPane" layoutX="12.0" layoutY="80.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="577.0" prefWidth="919.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="80.0">
+        <tabs>
+          <Tab fx:id="snackTab" closable="false">
+               <content>
+                  <ScrollPane fx:id="snacksScroll" prefHeight="200.0" prefWidth="904.0">
+                     <content>
+                        <TilePane fx:id="snacksPane" prefHeight="544.0" prefWidth="868.0" />
+                     </content>
+                  </ScrollPane>
+               </content>
+          </Tab>
+          <Tab fx:id="drinkTab">
+               <content>
+                  <ScrollPane fx:id="drinksScroll" prefHeight="200.0" prefWidth="1204.0">
+                     <content>
+                        <TilePane fx:id="drinksPane" prefHeight="480.0" prefWidth="906.0" />
+                     </content>
+                  </ScrollPane>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Pane fx:id="backmycart" layoutX="48.0" layoutY="618.0" prefHeight="38.0" prefWidth="167.0">
          <children>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="93.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="109.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@agala.png" />
                </image>
             </ImageView>
-            <Circle fill="#ff1f1f" layoutX="124.0" layoutY="8.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
-            <Text fx:id="cartCounter" fill="WHITE" layoutX="108.0" layoutY="12.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
-            <Label alignment="CENTER" layoutX="1.0" layoutY="-1.0" prefHeight="35.0" prefWidth="94.0" text="My Cart" textAlignment="CENTER">
+            <Circle fill="#ff1f1f" layoutX="140.0" layoutY="13.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label alignment="CENTER" layoutX="17.0" layoutY="4.0" prefHeight="35.0" prefWidth="94.0" text="My Cart" textAlignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <ListView fx:id="myCart" layoutX="113.0" layoutY="636.0" prefHeight="185.0" prefWidth="649.0" />
-      <ImageView fitHeight="71.0" fitWidth="72.0" layoutX="300.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@catalogIcon.png" />
-         </image>
-      </ImageView>
+      <Text fx:id="cartCounter" fill="WHITE" layoutX="8.0" layoutY="636.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
    </children>
 </Pane>
