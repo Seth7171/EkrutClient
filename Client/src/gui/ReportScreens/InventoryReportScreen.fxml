@@ -17,7 +17,7 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <Pane fx:id="asd" layoutY="124.0" prefHeight="427.0" prefWidth="456.0" />
+      <Pane fx:id="asd" layoutY="124.0" prefHeight="427.0" prefWidth="447.0" styleClass="background-blank" />
       <TableView fx:id="tbData" layoutX="458.0" layoutY="97.0" prefHeight="467.0" prefWidth="499.0">
         <columns>
           <TableColumn fx:id="IDColumn" prefWidth="66.0" text="ID" />

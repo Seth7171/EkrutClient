@@ -87,7 +87,6 @@ public class MarketingEmployeeScreenController extends ScreenController implemen
 		// TODO Auto-generated method stub
 		welcomeText.setText("Welcome back, " + capitalLetter(UserController.getCurrentuser().getFirstname()));
 		ClientUI.chat.accept(new Message(null,MessageFromClient.REQUEST_DISCOUNT_LIST )); 
-		anchor1.setStyle("-fx-background-color: white");//change color if we need
         fullNameText.setText(capitalLetter(UserController.getCurrentuser().getFirstname()) +" " + capitalLetter(UserController.getCurrentuser().getLastname()));
         idText.setText("ID: " + UserController.getCurrentuser().getId());
         depText.setText(capitalLetter(extractDepartment())+" Marketing Employee");

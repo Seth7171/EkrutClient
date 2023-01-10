@@ -92,7 +92,7 @@ public class CEOMainScreenController2 extends ScreenController implements Initia
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	anchor1.setStyle("-fx-background-color: white");//change color if we need
+    	//anchor1.setStyle("-fx-background-color: white");//change color if we need
         welcomeBackText.setText("Welcome back " + UserController.getCurrentuser().getFirstname());
         fullNameText.setText(UserController.getCurrentuser().getFirstname() +" " + UserController.getCurrentuser().getLastname());
         idText.setText("ID: " + UserController.getCurrentuser().getId());

@@ -98,7 +98,6 @@ public class MarketingManagerScreenController extends ScreenController implement
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		welcomeText.setText("Welcome back, " + capitalLetter(UserController.getCurrentuser().getFirstname()));
-		anchor1.setStyle("-fx-background-color: white");//change color if we need
         fullNameText.setText(capitalLetter(UserController.getCurrentuser().getFirstname()) +" " + capitalLetter(UserController.getCurrentuser().getLastname()));
         idText.setText("ID: " + UserController.getCurrentuser().getId());
         depText.setText("Marketing Manager");
