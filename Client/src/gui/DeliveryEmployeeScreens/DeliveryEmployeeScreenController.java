@@ -42,13 +42,32 @@ public class DeliveryEmployeeScreenController extends ScreenController implement
 
     @FXML
     private Text welcomeBackText;
+    
+    @FXML
+    private Text fullNameText;
+
+    @FXML
+    private Text idText;
+    
+    @FXML
+    private Text depText;
+
+    @FXML
+    private Text emailText;
+    
+    @FXML
+    private Text phoneText;
 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		 welcomeBackText.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
 	     userStatusText.setText("User Status: " + UserController.getCurrentuser().getStatus());
-		
+	     fullNameText.setText(UserController.getCurrentuser().getFirstname() +" " + UserController.getCurrentuser().getLastname());
+	     idText.setText("ID: " + UserController.getCurrentuser().getId());
+	     depText.setText(UserController.getCurrentuser().getDepartment());
+	     emailText.setText(UserController.getCurrentuser().getEmailaddress());
+	     phoneText.setText(UserController.getCurrentuser().getPhonenumber());
 	}
 	
 	@FXML

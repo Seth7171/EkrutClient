@@ -389,7 +389,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         hBox1.getChildren().addAll(removeProduct, spinnerQuantitynew);
         // Add the image view, labels, total price text, remove button, and quantity spinner to the horizontal box
     	hboxofcart.getChildren().addAll(imageview, namelb, idlb, productTotalPrice, spinnerQuantitynew, removeProduct);
-    	hboxofcart.setSpacing(50);
+    	hboxofcart.setSpacing(77);
     	// Set the vertical position of the image view
     	imageview.setTranslateY(0);
     	// Find the horizontal box that corresponds to the product ID
