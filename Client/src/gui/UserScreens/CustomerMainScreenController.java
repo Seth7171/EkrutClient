@@ -50,6 +50,21 @@ public class CustomerMainScreenController extends ScreenController implements In
 
     @FXML
     private Text welcomeBackText;
+    
+    @FXML
+    private Text fullNameText;
+
+    @FXML
+    private Text idText;
+    
+    @FXML
+    private Text depText;
+
+    @FXML
+    private Text emailText;
+    
+    @FXML
+    private Text phoneText;
 
     double xoffset;
     double yoffset;
@@ -63,8 +78,13 @@ public class CustomerMainScreenController extends ScreenController implements In
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	ViewDeliveriesButton.setVisible(false);
-        welcomeBackText.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
-        userStatusText.setText("User Status: " + UserController.getCurrentuser().getStatus());
+		 welcomeBackText.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
+	     userStatusText.setText("User Status: " + UserController.getCurrentuser().getStatus());
+	     fullNameText.setText(UserController.getCurrentuser().getFirstname() +" " + UserController.getCurrentuser().getLastname());
+	     idText.setText("ID: " + UserController.getCurrentuser().getId());
+	     depText.setText(UserController.getCurrentuser().getDepartment());
+	     emailText.setText(UserController.getCurrentuser().getEmailaddress());
+	     phoneText.setText(UserController.getCurrentuser().getPhonenumber());
         ClientUI.chat.accept(new Message(CustomerController.getCurrentCustomer().getId(), MessageFromClient.REQUEST_CUSTOMER_DATA));
         if (ChatClient.isOL) {
         	grabOrderButton.setVisible(false);

@@ -40,7 +40,7 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Text fx:id="depText" layoutX="65.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$department " wrappingWidth="87.970703125">
+                  <Text fx:id="depText" layoutX="65.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$department " wrappingWidth="87.970703125">
                      <font>
                         <Font size="14.0" />
                      </font>
