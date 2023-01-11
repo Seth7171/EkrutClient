@@ -25,10 +25,15 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
+import javafx.util.Callback;
 
 public class ManagerDealsScreenController extends ScreenController implements Initializable{
 
@@ -115,9 +120,14 @@ public class ManagerDealsScreenController extends ScreenController implements In
     	dealsData.setArea(area);
     	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList( "approved","not approved"));
     	status.setMinWidth(95);
-    	status.setValue(d.getStatusString());
+    	status.setValue(d.getStatusString()); 
     	
-    	dealsData.setStatus(status);
+    	if ("approved".equals(status.getValue())) {//change background color
+    	      	status.setStyle("-fx-background-color: lightgreen;");
+    	   } 
+    	else {status.setStyle("-fx-background-color: rgb(255, 192, 203);");}
+    	           
+        dealsData.setStatus(status);
     	dealsData.setDealID(d.getDealID());
     	dealsData.setActive(d.getActive());
     	observablesubs.add(dealsData);
@@ -145,7 +155,7 @@ public class ManagerDealsScreenController extends ScreenController implements In
              else 
             	 dealToList.setActive(deal.getActive());
              dealToList.setDealID(deal.getDealID());
-             
+            
           
             ClientUI.chat.accept(new Message(dealToList,MessageFromClient.REQUEST_UPDATE_DEALS ));//send new DB
             super.alertHandler(MessageHandler.getMessage(), MessageHandler.getMessage().contains("Error"));
@@ -156,6 +166,8 @@ public class ManagerDealsScreenController extends ScreenController implements In
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		
 		// TODO Auto-generated method stub
 		tempDeal = new ArrayList<>();
 		//init columns
@@ -171,4 +183,6 @@ public class ManagerDealsScreenController extends ScreenController implements In
 		
 
 	}
+	
+	
 }
