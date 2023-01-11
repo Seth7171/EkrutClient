@@ -3,7 +3,7 @@ package gui.ReportScreens;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-
+import javafx.scene.chart.PieChart;
 import application.client.ChatClient;
 import application.client.MessageHandler;
 import application.user.UserController;
@@ -11,11 +11,15 @@ import common.Reports.InventoryReport;
 import common.Reports.OrderReport;
 import common.orders.Order;
 import gui.ScreenController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -34,10 +38,11 @@ import javafx.scene.paint.Color;
 public class OrdersReportScreenController extends ScreenController implements Initializable{
 	@FXML
 	private Button backButton;
-
+	
 	@FXML
 	private Label DateChooseLabel;
-
+	   @FXML
+	private PieChart pieChart;
 	@FXML
 	private Button exitApp;
 	@FXML
@@ -119,86 +124,157 @@ public class OrdersReportScreenController extends ScreenController implements In
 		 String strIDofWrostSeller=null, strLocationOfWrost=null,strWorstArea=null;
 		 float totalNorth=0,totalSouth=0, totalUAE=0;
 		 
-		//making the BarChart from data for specific department : CEO | SOUTH | NORTH | UAE
+		//making the PieChart from data for specific department : CEO | SOUTH | NORTH | UAE
 	 switch (UserController.getCurrentuser().getDepartment()) {
 		 
 		  	//NORTH manager Screen
            case"area_manager_north":
-        	 XYChart.Series<String, Integer> north= new XYChart.Series<>();// North
-        	 north.setName("North");
+        	   OrdersChart.setVisible(false);
+        	   ObservableList<PieChart.Data> northPieData=FXCollections.observableArrayList();
         	 for(OrderReport ordrep : orderReportData){
-     			if (ordrep.getMachineLocation().equals("north")) {
-     					north.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
-     			if(ordrep.getNumberOfOrders() > totalOrdersBestSeller) {
-    				totalOrdersBestSeller = ordrep.getNumberOfOrders(); // get total orders of best machine
-    				strIDofBestSeller = ordrep.getMachineid(); //get ID of best machine
-     				}
-    			   	if(ordrep.getNumberOfOrders() < totalOrdersWrostSeller) {
-        				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
-        				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
-                   	  }	
-                 }
-             }
-        	 totalBorder=totalOrdersBestSeller+5;
-     		y.setUpperBound(totalBorder);
-     		OrdersChart.getData().addAll(north);
-        	 wrostLocationLabel.setText("Location: North" );
-     		bestLocationLabel.setText("Location: North" );
-     		bestArea.setVisible(false);
-     		worstArea.setVisible(false);
+        		 if (ordrep.getMachineLocation().equals("north")) {
+        			 northPieData.add(new PieChart.Data(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+        		 if(ordrep.getNumberOfOrders() > totalOrdersBestSeller) {
+     				totalOrdersBestSeller = ordrep.getNumberOfOrders(); // get total orders of best machine
+     				strIDofBestSeller = ordrep.getMachineid(); //get ID of best machine
+      				}
+     			   	if(ordrep.getNumberOfOrders() < totalOrdersWrostSeller) {
+         				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
+         				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
+                    	  }	
+        		 }
+        	 }
         	
+        	 pieChart.setData(northPieData);
+        	 pieChart.setTitle("Amount Of Orders In North's Machines");
+        	 totalBorder=totalOrdersBestSeller+5;		
+         	 wrostLocationLabel.setText("Location: North" );
+      		bestLocationLabel.setText("Location: North" );
+      		bestArea.setText("Total Orders in North machines is : " +(totalOrdersBestSeller+totalOrdersWrostSeller));
+      		worstArea.setVisible(false);
+    	   
+      		
+      		
+//        	 XYChart.Series<String, Integer> north= new XYChart.Series<>();// North
+//        	 north.setName("North");
+//        	 for(OrderReport ordrep : orderReportData){
+//     			if (ordrep.getMachineLocation().equals("north")) {
+//     					north.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+//     			if(ordrep.getNumberOfOrders() > totalOrdersBestSeller) {
+//    				totalOrdersBestSeller = ordrep.getNumberOfOrders(); // get total orders of best machine
+//    				strIDofBestSeller = ordrep.getMachineid(); //get ID of best machine
+//     				}
+//    			   	if(ordrep.getNumberOfOrders() < totalOrdersWrostSeller) {
+//        				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
+//        				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
+//                   	  }	
+//                 }
+//             }
+//        	 totalBorder=totalOrdersBestSeller+5;
+//     		y.setUpperBound(totalBorder);
+//     		OrdersChart.getData().addAll(north);
+//        	 wrostLocationLabel.setText("Location: North" );
+//     		bestLocationLabel.setText("Location: North" );
+//     		bestArea.setVisible(false);
+//     		worstArea.setVisible(false);
+//        	
         	 break;
         	 
         	 //SOUTH manager Screen
            case"area_manager_south":
-        	 XYChart.Series<String, Integer> south= new XYChart.Series<>();// south
-          	 south.setName("South");
-          	 for(OrderReport ordrep : orderReportData){
-               	if (ordrep.getMachineLocation().equals("south")) {
-               			south.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
-               	if(ordrep.getNumberOfOrders() > totalOrdersBestSeller) {
-    				totalOrdersBestSeller = ordrep.getNumberOfOrders(); // get total orders of best machine
-    				strIDofBestSeller = ordrep.getMachineid(); //get ID of best machine
-               		}
-               	if(ordrep.getNumberOfOrders() < totalOrdersWrostSeller) {
-    				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
-    				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
-               	  }	
-               	}
-              }
-          	totalBorder=totalOrdersBestSeller+1;
-     		y.setUpperBound(totalBorder);
-     		OrdersChart.getData().addAll(south);
-          	wrostLocationLabel.setText("Location:  South");
-    		bestLocationLabel.setText("Location:  South");
-    		bestArea.setVisible(false);
-     		worstArea.setVisible(false);
+        	   OrdersChart.setVisible(false);
+        	   ObservableList<PieChart.Data> southPieData=FXCollections.observableArrayList();
+        	 for(OrderReport ordrep : orderReportData){
+        		 if (ordrep.getMachineLocation().equals("south")) {
+        			 southPieData.add(new PieChart.Data(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+        		 if(ordrep.getNumberOfOrders() > totalOrdersBestSeller) {
+     				totalOrdersBestSeller = ordrep.getNumberOfOrders(); // get total orders of best machine
+     				strIDofBestSeller = ordrep.getMachineid(); //get ID of best machine
+      				}
+     			   	if(ordrep.getNumberOfOrders() < totalOrdersWrostSeller) {
+         				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
+         				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
+                    	  }	
+        		 }   	
+        	 }
+        	 pieChart.setData(southPieData);
+        	 pieChart.setTitle("Amount Of Orders In South's Machines");
+        	 totalBorder=totalOrdersBestSeller+5;		
+         	 wrostLocationLabel.setText("Location: South" );
+      		bestLocationLabel.setText("Location: South" );
+      		bestArea.setText("Total Orders in North machines is : " +(totalOrdersBestSeller+totalOrdersWrostSeller));
+      		worstArea.setVisible(false);
+//        	 XYChart.Series<String, Integer> south= new XYChart.Series<>();// south
+//          	 south.setName("South");
+//          	 for(OrderReport ordrep : orderReportData){
+//               	if (ordrep.getMachineLocation().equals("south")) {
+//               			south.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+//               	if(ordrep.getNumberOfOrders() > totalOrdersBestSeller) {
+//    				totalOrdersBestSeller = ordrep.getNumberOfOrders(); // get total orders of best machine
+//    				strIDofBestSeller = ordrep.getMachineid(); //get ID of best machine
+//               		}
+//               	if(ordrep.getNumberOfOrders() < totalOrdersWrostSeller) {
+//    				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
+//    				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
+//               	  }	
+//               	}
+//              }
+//          	totalBorder=totalOrdersBestSeller+1;
+//     		y.setUpperBound(totalBorder);
+//     		OrdersChart.getData().addAll(south);
+//          	wrostLocationLabel.setText("Location:  South");
+//    		bestLocationLabel.setText("Location:  South");
+//    		bestArea.setVisible(false);
+//     		worstArea.setVisible(false);
           	 break;
           	 
           	//UAE manager Screen
            case"area_manager_uae":
-        	 XYChart.Series<String, Integer> uae= new XYChart.Series<>();// uae
-          	 uae.setName("UAE");
-          	 for(OrderReport ordrep : orderReportData){
-          		 if (ordrep.getMachineLocation().equals("uae")) {
-          			 uae.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
-          		if(ordrep.getNumberOfOrders() > totalOrdersBestSeller) {
-    				totalOrdersBestSeller = ordrep.getNumberOfOrders(); // get total orders of best machine
-    				strIDofBestSeller = ordrep.getMachineid(); //get ID of best machine
-          			}
-          	 	if(ordrep.getNumberOfOrders() < totalOrdersWrostSeller) {
-    				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
-    				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
-               	  }	
-               	}
-              }
-          	totalBorder=totalOrdersBestSeller+5;
-     		y.setUpperBound(totalBorder);
-     		OrdersChart.getData().addAll(uae);
-           	wrostLocationLabel.setText("Location:  UAE");
-    		bestLocationLabel.setText("Location:  UAE");
-    		bestArea.setVisible(false);
-     		worstArea.setVisible(false);
+        	   OrdersChart.setVisible(false);
+        	   ObservableList<PieChart.Data> uaePieData=FXCollections.observableArrayList();
+        	 for(OrderReport ordrep : orderReportData){
+        		 if (ordrep.getMachineLocation().equals("uae")) {
+        			 uaePieData.add(new PieChart.Data(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+        		 if(ordrep.getNumberOfOrders() > totalOrdersBestSeller) {
+     				totalOrdersBestSeller = ordrep.getNumberOfOrders(); // get total orders of best machine
+     				strIDofBestSeller = ordrep.getMachineid(); //get ID of best machine
+      				}
+     			   	if(ordrep.getNumberOfOrders() < totalOrdersWrostSeller) {
+         				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
+         				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
+                    	  }	
+        		 }   	
+        	 }
+        	 pieChart.setData(uaePieData);
+        	 pieChart.setTitle("Amount Of Orders In Uae's Machines");
+        	 totalBorder=totalOrdersBestSeller+5;		
+         	 wrostLocationLabel.setText("Location: Uae" );
+      		bestLocationLabel.setText("Location: Uae" );
+      		bestArea.setText("Total Orders in North machines is : " +(totalOrdersBestSeller+totalOrdersWrostSeller));
+      		worstArea.setVisible(false);
+
+//        	 XYChart.Series<String, Integer> uae= new XYChart.Series<>();// uae
+//          	 uae.setName("UAE");
+//          	 for(OrderReport ordrep : orderReportData){
+//          		 if (ordrep.getMachineLocation().equals("uae")) {
+//          			 uae.getData().add(new XYChart.Data<String, Integer>(ordrep.getMachineid(), ordrep.getNumberOfOrders()));//set data
+//          		if(ordrep.getNumberOfOrders() > totalOrdersBestSeller) {
+//    				totalOrdersBestSeller = ordrep.getNumberOfOrders(); // get total orders of best machine
+//    				strIDofBestSeller = ordrep.getMachineid(); //get ID of best machine
+//          			}
+//          	 	if(ordrep.getNumberOfOrders() < totalOrdersWrostSeller) {
+//    				totalOrdersWrostSeller=ordrep.getNumberOfOrders(); // get total orders of worst machine
+//    				strIDofWrostSeller = ordrep.getMachineid(); //get ID of worst machine
+//               	  }	
+//               	}
+//              }
+//          	totalBorder=totalOrdersBestSeller+5;
+//     		y.setUpperBound(totalBorder);
+//     		OrdersChart.getData().addAll(uae);
+//           	wrostLocationLabel.setText("Location:  UAE");
+//    		bestLocationLabel.setText("Location:  UAE");
+//    		bestArea.setVisible(false);
+//     		worstArea.setVisible(false);
           	 	break;
           	 	
           	//CEO Screen
@@ -263,6 +339,17 @@ public class OrdersReportScreenController extends ScreenController implements In
 		{strBestArea="UAE"; strWorstArea="North";System.out.println("5");}
 		if((totalUAE>=totalNorth) && (totalSouth<=totalNorth))//UAE is best area + South is the worst	
 		{strBestArea="UAE"; strWorstArea="South";System.out.println("6");}
+		
+		for(XYChart.Series<String, Integer> series: OrdersChart.getData()) {//display the value on each bar
+		    for (XYChart.Data<String, Integer> data : series.getData()) {
+		        Node node = data.getNode();
+		            Pane pane = (Pane) node;
+		            Label label = new Label(Integer.toString((int) data.getYValue()));
+		            label.setTextFill(Color.WHITE);
+		            label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
+		            pane.getChildren().add(label);
+		    }
+		}
 		break;
     default:
      System.out.println("Unknown!");
@@ -283,16 +370,7 @@ public class OrdersReportScreenController extends ScreenController implements In
 			bestArea.setText("The area with the MOST orders is: " + strBestArea);// show the Best area
 			worstArea.setText("The area with the LOWEST orders is: " + strWorstArea);// show the worst area
 		}
-		for(XYChart.Series<String, Integer> series: OrdersChart.getData()) {//display the value on each bar
-		    for (XYChart.Data<String, Integer> data : series.getData()) {
-		        Node node = data.getNode();
-		            Pane pane = (Pane) node;
-		            Label label = new Label(Integer.toString((int) data.getYValue()));
-		            label.setTextFill(Color.WHITE);
-		            label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
-		            pane.getChildren().add(label);
-		    }
-		}
+	
 	}
 }		
 		
