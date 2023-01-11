@@ -110,7 +110,7 @@ public class PostPaymentController extends ScreenController implements Initializ
 	    listView.setItems(ChatClient.rememberMyCart.getItems());
 	    ObservableList<Object> items = listView.getItems();
 	    
-	    
+	    listView.setOpacity(100);
 
 	    // Show the window
 	    Scene scene = new Scene(root);
