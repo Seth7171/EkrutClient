@@ -1,6 +1,12 @@
 .root{
 	-fx-background-image: url("Untitled-9.png");
 	-fx-background-size: stretch;
+	-fx-color1: rgba(0, 247, 255, 0.2);
+	-fx-color2: rgba(255, 0, 183, 0.2);
+	-fx-color3: rgba(0, 255, 255, 0.7);
+	-fx-color4: rgba(255, 0, 111, 0.7);
+	-fx-color5: rgba(162, 162, 162, 0.9);
+	-fx-color6: rgba(178, 178, 178, 0.9);
 }
 
 .text-field{
@@ -15,6 +21,10 @@
 	-fx-background-color: green;
 }
 
+
+.text-area .content{
+	-fx-background-radius: 13;
+}
 
 #backmycart{
 	-fx-background-color: linear-gradient(to bottom, rgba(243, 243, 243, 0.77), rgba(224, 224, 224, 0.77));
@@ -66,6 +76,31 @@
 	-fx-spacing: 10;
 }
 
+#addNewProductTab, #warehouseProductsTab, #machineProductsTab{
+	-fx-text-alignment: center;
+	-fx-background-color:
+			#c3c4c4,
+			linear-gradient(#d6d6d6 50%, white 100%),
+			radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
+	-fx-background-radius: 13 13 0 0;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: contain;
+	-fx-background-position: center;
+	-fx-border-color: black;
+	-fx-border-style: solid solid none solid;
+	-fx-border-radius: 13 13 0 0;
+	-fx-pref-width: 250;
+	-fx-pref-height: 40;
+}
+
+
+#addNewProductTab:selected, #warehouseProductsTab:selected, #machineProductsTab:selected{
+	-fx-background-color:
+			#c3c4c4,
+			linear-gradient(#d6d6d6 50%, rgba(143, 143, 143, 0.8) 100%),
+			radial-gradient(center 50% -40%, radius 200%, rgba(143, 143, 143, 0.8) 20%, rgba(230,230,230,0) 50%);
+	-fx-border-width: 3px;
+}
 
 #snackTab{
 	-fx-background-image: url("Untitled-3.png");
@@ -128,11 +163,7 @@
 	-fx-background-radius: 13;
 }
 
-/****************************tableview style**************************************************/
-.table-cell:filled:focused {
-	-fx-border-color: transparent;
-}
-/********************************************************************************************/
+
 
 
 /****************************scroll pane style************************************************/
@@ -325,3 +356,103 @@
 	-fx-background-color: linear-gradient(to bottom, rgba(224, 224, 224, 0.77), transparent);
 }
 /********************************************************************************************/
+
+
+/****************************tableview style**************************************************/
+.table-view{
+	-fx-background-color: radial-gradient(center 50% 50%, radius 100%, rgba(255, 255, 255, 0.77), transparent);
+	-fx-border-color: rgba(65,65,65,0.63);
+	-fx-border-width: 2 2 2 2;
+	-fx-border-style: solid;
+	-fx-border-radius: 13;
+	-fx-background-radius: 13;
+	-fx-faint-focus-color: transparent;
+}
+
+.table-row-cell:selected{
+	-fx-text-background-color: #000000;
+}
+
+.table-cell:filled:focused {
+	-fx-border-color: transparent;
+}
+
+.table-view .column-header-background .filler {
+	-fx-background-color: transparent;
+}
+
+.table-view .corner {
+	-fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+	-fx-background-color: linear-gradient(to left top, -fx-color6,  -fx-color5);
+	-fx-background-radius: 13px 13px 0px 0px;
+	/*-fx-background-insets: 0 11px 0 0;*/
+	-fx-padding: 0 0 5px 0;
+}
+
+.table-view .column-header {
+	-fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+	-fx-border-color: rgba(87, 87, 87, 0.76);
+	-fx-padding: 2 0 2 10px;
+}
+
+/*.table-row-cell:hover {*/
+/*	-fx-background-color: rgba(85, 255, 243, 0.65);*/
+/*	-fx-text-background-color: #000000;*/
+/*}*/
+
+.table-row-cell:odd{
+	-fx-background-color: rgba(236, 230, 225, 0.6);
+	/*-fx-background-color:  rgba(165, 245, 205, 0.27);*/
+	-fx-background-insets: 0, 0 0 1 0;
+	-fx-padding: 0.0em;
+}
+
+.table-row-cell:even{
+	/*-fx-background-color: rgba(56, 77, 75, 0.27);*/
+	-fx-background-color: rgba(213, 255, 247, 0.75);
+	-fx-background-insets: 0, 0 0 1 0;
+	-fx-padding: 0.0em;
+}
+
+.table-row-cell:empty{
+	-fx-opacity: 0;
+}
+.table-row-cell:not(:empty){
+	-fx-opacity: 100;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+	-fx-background-color: transparent;
+}
+
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+	-fx-opacity: 0;
+	-fx-padding: 2;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+	-fx-background-color:  linear-gradient(to left top, -fx-color6, -fx-color5);
+}
+
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+	/*-fx-background-color:  linear-gradient(to left top, -fx-color6,  -fx-color5);*/
+	-fx-background-color: transparent;
+}
+
+.table-row-cell:highlighted {
+	-fx-background-color: #f602bc;
+	-fx-background-radius: 15px;
+}
+/**************************************************************************************************/
