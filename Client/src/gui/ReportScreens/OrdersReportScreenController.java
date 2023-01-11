@@ -1,9 +1,11 @@
 package gui.ReportScreens;
 
+import java.beans.EventHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.PieChart.Data;
 import application.client.ChatClient;
 import application.client.MessageHandler;
 import application.user.UserController;
@@ -16,6 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -26,6 +29,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -79,6 +83,8 @@ public class OrdersReportScreenController extends ScreenController implements In
 	private Label worstArea;
 	 @FXML
 	    private Label valueLabel;
+	   @FXML
+	    private Label totalOrdersALLMachines;
 
 	    
 	/**
@@ -152,7 +158,16 @@ public class OrdersReportScreenController extends ScreenController implements In
       		bestLocationLabel.setText("Location: North" );
       		bestArea.setText("Total Orders in North machines is : " +(totalOrdersBestSeller+totalOrdersWrostSeller));
       		worstArea.setVisible(false);
-    	   
+    	  
+      		//display percentage value
+      		for (PieChart.Data data : pieChart.getData()) {
+      		    String percentage = String.format("%.1f", 	(data.getPieValue() / (totalOrdersBestSeller+totalOrdersWrostSeller)) * 100) +"%";  
+      		    System.out.println("ata.getPieValue()" + data.getPieValue());
+      		  System.out.println("totalOrdersBestSeller+totalOrdersWrostSeller)" + (totalOrdersBestSeller+totalOrdersWrostSeller));
+      		    System.out.println("percentage:" + percentage);
+      		    Tooltip toolTip = new Tooltip(percentage);
+      		    Tooltip.install(data.getNode(), toolTip);
+      		  }
       		
       		
 //        	 XYChart.Series<String, Integer> north= new XYChart.Series<>();// North
@@ -202,8 +217,17 @@ public class OrdersReportScreenController extends ScreenController implements In
         	 totalBorder=totalOrdersBestSeller+5;		
          	 wrostLocationLabel.setText("Location: South" );
       		bestLocationLabel.setText("Location: South" );
-      		bestArea.setText("Total Orders in North machines is : " +(totalOrdersBestSeller+totalOrdersWrostSeller));
+      		bestArea.setText("Total Orders in South machines is : " +(totalOrdersBestSeller+totalOrdersWrostSeller));
       		worstArea.setVisible(false);
+      		//display percentage value
+      		for (PieChart.Data data : pieChart.getData()) {
+      		    String percentage = String.format("%.1f", 	(data.getPieValue() / (totalOrdersBestSeller+totalOrdersWrostSeller)) * 100) +"%";  
+      		    System.out.println("ata.getPieValue()" + data.getPieValue());
+      		  System.out.println("totalOrdersBestSeller+totalOrdersWrostSeller)" + (totalOrdersBestSeller+totalOrdersWrostSeller));
+      		    System.out.println("percentage:" + percentage);
+      		    Tooltip toolTip = new Tooltip(percentage);
+      		    Tooltip.install(data.getNode(), toolTip);
+      		  }
 //        	 XYChart.Series<String, Integer> south= new XYChart.Series<>();// south
 //          	 south.setName("South");
 //          	 for(OrderReport ordrep : orderReportData){
@@ -250,9 +274,17 @@ public class OrdersReportScreenController extends ScreenController implements In
         	 totalBorder=totalOrdersBestSeller+5;		
          	 wrostLocationLabel.setText("Location: Uae" );
       		bestLocationLabel.setText("Location: Uae" );
-      		bestArea.setText("Total Orders in North machines is : " +(totalOrdersBestSeller+totalOrdersWrostSeller));
+      		bestArea.setText("Total Orders in Uae machines is : " +(totalOrdersBestSeller+totalOrdersWrostSeller));
       		worstArea.setVisible(false);
-
+      		//display percentage value
+      		for (PieChart.Data data : pieChart.getData()) {
+      		    String percentage = String.format("%.1f", 	(data.getPieValue() / (totalOrdersBestSeller+totalOrdersWrostSeller)) * 100) +"%";  
+      		    System.out.println("ata.getPieValue()" + data.getPieValue());
+      		  System.out.println("totalOrdersBestSeller+totalOrdersWrostSeller)" + (totalOrdersBestSeller+totalOrdersWrostSeller));
+      		    System.out.println("percentage:" + percentage);
+      		    Tooltip toolTip = new Tooltip(percentage);
+      		    Tooltip.install(data.getNode(), toolTip);
+      		  }
 //        	 XYChart.Series<String, Integer> uae= new XYChart.Series<>();// uae
 //          	 uae.setName("UAE");
 //          	 for(OrderReport ordrep : orderReportData){
@@ -369,6 +401,8 @@ public class OrdersReportScreenController extends ScreenController implements In
 			wrostLocationLabel.setText("Location: " + strLocationOfWrost);
 			bestArea.setText("The area with the MOST orders is: " + strBestArea);// show the Best area
 			worstArea.setText("The area with the LOWEST orders is: " + strWorstArea);// show the worst area
+			totalOrdersALLMachines.setText("Total orders number: "+ (totalOrdersUAE+totalOrdersNorth+totalOrdersSouth));
+			
 		}
 	
 	}
