@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserManagementScreens.AddSubscriberScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserManagementScreens.AddSubscriberScreenController">
    <children>
       <Button fx:id="backButton" layoutX="14.0" layoutY="792.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
          <font>
@@ -15,16 +15,16 @@
          </font>
       </Button>
       <Button fx:id="exitButton" layoutX="906.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <TableView fx:id="customerTable" layoutX="67.0" layoutY="131.0" prefHeight="589.0" prefWidth="832.0">
+      <TableView fx:id="customerTable" layoutX="44.0" layoutY="131.0" prefHeight="589.0" prefWidth="886.0">
         <columns>
           <TableColumn fx:id="idCol" prefWidth="90.0" text="ID" />
           <TableColumn fx:id="fnameCol" prefWidth="90.0" text="first name" />
-            <TableColumn fx:id="LnameCol" prefWidth="90.0" text="Last name" />
+            <TableColumn fx:id="LnameCol" prefWidth="95.0" text="Last name" />
             <TableColumn fx:id="PhoneCol" prefWidth="100.0" text="Phone number" />
-            <TableColumn fx:id="eMailCol" prefWidth="109.0" text="E-mail" />
-            <TableColumn fx:id="creditCol" prefWidth="120.0" text="Credit card number" />
+            <TableColumn fx:id="eMailCol" prefWidth="145.0" text="E-mail" />
+            <TableColumn fx:id="creditCol" prefWidth="125.0" text="Credit card number" />
             <TableColumn fx:id="customerStatusCol" minWidth="8.0" prefWidth="120.0" text="customer status" />
-            <TableColumn fx:id="subNumberCol" prefWidth="112.0" text="subscriber number" />
+            <TableColumn fx:id="subNumberCol" prefWidth="118.0" text="subscriber number" />
         </columns>
       </TableView>
       <Button fx:id="updateUserButton" layoutX="411.0" layoutY="729.0" mnemonicParsing="false" onMouseClicked="#updateCustomerInDatabase" prefHeight="44.0" prefWidth="129.0" text="Update">
