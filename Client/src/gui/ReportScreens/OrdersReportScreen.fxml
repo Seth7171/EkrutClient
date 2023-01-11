@@ -14,7 +14,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.OrdersReportScreenController">
    <children>
-      <Pane fx:id="asd" layoutX="39.0" layoutY="218.0" prefHeight="442.0" prefWidth="365.0" styleClass="background-blank" />
+      <Pane fx:id="asd" layoutX="39.0" layoutY="218.0" prefHeight="515.0" prefWidth="365.0" styleClass="background-blank">
+         <children>
+            <Label fx:id="totalOrdersALLMachines" layoutX="14.0" layoutY="359.0" prefHeight="30.0" prefWidth="258.0" text="Total order number: $total">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></Pane>
       <BarChart fx:id="OrdersChart" barGap="0" categoryGap="0" layoutX="428.0" layoutY="224.0" prefHeight="442.0" prefWidth="508.0">
         <xAxis>
           <CategoryAxis label="Machine ID" side="BOTTOM" fx:id="x" />
@@ -87,7 +94,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="DateChooseLabel" layoutX="95.0" layoutY="635.0" prefHeight="27.0" prefWidth="225.0" text="Date: $Month , $Year">
+      <Label fx:id="DateChooseLabel" layoutX="95.0" layoutY="697.0" prefHeight="27.0" prefWidth="225.0" text="Date: $Month , $Year">
          <font>
             <Font size="14.0" />
          </font></Label>
@@ -96,8 +103,8 @@
             <Image url="@Histogram_report2.png" />
          </image>
       </ImageView>
-      <Label fx:id="bestArea" layoutX="76.0" layoutY="566.0" prefHeight="30.0" prefWidth="365.0" text="The area with the MOST orders is: $best_area" underline="true" />
-      <Label fx:id="worstArea" layoutX="75.0" layoutY="587.0" prefHeight="30.0" prefWidth="365.0" text="The area with the LOWEST orders is: $worst_area" underline="true" />
+      <Label fx:id="bestArea" layoutX="76.0" layoutY="628.0" prefHeight="30.0" prefWidth="365.0" text="The area with the MOST orders is: $best_area" underline="true" />
+      <Label fx:id="worstArea" layoutX="75.0" layoutY="649.0" prefHeight="30.0" prefWidth="365.0" text="The area with the LOWEST orders is: $worst_area" underline="true" />
       <Label fx:id="valueLabel" layoutX="710.0" layoutY="195.0" />
       <PieChart fx:id="pieChart" layoutX="441.0" layoutY="233.0" />
    </children>
