@@ -106,6 +106,11 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     				ChoiceBox<String> active = new ChoiceBox<>(FXCollections.observableArrayList( "active","not active"));
     				active.setMinWidth(95);
     				active.setValue(d.getActive());
+    				if ("active".equals(active.getValue())) {//change background color
+    					active.setStyle("-fx-background-color: lightgreen;");
+    	    	   } 
+    	    	else {active.setStyle("-fx-background-color: rgb(255, 192, 203);");}
+    				
     				dealsData.setStatus(active);//active
     		    	dealsData.setStatusString(d.getStatusString());
     		    	dealsData.setArea(d.getAreaS());
@@ -148,6 +153,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
 	             dealToList.toString();
 	            ClientUI.chat.accept(new Message(dealToList,MessageFromClient.REQUEST_UPDATE_DEALS ));//send new DB
 	            super.alertHandler(MessageHandler.getMessage(), MessageHandler.getMessage().contains("Error"));
+	            
 	         }
 	    }
 

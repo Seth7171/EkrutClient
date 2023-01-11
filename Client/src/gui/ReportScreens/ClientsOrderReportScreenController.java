@@ -17,6 +17,7 @@ import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.NumberAxis;
@@ -26,6 +27,8 @@ import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /** Description of Clients Report Controller.
@@ -175,6 +178,18 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 		leastOrdersClientTotalOrdersText.setText("Total orders: " + clientReportData.get(lowUser));
 		totalPurchaseText.setText("Total Purchases: " + totalOrders);
 		avgPurchaseText.setText("Average Purchases per Client: " + totalOrders/totalClients + " (" + totalClients + " clients)");
+		
+		
+		for(XYChart.Series<String, Integer> series: ClientChart.getData()) {//display the value on each bar
+		    for (XYChart.Data<String, Integer> data : series.getData()) {
+		        Node node = data.getNode();
+		            Pane pane = (Pane) node;
+		            Label label = new Label(Integer.toString((int) data.getYValue()));
+		            label.setTextFill(Color.WHITE);
+		            label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
+		            pane.getChildren().add(label);
+		    }
+		}
 	}
 	
 	/**
