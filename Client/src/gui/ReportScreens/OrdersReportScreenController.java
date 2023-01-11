@@ -156,8 +156,9 @@ public class OrdersReportScreenController extends ScreenController implements In
         	 totalBorder=totalOrdersBestSeller+5;		
          	 wrostLocationLabel.setText("Location: North" );
       		bestLocationLabel.setText("Location: North" );
-      		bestArea.setText("Total Orders in North machines is : " +(totalOrdersBestSeller+totalOrdersWrostSeller));
+      		totalOrdersALLMachines.setText("Total Orders in North machines is : " +(totalOrdersBestSeller+totalOrdersWrostSeller));
       		worstArea.setVisible(false);
+      		bestArea.setVisible(false);
     	  
       		//display percentage value
       		for (PieChart.Data data : pieChart.getData()) {
@@ -217,8 +218,10 @@ public class OrdersReportScreenController extends ScreenController implements In
         	 totalBorder=totalOrdersBestSeller+5;		
          	 wrostLocationLabel.setText("Location: South" );
       		bestLocationLabel.setText("Location: South" );
-      		bestArea.setText("Total Orders in South machines is : " +(totalOrdersBestSeller+totalOrdersWrostSeller));
+      		totalOrdersALLMachines.setText("Total Orders in South machines is : " +(totalOrdersBestSeller+totalOrdersWrostSeller));
       		worstArea.setVisible(false);
+      		bestArea.setVisible(false);
+
       		//display percentage value
       		for (PieChart.Data data : pieChart.getData()) {
       		    String percentage = String.format("%.1f", 	(data.getPieValue() / (totalOrdersBestSeller+totalOrdersWrostSeller)) * 100) +"%";  
@@ -274,8 +277,10 @@ public class OrdersReportScreenController extends ScreenController implements In
         	 totalBorder=totalOrdersBestSeller+5;		
          	 wrostLocationLabel.setText("Location: Uae" );
       		bestLocationLabel.setText("Location: Uae" );
-      		bestArea.setText("Total Orders in Uae machines is : " +(totalOrdersBestSeller+totalOrdersWrostSeller));
+      		totalOrdersALLMachines.setText("Total Orders in Uae machines is : " +(totalOrdersBestSeller+totalOrdersWrostSeller));
       		worstArea.setVisible(false);
+      		bestArea.setVisible(false);
+      		
       		//display percentage value
       		for (PieChart.Data data : pieChart.getData()) {
       		    String percentage = String.format("%.1f", 	(data.getPieValue() / (totalOrdersBestSeller+totalOrdersWrostSeller)) * 100) +"%";  
