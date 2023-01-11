@@ -256,7 +256,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         if (hb != null) {
             // If the product is in the cart, set the spinner value to the current quantity
             SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = (SpinnerValueFactory.IntegerSpinnerValueFactory) SpinnerQuantity.getValueFactory();
-            int quant = ((Spinner<Integer>)hb.getChildren().get(5)).getValue();
+            int quant = ((Spinner<Integer>)hb.getChildren().get(4)).getValue();
             myCart.getItems().remove(hb);
             SpinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(quant, 
                     valueFactory.getMax(), 0));
@@ -344,18 +344,23 @@ public class ProductCatalogScreenController extends ScreenController implements 
         imageview.setImage(image);
         // Create a label to display the product's name
         Label namelb = new Label(product.getProductName()); // CHANGED getName to getProductName
+        namelb.setWrapText(true);
+        namelb.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        namelb.setUnderline(true);
         // Set the width of the name label
         namelb.setPrefWidth(100);
         // Create a label to display the product's ID
         Label idlb = new Label(product.getProductId());
         // Set the width of the ID label
         idlb.setPrefWidth(100);
+        idlb.setFont(Font.font("Arial", FontWeight.BOLD, 12));
         // Get the product's price
         float productPrice = product.getPrice();
         // Create a text object to display the total price of the product
         Text productTotalPrice = new Text();
         // Set the width of the total price text
         productTotalPrice.setWrappingWidth(100);
+        productTotalPrice.setFont(Font.font("Arial", FontWeight.BOLD, 12));
         // Calculate the total price of the product based on the quantity selected
         float priceofproduct = productPrice*spinnerQuantity.getValue();
         // If the product has a discount, apply the discount to the total price
@@ -380,8 +385,11 @@ public class ProductCatalogScreenController extends ScreenController implements 
         // Add a style class to the remove product button
         removeProduct.getStyleClass().add("btn");
     	spinnerQuantitynew.setMaxWidth(75);
+    	HBox hBox1 = new HBox();
+        hBox1.getChildren().addAll(removeProduct, spinnerQuantitynew);
         // Add the image view, labels, total price text, remove button, and quantity spinner to the horizontal box
-    	hboxofcart.getChildren().addAll(imageview, namelb, idlb, productTotalPrice, removeProduct, spinnerQuantitynew);
+    	hboxofcart.getChildren().addAll(imageview, namelb, idlb, productTotalPrice, spinnerQuantitynew, removeProduct);
+    	hboxofcart.setSpacing(50);
     	// Set the vertical position of the image view
     	imageview.setTranslateY(0);
     	// Find the horizontal box that corresponds to the product ID
@@ -392,7 +400,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
         	ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).setAmount(
         			ChatClient.cartList.get(ChatClient.cartList.indexOf(product)).getAmount()+quantity);
     		// Increment the quantity spinner by the selected quantity
-    		((Spinner<Integer>)hb.getChildren().get(5)).increment(quantity);
+    		((Spinner<Integer>)hb.getChildren().get(4)).increment(quantity);
     		// If the product has a discount, update the total price text to reflect the discounted price
     		if (product.getDiscount()!= 0 && CustomerController.getisSub()) { 
     			((Text)hb.getChildren().get(3)).setText(
@@ -478,17 +486,22 @@ public class ProductCatalogScreenController extends ScreenController implements 
     	    // Update the quantity spinner for the other product
     	    spinnerQuantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, (valueFactory.getMax()-spinnerQuantitynew.getValue()), 0));
     	    // If the quantity of the product is set to 0, remove it from the cart
-    	    if (spinnerQuantitynew.getValue() ==0) {
+    	    if (spinnerQuantitynew.getValue() == 0) {
     	        // Find the HBox that contains the product details
     	        HBox hb2 = (HBox)(findHBoxOfproductID(idlb.getText()));
-    	        // Remove the product from the cartList
+    	     // Get the remove button from the horizontal box
+				Button removebuttn = new Button();
+				removebuttn = (Button)(((HBox)hb2).getChildren().get(5));
+				// Click the remove button to remove the item from the cart
+				removebuttn.fire();											//@NITMA changed 11/01
+    	        /*// Remove the product from the cartList
     	        ChatClient.cartList.remove(product);
     	        // Remove the HBox from the ListView
     	        myCart.getItems().remove(hb2);
     	        // Decrement the counter
     	        counter--;
     	        // Update the cart counter label
-    	        cartCounter.setText(String.valueOf(counter));
+    	        cartCounter.setText(String.valueOf(counter));*/
     	    }
     	    // Update the total amount
     	    totalAmount();
@@ -567,7 +580,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
 			if (hb instanceof HBox){
 				// Get the remove button from the horizontal box
 				Button removebuttn = new Button();
-				removebuttn = (Button)(((HBox)hb).getChildren().get(4));
+				removebuttn = (Button)(((HBox)hb).getChildren().get(5));
 				// Click the remove button to remove the item from the cart
 				removebuttn.fire();
 	    	}

@@ -7,27 +7,30 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="600.0" prefWidth="600.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ConnectionScreens.ClientConnectorController">
+<Pane prefHeight="700.0" prefWidth="700.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ConnectionScreens.ClientConnectorController">
    <children>
-      <Button fx:id="btnDone" layoutX="247.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#Done" prefHeight="43.0" prefWidth="106.0" text="Connect">
+      <Button fx:id="btnDone" layoutX="297.0" layoutY="448.0" mnemonicParsing="false" onMouseClicked="#Done" prefHeight="43.0" prefWidth="106.0" text="Connect">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <TextField fx:id="iptxt" alignment="CENTER" layoutX="187.0" layoutY="289.0" prefHeight="43.0" prefWidth="226.0" promptText="Enter Server IP" text="localhost" />
+      <TextField fx:id="iptxt" alignment="CENTER" layoutX="237.0" layoutY="324.0" prefHeight="43.0" prefWidth="226.0" promptText="Enter Server IP" text="localhost">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
       <Label fx:id="warning" layoutX="244.0" layoutY="365.0" prefHeight="17.0" prefWidth="128.0" text="Wrong IP / Server Down" textAlignment="CENTER" textFill="RED" visible="false" />
-      <Button fx:id="btnOL" layoutX="339.0" layoutY="173.0" maxHeight="85.0" maxWidth="85.0" minHeight="85.0" minWidth="85.0" mnemonicParsing="false" onMouseClicked="#clickedOL" prefHeight="85.0" prefWidth="85.0" />
-      <Button fx:id="btnEK" layoutX="206.0" layoutY="173.0" maxHeight="85.0" maxWidth="70.0" minHeight="85.0" minWidth="85.0" mnemonicParsing="false" onMouseClicked="#clickedEK" prefHeight="85.0" prefWidth="85.0" />
-      <Label layoutX="175.0" layoutY="93.0" text="Please Choose EK or OL" underline="true">
+      <Button fx:id="btnOL" layoutX="389.0" layoutY="208.0" maxHeight="85.0" maxWidth="85.0" minHeight="85.0" minWidth="85.0" mnemonicParsing="false" onMouseClicked="#clickedOL" prefHeight="85.0" prefWidth="85.0" />
+      <Button fx:id="btnEK" layoutX="256.0" layoutY="208.0" maxHeight="85.0" maxWidth="70.0" minHeight="85.0" minWidth="85.0" mnemonicParsing="false" onMouseClicked="#clickedEK" prefHeight="85.0" prefWidth="85.0" />
+      <Label layoutX="225.0" layoutY="128.0" text="Please Choose EK or OL" underline="true">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
       <Label fx:id="warningEKOL" layoutX="256.0" layoutY="119.0" prefHeight="17.0" prefWidth="106.0" text="Please Choose one:" textAlignment="CENTER" textFill="RED" visible="false" />
-      <Button fx:id="btnExit" layoutX="560.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#getExitBtn" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">
+      <Button fx:id="btnExit" layoutX="656.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#getExitBtn" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <ComboBox fx:id="machinesID" layoutX="187.0" layoutY="288.0" onAction="#machidWasChoosen" prefHeight="43.0" prefWidth="226.0" promptText="EKrutMachineID" visible="false" />
+      <ComboBox fx:id="machinesID" layoutX="237.0" layoutY="324.0" onAction="#machidWasChoosen" prefHeight="43.0" prefWidth="226.0" promptText="EKrutMachineID" visible="false" />
    </children>
 </Pane>

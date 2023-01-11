@@ -30,7 +30,6 @@
 	-fx-background-color: transparent;
 }
 
-
 #gradientPane{
 	-fx-background-color: linear-gradient(to top, rgba(255, 255, 255, 0.61), transparent);
 }
@@ -72,7 +71,10 @@
 
 #snackTab{
 	-fx-background-image: url("Untitled-3.png");
-	-fx-background-color: rgba(255, 255, 255, 0.47);
+	    -fx-background-color:
+            #c3c4c4,
+            linear-gradient(#d6d6d6 50%, white 100%),
+            radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
 	-fx-background-radius: 13 13 0 0;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: contain;
@@ -84,9 +86,21 @@
 	-fx-pref-height: 40;
 }
 
+#snackTab:selected{
+			-fx-background-color:
+            #c3c4c4,
+            linear-gradient(#d6d6d6 50%, rgba(143, 143, 143, 0.8) 100%),
+            radial-gradient(center 50% -40%, radius 200%, rgba(143, 143, 143, 0.8) 20%, rgba(230,230,230,0) 50%);
+	-fx-border-width: 3px;
+}
+
+
 #drinkTab{
 	-fx-background-image: url("Untitled-4.png");
-	-fx-background-color: rgba(255, 255, 255, 0.47);
+	    -fx-background-color:
+            #c3c4c4,
+            linear-gradient(#d6d6d6 50%, white 100%),
+            radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
 	-fx-background-radius: 13 13 0 0;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: contain;
@@ -96,6 +110,14 @@
 	-fx-border-radius: 13 13 0 0;
 	-fx-pref-width: 250;
 	-fx-pref-height: 40;
+}
+
+#drinkTab:selected{
+			-fx-background-color:
+            #c3c4c4,
+            linear-gradient(#d6d6d6 50%, rgba(143, 143, 143, 0.8) 100%),
+            radial-gradient(center 50% -40%, radius 200%, rgba(143, 143, 143, 0.8) 20%, rgba(230,230,230,0) 50%);
+	-fx-border-width: 3px;
 }
 /********************************************************************************************/
 

@@ -151,7 +151,8 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
         		Object selectedItem = comboBox.getValue();
         		String machineID = (String) selectedItem;
         		if (selectedItem==null || machineID==null) {
-        			dynamicError.setVisible(true);
+        			alertHandler("Please Select A Location And Than A Machine", true);
+        			//dynamicError.setVisible(true);
         			return;
         		}
         		System.out.println(machineID);
@@ -169,7 +170,8 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
             	TextField = (TextField) pane.lookup("#Zip");
             	String Zip = TextField.getText();
             	if (Address.trim().isEmpty() || City.trim().isEmpty() || State.getSelectionModel().isEmpty()|| Zip.trim().isEmpty()) {
-            		deliveryError.setVisible(true);
+            		alertHandler("Please Fill All The Fields Below", true);
+            		//deliveryError.setVisible(true);
         			return;
             	}
         		StringBuilder sb = new StringBuilder();

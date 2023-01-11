@@ -8,30 +8,30 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="664.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MarketingManagementScreens.MarketingEmployeeScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MarketingManagementScreens.MarketingEmployeeScreenController">
    <children>
       <Text fx:id="welcomeText" layoutX="234.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome back $name">
          <font>
-            <Font size="20.0" />
+            <Font size="24.0" />
          </font>
       </Text>
-      <Button fx:id="existingDeals" layoutX="282.0" layoutY="222.0" mnemonicParsing="false" onMouseClicked="#existingDeals" text="View existing deals">
+      <Button fx:id="existingDeals" layoutX="312.0" layoutY="334.0" mnemonicParsing="false" onMouseClicked="#existingDeals" text="View existing deals">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="logOutButton" layoutY="446.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="30.0" prefWidth="79.0" text="Log out">
+      <Button fx:id="logOutButton" layoutX="14.0" layoutY="656.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="30.0" prefWidth="79.0" text="Log out">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="exitButton" layoutX="626.0" layoutY="2.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exitApp" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <ImageView fitHeight="64.0" fitWidth="89.0" layoutX="191.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="exitButton" layoutX="656.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exitApp" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <ImageView fitHeight="50.0" fitWidth="60.0" layoutX="244.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@credit-card.png" />
          </image>
       </ImageView>
-      <SplitPane dividerPositions="0.5" layoutX="474.0" layoutY="163.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="175.0">
+      <SplitPane dividerPositions="0.5" layoutX="511.0" layoutY="260.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="175.0">
          <items>
             <AnchorPane fx:id="anchor1" minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="304.0">
                <children>
@@ -47,7 +47,7 @@
                   </Text>
                   <Text fx:id="depText" layoutX="65.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$department " wrappingWidth="87.970703125">
                      <font>
-                        <Font size="10.0" />
+                        <Font size="14.0" />
                      </font>
                   </Text>
                </children>

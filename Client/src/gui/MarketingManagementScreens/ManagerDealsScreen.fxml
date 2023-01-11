@@ -9,38 +9,38 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="873.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MarketingManagementScreens.ManagerDealsScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MarketingManagementScreens.ManagerDealsScreenController">
    <children>
-      <TableView fx:id="viewAllDeals" editable="true" layoutX="4.0" layoutY="102.0" prefHeight="301.0" prefWidth="865.0">
+      <TableView fx:id="viewAllDeals" editable="true" layoutX="5.0" layoutY="171.0" prefHeight="425.0" prefWidth="940.0">
          <columns>
-            <TableColumn fx:id="dealNameColumn" prefWidth="92.0" text="Deal name" />
-            <TableColumn fx:id="discountColumn" prefWidth="70.0" text="\%Discount" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="420.0" text="Description" />
-            <TableColumn fx:id="typeColumn" prefWidth="76.0" text="Type" />
-            <TableColumn fx:id="areaColumn" prefWidth="80.666748046875" text="Area" />
-            <TableColumn fx:id="statusColumn" prefWidth="129.3333740234375" text="Status" />
+            <TableColumn fx:id="dealNameColumn" prefWidth="162.0" text="Deal name" />
+            <TableColumn fx:id="discountColumn" prefWidth="123.0" text="\%Discount" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="336.0" text="Description" />
+            <TableColumn fx:id="typeColumn" prefWidth="99.0" text="Type" />
+            <TableColumn fx:id="areaColumn" prefWidth="101.0" text="Area" />
+            <TableColumn fx:id="statusColumn" prefWidth="118.0" text="Status" />
          </columns>
       </TableView>
-      <Button fx:id="exitButton" layoutX="829.0" layoutY="11.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <Button fx:id="backButton" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#goBackToMarketingManagerScreen" prefHeight="30.0" prefWidth="62.0" text="Back">
+      <Button fx:id="exitButton" layoutX="906.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <Button fx:id="backButton" layoutX="14.0" layoutY="792.0" mnemonicParsing="false" onMouseClicked="#goBackToMarketingManagerScreen" prefHeight="44.0" prefWidth="129.0" text="Back">
          <font>
-            <Font size="14.0" />
+            <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="apply" layoutX="258.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#Apply" prefHeight="43.0" prefWidth="128.0" text="Apply">
+      <Button fx:id="apply" layoutX="290.0" layoutY="610.0" mnemonicParsing="false" onMouseClicked="#Apply" prefHeight="43.0" prefWidth="128.0" text="Apply">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button fx:id="refresh" layoutX="485.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#Refresh" prefHeight="43.0" prefWidth="128.0" text="Refresh">
+      <Button fx:id="refresh" layoutX="538.0" layoutY="610.0" mnemonicParsing="false" onMouseClicked="#Refresh" prefHeight="43.0" prefWidth="123.0" text="Refresh">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Text layoutX="407.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deals" wrappingWidth="83.39300537109375">
+      <Text layoutX="467.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deals" wrappingWidth="83.39300537109375">
          <font>
             <Font size="32.0" />
          </font>
       </Text>
-      <ImageView fitHeight="55.0" fitWidth="104.0" layoutX="339.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="55.0" fitWidth="104.0" layoutX="399.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@credit-card.png" />
          </image>
