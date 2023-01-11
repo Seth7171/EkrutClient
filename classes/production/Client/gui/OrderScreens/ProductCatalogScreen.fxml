@@ -14,14 +14,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="productsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="940.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.ProductCatalogScreenController">
+<Pane fx:id="productsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="940.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.ProductCatalogScreenController">
    <children>
       <Pane layoutX="552.0" layoutY="841.0" prefHeight="79.0" prefWidth="378.0">
          <children>
-            <Button fx:id="checkOutButton" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="215.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#checkOut" prefHeight="49.0" prefWidth="145.0" text="Checkout">
+            <Button fx:id="checkOutButton" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="209.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#checkOut" prefHeight="49.0" prefWidth="151.0" text="Checkout">
                <font>
                   <Font size="20.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@agalacheckout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
             <Button fx:id="emptyMyCartButton" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#emptyMyCart" prefHeight="47.0" prefWidth="145.0" text="Empty cart">
                <font>
@@ -35,11 +42,6 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="314.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@agalacheckout.png" />
-               </image>
-            </ImageView>
          </children>
       </Pane>
       <Button fx:id="exitButton" layoutX="910.0" layoutY="10.0" maxHeight="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">

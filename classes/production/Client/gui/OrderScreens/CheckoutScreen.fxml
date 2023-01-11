@@ -9,34 +9,34 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.CheckoutScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.CheckoutScreenController">
    <children>
-      <ImageView fitHeight="89.0" fitWidth="95.0" layoutX="284.0" layoutY="13.0" pickOnBounds="true">
+      <ImageView fitHeight="89.0" fitWidth="95.0" layoutX="298.0" layoutY="43.0" pickOnBounds="true">
          <image>
             <Image url="@cashout.png" />
          </image>
       </ImageView>
-      <Label layoutX="386.0" layoutY="39.0" text="Your Order">
+      <Label layoutX="400.0" layoutY="69.0" text="Your Order">
          <font>
             <Font size="35.0" />
          </font>
       </Label>
-      <Button fx:id="proceed" layoutX="678.0" layoutY="675.0" mnemonicParsing="false" onMouseClicked="#proceed" prefHeight="44.0" prefWidth="129.0" text="Proceed">
+      <Button fx:id="proceed" layoutX="692.0" layoutY="705.0" mnemonicParsing="false" onMouseClicked="#proceed" prefHeight="44.0" prefWidth="129.0" text="Proceed">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="backButton" layoutX="10.0" layoutY="767.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
+      <Button fx:id="backButton" layoutX="14.0" layoutY="792.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="exitButton" layoutX="878.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">
+      <Button fx:id="exitButton" layoutX="906.0" layoutY="13.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Pane fx:id="backmycart" layoutX="144.0" layoutY="591.0" prefHeight="38.0" prefWidth="338.0" rotate="180.0">
+      <Pane fx:id="backmycart" layoutX="111.0" layoutY="621.0" prefHeight="38.0" prefWidth="338.0" rotate="180.0">
          <children>
             <Text layoutX="190.0" layoutY="30.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overall Price:">
                <font>
@@ -50,8 +50,8 @@
             </Text>
          </children>
       </Pane>
-      <ListView fx:id="myOrder" layoutX="129.0" layoutY="114.0" prefHeight="479.0" prefWidth="688.0" />
-      <Text fx:id="totalPriceDiss" fill="RED" layoutX="265.0" layoutY="650.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$$$$" visible="false" wrappingWidth="200.0000043658074">
+      <ListView fx:id="myOrder" layoutX="111.0" layoutY="142.0" prefHeight="479.0" prefWidth="750.0" />
+      <Text fx:id="totalPriceDiss" fill="RED" layoutX="268.0" layoutY="686.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$$$$" visible="false" wrappingWidth="200.0000043658074">
          <font>
             <Font size="25.0" />
          </font>
