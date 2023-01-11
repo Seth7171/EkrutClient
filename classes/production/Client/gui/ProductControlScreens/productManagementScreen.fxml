@@ -13,19 +13,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="750.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProductControlScreens.ProductManagementScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProductControlScreens.ProductManagementScreenController">
    <children>
-      <Button fx:id="exitButton" layoutX="710.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <Button fx:id="backButton" layoutX="10.0" layoutY="710.0" mnemonicParsing="false" onMouseClicked="#goBackToCEOMainScreen" text="back">
+      <Button fx:id="exitButton" layoutX="906.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <Button fx:id="backButton" layoutX="14.0" layoutY="792.0" mnemonicParsing="false" onMouseClicked="#goBackToCEOMainScreen" prefHeight="44.0" prefWidth="129.0" text="back">
          <font>
-            <Font size="14.0" />
+            <Font size="20.0" />
          </font>
       </Button>
-      <TabPane layoutX="20.0" layoutY="71.0" prefHeight="628.0" prefWidth="717.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="117.0" layoutY="111.0" prefHeight="628.0" prefWidth="717.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="warehouseProductsTab" onSelectionChanged="#initCols" text="warehouse products">
             <content>
-              <AnchorPane fx:id="warehouseProducts" minHeight="0.0" minWidth="0.0" prefHeight="489.0" prefWidth="337.0">
+              <AnchorPane fx:id="warehouseProducts" minHeight="0.0" minWidth="0.0" prefHeight="489.0" prefWidth="337.0" styleClass="background-blank">
                      <children>
                         <TableView fx:id="warehouseProductsTable" layoutX="5.0" prefHeight="468.0" prefWidth="710.0">
                           <columns>
@@ -33,9 +33,9 @@
                               <TableColumn fx:id="descriptionColumn" prefWidth="295.0" text="Description" />
                               <TableColumn fx:id="alertAmountColumn" prefWidth="84.0" text="Alert amount" />
                               <TableColumn fx:id="priceColumn" prefWidth="43.0" text="Price" />
-                              <TableColumn fx:id="discountColumn" prefWidth="53.0" text="discount" />
-                              <TableColumn fx:id="currentAmountColumn" prefWidth="81.0" text="Amount left" />
-                              <TableColumn fx:id="typeColumn" prefWidth="50.0" text="Type" />
+                              <TableColumn fx:id="discountColumn" prefWidth="67.0" text="discount" />
+                              <TableColumn fx:id="currentAmountColumn" prefWidth="89.0" text="Amount left" />
+                              <TableColumn fx:id="typeColumn" prefWidth="66.0" text="Type" />
                           </columns>
                         </TableView>
                         <Button layoutX="379.0" layoutY="531.0" mnemonicParsing="false" onMouseClicked="#refreshTable" prefHeight="53.0" prefWidth="100.0" text="refresh table">
@@ -53,22 +53,22 @@
           </Tab>
           <Tab fx:id="machineProductsTab" onSelectionChanged="#initCols" text="machine products">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="663.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="663.0" styleClass="background-blank">
                      <children>
                         <TableView fx:id="machineProductTable" layoutX="5.0" prefHeight="468.0" prefWidth="710.0">
                           <columns>
                             <TableColumn fx:id="productIDColumn" prefWidth="65.0" sortType="DESCENDING" text="product ID" />
                               <TableColumn fx:id="machineIDColumn" prefWidth="70.0" sortType="DESCENDING" text="Machine ID" />
-                              <TableColumn fx:id="descriptionColumn" prefWidth="225.0" sortable="false" text="Description" />
-                            <TableColumn fx:id="alertAmountColumn" prefWidth="84.0" sortType="DESCENDING" text="Alert amount" />
-                              <TableColumn fx:id="priceColumn" minWidth="1.0" prefWidth="43.0" sortType="DESCENDING" text="Price" />
-                              <TableColumn fx:id="discountColumn" minWidth="6.0" prefWidth="53.0" sortType="DESCENDING" text="discount" />
-                              <TableColumn fx:id="currentAmountColumn" prefWidth="81.0" sortType="DESCENDING" text="Amount left" />
-                              <TableColumn fx:id="typeColumn" prefWidth="50.0" sortType="DESCENDING" text="Type" />
+                              <TableColumn fx:id="descriptionColumn" prefWidth="227.0" sortable="false" text="Description" />
+                            <TableColumn fx:id="alertAmountColumn" prefWidth="98.0" sortType="DESCENDING" text="Alert amount" />
+                              <TableColumn fx:id="priceColumn" minWidth="1.0" prefWidth="49.0" sortType="DESCENDING" text="Price" />
+                              <TableColumn fx:id="discountColumn" minWidth="6.0" prefWidth="54.0" sortType="DESCENDING" text="discount" />
+                              <TableColumn fx:id="currentAmountColumn" prefWidth="83.0" sortType="DESCENDING" text="Amount left" />
+                              <TableColumn fx:id="typeColumn" prefWidth="62.0" sortType="DESCENDING" text="Type" />
                           </columns>
                         </TableView>
-                        <ChoiceBox fx:id="areaComboBox" layoutX="6.0" layoutY="558.0" prefWidth="150.0" />
-                        <ChoiceBox fx:id="machineIDComboBox" layoutX="201.0" layoutY="558.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="areaComboBox" layoutX="6.0" layoutY="554.0" prefWidth="150.0" styleClass="background-blank" />
+                        <ChoiceBox fx:id="machineIDComboBox" layoutX="201.0" layoutY="554.0" prefWidth="150.0" styleClass="background-blank" />
                         <Button fx:id="refreshTableButton" layoutX="379.0" layoutY="531.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="53.0" prefWidth="100.0" text="refresh table">
                            <font>
                               <Font size="14.0" />
@@ -93,9 +93,9 @@
           </Tab>
             <Tab fx:id="addNewProductTab" onSelectionChanged="#initCols" text="add new product">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="663.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="663.0" styleClass="background-blank">
                      <children>
-                        <TextField fx:id="productIDTextField" layoutX="11.0" layoutY="84.0" />
+                        <TextField fx:id="productIDTextField" layoutX="11.0" layoutY="84.0" styleClass="background-blank" />
                         <Text fx:id="productIDTXT" layoutX="11.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="product ID:">
                            <font>
                               <Font size="14.0" />
@@ -106,25 +106,25 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <ChoiceBox fx:id="locationChoiceBox" layoutX="556.0" layoutY="84.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="locationChoiceBox" layoutX="556.0" layoutY="84.0" prefWidth="150.0" styleClass="background-blank" />
                         <Text fx:id="locationToAdd" layoutX="554.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location to add:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextArea fx:id="descriptionTextArea" layoutX="11.0" layoutY="399.0" prefHeight="89.0" prefWidth="222.0" wrapText="true" />
+                        <TextArea fx:id="descriptionTextArea" layoutX="11.0" layoutY="399.0" prefHeight="89.0" prefWidth="222.0" styleClass="background-blank" wrapText="true" />
                         <Text fx:id="productDescriptionTXT" layoutX="12.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product description:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="productPriceTextField" layoutX="11.0" layoutY="304.0" />
+                        <TextField fx:id="productPriceTextField" layoutX="11.0" layoutY="304.0" styleClass="background-blank" />
                         <Text fx:id="productPriceTXT" layoutX="15.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product price:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <ChoiceBox fx:id="productTypeChoiceBox" layoutX="300.0" layoutY="201.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="productTypeChoiceBox" layoutX="300.0" layoutY="201.0" prefWidth="150.0" styleClass="background-blank" />
                         <Text fx:id="productType" layoutX="300.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product type:">
                            <font>
                               <Font size="14.0" />
@@ -135,25 +135,25 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="productImageTextField" layoutX="11.0" layoutY="202.0" />
+                        <TextField fx:id="productImageTextField" layoutX="11.0" layoutY="202.0" styleClass="background-blank" />
                         <Text fx:id="alertAmountTXT" layoutX="302.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alert amount">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="alertAmountTextField" layoutX="301.0" layoutY="306.0" />
+                        <TextField fx:id="alertAmountTextField" layoutX="301.0" layoutY="306.0" styleClass="background-blank" />
                         <Text fx:id="availableAmountTXT" layoutX="301.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available amount">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="availableAmountTextField" layoutX="300.0" layoutY="84.0" />
-                        <Button fx:id="addProductButton" layoutX="310.0" layoutY="527.0" mnemonicParsing="false" onMouseClicked="#addProductToDatabase" text="Add product">
+                        <TextField fx:id="availableAmountTextField" layoutX="300.0" layoutY="84.0" styleClass="background-blank" />
+                        <Button fx:id="addProductButton" layoutX="310.0" layoutY="521.0" mnemonicParsing="false" onMouseClicked="#addProductToDatabase" prefHeight="53.0" prefWidth="100.0" text="Add product">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <ChoiceBox fx:id="machineIDChoiceBox" layoutX="556.0" layoutY="202.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="machineIDChoiceBox" layoutX="556.0" layoutY="202.0" prefWidth="150.0" styleClass="background-blank" />
                      </children>
                   </AnchorPane>
                </content>

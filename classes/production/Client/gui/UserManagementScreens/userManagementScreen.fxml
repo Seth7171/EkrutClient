@@ -5,32 +5,38 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserManagementScreens.UserManagementScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserManagementScreens.UserManagementScreenController">
    <children>
-      <Button fx:id="exitButton" layoutX="409.0" layoutY="12.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <Button fx:id="backButton" layoutX="10.0" layoutY="560.0" mnemonicParsing="false" onMouseClicked="#goBack" text="Back">
+      <Button fx:id="exitButton" layoutX="906.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <Button fx:id="backButton" layoutX="14.0" layoutY="792.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
          <font>
-            <Font size="14.0" />
+            <Font size="20.0" />
          </font>
       </Button>
-      <TableView fx:id="UserManagementTable" layoutX="14.0" layoutY="67.0" prefHeight="438.0" prefWidth="420.0">
+      <TableView fx:id="UserManagementTable" layoutX="85.0" layoutY="177.0" prefHeight="438.0" prefWidth="780.0">
         <columns>
-            <TableColumn fx:id="idColumn" prefWidth="100.0" text="ID" />
-          <TableColumn fx:id="firstNameColumn" prefWidth="100.0" text="First name" />
-          <TableColumn fx:id="LastNameColumn" prefWidth="100.0" text="Last name" />
-            <TableColumn fx:id="statusColumn" prefWidth="100.0" text="status" />
+            <TableColumn fx:id="idColumn" prefWidth="195.0" text="ID" />
+          <TableColumn fx:id="firstNameColumn" prefWidth="195.0" text="First name" />
+          <TableColumn fx:id="LastNameColumn" prefWidth="195.0" text="Last name" />
+            <TableColumn fx:id="statusColumn" prefWidth="195.0" text="status" />
         </columns>
       </TableView>
-      <Button fx:id="updateButton" layoutX="285.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#updateDataBase" text="Update">
+      <Button fx:id="updateButton" layoutX="509.0" layoutY="628.0" mnemonicParsing="false" onMouseClicked="#updateDataBase" prefHeight="44.0" prefWidth="129.0" text="Update">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="revertChangesButton" layoutX="75.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#resetChanges" text="revert changes">
+      <Button fx:id="revertChangesButton" layoutX="301.0" layoutY="628.0" mnemonicParsing="false" onMouseClicked="#resetChanges" prefHeight="44.0" prefWidth="147.0" text="revert changes">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font>
       </Button>
+      <Text layoutX="342.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Managment" underline="true">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

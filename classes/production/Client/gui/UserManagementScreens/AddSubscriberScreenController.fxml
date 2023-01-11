@@ -7,15 +7,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserManagementScreens.AddSubscriberScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserManagementScreens.AddSubscriberScreenController">
    <children>
-      <Button fx:id="backButton" layoutX="10.0" layoutY="773.0" mnemonicParsing="false" onMouseClicked="#goBack" text="back">
+      <Button fx:id="backButton" layoutX="14.0" layoutY="792.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
          <font>
-            <Font size="18.0" />
+            <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="exitButton" layoutX="877.0" layoutY="11.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <TableView fx:id="customerTable" layoutX="43.0" layoutY="90.0" prefHeight="589.0" prefWidth="832.0">
+      <Button fx:id="exitButton" layoutX="906.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <TableView fx:id="customerTable" layoutX="67.0" layoutY="131.0" prefHeight="589.0" prefWidth="832.0">
         <columns>
           <TableColumn fx:id="idCol" prefWidth="90.0" text="ID" />
           <TableColumn fx:id="fnameCol" prefWidth="90.0" text="first name" />
@@ -27,12 +27,12 @@
             <TableColumn fx:id="subNumberCol" prefWidth="112.0" text="subscriber number" />
         </columns>
       </TableView>
-      <Button fx:id="updateUserButton" layoutX="433.0" layoutY="715.0" mnemonicParsing="false" onMouseClicked="#updateCustomerInDatabase" text="Update">
+      <Button fx:id="updateUserButton" layoutX="411.0" layoutY="729.0" mnemonicParsing="false" onMouseClicked="#updateCustomerInDatabase" prefHeight="44.0" prefWidth="129.0" text="Update">
          <font>
-            <Font size="15.0" />
+            <Font size="18.0" />
          </font>
       </Button>
-      <Text layoutX="358.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add subscriber" underline="true">
+      <Text layoutX="374.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add subscriber" underline="true">
          <font>
             <Font size="33.0" />
          </font>
