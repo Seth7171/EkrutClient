@@ -14,6 +14,7 @@ import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -22,6 +23,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 /** Description of Orders Report Controller.
  * @author Ravid Goldin
@@ -279,6 +282,16 @@ public class OrdersReportScreenController extends ScreenController implements In
 			wrostLocationLabel.setText("Location: " + strLocationOfWrost);
 			bestArea.setText("The area with the MOST orders is: " + strBestArea);// show the Best area
 			worstArea.setText("The area with the LOWEST orders is: " + strWorstArea);// show the worst area
+		}
+		for(XYChart.Series<String, Integer> series: OrdersChart.getData()) {//display the value on each bar
+		    for (XYChart.Data<String, Integer> data : series.getData()) {
+		        Node node = data.getNode();
+		            Pane pane = (Pane) node;
+		            Label label = new Label(Integer.toString((int) data.getYValue()));
+		            label.setTextFill(Color.WHITE);
+		            label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
+		            pane.getChildren().add(label);
+		    }
 		}
 	}
 }		
