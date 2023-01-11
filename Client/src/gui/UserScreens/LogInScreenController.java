@@ -109,12 +109,14 @@ public class LogInScreenController extends ScreenController implements Initializ
         credentials.add("123");
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
-            errorMessage.setText(MessageHandler.getMessage());
+        	alertHandler(MessageHandler.getMessage(), true);
+            //errorMessage.setText(MessageHandler.getMessage());
             MessageHandler.setMessage(null);
             return;
         }
         if(ChatClient.isOL && UserController.getCurrentuser().getDepartment().equals("customer")) {
-			errorMessage.setText("Unauthorized account");
+        	alertHandler("Unauthorized account", true);
+			//errorMessage.setText("Unauthorized account");
 			 ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
 			 return;
 		}	
@@ -149,7 +151,8 @@ public class LogInScreenController extends ScreenController implements Initializ
         //ClientUI.chat.accept(new Message("717717717", MessageFromClient.REQUEST_IMPORT_USERS)); // TODO: this should be DELETED
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
         if(!UserController.isLogged()){
-            errorMessage.setText(MessageHandler.getMessage());
+        	alertHandler(MessageHandler.getMessage(), true);
+            //errorMessage.setText(MessageHandler.getMessage());
             MessageHandler.setMessage(null);
             return;
         }
@@ -219,7 +222,8 @@ public class LogInScreenController extends ScreenController implements Initializ
                     // TODO: maybe add UnknownScreenException later??
             }
         }catch (IOException exception){
-            errorMessage.setText("Unknown login error");
+        	alertHandler("Unknown login error", true);
+            //errorMessage.setText("Unknown login error");
             exception.printStackTrace();
         }
         return root;

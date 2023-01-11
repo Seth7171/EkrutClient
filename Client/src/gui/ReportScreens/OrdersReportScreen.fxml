@@ -11,10 +11,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="957.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.OrdersReportScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReportScreens.OrdersReportScreenController">
    <children>
-      <Pane fx:id="asd" layoutX="4.0" layoutY="116.0" prefHeight="442.0" prefWidth="392.0" styleClass="background-blank" />
-      <BarChart fx:id="OrdersChart" barGap="0" categoryGap="0" layoutX="435.0" layoutY="101.0" prefHeight="442.0" prefWidth="508.0">
+      <Pane fx:id="asd" layoutX="39.0" layoutY="218.0" prefHeight="442.0" prefWidth="365.0" styleClass="background-blank" />
+      <BarChart fx:id="OrdersChart" barGap="0" categoryGap="0" layoutX="428.0" layoutY="224.0" prefHeight="442.0" prefWidth="508.0">
         <xAxis>
           <CategoryAxis label="Machine ID" side="BOTTOM" fx:id="x" />
         </xAxis>
@@ -26,71 +26,77 @@
             </NumberAxis>
         </yAxis>
       </BarChart>
-      <Label layoutX="416.0" layoutY="37.0" text="Orders Report" underline="true">
+      <Label layoutX="415.0" layoutY="129.0" text="Orders Report" underline="true">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Button layoutX="14.0" layoutY="792.0" mnemonicParsing="false" onMouseClicked="#ClickBackButton" prefHeight="44.0" prefWidth="129.0" text="Back">
          <font>
             <Font size="20.0" />
-         </font>
-      </Label>
-      <Button layoutX="10.0" layoutY="567.0" mnemonicParsing="false" onMouseClicked="#ClickBackButton" text="Back" />
-      <Button layoutX="917.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#ClickLogOutButton" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <Label layoutX="116.0" layoutY="124.0" prefHeight="30.0" prefWidth="164.0" text="Best Seller Machine:" underline="true">
+         </font></Button>
+      <Button layoutX="906.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#ClickLogOutButton" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <Label layoutX="151.0" layoutY="226.0" prefHeight="30.0" prefWidth="164.0" text="Best Seller Machine:" underline="true">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="totalOrdersBestLabel" layoutX="116.0" layoutY="243.0" prefHeight="30.0" prefWidth="213.0" text="Total orders: $num">
+      <Label fx:id="totalOrdersBestLabel" layoutX="151.0" layoutY="345.0" prefHeight="30.0" prefWidth="213.0" text="Total orders: $num">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="21.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="56.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@like.png" />
          </image>
       </ImageView>
-      <Label fx:id="bestIDLabel" layoutX="116.0" layoutY="166.0" prefHeight="30.0" prefWidth="185.0" text="ID: $id">
+      <Label fx:id="bestIDLabel" layoutX="151.0" layoutY="268.0" prefHeight="30.0" prefWidth="185.0" text="ID: $id">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="bestLocationLabel" layoutX="116.0" layoutY="205.0" prefHeight="30.0" prefWidth="213.0" text="Location: $location">
+      <Label fx:id="bestLocationLabel" layoutX="151.0" layoutY="307.0" prefHeight="30.0" prefWidth="213.0" text="Location: $location">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="116.0" layoutY="301.0" prefHeight="30.0" prefWidth="185.0" text="Worst Seller Machine:" underline="true">
+      <Label layoutX="151.0" layoutY="403.0" prefHeight="30.0" prefWidth="185.0" text="Worst Seller Machine:" underline="true">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="totalOrdersWrostLabel" layoutX="116.0" layoutY="420.0" prefHeight="30.0" prefWidth="213.0" text="Total orders: $num">
+      <Label fx:id="totalOrdersWrostLabel" layoutX="151.0" layoutY="522.0" prefHeight="30.0" prefWidth="213.0" text="Total orders: $num">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="21.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="56.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@dislike.png" />
          </image>
       </ImageView>
-      <Label fx:id="worstIDLabel" layoutX="116.0" layoutY="343.0" prefHeight="30.0" prefWidth="185.0" text="ID: $id">
+      <Label fx:id="worstIDLabel" layoutX="151.0" layoutY="445.0" prefHeight="30.0" prefWidth="185.0" text="ID: $id">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="wrostLocationLabel" layoutX="116.0" layoutY="382.0" prefHeight="30.0" prefWidth="213.0" text="Location: $location">
+      <Label fx:id="wrostLocationLabel" layoutX="151.0" layoutY="484.0" prefHeight="30.0" prefWidth="213.0" text="Location: $location">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="DateChooseLabel" layoutX="41.0" layoutY="533.0" prefHeight="27.0" prefWidth="225.0" text="Date: $Month , $Year" />
-      <ImageView fitHeight="102.0" fitWidth="92.0" layoutX="302.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <Label fx:id="DateChooseLabel" layoutX="95.0" layoutY="635.0" prefHeight="27.0" prefWidth="225.0" text="Date: $Month , $Year">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <ImageView fitHeight="102.0" fitWidth="92.0" layoutX="301.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Histogram_report2.png" />
          </image>
       </ImageView>
-      <Label fx:id="bestArea" layoutX="41.0" layoutY="464.0" prefHeight="30.0" prefWidth="365.0" text="The area with the MOST orders is: $best_area" underline="true" />
-      <Label fx:id="worstArea" layoutX="40.0" layoutY="485.0" prefHeight="30.0" prefWidth="365.0" text="The area with the LOWEST orders is: $worst_area" underline="true" />
-      <Label fx:id="valueLabel" layoutX="675.0" layoutY="93.0" />
+      <Label fx:id="bestArea" layoutX="76.0" layoutY="566.0" prefHeight="30.0" prefWidth="365.0" text="The area with the MOST orders is: $best_area" underline="true" />
+      <Label fx:id="worstArea" layoutX="75.0" layoutY="587.0" prefHeight="30.0" prefWidth="365.0" text="The area with the LOWEST orders is: $worst_area" underline="true" />
+      <Label fx:id="valueLabel" layoutX="710.0" layoutY="195.0" />
    </children>
 </AnchorPane>

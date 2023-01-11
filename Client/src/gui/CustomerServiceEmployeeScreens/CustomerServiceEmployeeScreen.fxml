@@ -9,30 +9,30 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="661.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CustomerServiceEmployeeScreens.CustomerServiceEmployeeScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CustomerServiceEmployeeScreens.CustomerServiceEmployeeScreenController">
    <children>
-      <Button fx:id="exitButton" layoutX="619.0" layoutY="11.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <Text fx:id="welcomeText" layoutX="114.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome back $name" textAlignment="CENTER" underline="true" wrappingWidth="405.658203125">
+      <Button fx:id="exitButton" layoutX="656.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <Text fx:id="welcomeText" layoutX="203.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome back $name" textAlignment="CENTER" underline="true" wrappingWidth="252.658203125">
          <font>
-            <Font size="20.0" />
+            <Font size="24.0" />
          </font>
       </Text>
-      <Button fx:id="addNewUserButton" layoutX="240.0" layoutY="164.0" mnemonicParsing="false" onMouseClicked="#openAddUserScreen" prefHeight="31.0" prefWidth="140.0" text="Add customer">
+      <Button fx:id="addNewUserButton" layoutX="281.0" layoutY="239.0" mnemonicParsing="false" onMouseClicked="#openAddUserScreen" prefHeight="31.0" prefWidth="140.0" text="Add customer">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="backButton" layoutX="12.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#logOut" text="log out">
+      <Button fx:id="backButton" layoutX="14.0" layoutY="656.0" mnemonicParsing="false" onMouseClicked="#logOut" text="log out">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="addSubscriberButton" layoutX="239.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#openAddSubscriberScreen" prefHeight="31.0" prefWidth="140.0" text="Add subscriber">
+      <Button fx:id="addSubscriberButton" layoutX="280.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#openAddSubscriberScreen" prefHeight="31.0" prefWidth="140.0" text="Add subscriber">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <SplitPane disable="true" dividerPositions="0.4180790960451977" layoutX="471.0" layoutY="159.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="175.0" styleClass="user-info">
+      <SplitPane disable="true" dividerPositions="0.4180790960451977" layoutX="511.0" layoutY="262.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="175.0" styleClass="user-info">
          <items>
             <AnchorPane fx:id="anchor1" minHeight="0.0" minWidth="0.0" prefHeight="73.0" prefWidth="171.0">
                <children>
@@ -77,7 +77,7 @@
             </AnchorPane>
          </items>
       </SplitPane>
-      <Button fx:id="importButton" layoutX="240.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#importUsersFromExternalSource" prefHeight="56.0" prefWidth="140.0" text="Import users from external system" wrapText="true">
+      <Button fx:id="importButton" layoutX="281.0" layoutY="405.0" mnemonicParsing="false" onMouseClicked="#importUsersFromExternalSource" prefHeight="56.0" prefWidth="140.0" text="Import users from external system" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>

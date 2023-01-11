@@ -8,50 +8,50 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.PostPaymentController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.PostPaymentController">
    <children>
       <Pane fx:id="asd" layoutX="98.0" layoutY="148.0" prefHeight="0.0" prefWidth="0.0" styleClass="background-blank" />
-      <Button fx:id="exitButton" layoutX="878.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">
+      <Button fx:id="exitButton" layoutX="906.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <ImageView fitHeight="75.0" fitWidth="68.0" layoutX="283.0" layoutY="397.0" pickOnBounds="true">
+      <ImageView fitHeight="75.0" fitWidth="68.0" layoutX="289.0" layoutY="399.0" pickOnBounds="true">
          <image>
             <Image url="@Receipt.png" />
          </image>
       </ImageView>
-      <Text layoutX="356.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Number :">
+      <Text layoutX="362.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Number :">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <Text fx:id="orderNum" layoutX="498.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="######">
+      <Text fx:id="orderNum" layoutX="504.0" layoutY="459.0" strokeType="OUTSIDE" strokeWidth="0.0" text="######">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Text>
-      <Label fx:id="chooseOrderType" alignment="CENTER" contentDisplay="CENTER" layoutX="335.0" layoutY="324.0" prefHeight="33.0" prefWidth="393.0" text="Payment completed" textAlignment="CENTER">
+      <Label fx:id="chooseOrderType" alignment="CENTER" contentDisplay="CENTER" layoutX="341.0" layoutY="326.0" prefHeight="33.0" prefWidth="393.0" text="Payment completed" textAlignment="CENTER">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Text layoutX="272.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THANK YOU FOR YOUR PURCHASE!">
+      <Text layoutX="278.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THANK YOU FOR YOUR PURCHASE!">
          <font>
             <Font size="30.0" />
          </font>
       </Text>
-      <ImageView fitHeight="142.0" fitWidth="141.0" layoutX="440.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+      <ImageView fitHeight="142.0" fitWidth="141.0" layoutX="446.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
          <image>
             <Image url="@GreenCheckMark.png" />
          </image>
       </ImageView>
-      <Button fx:id="backButton" layoutX="407.0" layoutY="564.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="63.0" prefWidth="230.0" text="Back to menu screen">
+      <Button fx:id="backButton" layoutX="413.0" layoutY="566.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="63.0" prefWidth="230.0" text="Back to menu screen">
          <font>
             <Font size="21.0" />
          </font>
       </Button>
-      <Text fx:id="dynamicTxt" layoutX="282.0" layoutY="505.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please write down you Order Number, You can insert it in Ekrut machine number :" wrappingWidth="500.0">
+      <Text fx:id="dynamicTxt" layoutX="288.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please write down you Order Number, You can insert it in Ekrut machine number :" wrappingWidth="500.0">
          <font>
             <Font size="19.0" />
          </font>

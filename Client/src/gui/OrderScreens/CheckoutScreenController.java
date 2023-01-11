@@ -66,7 +66,7 @@ public class CheckoutScreenController extends ScreenController implements Initia
       // Add a listener to the onMouseClicked event of each Spinner in the ListView items 
       // to update the total amount when the spinner is clicked
       for (Object item : myOrder.getItems()) {
-          Spinner spinner = ((Spinner<Integer>)(((HBox) item).getChildren().get(5)));
+          Spinner spinner = ((Spinner<Integer>)(((HBox) item).getChildren().get(4)));
           spinner.setOnMouseClicked(event -> {
             // update the total amount when the spinner is clicked
             totalAmount();
@@ -153,7 +153,7 @@ public class CheckoutScreenController extends ScreenController implements Initia
         		String TotalPriceDiss = totalPriceDiss.getText();
         		TotalPriceDiss = TotalPriceDiss.replace('\u20AA', '\0');
        		    totalprice = Float.parseFloat(TotalPriceDiss);
-       		    totalPriceDiss.setText(String.format("%.2f",(totalprice)) + "\u20AA" + "NEW SUBSCRIBER DISCOUNT!");
+       		    totalPriceDiss.setText(String.format("%.2f",(totalprice)) + "\u20AA" + " FIRST BUY \nSUBSCRIBER DISCOUNT!");
     		}
     	}
     }

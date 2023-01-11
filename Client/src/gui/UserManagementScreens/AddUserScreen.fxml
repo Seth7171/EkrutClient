@@ -6,91 +6,92 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="918.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserManagementScreens.AddUserScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserManagementScreens.AddUserScreenController">
    <children>
-      <Text layoutX="389.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add user" underline="true">
+      <Pane layoutX="83.0" layoutY="194.0" prefHeight="408.0" prefWidth="785.0" styleClass="background-blank" />
+      <Text layoutX="390.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add user" underline="true">
          <font>
             <Font size="35.0" />
          </font>
       </Text>
-      <TextField fx:id="userNameField" layoutX="196.0" layoutY="212.0" promptText="username">
+      <TextField fx:id="userNameField" layoutX="196.0" layoutY="233.0" promptText="username" styleClass="background-blank">
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <TextField fx:id="passwordField" layoutX="195.0" layoutY="295.0" promptText="password">
+      <TextField fx:id="passwordField" layoutX="195.0" layoutY="316.0" promptText="password" styleClass="background-blank">
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <TextField fx:id="firstNameField" layoutX="195.0" layoutY="381.0" promptText="first name">
+      <TextField fx:id="firstNameField" layoutX="195.0" layoutY="402.0" promptText="first name" styleClass="background-blank">
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <TextField fx:id="lastNameField" layoutX="195.0" layoutY="471.0" promptText="last name">
+      <TextField fx:id="lastNameField" layoutX="195.0" layoutY="492.0" promptText="last name" styleClass="background-blank">
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <TextField fx:id="idField" layoutX="639.0" layoutY="212.0" promptText="id number">
+      <TextField fx:id="idField" layoutX="639.0" layoutY="233.0" promptText="id number" styleClass="background-blank">
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <TextField fx:id="phoneNumberField" layoutX="641.0" layoutY="295.0" promptText="phone number">
+      <TextField fx:id="phoneNumberField" layoutX="641.0" layoutY="316.0" promptText="phone number" styleClass="background-blank">
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <TextField fx:id="emailAddressField" layoutX="640.0" layoutY="381.0" promptText="email address">
+      <TextField fx:id="emailAddressField" layoutX="640.0" layoutY="402.0" promptText="email address" styleClass="background-blank">
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <Button layoutX="391.0" layoutY="602.0" mnemonicParsing="false" onMouseClicked="#addUser" text="Add customer">
+      <Button layoutX="392.0" layoutY="614.0" mnemonicParsing="false" onMouseClicked="#addUser" text="Add customer">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Text layoutX="114.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
+      <Text layoutX="114.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
          <font>
             <Font size="15.0" />
          </font></Text>
-      <Text layoutX="113.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+      <Text layoutX="113.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
          <font>
             <Font size="15.0" />
          </font></Text>
-      <Text layoutX="114.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name:">
+      <Text layoutX="114.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name:">
          <font>
             <Font size="15.0" />
          </font></Text>
-      <Text layoutX="113.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name:">
+      <Text layoutX="113.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name:">
          <font>
             <Font size="15.0" />
          </font></Text>
-      <Text layoutX="500.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:">
+      <Text layoutX="500.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:">
          <font>
             <Font size="15.0" />
          </font></Text>
-      <Text layoutX="500.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number:">
+      <Text layoutX="500.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number:">
          <font>
             <Font size="15.0" />
          </font></Text>
-      <Text layoutX="500.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email address:">
+      <Text layoutX="500.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email address:">
          <font>
             <Font size="15.0" />
          </font></Text>
       <Button layoutX="877.0" layoutY="11.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <Button fx:id="goBack" layoutX="10.0" layoutY="772.0" mnemonicParsing="false" onMouseClicked="#goBack" text="back">
+      <Button fx:id="goBack" layoutX="14.0" layoutY="792.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="129.0" text="Back">
          <font>
-            <Font size="18.0" />
+            <Font size="20.0" />
          </font>
       </Button>
-      <Text fx:id="errorMessage" fill="RED" layoutX="85.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="430.0">
+      <Text fx:id="errorMessage" fill="RED" layoutX="85.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="430.0">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="499.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credit card number:">
+      <Text layoutX="499.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credit card number:">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="creditCardField" layoutX="641.0" layoutY="471.0" promptText="credit card">
+      <TextField fx:id="creditCardField" layoutX="641.0" layoutY="492.0" promptText="credit card" styleClass="background-blank">
          <font>
             <Font size="15.0" />
          </font>
