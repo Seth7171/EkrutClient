@@ -172,8 +172,8 @@ public class ProductCatalogScreenController extends ScreenController implements 
         drinksScroll.setFitToWidth(true);
 
         ImageView viewportGradient = new ImageView("/gui/OrderScreens/viewport-gradient.png");
-        viewportGradient.setLayoutX(-2);
-        viewportGradient.setLayoutY(633);
+        viewportGradient.setLayoutX(0);
+        viewportGradient.setLayoutY(616);
 
         ImageView cartOverlay = new ImageView("/gui/OrderScreens/cart-overlay.png");
         cartOverlay.setLayoutX(47);

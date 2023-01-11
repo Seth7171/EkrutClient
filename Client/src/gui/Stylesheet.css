@@ -16,8 +16,6 @@
 }
 
 
-
-
 #backmycart{
 	-fx-background-color: linear-gradient(to bottom, rgba(243, 243, 243, 0.77), rgba(224, 224, 224, 0.77));
 	-fx-background-radius: 13 13 0 0;
@@ -279,25 +277,28 @@
 	-fx-padding: 5;
 }
 
-myCart .list-cell{
-	-fx-alignment: center;
-	-fx-font-size: 14pt;
+#myCart .list-cell:empty{
+	-fx-opacity: 0;
+}
+#myCart .list-cell:not(:empty){
+	-fx-opacity: 100;
 }
 
 #myCart .list-cell:odd {
-	-fx-background-color: rgba(255, 228, 237, 0.66);
+	-fx-background-color: rgba(255, 228, 237, 0.71);
 	-fx-alignment: center;
+	-fx-text-alignment: center;
 	-fx-text-fill: black;
 }
 
 #myCart .list-cell:even {
-	-fx-background-color: rgba(236, 230, 225, 0.46);
+	-fx-background-color: rgba(236, 230, 225, 0.6);
 	-fx-alignment: center;
 	-fx-text-fill: black;
 }
 
 #myCart .list-cell:hover {
-	-fx-background-color: rgba(176, 255, 244, 0.52);
+	-fx-background-color: rgba(213, 255, 247, 0.75);
 	-fx-text-fill: white;
 }
 
