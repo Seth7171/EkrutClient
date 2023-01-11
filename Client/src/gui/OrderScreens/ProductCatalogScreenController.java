@@ -26,9 +26,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -152,15 +154,12 @@ public class ProductCatalogScreenController extends ScreenController implements 
         tabPane.setTabMaxWidth(220);
         // Iterate through the list of products received from the warehouse
         for (Product product : (ArrayList<Product>)MessageHandler.getData()) {
-            // Only add products that are in stock (amount != 0) to the UI
-            if(product.getAmount() != 0 ) {
-                // Add products of type "SNACK" to the snacks pane
-                if(product.getType().equals("SNACK"))
-                    snacksPane.getChildren().add(createProductTile(product));
-                // Add products of other types to the drinks pane
-                else
-                    drinksPane.getChildren().add(createProductTile(product));
-            }
+            // Add products of type "SNACK" to the snacks pane
+            if(product.getType().equals("SNACK"))
+                snacksPane.getChildren().add(createProductTile(product));
+            // Add products of other types to the drinks pane
+            else
+                drinksPane.getChildren().add(createProductTile(product));
         }
         snacksPane.setHgap(25);
         snacksPane.setVgap(15);
@@ -191,7 +190,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     }
 
     /**
-     * Creates a tile for a product that displays the product image, name, ID, price, 
+     * Creates a tile for a product that displays the product image, name, ID, price,
      * and options to add the product to the cart or view its details.
      *
      * @param product the product to create a tile for
@@ -200,7 +199,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
     private Node createProductTile(Product product) {
         // Create a horizontal box and a vertical box
         HBox hBox = new HBox();
-        VBox vBox = new VBox();
+        VBox vBox = new VBox();     
 
         // Create an input stream from the product image data
         InputStream inputStream = new ByteArrayInputStream(product.getFile());
@@ -250,6 +249,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
 
         // Create a spinner to select the quantity of the product to add to the cart
         Spinner<Integer> SpinnerQuantity = new Spinner<>(0,product.getAmount(),0);
+        
 
         // Check if the product is already in the cart
         HBox hb = (HBox)(findHBoxOfproductID(product.getProductId()));
@@ -282,15 +282,31 @@ public class ProductCatalogScreenController extends ScreenController implements 
             newPrice.setWrapText(true);
             newPrice.setAlignment(Pos.CENTER_RIGHT);
         }
+        StackPane imagecontainer = new StackPane();
         HBox hBox1 = new HBox();
         hBox1.getChildren().addAll(detBtn, idLable);
         hBox1.setAlignment(Pos.CENTER_RIGHT);
         vBox.getChildren().addAll(nameLabel, hBox1, priceLabel, newPrice, SpinnerQuantity, addBtn);
-        hBox.getChildren().addAll(imageview, vBox);
+        hBox.getChildren().addAll(imagecontainer, vBox);
         vBox.setSpacing(15);
         // Set the ID of the vertical box to the product ID
         vBox.setId(String.valueOf(product.getProductId()));
         imageview.setTranslateY(50);
+        
+        
+        if(product.getAmount() == 0 ) {
+            ImageView imagesoldout = new ImageView(getClass().getResource("/gui/OrderScreens/soldout.png").toExternalForm());
+            imagesoldout.setFitHeight(100.0);
+            imagesoldout.setFitWidth(100.0);
+            imagesoldout.setTranslateY(50);
+            imagecontainer.getChildren().addAll(imageview, imagesoldout);
+        }
+        else {
+        	imagecontainer.getChildren().add(imageview);
+        }
+        imagecontainer.setAlignment(Pos.TOP_CENTER);
+
+
         hBox.setPadding(new Insets(0, 5, 0, 5));
         vBox.setPadding(new Insets(0, 5, 30, 5));
         vBox.setSpacing(5);
@@ -312,7 +328,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
             }
         });
         hBox.setStyle("-fx-border-color: rgba(65,65,65,0.63); -fx-border-width: 2 2 2 2; -fx-border-style: solid; -fx-border-radius: 13; -fx-background-color: rgba(255,255,255,0.84); -fx-background-radius: 13");
-
         return hBox;
     }
    
