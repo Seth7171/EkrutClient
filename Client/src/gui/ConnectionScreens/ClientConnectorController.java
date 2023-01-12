@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ClientConnectorController extends ScreenController {
-	private String temp="";
 	private boolean choosen;
 	private boolean isEK;
 	private boolean isConnected;
@@ -65,7 +64,6 @@ public class ClientConnectorController extends ScreenController {
 		}
 		warningEKOL.setVisible(false);
 		String ip;
-		FXMLLoader loader = new FXMLLoader();
 		ip=getip();
 		if(ip.trim().isEmpty()) {
 			System.out.println("You Must enter an ip number");
@@ -98,7 +96,12 @@ public class ClientConnectorController extends ScreenController {
 		if (isEK) {
 			ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_MACHINE_IDS));
 	        ArrayList<String> machineIDs = new ArrayList<>();
-	        machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
+	        Object data = MessageHandler.getData();
+	        if (!(data instanceof ArrayList<?>)) {
+	            alertHandler("There Are No EK machinces", true);
+	            return;
+	        }
+	        machineIDs.addAll((ArrayList<String>) data);
 	        machinesID.getItems().clear();
 	        machinesID.getItems().addAll(machineIDs);
 	        btnOL.setVisible(false);

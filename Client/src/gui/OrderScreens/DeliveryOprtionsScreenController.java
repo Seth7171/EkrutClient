@@ -99,12 +99,22 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
 	private void showMachineLocationAndMachineID(){
         ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_ALL_MACHINE_LOCATIONS));
         ArrayList<String> Locations = new ArrayList<>();
-        Locations.addAll((ArrayList<String>) MessageHandler.getData());
+        Object data = MessageHandler.getData();
+        if (!(data instanceof ArrayList<?>)) {
+            alertHandler("There Are No EK machinces", true);
+            return;
+        }
+        Locations.addAll((ArrayList<String>) data);
         location.getItems().addAll(Locations);//add all Locations to Location comboBox
         location.setOnAction(event -> {
             ClientUI.chat.accept(new Message(location.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
             ArrayList<String> machineIDs = new ArrayList<>();
-            machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
+            Object data1 = MessageHandler.getData();
+            if (!(data1 instanceof ArrayList<?>)) {
+                alertHandler("There Are No EK machinces", true);
+                return;
+            }
+            machineIDs.addAll((ArrayList<String>) data1);
             machineID.getItems().clear();
             machineID.getItems().addAll(machineIDs);
             machineID.setDisable(false);
@@ -158,7 +168,6 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
 
                 default:
                     System.out.println("Unknown!");
-                    // TODO: maybe add UnknownScreenException later??
             }
         } catch (IOException e) {
             e.printStackTrace();
