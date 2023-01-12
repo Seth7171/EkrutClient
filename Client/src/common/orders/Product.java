@@ -1,7 +1,6 @@
 package common.orders;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 /**
  * @author Lior Jigalo, Nitsan Maman
