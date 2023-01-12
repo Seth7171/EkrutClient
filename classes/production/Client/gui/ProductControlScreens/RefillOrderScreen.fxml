@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProductControlScreens.RefillOrderScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProductControlScreens.RefillOrderScreenController">
    <children>
       <Button fx:id="goBackButton" layoutX="14.0" layoutY="792.0" mnemonicParsing="false" onMouseClicked="#backToMainScreen" prefHeight="44.0" prefWidth="129.0" text="back">
          <font>
@@ -17,7 +17,7 @@
          </font>
       </Button>
       <Button fx:id="exitButton" layoutX="906.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <Text layoutX="435.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assign Refill Orders" underline="true">
+      <Text fx:id="refilOrderTXT" layoutX="373.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assign Refill Orders" underline="true">
          <font>
             <Font size="25.0" />
          </font>
@@ -27,18 +27,18 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <TableView fx:id="requestTable" layoutX="5.0" layoutY="167.0" prefHeight="425.0" prefWidth="940.0">
+      <TableView fx:id="requestTable" layoutX="67.0" layoutY="167.0" prefHeight="425.0" prefWidth="818.0">
         <columns>
           <TableColumn fx:id="orderidColumn" prefWidth="134.0" text="Order id" />
           <TableColumn fx:id="productidColumn" prefWidth="134.0" text="Product id" />
             <TableColumn fx:id="machineidColumn" prefWidth="134.0" text="Machine id" />
             <TableColumn fx:id="creationDateColumn" prefWidth="134.0" text="Creation date" />
-            <TableColumn fx:id="amountAtRequestColumn" prefWidth="134.0" text="Amount at request" />
-            <TableColumn fx:id="assignedEmployeeColumn" prefWidth="134.0" text="Employee ID" />
-            <TableColumn fx:id="newAmountColumn" prefWidth="134.0" text="New amount" />
+            <TableColumn fx:id="amountAtRequestColumn" prefWidth="120.0" text="Amount at request" />
+            <TableColumn fx:id="assignedEmployeeColumn" prefWidth="155.0" text="Assigned Employee" />
+            <TableColumn fx:id="newAmountColumn" prefWidth="155.0" text="New amount" />
         </columns>
       </TableView>
-      <ImageView fitHeight="79.0" fitWidth="86.0" layoutX="346.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="79.0" fitWidth="70.0" layoutX="295.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@refill.png" />
          </image>

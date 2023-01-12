@@ -6,6 +6,7 @@ import application.user.UserController;
 import common.RefillOrder;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import common.connectivity.User;
 import gui.ScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,13 +14,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.util.converter.IntegerStringConverter;
 import java.io.IOException;
 import java.net.URL;
@@ -54,6 +53,8 @@ public class RefillOrderScreenController extends ScreenController implements Ini
 
     @FXML
     private TableColumn<RefillOrder, String> productidColumn;
+    @FXML
+    private Text refilOrderTXT;
 
     @FXML
     private TableView<RefillOrder> requestTable;
@@ -153,20 +154,7 @@ public class RefillOrderScreenController extends ScreenController implements Ini
      */
     private void initManagerCol(){
         // assigned employee column
-        assignedEmployeeColumn.setCellValueFactory  (new PropertyValueFactory<>("assignedEmployee"));
-        assignedEmployeeColumn.setCellFactory        (TextFieldTableCell.forTableColumn());
-        assignedEmployeeColumn.setOnEditCommit       (event -> {
-            // check for valid email address
-            Pattern pattern = Pattern.compile("^[0-9]{9}$");
-            Matcher matcher = pattern.matcher(event.getNewValue());
-            if (!matcher.matches()){
-                super.alertHandler("ID must contain only numbers!", true);
-                event.getTableView().getItems().get(event.getTablePosition().getRow()).setAssignedEmployee(event.getOldValue());
-                return;
-            }
-            event.getTableView().getItems().get(event.getTablePosition().getRow()).setAssignedEmployee(event.getNewValue());
-            checkAndReplace(event.getTableView().getItems().get(event.getTablePosition().getRow()));
-        });
+        assignedEmployeeColumn.setCellValueFactory  (new PropertyValueFactory<>("assignedEmployeeBox"));
         assignedEmployeeColumn.setVisible(true);
     }
 
@@ -176,13 +164,33 @@ public class RefillOrderScreenController extends ScreenController implements Ini
      */
     private void loadData(){
         requestList = FXCollections.observableArrayList();
+
+        // add refill orders to list
         ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_REFILL_ORDERS));
         ArrayList<RefillOrder> list = new ArrayList<>();
         list = (ArrayList<RefillOrder>) MessageHandler.getData();
+
+        // get employees list
+        ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_OPERATIONS_EMPLOYEE_DATA));
+        ArrayList<User> operationsList = new ArrayList<>();
+        operationsList = (ArrayList<User>) MessageHandler.getData();
+
+        // insert employees to choice boxes
+        for (RefillOrder refOrder : list){
+            ChoiceBox<String> choiceB = new ChoiceBox<>();
+            choiceB.getItems().add("not assigned");
+            choiceB.setValue(refOrder.getAssignedEmployee());
+            refOrder.setAssignedEmployeeBox(choiceB);
+            for (User user :operationsList){
+               refOrder.getAssignedEmployeeBox().getItems().add(user.getFirstname() + " " + user.getLastname());
+            }
+        }
+
         switch (UserController.getCurrentuser().getDepartment()){
             case "operations":
+                refilOrderTXT.setText("My refill orders");
                 for (RefillOrder refillOrder : list){
-                    if (refillOrder.getAssignedEmployee().equals(UserController.getCurrentuser().getId())){
+                    if (refillOrder.getAssignedEmployee().equals(UserController.getCurrentuser().getFirstname() + " " + UserController.getCurrentuser().getLastname())){
                         requestList.add(refillOrder);
                     }
                 }
@@ -285,7 +293,7 @@ public class RefillOrderScreenController extends ScreenController implements Ini
      */
     @FXML
     void updateDataBase(MouseEvent event) {
-        if (changesToBeMade.isEmpty()){
+        if (changesToBeMade.isEmpty() && UserController.getCurrentuser().getDepartment().equals("operations")){
             super.alertHandler("You have no changes to upload", false);
             return;
         }
@@ -295,7 +303,13 @@ public class RefillOrderScreenController extends ScreenController implements Ini
             case"area_manager_south":
             case"area_manager_uae":
             case "ceo":
-                for (RefillOrder refOrd : changesToBeMade) {
+                ArrayList<RefillOrder> tempList = new ArrayList<>();
+                for (RefillOrder temp :requestList){
+                    RefillOrder copy = temp;
+                    copy.setAssignedEmployee(copy.getAssignedEmployeeBox().getValue());
+                    tempList.add(copy);
+                }
+                for (RefillOrder refOrd : tempList) {
                     MessageHandler.setMessage(null);
                     ClientUI.chat.accept(new Message(refOrd, MessageFromClient.REQUEST_ASSIGN_EMPLOYEE_TO_REFILL_ORDER));
 
