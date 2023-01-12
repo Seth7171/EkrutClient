@@ -1,7 +1,6 @@
 package gui.UserScreens;
+
 import application.client.ChatClient;
-//************************************
-//TODO CHECK WHY ENTERING LIOR 1 THAN LIOR 123 NOT WORKING
 import application.client.ClientUI;
 import application.client.MessageHandler;
 import application.user.CustomerController;
@@ -98,7 +97,7 @@ public class LogInScreenController extends ScreenController implements Initializ
         ArrayList<String> credentials = new ArrayList<String>();
         credentials.add("ron");
         credentials.add("123");
-        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
+        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN));
         if(!UserController.isLogged()){
         	alertHandler(MessageHandler.getMessage(), true);
             //errorMessage.setText(MessageHandler.getMessage());
@@ -125,22 +124,8 @@ public class LogInScreenController extends ScreenController implements Initializ
         ArrayList<String> credentials = getUsernameAndPassword();
         if(credentials == null)
             return;
-        Deals deal = new Deals();
-        deal.setDealID("001");
-        deal.setDealName("Night time sale");
-        deal.setDiscount(0.1F);
-        deal.setDescription("Special offer for late night students from 20pm to 5am");
-        deal.setType("ALL");
-        deal.setArea("north");
-        deal.setStatusString("approved");
-        deal.setActive("active");
-
-        ArrayList<String> abc = new ArrayList<>();
-        abc.add("false");
-        abc.add("717717717");
-
-        //ClientUI.chat.accept(new Message("717717717", MessageFromClient.REQUEST_IMPORT_USERS)); // TODO: this should be DELETED
-        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); // TODO: this should be uncommented
+        
+        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); 
         if(!UserController.isLogged()){
         	alertHandler(MessageHandler.getMessage(), true);
             //errorMessage.setText(MessageHandler.getMessage());
@@ -155,7 +140,6 @@ public class LogInScreenController extends ScreenController implements Initializ
     private Parent loadRoot(){
         Parent root = null;
         try {
-            // TODO: expand next screen switch case
             switch (UserController.getCurrentuser().getDepartment()) {
 
             	case "customer":
@@ -176,7 +160,7 @@ public class LogInScreenController extends ScreenController implements Initializ
                     root = FXMLLoader.load(getClass().getResource("/gui/OperationsEmployeeScreens/operationsEmployeeMainScreen.fxml"));
                     break;
                     
-                case "marketing_manager"://TODO: the path is not working..!
+                case "marketing_manager":
                     root = FXMLLoader.load(getClass().getResource("/gui/MarketingManagementScreens/MarketingManagerScreen.fxml"));
                     break;
 
@@ -185,12 +169,6 @@ public class LogInScreenController extends ScreenController implements Initializ
                 case "marketing_employee_uae":
                 	root = FXMLLoader.load(getClass().getResource("/gui/MarketingManagementScreens/MarketingEmployeeScreen.fxml"));
                     break;
-                /*case "area_manager_uae":
-                	root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
-                    break;
-                case "area_manager_north":
-                	root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
-                    break;*/	//NOOBS
 
                 case "area_manager_uae":
                 case "area_manager_north":
@@ -198,11 +176,7 @@ public class LogInScreenController extends ScreenController implements Initializ
                 	root = FXMLLoader.load(getClass().getResource("/gui/AreaManagersScreens/AreaManagerScreen.fxml"));
                     break;
 
-                //TODO: delivery per location
-                // @Lior all delivery employees have the same screen, just the data displayed is being changed accordingly
-                    // @Nitsan ma ata omerrrrrrrrrr liorrrrrrrrrrr leh la server///!!!!!!
-                        // @Lior I will stop this before there will be a huge ktata here. ):<
-
+                    
                 case "delivery_north":
                 case "delivery_south":
                 case "delivery_uae":
@@ -210,7 +184,6 @@ public class LogInScreenController extends ScreenController implements Initializ
                     break;
                 default:
                     System.out.println("Unknown!");
-                    // TODO: maybe add UnknownScreenException later??
             }
         }catch (IOException exception){
         	alertHandler("Unknown login error", true);
