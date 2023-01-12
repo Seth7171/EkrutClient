@@ -2,16 +2,12 @@ package gui.ReportScreens;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.ResourceBundle;
-
 import application.client.ChatClient;
 import application.client.MessageHandler;
 import common.Reports.ClientReport;
-import common.Reports.OrderReport;
 import common.connectivity.User;
 import gui.ScreenController;
 import javafx.fxml.FXML;
@@ -22,8 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Data;
-import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
