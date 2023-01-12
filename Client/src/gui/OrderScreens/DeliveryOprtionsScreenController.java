@@ -198,7 +198,8 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreen(event, root); 
+        //super.switchScreen(event, root); 
+        switchScreenWithTimer(event, root);
     }
     
 }

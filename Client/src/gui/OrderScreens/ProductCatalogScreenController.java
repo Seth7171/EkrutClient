@@ -610,6 +610,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
      */
     @FXML
     void goBack(MouseEvent event) {
+    	ChatClient.delay.stop();
     	// Empty the cart
 		emptyMyCart(event);
 		// Initialize the root node of the new scene to null

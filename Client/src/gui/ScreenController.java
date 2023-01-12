@@ -1,9 +1,12 @@
 package gui;
 
+import application.client.ChatClient;
 import application.client.ClientUI;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import common.orders.Order;
+import common.orders.Product;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
@@ -18,8 +21,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
@@ -109,7 +114,11 @@ public class ScreenController {
     }
     
     // for customers only, this switch-screen will add a timer.
-    public void switchScreenWithTimerCustomersOnly(Event event, Parent root){
+    public void switchScreenWithTimer(Event event, Parent root){
+    	Thread.setDefaultUncaughtExceptionHandler((Thread t, Throwable e) -> {
+            if (e instanceof NumberFormatException){
+            }
+        });
         Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
 
@@ -128,7 +137,6 @@ public class ScreenController {
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
 
-
         FadeTransition fadeTransition = new FadeTransition();
         fadeTransition.setDuration(Duration.millis(300));
         fadeTransition.setNode(root);
@@ -138,10 +146,11 @@ public class ScreenController {
             primaryStage.show();
         });
         
-        // start of timer code
-        PauseTransition delay = new PauseTransition(Duration.seconds(900));
         
-	    delay.setOnFinished( event2 -> {        ClientUI.chat.accept("disconnect");
+        // start of timer code
+        ChatClient.delay = new PauseTransition(Duration.seconds(20));
+        
+        ChatClient.delay.setOnFinished( event2 -> {        ClientUI.chat.accept("disconnect");
             									ArrayList<String> cred = new ArrayList<String>();
             									cred.add(UserController.getCurrentuser().getUsername());
             									ClientUI.chat.accept(new Message(cred, MessageFromClient.REQUEST_LOGOUT));
@@ -151,18 +160,7 @@ public class ScreenController {
             							        } catch (IOException e) {
             							            e.printStackTrace();
             							        }
-            							        Scene scene1 = new Scene(roottwo);
-            							        
-            							        roottwo.setOnMousePressed(event4 -> {
-            							            xoffset = event4.getSceneX();
-            							            yoffset = event4.getSceneY();
-            							        });
-            							        // event handler for when the mouse is pressed AND dragged to move the window
-            							        root.setOnMouseDragged(event4 -> {
-            							        	primaryStage.setX(event4.getScreenX()-xoffset);
-            							        	primaryStage.setY(event4.getScreenY()-yoffset);
-            							        });
-            							        primaryStage.setTitle("Client Editor");
+            							         Scene scene1 = new Scene(roottwo);
 
             							        primaryStage.setScene(scene1);
             							        primaryStage.centerOnScreen();
@@ -172,11 +170,35 @@ public class ScreenController {
             							        } catch (InterruptedException e) {
             							            throw new RuntimeException(e);
             							        }
-            									Platform.exit();
-            							        System.exit(0);} );
-	    delay.play();
+            									try {
+            										roottwo = FXMLLoader.load(getClass().getResource("/gui/UserScreens/LogInScreen.fxml"));
+            									} catch (IOException e) {
+            										throw new RuntimeException(e);
+            									}
+            									scene1 = new Scene(roottwo);
+            							        
+            							        primaryStage.setTitle("Client Editor");
+            							        
+            							        roottwo.setOnMousePressed(event1 -> {
+            							            xoffset = event1.getSceneX();
+            							            yoffset = event1.getSceneY();
+            							        });
+
+            							        // event handler for when the mouse is pressed AND dragged to move the window
+            							        roottwo.setOnMouseDragged(event1 -> {
+            							            primaryStage.setX(event1.getScreenX()-xoffset);
+            							            primaryStage.setY(event1.getScreenY()-yoffset);
+            							        });
+            							        
+            							        primaryStage.setScene(scene1);
+            							        primaryStage.centerOnScreen();
+            							        primaryStage.show();
+            							        ChatClient.cartList = new ArrayList<Product>();
+            									ChatClient.rememberMyCart = new ListView<Object>();
+            									ChatClient.currentOrder = new Order();} );
+        ChatClient.delay.play();
 	    fadeTransition.play();
-	    scene.addEventFilter(InputEvent.ANY, event3 -> delay.playFromStart());
+	    //scene.addEventFilter(InputEvent.ANY, event3 -> delay.playFromStart());
 	    // end of timer code
 
     }
