@@ -14,6 +14,7 @@ import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import common.orders.Order;
 import gui.ScreenController;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -143,11 +144,17 @@ public class DeliveriesScreenController extends ScreenController implements Init
         // Send a request for orders by area to the server
         ClientUI.chat.accept(new Message(areaaofuser,MessageFromClient.REQUEST_ORDERS_BY_AREA)); 
         // Get the data from the server
-        if (MessageHandler.getMessage().contains("Error")) {
-        	alertHandler("You Dont Have Orders To Deliver !", true);
-        	return;
+        Object data = MessageHandler.getData();
+        if (!(data instanceof ArrayList<?>)) {
+        	Platform.runLater(new Runnable() {
+        	    @Override
+        	    public void run() {
+                	alertHandler("You Dont Have Orders To Deliver!", true);
+        	    }
+        	});
+            return;
         }
-        tempDeliveries = (ArrayList<Order>) MessageHandler.getData();
+        tempDeliveries = (ArrayList<Order>) data;
         // Iterate through the temporary list of deliveries
         for (Order order : tempDeliveries) {
         	if (order.getSupplyMethod().equals("delivery")) {

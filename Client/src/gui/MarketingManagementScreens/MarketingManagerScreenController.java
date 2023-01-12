@@ -63,7 +63,6 @@ public class MarketingManagerScreenController extends ScreenController implement
             	 break;
              default:
                  System.out.println("Unknown!");
-                 // TODO: maybe add UnknownScreenException later??
         	 	}
         	 } 
         	  catch (IOException e) {
@@ -96,7 +95,6 @@ public class MarketingManagerScreenController extends ScreenController implement
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		welcomeText.setText("Welcome back, " + capitalLetter(UserController.getCurrentuser().getFirstname()));
         fullNameText.setText(capitalLetter(UserController.getCurrentuser().getFirstname()) +" " + capitalLetter(UserController.getCurrentuser().getLastname()));
         idText.setText("ID: " + UserController.getCurrentuser().getId());

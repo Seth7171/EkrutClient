@@ -11,6 +11,7 @@ import common.Deals;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import gui.ScreenController;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -81,7 +82,7 @@ public class ManagerDealsScreenController extends ScreenController implements In
           	 
            default:
                System.out.println("Unknown!");
-               // TODO: maybe add UnknownScreenException later??
+
         	} 	
       }catch (IOException e) {
             throw new RuntimeException(e);
@@ -95,7 +96,17 @@ public class ManagerDealsScreenController extends ScreenController implements In
     	if (!observablesubs.isEmpty())
     		observablesubs.clear();
     	ClientUI.chat.accept(new Message(null,MessageFromClient.REQUEST_DISCOUNT_LIST )); 
-    	tempDeal = (ArrayList<Deals>) MessageHandler.getData();//getting data from server
+    	Object data = MessageHandler.getData();
+        if (!(data instanceof ArrayList<?>)) {
+        	Platform.runLater(new Runnable() {
+        	    @Override
+        	    public void run() {
+                    alertHandler("There Are No Deals Available!", true);
+        	    }
+        	});
+            return;
+        }
+    	tempDeal = (ArrayList<Deals>) data;//getting data from server
 		// here we insert the data for the table.
     for(Deals d : tempDeal){	
     	Deals dealsData = new Deals();
@@ -155,9 +166,6 @@ public class ManagerDealsScreenController extends ScreenController implements In
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		
-		// TODO Auto-generated method stub
 		tempDeal = new ArrayList<>();
 		//init columns
 		dealNameColumn.setCellValueFactory(new PropertyValueFactory<>("DealName"));

@@ -130,7 +130,6 @@ public class GrabOrderScreenController extends ScreenController implements Initi
 
                 default:
                     System.out.println("Unknown!");
-                    // TODO: maybe add UnknownScreenException later??
             }
         } catch (IOException e) {
             e.printStackTrace();

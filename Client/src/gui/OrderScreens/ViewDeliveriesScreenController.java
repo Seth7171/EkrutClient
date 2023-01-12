@@ -16,6 +16,7 @@ import common.orders.Order;
 import common.orders.Product;
 import gui.ScreenController;
 import gui.DeliveryEmployeeScreens.TableOrder;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -95,7 +96,6 @@ public class ViewDeliveriesScreenController extends ScreenController implements 
      */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		tempDeliveries = new ArrayList<Order>();
 		//init columns
 		customeridColumn.setCellValueFactory(new PropertyValueFactory<>("customerID"));
@@ -153,7 +153,17 @@ public class ViewDeliveriesScreenController extends ScreenController implements 
     	// Send a message to the server requesting the orders by customer ID
     	ClientUI.chat.accept(new Message(userID,MessageFromClient.REQUEST_ORDERS_BY_CUSTOMER_ID)); 
     	// Get the data from the server and store it in the tempDeliveries list
-    	tempDeliveries = (ArrayList<Order>) MessageHandler.getData();//getting data from server
+        Object data = MessageHandler.getData();
+        if (!(data instanceof ArrayList<?>)) {
+        	Platform.runLater(new Runnable() {
+        	    @Override
+        	    public void run() {
+                	alertHandler("You Dont Have Orders On Their Way!", true);
+        	    }
+        	});
+            return;
+        }
+    	tempDeliveries = (ArrayList<Order>) data;//getting data from server
     	// Add orders from tempDeliveries to observableDeliveries
 	    for (Order order : tempDeliveries) {
 	    	if (order.getSupplyMethod().equals("delivery")) {
@@ -170,6 +180,14 @@ public class ViewDeliveriesScreenController extends ScreenController implements 
 	    }
 	    // Set the items of the viewAllOrders table to be the observableDeliveries list
 	    viewAllOrders.setItems(observableDeliveries);
+	    if (observableDeliveries.isEmpty()) {
+	    	Platform.runLater(new Runnable() {
+        	    @Override
+        	    public void run() {
+                	alertHandler("You Dont Have Orders On Their Way!", true);
+        	    }
+        	});
+	    }
     }
    
     /**

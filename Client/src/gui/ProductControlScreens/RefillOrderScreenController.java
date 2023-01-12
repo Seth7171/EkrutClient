@@ -60,9 +60,6 @@ public class RefillOrderScreenController extends ScreenController implements Ini
     @FXML
     private Button updateButton;
 
-    private ArrayList<RefillOrder> refillOrderList;
-    private RefillOrder selectedOrder;
-
     private ArrayList<RefillOrder> changesToBeMade;
     public static ObservableList<RefillOrder> requestList;
 

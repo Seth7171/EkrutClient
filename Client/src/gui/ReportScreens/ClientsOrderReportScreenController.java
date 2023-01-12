@@ -104,8 +104,6 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
      */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		final Text dataText ;
 		int totalOrders=0, totalClients=0, minOrder=9999,biggestOrder=0,topRange=0,tmpi=0,tmpj=9999999,range=0;
 		int columnRange=0,cnt=0, upperBound=0;
 		boolean prime=true;

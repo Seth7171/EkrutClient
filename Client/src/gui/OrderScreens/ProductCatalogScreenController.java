@@ -10,6 +10,7 @@ import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import common.orders.Product;
 import gui.ScreenController;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -144,7 +145,17 @@ public class ProductCatalogScreenController extends ScreenController implements 
         tabPane.setTabMinWidth(220);
         tabPane.setTabMaxWidth(220);
         // Iterate through the list of products received from the warehouse
-        for (Product product : (ArrayList<Product>)MessageHandler.getData()) {
+        Object data = MessageHandler.getData();
+        if (!(data instanceof ArrayList<?>)) {
+        	Platform.runLater(new Runnable() {
+        	    @Override
+        	    public void run() {
+                    alertHandler("There Are No Products In This EK Machince", true);
+        	    }
+        	});
+            return;
+        }
+        for (Product product : (ArrayList<Product>) data) {
             // Add products of type "SNACK" to the snacks pane
             if(product.getType().equals("SNACK"))
                 snacksPane.getChildren().add(createProductTile(product));
@@ -644,7 +655,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
 
                 default:
                     System.out.println("Unknown!");
-                    // TODO: maybe add UnknownScreenException later??
             }
         } 
         // Catch any exceptions that may occur
