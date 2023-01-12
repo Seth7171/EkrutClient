@@ -85,18 +85,18 @@
          </font>
       </Text>
       <ComboBox fx:id="monthCombobox" layoutX="326.0" layoutY="467.0" prefHeight="29.0" prefWidth="92.0" promptText="Month" styleClass="background-blank" />
-      <ComboBox fx:id="yearCombobox" layoutX="427.0" layoutY="467.0" prefHeight="25.0" prefWidth="71.0" promptText="Year" styleClass="background-blank" />
-      <TextField fx:id="cardCVVTextField" layoutX="510.0" layoutY="467.0" prefHeight="25.0" prefWidth="71.0" promptText="000" styleClass="background-blank">
+      <ComboBox fx:id="yearCombobox" layoutX="427.0" layoutY="467.0" prefHeight="25.0" prefWidth="92.0" promptText="Year" styleClass="background-blank" />
+      <TextField fx:id="cardCVVTextField" layoutX="531.0" layoutY="467.0" prefHeight="25.0" prefWidth="71.0" promptText="000" styleClass="background-blank">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </TextField>
-      <Text layoutX="509.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CVC">
+      <Text layoutX="530.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CVC">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <Button fx:id="infoCvv" layoutX="569.0" layoutY="448.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="22.0">
+      <Button fx:id="infoCvv" layoutX="590.0" layoutY="448.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="22.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>

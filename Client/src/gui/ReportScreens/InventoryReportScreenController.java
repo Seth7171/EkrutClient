@@ -133,7 +133,7 @@ public class InventoryReportScreenController extends ScreenController implements
 		//show result on screen
 		notInStockLabel.setText("Total items not in stock: " + notInStockItems);
 		inStockItemsLabel.setText("Total items in stock: " + inStockItems);
-		totalWorthLabel.setText("Total worth stock: " + totalWorthItems + " �");
+		totalWorthLabel.setText("Total worth stock: " + totalWorthItems + " \u20AA");
 		snacksAmountLabel.setText("Snacks: " + snacksAmount);
 		drinksAmountLabel.setText("Drinks: " + drinksAmount);
 
