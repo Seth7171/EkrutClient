@@ -85,11 +85,11 @@ public class PaymentScreenController extends ScreenController implements Initial
     private ComboBox<String> yearCombobox;
     
     /**
-
-    Initializes the elements of the PaymentScreen.
-    This method is called by JavaFX when the FXML file is loaded.
-    @param arg0 The location used to resolve relative paths for the root object, or null if the location is not known.
-    @param arg1 The resources used to localize the root object, or null if the root object was not localized.
+    *
+    * Initializes the elements of the PaymentScreen.
+    * This method is called by JavaFX when the FXML file is loaded.
+    * @param arg0 The location used to resolve relative paths for the root object, or null if the location is not known.
+    * @param arg1 The resources used to localize the root object, or null if the root object was not localized.
     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -123,9 +123,9 @@ public class PaymentScreenController extends ScreenController implements Initial
 	}
 	
 	/**
-
-	This method allows the user to remember the credit card information for future use.
-	@param event The event that triggered the execution of this method, in this case, a mouse click.
+    *
+	* This method allows the user to remember the credit card information for future use.
+	* @param event The event that triggered the execution of this method, in this case, a mouse click.
 	*/
 	@FXML
     void rememberMyCard(MouseEvent event) {
@@ -186,10 +186,10 @@ public class PaymentScreenController extends ScreenController implements Initial
 	}
     
 	/**
-
-	The method that handle the payment process, it get the credit card details, check if the details are valid, if so
-	it will create a new invoice, and send a request to update the status of the order to the server.
-	@param event: a mouse event that happen when the user click the pay button
+    *
+	* The method that handle the payment process, it get the credit card details, check if the details are valid, if so
+	* it will create a new invoice, and send a request to update the status of the order to the server.
+	* @param event: a mouse event that happen when the user click the pay button
 	*/
 	@FXML
     void pay(MouseEvent event) {
@@ -214,11 +214,11 @@ public class PaymentScreenController extends ScreenController implements Initial
 	}
 	
 	/**
-
-	This method is responsible for generating the invoice for the current order and updating the order status,
-	order ID and confirmation date. It also sets the estimated delivery time and machine ID if the supply method is machine pickup or instant pickup.
-	@param event the event that triggers this method, usually a mouse click on a button
-	@param isdelayed a boolean value that indicates whether the order is delayed or not
+    *
+	* This method is responsible for generating the invoice for the current order and updating the order status,
+	* order ID and confirmation date. It also sets the estimated delivery time and machine ID if the supply method is machine pickup or instant pickup.
+	* @param event the event that triggers this method, usually a mouse click on a button
+	* @param isdelayed a boolean value that indicates whether the order is delayed or not
 	*/
 	void generateInvoice(MouseEvent event, boolean isdelayed) {
 		//GETTING THE DATE and setting it in order.
