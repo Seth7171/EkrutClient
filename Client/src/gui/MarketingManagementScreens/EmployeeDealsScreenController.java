@@ -4,16 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import application.client.ClientUI;
 import application.client.MessageHandler;
 import application.user.UserController;
 import common.Deals;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
-import common.orders.Product;
 import gui.ScreenController;
-import gui.UserScreens.LogInScreenController;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -85,8 +83,17 @@ public class EmployeeDealsScreenController extends ScreenController implements I
     	if (!observablesubs.isEmpty())
     		observablesubs.clear();
     	ClientUI.chat.accept(new Message(null,MessageFromClient.REQUEST_DISCOUNT_LIST )); 
-    	String user=UserController.getCurrentuser().getFirstname();
-    	tempDeal = (ArrayList<Deals>) MessageHandler.getData();//getting data from server
+    	Object data = MessageHandler.getData();
+        if (!(data instanceof ArrayList<?>)) {
+        	Platform.runLater(new Runnable() {
+        	    @Override
+        	    public void run() {
+                    alertHandler("There Are No Deals Available!", true);
+        	    }
+        	});
+            return;
+        }
+    	tempDeal = (ArrayList<Deals>) data;//getting data from server
     	
 		// insert the data for the table.
     for(Deals d : tempDeal){	

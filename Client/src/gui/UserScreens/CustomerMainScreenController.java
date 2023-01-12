@@ -2,7 +2,6 @@ package gui.UserScreens;
 
 import application.client.ChatClient;
 import application.client.ClientUI;
-import application.client.MessageHandler;
 import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.Message;
@@ -15,11 +14,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

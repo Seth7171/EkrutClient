@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
-
 import application.client.ClientUI;
 import application.client.MessageHandler;
 import application.user.UserController;
@@ -17,6 +16,7 @@ import common.orders.Order;
 import common.orders.Product;
 import gui.ScreenController;
 import gui.DeliveryEmployeeScreens.TableOrder;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,57 +30,72 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * The ViewDeliveriesScreenController class is a controller class for the View Deliveries screen in the GUI.
+ * It handles all the actions and events that occur in the View Deliveries screen.
+ *
+ * @author  Ron
+ * @version 1.0
+ * @since   2.01.2023
+ */
 public class ViewDeliveriesScreenController extends ScreenController implements Initializable{
 	
- 	@FXML
-    private Button backButton;
+    @FXML
+    private Button backButton; // button that allows user to go back to the previous screen
  
     @FXML
-    private Button exitButton;
+    private Button exitButton; // button that allows user to exit the program
     
     @FXML
-    private Button refresh;
+    private Button refresh; // button that allows user to refresh the deliveries
     
     @FXML
-    private Button apply;
+    private Button apply; // button that allows user to filter the deliveries based on the selected status
+    
+    @FXML
+    private TableColumn<Order, String> orderidColumn; // column for displaying the order id
+    
+    @FXML
+    private TableColumn<Order, Float> overallpriceColumn; // column for displaying the overall price of the order
+    
+    @FXML
+    private TableColumn<Order, ArrayList<Product>> productsColumn; // column for displaying the products in the order
+    
+    @FXML
+    private TableColumn<Order, String> orderdateColumn; // column for displaying the date the order was placed
+    
+    @FXML
+    private TableColumn<Order, String> addressColumn; // column for displaying the delivery address
+    
+    @FXML
+    private TableColumn<Order, String> estimatedateColumn; // column for displaying the estimated delivery time
+    
+    @FXML
+    private TableColumn<Order, String> confirmationdateColumn; // column for displaying the date the order was confirmed
+    
+    @FXML
+    private TableColumn<Order, String> orderstatusColumn; // column for displaying the status of the order
+    
+    @FXML
+    private TableColumn<Order, String> customeridColumn; // column for displaying the customer id
 
     @FXML
-    private TableColumn<Order, String> orderidColumn;
-    
-    @FXML
-    private TableColumn<Order, Float> overallpriceColumn;
-
-    @FXML
-    private TableColumn<Order, ArrayList<Product>> productsColumn;
-    
-    @FXML
-    private TableColumn<Order, String> orderdateColumn;
-
-    @FXML
-    private TableColumn<Order, String> addressColumn;
-    
-    @FXML
-    private TableColumn<Order, String> estimatedateColumn;
-    
-    @FXML
-    private TableColumn<Order, String> confirmationdateColumn;
-    
-    @FXML
-    private TableColumn<Order, String> orderstatusColumn;
-    
-    @FXML
-    private TableColumn<Order, String> customeridColumn;
-
-    @FXML
-    private TableView<Object> viewAllOrders;
+    private TableView<Object> viewAllOrders; // table view for displaying all the orders
    
     
-    private ArrayList<Order> tempDeliveries;
-    public static ObservableList<Object> observableDeliveries;
+    private ArrayList<Order> tempDeliveries; // temporary array list for storing the deliveries
+    public static ObservableList<Object> observableDeliveries; // observable list for holding the deliveries to display in the table view
     
+    
+    
+    /**
+     * Initializes the View Deliveries screen by setting up the table columns and loading the deliveries.
+     *
+     * @param arg0 the URL of the FXML file that was loaded to create this controller
+     * @param arg1 the resource bundle for localization
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		tempDeliveries = new ArrayList<Order>();
 		//init columns
 		customeridColumn.setCellValueFactory(new PropertyValueFactory<>("customerID"));
@@ -96,12 +111,22 @@ public class ViewDeliveriesScreenController extends ScreenController implements 
 		loadDeliveries();
 	}
 	
+	
+	/**
+	 * Handles the event where the user clicks the "Exit" button by closing the program.
+	 *
+	 * @param event the mouse event that triggered this method call
+	 */
     @FXML
     void exit(MouseEvent event) {
     	super.closeProgram(event, true);
     }
 
-  
+    /**
+     * Handles the event where the user clicks the "Back" button by navigating back to the previous screen.
+     *
+     * @param event the mouse event that triggered this method call
+     */
     @FXML
     void goBack(MouseEvent event) {
     	Parent root = null;
@@ -114,20 +139,39 @@ public class ViewDeliveriesScreenController extends ScreenController implements 
     }
     
     
+    /**
+     * Loads the deliveries from the server and displays them in the table view.
+     */
     public void loadDeliveries() {
+    	// Create an observable list for holding the deliveries
 	    observableDeliveries = FXCollections.observableArrayList();
+	    // Clear the observableDeliveries list if it is not empty
     	if (!observableDeliveries.isEmpty())
     		observableDeliveries.clear();
+    	// Get the current user's ID
     	String userID = UserController.getCurrentuser().getId();
+    	// Send a message to the server requesting the orders by customer ID
     	ClientUI.chat.accept(new Message(userID,MessageFromClient.REQUEST_ORDERS_BY_CUSTOMER_ID)); 
-    	tempDeliveries = (ArrayList<Order>) MessageHandler.getData();//getting data from server
-	    // Add orders from tempDeliveries to observableDeliveries
+    	// Get the data from the server and store it in the tempDeliveries list
+        Object data = MessageHandler.getData();
+        if (!(data instanceof ArrayList<?>)) {
+        	Platform.runLater(new Runnable() {
+        	    @Override
+        	    public void run() {
+                	alertHandler("You Dont Have Orders On Their Way!", true);
+        	    }
+        	});
+            return;
+        }
+    	tempDeliveries = (ArrayList<Order>) data;//getting data from server
+    	// Add orders from tempDeliveries to observableDeliveries
 	    for (Order order : tempDeliveries) {
 	    	if (order.getSupplyMethod().equals("delivery")) {
 		    	TableOrder torder = new TableOrder(order);
 		    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("collected"));
 	    		status.setValue(order.getOrderStatus());
 	    		torder.setStatus_co(status);
+	    		// If the order status is not "approved", disable the status choice box
 		    	if (!order.getOrderStatus().equals("approved")) {
 		    		status.setDisable(true);
 		    	}
@@ -136,12 +180,31 @@ public class ViewDeliveriesScreenController extends ScreenController implements 
 	    }
 	    // Set the items of the viewAllOrders table to be the observableDeliveries list
 	    viewAllOrders.setItems(observableDeliveries);
+	    if (observableDeliveries.isEmpty()) {
+	    	Platform.runLater(new Runnable() {
+        	    @Override
+        	    public void run() {
+                	alertHandler("You Dont Have Orders On Their Way!", true);
+        	    }
+        	});
+	    }
     }
    
+    /**
+     * Handles the event where the user clicks the "Refresh" button by reloading the deliveries from the server.
+     *
+     * @param event the mouse event that triggered this method call
+     */
     @FXML
     void Refresh(MouseEvent event) {
     	loadDeliveries();
     }
+    
+    /**
+     * Handles the event where the user clicks the "Apply" button by filtering the orders based on the selected status.
+     *
+     * @param event the mouse event that triggered this method call
+     */
     @FXML
     void Apply(MouseEvent event) {//send the data from the Table-View to DB  
     	tempDeliveries.clear();

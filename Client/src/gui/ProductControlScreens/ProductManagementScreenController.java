@@ -1,9 +1,7 @@
 package gui.ProductControlScreens;
 
-import application.client.ChatClient;
 import application.client.ClientUI;
 import application.client.MessageHandler;
-import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
@@ -24,9 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
-
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -140,13 +136,12 @@ public class ProductManagementScreenController extends ScreenController implemen
         ArrayList<String> Locations = new ArrayList<>();
         Locations.add("New Product");
         Locations.add("Warehouse");
-        if ((ArrayList<String>) MessageHandler.getData() != null)  // ADDED
-            Locations.addAll((ArrayList<String>) MessageHandler.getData());
-        else{
-            super.alertHandler("Error importing machine locations.", true);
+        Object data = MessageHandler.getData();
+        if (!(data instanceof ArrayList<?>)) {
+            alertHandler("There Are No EK machinces", true);
             return;
         }
-
+        Locations.addAll((ArrayList<String>) data);
         locationChoiceBox.getItems().addAll(Locations);//add all Locations to Location comboBox
         if (UserController.getCurrentuser().getDepartment().contains("manager")){
             locationChoiceBox.setValue(UserController.getCurrentuser().getDepartment().split("_")[2]);
@@ -155,12 +150,12 @@ public class ProductManagementScreenController extends ScreenController implemen
             machineIDChoiceBox.setVisible(true);
             ClientUI.chat.accept(new Message(locationChoiceBox.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
             ArrayList<String> machineIDs = new ArrayList<>();
-            if ((ArrayList<String>) MessageHandler.getData() != null)  // ADDED
-                machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
-            else{
-                super.alertHandler("Error importing machine IDs", true);
+            Object data1 = MessageHandler.getData();
+            if (!(data1 instanceof ArrayList<?>)) {
+                alertHandler("There Are No EK machinces", true);
                 return;
             }
+            machineIDs.addAll((ArrayList<String>) data1);
             machineIDChoiceBox.getItems().clear();
             machineIDChoiceBox.getItems().addAll(machineIDs);
         }
@@ -200,13 +195,12 @@ public class ProductManagementScreenController extends ScreenController implemen
 
                 ClientUI.chat.accept(new Message(locationChoiceBox.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
                 ArrayList<String> machineIDs = new ArrayList<>();
-                if ((ArrayList<String>) MessageHandler.getData() != null)  // ADDED
-                    machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
-                else{
-                    super.alertHandler("Error importing machine IDs.", true);
+                Object data1 = MessageHandler.getData();
+                if (!(data1 instanceof ArrayList<?>)) {
+                    alertHandler("There Are No EK machinces", true);
                     return;
                 }
-
+                machineIDs.addAll((ArrayList<String>) data1);
                 machineIDChoiceBox.getItems().clear();
                 machineIDChoiceBox.getItems().addAll(machineIDs);
             }

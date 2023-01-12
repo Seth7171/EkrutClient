@@ -8,10 +8,9 @@ import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
-import common.orders.Order;
 import common.orders.Product;
 import gui.ScreenController;
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,7 +18,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,39 +28,37 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
 
-// Class to control the product catalog screen
+/**
+ * The ProductCatalogScreenController class is the controller class for the Product Catalog Screen.
+ * This class is responsible for showing the user the discounts, prices, quantities for each product.
+ * also will enable the user to add to cart products and display the overall price he have to pay
+ * It also communicates with the server to update the order.
+ */
 public class ProductCatalogScreenController extends ScreenController implements Initializable{
     // Declare variables to keep track of the number of items in the cart and the total price
     private int counter = 0;
     private float totalprice = 0;
+    private Text cartCounter;
     
     // Declare FXML variables
     @FXML
     private Pane productsPane;
-
-    private Text cartCounter;
-//    @FXML
-//    private Text cartCounter;
     
+    @FXML
+    private Pane backmycart;
+
     @FXML
     private Text totalAmount;
     
@@ -101,10 +97,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
 
     @FXML
     private Tab snackTab;
-
-
-    @FXML
-    private Pane backmycart;
 
     /**
      * Initializes the screen by setting the focus traversable property of the list view to false, 
@@ -153,7 +145,17 @@ public class ProductCatalogScreenController extends ScreenController implements 
         tabPane.setTabMinWidth(220);
         tabPane.setTabMaxWidth(220);
         // Iterate through the list of products received from the warehouse
-        for (Product product : (ArrayList<Product>)MessageHandler.getData()) {
+        Object data = MessageHandler.getData();
+        if (!(data instanceof ArrayList<?>)) {
+        	Platform.runLater(new Runnable() {
+        	    @Override
+        	    public void run() {
+                    alertHandler("There Are No Products In This EK Machince", true);
+        	    }
+        	});
+            return;
+        }
+        for (Product product : (ArrayList<Product>) data) {
             // Add products of type "SNACK" to the snacks pane
             if(product.getType().equals("SNACK"))
                 snacksPane.getChildren().add(createProductTile(product));
@@ -295,6 +297,8 @@ public class ProductCatalogScreenController extends ScreenController implements 
         
         
         if(product.getAmount() == 0 ) {
+        	addBtn.setDisable(true);
+        	SpinnerQuantity.setDisable(true);
             ImageView imagesoldout = new ImageView(getClass().getResource("/gui/OrderScreens/soldout.png").toExternalForm());
             imagesoldout.setFitHeight(100.0);
             imagesoldout.setFitWidth(100.0);
@@ -651,7 +655,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
 
                 default:
                     System.out.println("Unknown!");
-                    // TODO: maybe add UnknownScreenException later??
             }
         } 
         // Catch any exceptions that may occur

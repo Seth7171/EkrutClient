@@ -21,7 +21,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.util.converter.IntegerStringConverter;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -64,9 +63,6 @@ public class RefillOrderScreenController extends ScreenController implements Ini
     private Button goBackButton;
     @FXML
     private Button updateButton;
-
-    private ArrayList<RefillOrder> refillOrderList;
-    private RefillOrder selectedOrder;
 
     private ArrayList<RefillOrder> changesToBeMade;
     public static ObservableList<RefillOrder> requestList;

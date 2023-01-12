@@ -1,10 +1,7 @@
 package gui.DeliveryEmployeeScreens;
 
-import java.util.ArrayList;
 
 import common.orders.Order;
-import common.orders.Product;
-import javafx.collections.FXCollections;
 import javafx.scene.control.ChoiceBox;
 
 public class TableOrder extends Order {

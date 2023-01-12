@@ -4,35 +4,23 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import application.client.ChatClient;
-import application.client.ClientUI;
 import application.client.MessageHandler;
-import application.user.UserController;
 import common.Reports.InventoryReport;
-import common.connectivity.Message;
-import common.connectivity.MessageFromClient;
-import common.connectivity.MessageFromServer;
 import common.orders.Product;
 import gui.ScreenController;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 /** Description of Inventory Report Controller.
  * @author Ravid Goldin
@@ -145,7 +133,7 @@ public class InventoryReportScreenController extends ScreenController implements
 		//show result on screen
 		notInStockLabel.setText("Total items not in stock: " + notInStockItems);
 		inStockItemsLabel.setText("Total items in stock: " + inStockItems);
-		totalWorthLabel.setText("Total worth stock: " + totalWorthItems + " ¤");
+		totalWorthLabel.setText("Total worth stock: " + totalWorthItems + " ï¿½");
 		snacksAmountLabel.setText("Snacks: " + snacksAmount);
 		drinksAmountLabel.setText("Drinks: " + drinksAmount);
 
