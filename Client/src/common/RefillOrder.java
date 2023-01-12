@@ -1,5 +1,7 @@
 package common;
 
+import javafx.scene.control.ChoiceBox;
+
 import java.io.Serializable;
 
 public class RefillOrder implements Serializable {
@@ -11,6 +13,7 @@ public class RefillOrder implements Serializable {
     private int amountAtRequest;
     private int newAmount = 0;
     private String assignedEmployee;
+    ChoiceBox<String> assignedEmployeeBox;
 
     public RefillOrder() {
     }
@@ -69,6 +72,14 @@ public class RefillOrder implements Serializable {
 
     public void setNewAmount(int newAmount) {
         this.newAmount = newAmount;
+    }
+
+    public ChoiceBox<String> getAssignedEmployeeBox() {
+        return assignedEmployeeBox;
+    }
+
+    public void setAssignedEmployeeBox(ChoiceBox<String> assignedEmployeeBox) {
+        this.assignedEmployeeBox = assignedEmployeeBox;
     }
 
     @Override

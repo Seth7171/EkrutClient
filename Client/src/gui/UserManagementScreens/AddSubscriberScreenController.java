@@ -110,9 +110,19 @@ public class AddSubscriberScreenController  extends ScreenController implements 
             statusBox.getItems().add("not a subscriber");
             if (customer.isSub()){
                 statusBox.setValue("subscriber");
+                statusBox.setStyle("-fx-background-color: #72fc72");
             }
-            else
+            else{
                 statusBox.setValue("not a subscriber");
+                statusBox.setStyle("-fx-background-color: #ff7070");
+            }
+
+            statusBox.setOnAction(event -> {
+                if (statusBox.getValue() != null && statusBox.getValue().equals("subscriber"))
+                    statusBox.setStyle("-fx-background-color: #72fc72");
+                else
+                    statusBox.setStyle("-fx-background-color: #ff7070");
+            });
             customer.setCustomerStatusBox(statusBox);
         }
         customerTable.setItems(customerList);
