@@ -2,9 +2,6 @@ package gui.SubscriberSaveAndEditOldPrototypeScreens;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import application.client.ChatClient;
-import application.client.ClientUI;
 import common.connectivity.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
