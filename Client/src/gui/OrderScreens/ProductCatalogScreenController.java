@@ -8,10 +8,8 @@ import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
-import common.orders.Order;
 import common.orders.Product;
 import gui.ScreenController;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,7 +17,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,39 +27,37 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
 
-// Class to control the product catalog screen
+/**
+ * The ProductCatalogScreenController class is the controller class for the Product Catalog Screen.
+ * This class is responsible for showing the user the discounts, prices, quantities for each product.
+ * also will enable the user to add to cart products and display the overall price he have to pay
+ * It also communicates with the server to update the order.
+ */
 public class ProductCatalogScreenController extends ScreenController implements Initializable{
     // Declare variables to keep track of the number of items in the cart and the total price
     private int counter = 0;
     private float totalprice = 0;
+    private Text cartCounter;
     
     // Declare FXML variables
     @FXML
     private Pane productsPane;
-
-    private Text cartCounter;
-//    @FXML
-//    private Text cartCounter;
     
+    @FXML
+    private Pane backmycart;
+
     @FXML
     private Text totalAmount;
     
@@ -101,10 +96,6 @@ public class ProductCatalogScreenController extends ScreenController implements 
 
     @FXML
     private Tab snackTab;
-
-
-    @FXML
-    private Pane backmycart;
 
     /**
      * Initializes the screen by setting the focus traversable property of the list view to false, 
