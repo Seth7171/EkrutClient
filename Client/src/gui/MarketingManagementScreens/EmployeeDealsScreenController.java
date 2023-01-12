@@ -4,16 +4,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import application.client.ClientUI;
 import application.client.MessageHandler;
 import application.user.UserController;
 import common.Deals;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
-import common.orders.Product;
 import gui.ScreenController;
-import gui.UserScreens.LogInScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

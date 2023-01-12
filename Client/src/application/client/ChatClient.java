@@ -12,14 +12,11 @@ import common.connectivity.Message;
 import common.connectivity.User;
 import common.orders.Order;
 import common.orders.Product;
-import gui.ScreenController;
 import javafx.animation.PauseTransition;
 import javafx.scene.control.ListView;
 import ocsf.client.AbstractClient;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * This class overrides some methods defined in the abstract

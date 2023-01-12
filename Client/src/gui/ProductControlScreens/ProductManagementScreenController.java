@@ -1,9 +1,7 @@
 package gui.ProductControlScreens;
 
-import application.client.ChatClient;
 import application.client.ClientUI;
 import application.client.MessageHandler;
-import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
@@ -24,9 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
-
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;

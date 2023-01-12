@@ -1,7 +1,6 @@
 package gui.CEOScreens;
 
 import application.client.ClientUI;
-import application.client.MessageHandler;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
@@ -13,10 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
