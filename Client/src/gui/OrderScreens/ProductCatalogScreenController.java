@@ -295,6 +295,8 @@ public class ProductCatalogScreenController extends ScreenController implements 
         
         
         if(product.getAmount() == 0 ) {
+        	addBtn.setDisable(true);
+        	SpinnerQuantity.setDisable(true);
             ImageView imagesoldout = new ImageView(getClass().getResource("/gui/OrderScreens/soldout.png").toExternalForm());
             imagesoldout.setFitHeight(100.0);
             imagesoldout.setFitWidth(100.0);

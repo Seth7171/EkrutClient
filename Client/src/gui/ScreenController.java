@@ -209,7 +209,10 @@ public class ScreenController {
      * @param needLogout indicates if logout is needed or not
      */
     protected void closeProgram(MouseEvent event, boolean needLogout) {
-
+    	Thread.setDefaultUncaughtExceptionHandler((Thread t, Throwable e) -> {
+            if (e instanceof NumberFormatException){
+            }
+        });
         ClientUI.chat.accept("disconnect");
         if (needLogout){
             ArrayList<String> cred = new ArrayList<String>();
