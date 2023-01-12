@@ -32,11 +32,11 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <SplitPane disable="true" dividerPositions="0.4180790960451977" layoutX="511.0" layoutY="262.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="175.0" styleClass="user-info">
+      <SplitPane disable="true" dividerPositions="0.5141242937853108" layoutX="511.0" layoutY="262.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="175.0" styleClass="user-info">
          <items>
-            <AnchorPane fx:id="anchor1" minHeight="0.0" minWidth="0.0" prefHeight="73.0" prefWidth="171.0">
+            <AnchorPane fx:id="anchor1" minHeight="0.0" minWidth="0.0" prefHeight="82.0" prefWidth="171.0">
                <children>
-                  <ImageView fitHeight="31.0" fitWidth="35.0" layoutX="7.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
+                  <ImageView fitHeight="42.0" fitWidth="40.0" layoutX="7.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
                      <image>
                         <Image url="@../Customer%20Service.png" />
                      </image>
@@ -46,29 +46,29 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Text fx:id="depText" layoutX="45.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$department " wrappingWidth="87.970703125">
+                  <Text fx:id="depText" layoutX="51.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$department " wrappingWidth="87.970703125">
                      <font>
-                        <Font size="10.0" />
+                        <Font size="14.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchor2" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+            <AnchorPane fx:id="anchor2" minHeight="0.0" minWidth="0.0" prefHeight="73.0" prefWidth="171.0">
                <children>
-                  <Text fx:id="idText" layoutX="36.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$id" wrappingWidth="76.0" />
-                  <ImageView fitHeight="30.0" fitWidth="20.0" layoutX="8.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
+                  <Text fx:id="idText" layoutX="36.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$id" wrappingWidth="76.0" />
+                  <ImageView fitHeight="30.0" fitWidth="20.0" layoutX="8.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
                      <image>
                         <Image url="@../email.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="emailText" layoutX="36.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$email" />
-                  <Text fx:id="phoneText" layoutX="36.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$phone" />
-                  <ImageView fitHeight="16.0" fitWidth="20.0" layoutX="10.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
+                  <Text fx:id="emailText" layoutX="36.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$email" />
+                  <Text fx:id="phoneText" layoutX="36.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$phone" />
+                  <ImageView fitHeight="16.0" fitWidth="20.0" layoutX="10.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
                      <image>
                         <Image url="@../phone.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="30.0" fitWidth="20.0" layoutX="9.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
+                  <ImageView fitHeight="30.0" fitWidth="20.0" layoutX="9.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 40;">
                      <image>
                         <Image url="@../id.png" />
                      </image>

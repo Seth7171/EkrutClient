@@ -81,7 +81,7 @@
          </font>
       </Button>
       <Button fx:id="exitButton" layoutX="656.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
-      <SplitPane dividerPositions="0.5" layoutX="511.0" layoutY="260.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="175.0" styleClass="user-info">
+      <SplitPane disable="true" dividerPositions="0.5" layoutX="511.0" layoutY="260.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="175.0" styleClass="user-info">
          <items>
             <AnchorPane fx:id="anchor1" minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="304.0">
                <children>
@@ -95,7 +95,7 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Text fx:id="depText" layoutX="65.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$department " wrappingWidth="87.970703125">
+                  <Text fx:id="depText" layoutX="65.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$department " wrappingWidth="87.970703125">
                      <font>
                         <Font size="14.0" />
                      </font>

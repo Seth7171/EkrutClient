@@ -6,7 +6,7 @@
 
 <Pane fx:id="goodByeScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="179.0" layoutY="102.0" prefHeight="197.0" prefWidth="390.0" text="Disconnected! Due To Inactivity" textAlignment="CENTER" wrapText="true">
+      <Label layoutX="179.0" layoutY="102.0" prefHeight="197.0" prefWidth="390.0" text="Disconnected! Due To TimeOut" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="50.0" />
          </font>
