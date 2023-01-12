@@ -10,38 +10,30 @@ import java.util.ResourceBundle;
 import application.client.ClientUI;
 import application.client.MessageHandler;
 import application.user.UserController;
-import common.Deals;
-import common.Reports.InventoryReport;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
-import common.connectivity.User;
 import common.orders.Order;
-import common.orders.Product;
 import gui.ScreenController;
-import gui.UserManagementScreens.UserRow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Control;
-import javafx.scene.control.Labeled;
-import javafx.scene.control.OverrunStyle;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 
+/**
+ * The DeliveriesScreenController class is a JavaFX controller class that is 
+ * responsible for handling the functionality and events of the deliveries screen.
+ * It implements the Initializable interface and initializes the screen by setting up 
+ * the table columns and populating the table with data.
+ */
 public class DeliveriesScreenController extends ScreenController implements Initializable{
-	private int prods;
  	@FXML
     private Button backButton;
  
@@ -84,15 +76,26 @@ public class DeliveriesScreenController extends ScreenController implements Init
     @FXML
     private TableView<Object> viewAllOrders;
    
-    
+    /**
+     * An ArrayList of Order objects that is used to temporarily store the data that is to be displayed in the table
+     */
     private ArrayList<Order> tempDeliveries;
+    /**
+     * An ObservableList of objects that is used to display the data in the table
+     */
     public static ObservableList<Object> observableDeliveries;
     
+    /**
+    * The initialize method is called by JavaFX when the screen is loaded. 
+    * It sets up the table columns and populates the table with data.
+    * @param arg0
+    * @param arg1
+    */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		//initialize tempDeliveries ArrayList
 		tempDeliveries = new ArrayList<>();
-		//init columns
+		//initialize columns
 		orderidColumn.setCellValueFactory(new PropertyValueFactory<>("orderID"));
 		overallpriceColumn.setCellValueFactory(new PropertyValueFactory<>("overallPrice"));
 		productsColumn.setCellValueFactory(new PropertyValueFactory<>("products"));
@@ -102,7 +105,7 @@ public class DeliveriesScreenController extends ScreenController implements Init
 		confirmationdateColumn.setCellValueFactory(new PropertyValueFactory<>("confirmationDate"));
 		orderstatusColumn.setCellValueFactory(new PropertyValueFactory<>("status_co"));
 		customeridColumn.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-		//load deals
+		//populate table
 		loadDeliveries();
 	}
 	
@@ -123,37 +126,51 @@ public class DeliveriesScreenController extends ScreenController implements Init
         super.switchScreen(event, root);
     }
     
-    
+    /**
+     * Loads a list of deliveries for a user by querying the server for a list of orders by area.
+     * Only orders with a supply method of "delivery" are added to the observableArrayList.
+     * A ChoiceBox is created for each order with the options "approved", "not approved", or "awaiting approval"
+     * and the value is set to the current status of the order.
+     */
     public void loadDeliveries() {
-    	prods=0;
-	    observableDeliveries = FXCollections.observableArrayList();
-    	if (!observableDeliveries.isEmpty())
-    		observableDeliveries.clear();
-    	String areaaofuser = UserController.getCurrentuser().getDepartment().split("_")[1];
-    	ClientUI.chat.accept(new Message(areaaofuser,MessageFromClient.REQUEST_ORDERS_BY_AREA)); 
-    	tempDeliveries = (ArrayList<Order>) MessageHandler.getData();//getting data from server
-	    // Add orders from tempDeliveries to observableDeliveries
-	    for (Order order : tempDeliveries) {
-	    	if (order.getSupplyMethod().equals("delivery")) {
-		    	TableOrder torder = new TableOrder(order);
-		    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("approved","not approved", "awaiting approval"));
-		    	status.setValue(order.getOrderStatus());
-	    		torder.setStatus_co(status);
-		    	if (!order.getOrderStatus().equals("awaiting approval")) {
-		    		status.setDisable(true);
-		    	}
-		    	if (order.getOrderStatus().equals("collected")) {
-		    		torder = new TableOrder(order);
-			    	status = new ChoiceBox<>(FXCollections.observableArrayList("delivered","collected"));
-		    		status.setValue(order.getOrderStatus());
-		    		torder.setStatus_co(status);
-		    		status.setDisable(false);
-		    	}
-		    	observableDeliveries.add(torder);
-	    	}
+        // Initialize observableDeliveries list
+        observableDeliveries = FXCollections.observableArrayList();
+        // Clear any existing deliveries in the list
+        if (!observableDeliveries.isEmpty())
+        	observableDeliveries.clear();
+        // Get the area of the current user
+        String areaaofuser = UserController.getCurrentuser().getDepartment().split("_")[1];
+        // Send a request for orders by area to the server
+        ClientUI.chat.accept(new Message(areaaofuser,MessageFromClient.REQUEST_ORDERS_BY_AREA)); 
+        // Get the data from the server
+        
+        tempDeliveries = (ArrayList<Order>) MessageHandler.getData();
+        // Iterate through the temporary list of deliveries
+        for (Order order : tempDeliveries) {
+        	if (order.getSupplyMethod().equals("delivery")) {
+    	    	TableOrder torder = new TableOrder(order);
+    	    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("approved","not approved", "awaiting approval"));
+    	    	// Set the value of the ChoiceBox to the current status of the order
+    	    	status.setValue(order.getOrderStatus());
+    	    	torder.setStatus_co(status);
+    	    	if (!order.getOrderStatus().equals("awaiting approval")) {
+    	    		// If the order's status is not "awaiting approval", disable the ChoiceBox
+    	    		status.setDisable(true);
+    	    	}
+    	    	if (order.getOrderStatus().equals("collected")) {
+    	    		// If the order's status is "collected", create a new ChoiceBox with options "delivered" or "collected"
+    	    		torder = new TableOrder(order);
+    		    	status = new ChoiceBox<>(FXCollections.observableArrayList("delivered","collected"));
+    	    		status.setValue(order.getOrderStatus());
+    	    		torder.setStatus_co(status);
+    	    		status.setDisable(false);
+    	    	}
+    	    	// Add the TableOrder to the observableDeliveries list
+    	    	observableDeliveries.add(torder);
+        	}
 	    }
-	    // Set the items of the viewAllOrders table to be the observableDeliveries list
-	    viewAllOrders.setItems(observableDeliveries);
+        // Set the items of the viewAllOrders table to be the observableDeliveries list
+        viewAllOrders.setItems(observableDeliveries);
     }
    
     @FXML
@@ -162,8 +179,9 @@ public class DeliveriesScreenController extends ScreenController implements Init
     }
     
     @FXML
-    void Apply(MouseEvent event) {//send the data from the Table-View to DB  
+    void Apply(MouseEvent event) {
     	tempDeliveries.clear();
+    	 // Iterate through the deliveries list
     	for (Object torder : observableDeliveries){
     		//GETTING THE DATE to set it in order.
     		// Get the current time
@@ -205,6 +223,7 @@ public class DeliveriesScreenController extends ScreenController implements Init
     			((TableOrder)torder).setConfirmationDate(null);
     			((TableOrder)torder).setEstimatedDeliveryTime(null);
     		}
+    		//create an Order from TableOrder
     		((TableOrder)torder).setOrderStatus(((TableOrder)torder).getStatus_co().getValue());
     		Order ordertoupdate = new Order(((TableOrder)torder).getOrderID(), 
     				((TableOrder)torder).getOverallPrice(), 
@@ -218,9 +237,11 @@ public class DeliveriesScreenController extends ScreenController implements Init
     				((TableOrder)torder).getSupplyMethod(), 
     				((TableOrder)torder).getPaidWith(), 
     				((TableOrder)torder).getAddress());
+    		//add the Order to the tempDeliveries to be send to server
     		tempDeliveries.add(ordertoupdate);
     	}
-        ClientUI.chat.accept(new Message(tempDeliveries,MessageFromClient.REQUEST_UPDATE_MULTIPLE_ORDER_STATUSES));//send new DB
+    	//send the deliveries from the Table-View to server  
+        ClientUI.chat.accept(new Message(tempDeliveries,MessageFromClient.REQUEST_UPDATE_MULTIPLE_ORDER_STATUSES));
         super.alertHandler(MessageHandler.getMessage(), MessageHandler.getMessage().contains("Error"));
         Refresh(event);
     }
