@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import application.client.ChatClient;
 import application.client.ClientUI;
 import common.connectivity.Message;
@@ -24,12 +23,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+
+/**
+ * The PostPaymentController class is the controller class for the post payment screen.
+ * This class is responsible for handling the user interactions with the post payment screen and
+ * updating the UI accordingly. It also communicates with the server to update the order status and
+ * retrieve the order details to display on the screen. This class implements the Initializable interface
+ * to handle the initialization of the FXML elements and sets up the necessary data for the screen.
+ */
 public class PostPaymentController extends ScreenController implements Initializable{
 
     @FXML
@@ -53,21 +59,28 @@ public class PostPaymentController extends ScreenController implements Initializ
     @FXML
     private Pane asd;
     
-    
+    /**
+     * Initializes the PostPaymentController.
+     * @param arg0 The URL used to resolve relative paths for the root object, or null if the location is not known.
+     * @param arg1 The resources used to localize the root object, or null if the root object was not localized.
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+        // Set the order number and machine number text fields to the current order's values
 		orderNum.setText(ChatClient.currentOrder.getOrderID());
 		machineNum.setText(ChatClient.currentOrder.getMachineID());
+        // If the supply method is not "machine pickup", hide the machine number text field and the dynamic text field
 		if (!ChatClient.currentOrder.getSupplyMethod().equals("machine pickup")) {
 			machineNum.setVisible(false);
 			dynamicTxt.setVisible(false);
+            // If the supply method is "instant pickup", update the order status to "collected" and switch to the execute scene
 			if (ChatClient.currentOrder.getSupplyMethod().equals("instant pickup")) {
 		        ArrayList<String> msg = new ArrayList<String>();
 		   	 	msg.add(ChatClient.currentOrder.getOrderID());
 		   	 	msg.add("collected");
 		   	 	ClientUI.chat.accept(new Message(msg, MessageFromClient.REQUEST_UPDATE_ORDER_STATUS));
 		        Platform.runLater(() -> {
-		            // Run this method on the JavaFX application thread
+		        	// Run this method on the JavaFX application thread
 		        	executeOrder(ChatClient.currentOrder);
 		        });
 			}
@@ -76,13 +89,22 @@ public class PostPaymentController extends ScreenController implements Initializ
 		ChatClient.currentOrder = new Order();
 	}
 
+    /**
+     * Exits the program when the exit button is clicked.
+     * @param event The mouse event that triggered the method call.
+     */
 	@FXML
     void exit(MouseEvent event) {
 		super.closeProgram(event, true);
     }
 	
+    /**
+     * Goes back to the customer main screen when the back button is clicked.
+     * @param event The mouse event that triggered the method call.
+     */
 	@FXML
     void goBack(MouseEvent event) {
+		//Stop the delay and reset the cart list and rememberMyCart list views
 		ChatClient.delay.stop();
 		ChatClient.cartList = new ArrayList<Product>();
 		ChatClient.rememberMyCart = new ListView<Object>();
@@ -95,6 +117,10 @@ public class PostPaymentController extends ScreenController implements Initializ
         super.switchScreen(event, root);        
     }
 	
+    /**
+     * Executes the order by switching to the execute scene.
+     * @param order The order to be executed.
+     */
 	public static void executeOrder(Order order) {
 	    // Load the FXML file
 	    Parent root = null;

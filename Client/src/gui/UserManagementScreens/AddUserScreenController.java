@@ -5,20 +5,13 @@ import application.client.MessageHandler;
 import common.connectivity.Customer;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
-import common.connectivity.User;
 import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

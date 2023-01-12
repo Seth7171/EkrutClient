@@ -2,16 +2,12 @@ package gui.ReportScreens;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.ResourceBundle;
-
 import application.client.ChatClient;
 import application.client.MessageHandler;
 import common.Reports.ClientReport;
-import common.Reports.OrderReport;
 import common.connectivity.User;
 import gui.ScreenController;
 import javafx.fxml.FXML;
@@ -22,8 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Data;
-import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -110,8 +104,6 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
      */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		final Text dataText ;
 		int totalOrders=0, totalClients=0, minOrder=9999,biggestOrder=0,topRange=0,tmpi=0,tmpj=9999999,range=0;
 		int columnRange=0,cnt=0, upperBound=0;
 		boolean prime=true;

@@ -3,7 +3,6 @@ package common.Reports;
 import common.connectivity.User;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ClientReport implements Serializable{

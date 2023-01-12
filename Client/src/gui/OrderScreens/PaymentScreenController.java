@@ -7,13 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.UUID;
-
 import application.client.ChatClient;
 import application.client.ClientUI;
-import application.client.MessageHandler;
 import application.user.CustomerController;
 import application.user.UserController;
-import common.connectivity.Customer;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import gui.ScreenController;
@@ -27,11 +24,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 
+
+/**
+
+The PaymentScreenController class is a controller class for the PaymentScreen.fxml file.
+It handles all the events that happens in the PaymentScreen and communicates with the server
+to make sure the payment is successful and the order is placed.
+It implements Initializable interface to initialize the PaymentScreen.
+@author Ron & Nitsan
+@version 1.0
+@since 2020-11-11
+*/
 public class PaymentScreenController extends ScreenController implements Initializable{
 	private boolean remember = true;
     @FXML
@@ -73,6 +80,13 @@ public class PaymentScreenController extends ScreenController implements Initial
     @FXML
     private ComboBox<String> yearCombobox;
     
+    /**
+    *
+    * Initializes the elements of the PaymentScreen.
+    * This method is called by JavaFX when the FXML file is loaded.
+    * @param arg0 The location used to resolve relative paths for the root object, or null if the location is not known.
+    * @param arg1 The resources used to localize the root object, or null if the root object was not localized.
+    */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		if (UserController.getCurrentuser().getDepartment().equals("customer")) {
@@ -103,6 +117,12 @@ public class PaymentScreenController extends ScreenController implements Initial
 	private boolean callCreditCardCompany(String cardNumber, String cardName, String cardYear, String cardMonth, String cardCVV, float totalPrice) {
 		return true;
 	}
+	
+	/**
+    *
+	* This method allows the user to remember the credit card information for future use.
+	* @param event The event that triggered the execution of this method, in this case, a mouse click.
+	*/
 	@FXML
     void rememberMyCard(MouseEvent event) {
 		if (remember) {
@@ -121,11 +141,23 @@ public class PaymentScreenController extends ScreenController implements Initial
 		}
     }
 	
+	/**
+	* This method is responsible for handling the exit button event.
+	* It closes the program when the exit button is pressed.
+	*
+	* @param event the event of the mouse clicking on the exit button.
+	*/
 	@FXML
     void exit(MouseEvent event) {
 		super.closeProgram(event, true);
     }
 	
+	/**
+	 * This method is responsible for handling the back button event.
+	 * It navigates the user to the previous screen when the back button is pressed.
+	 * 
+	 * @param event the event of the mouse clicking on the back button.
+	 */
     @FXML
     void goBack(MouseEvent event) {
         Parent root = null;
@@ -137,12 +169,24 @@ public class PaymentScreenController extends ScreenController implements Initial
         super.switchScreen(event, root);        
     }
     
+    /**
+     * This method is responsible for handling the delay button event.
+     * It allows the user to delay the delivery of the order when the delay button is pressed.
+     * 
+     * @param event the event of the mouse clicking on the delay button.
+     */
 	@FXML
     void delayPay(MouseEvent event) {
         ChatClient.currentOrder.setPaidWith("delayed payment");
 		generateInvoice(event, true);
 	}
     
+	/**
+    *
+	* The method that handle the payment process, it get the credit card details, check if the details are valid, if so
+	* it will create a new invoice, and send a request to update the status of the order to the server.
+	* @param event: a mouse event that happen when the user click the pay button
+	*/
 	@FXML
     void pay(MouseEvent event) {
 		ChatClient.currentOrder.setPaidWith("credit card");
@@ -165,6 +209,13 @@ public class PaymentScreenController extends ScreenController implements Initial
 		}
 	}
 	
+	/**
+    *
+	* This method is responsible for generating the invoice for the current order and updating the order status,
+	* order ID and confirmation date. It also sets the estimated delivery time and machine ID if the supply method is machine pickup or instant pickup.
+	* @param event the event that triggers this method, usually a mouse click on a button
+	* @param isdelayed a boolean value that indicates whether the order is delayed or not
+	*/
 	void generateInvoice(MouseEvent event, boolean isdelayed) {
 		//GETTING THE DATE and setting it in order.
 		// Get the current time
