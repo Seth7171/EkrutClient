@@ -6,7 +6,6 @@ import application.user.UserController;
 import common.RefillOrder;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
-import common.orders.Product;
 import gui.ScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.ChoiceBoxListCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
@@ -31,6 +29,10 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author Lior Jigalo
+ * Refill order table screen for both operations employee and area manager
+ */
 public class RefillOrderScreenController extends ScreenController implements Initializable {
 
     @FXML
@@ -70,6 +72,12 @@ public class RefillOrderScreenController extends ScreenController implements Ini
     public static ObservableList<RefillOrder> requestList;
 
 
+
+    /**
+     * Method to initialize the layout and data for the request table.
+     * @param location The location of the FXML file.
+     * @param resources The resource bundle for localization.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         changesToBeMade = new ArrayList<>();
@@ -98,6 +106,10 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         loadData();
     }
 
+
+    /**
+     * Method to initialize the columns for the request table.
+     */
     private void initCols(){
         // order ID column
         orderidColumn.setCellValueFactory       (new PropertyValueFactory<>("orderID"));
@@ -124,6 +136,10 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         requestTable.setEditable(true);
     }
 
+
+    /**
+     * Method to initialize the columns specific to the operations department for the request table.
+     */
     private void initOperationsCol(){
         // assigned employee column
         newAmountColumn.setCellValueFactory  (new PropertyValueFactory<>("newAmount"));
@@ -135,6 +151,10 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         newAmountColumn.setVisible(true);
     }
 
+
+    /**
+     * Method to initialize the columns specific to the manager for the request table.
+     */
     private void initManagerCol(){
         // assigned employee column
         assignedEmployeeColumn.setCellValueFactory  (new PropertyValueFactory<>("assignedEmployee"));
@@ -154,6 +174,10 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         assignedEmployeeColumn.setVisible(true);
     }
 
+
+    /**
+     * Method to load the data for the request table.
+     */
     private void loadData(){
         requestList = FXCollections.observableArrayList();
         ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_REFILL_ORDERS));
@@ -196,14 +220,15 @@ public class RefillOrderScreenController extends ScreenController implements Ini
                 }
                 requestTable.setItems(requestList);
                 return;
-
         }
-
-
         requestList.addAll(list);
         requestTable.setItems(requestList);
     }
 
+    /**
+     * Method to check and replace a RefillOrder in the list of changes to be made
+     * @param refillOrder the RefillOrder to be checked and replaced
+     */
     private void checkAndReplace(RefillOrder refillOrder){
         if (changesToBeMade.isEmpty()){
             changesToBeMade.add(refillOrder);
@@ -223,6 +248,11 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         System.out.println("");
     }
 
+
+    /**
+     * Method to handle the event of clicking the back button and navigate to the appropriate main screen based on the current user's department.
+     * @param event The event of clicking the back button.
+     */
     @FXML
     void backToMainScreen(MouseEvent event) {
         Parent root = null;
@@ -252,6 +282,11 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         super.switchScreen(event, root);
     }
 
+    /**
+     * Method to handle the event of clicking the update button and upload the changes made to the database.
+     * It also checks the current user's department and sends the appropriate message to the server.
+     * @param event The event of clicking the update button.
+     */
     @FXML
     void updateDataBase(MouseEvent event) {
         if (changesToBeMade.isEmpty()){
@@ -297,6 +332,10 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         changesToBeMade.clear();
     }
 
+    /**
+     * Method to handle the event of clicking the exit button and close the program.
+     * @param event The event of clicking the exit button.
+     */
     @FXML
     void exit(MouseEvent event) {
         super.closeProgram(event, true);
