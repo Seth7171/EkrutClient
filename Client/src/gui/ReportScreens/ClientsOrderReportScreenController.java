@@ -107,8 +107,6 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 		int totalOrders=0, totalClients=0, minOrder=9999,biggestOrder=0,topRange=0,tmpi=0,tmpj=9999999,range=0;
 		int columnRange=0,cnt=0, upperBound=0;
 		boolean prime=true;
-		String strMinOrder=null;
-		String strBiggestOrder=null;
 		User bigUser = null;
 		User lowUser = null;
 
@@ -117,14 +115,12 @@ public class ClientsOrderReportScreenController extends ScreenController impleme
 		for (Map.Entry<User, Integer> clientor : clientReportData.entrySet()) {//find the min and max orderValue
 		    String key = clientor.getKey().getFirstname();//new key
 		    Integer value = clientor.getValue();//value
-		    System.out.println("key " +key + "   value:" + value);
-		  	if(biggestOrder<value) {biggestOrder=value; strBiggestOrder=key; bigUser=clientor.getKey();}//find the MAX Order
-		  	if(minOrder>value) {minOrder=value; strMinOrder=key; lowUser=clientor.getKey();}//find the MIN Order
+		  	if(biggestOrder<value) {biggestOrder=value; bigUser=clientor.getKey();}//find the MAX Order
+		  	if(minOrder>value) {minOrder=value; lowUser=clientor.getKey();}//find the MIN Order
 		  	
 		  	totalOrders += clientor.getValue();
 		  	totalClients++;
 		}
-		 System.out.println("biggestOrder: "+biggestOrder + "minOrder: " + minOrder);
 		//making the BarChart from data
 		 XYChart.Series<String, Integer> ser1= new XYChart.Series<>();//ranges
 		 ser1.setName("Range of Purchase");
