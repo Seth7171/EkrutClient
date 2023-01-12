@@ -330,7 +330,7 @@ public class ProductManagementScreenController extends ScreenController implemen
             super.alertHandler("No info was found for your choice", false);
             return;
         }
-        if ((ArrayList<Product>) MessageHandler.getData() != null)
+        if ( MessageHandler.getData() != null)
             products = (ArrayList<Product>) MessageHandler.getData();
         else{
             super.alertHandler("Error importing products.", true);
@@ -454,10 +454,12 @@ public class ProductManagementScreenController extends ScreenController implemen
         //ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_ALL_MACHINE_PRODUCTS));
 
         ArrayList<Product> products = new ArrayList<>();
-        if ((ArrayList<Product>) MessageHandler.getData() != null)  // ADDED
+        if (MessageHandler.getData() != null)  // ADDED
             products = (ArrayList<Product>) MessageHandler.getData();
-        else
-            throw new NullPointerException();
+        else{
+            super.alertHandler("Error importing machine products", true);
+            return;
+        }
         dataTable.addAll(products);
         if (machineProductsTab.isSelected())
             machineProductTable.setItems(dataTable);
@@ -467,7 +469,7 @@ public class ProductManagementScreenController extends ScreenController implemen
     private void setComboBoxes(){
         ArrayList<String> Locations;
         ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_ALL_MACHINE_LOCATIONS));
-        if ((ArrayList<String>) MessageHandler.getData() != null)  // ADDED
+        if (MessageHandler.getData() != null)  // ADDED
             Locations = (ArrayList<String>) MessageHandler.getData();
         else{
             super.alertHandler("Error importing machine locations.", true);
@@ -485,7 +487,7 @@ public class ProductManagementScreenController extends ScreenController implemen
             ClientUI.chat.accept(new Message(UserController.getCurrentuser().getDepartment().split("_")[2], MessageFromClient.REQUEST_MACHINE_IDS));
             ArrayList<String> machineIDs = new ArrayList<>();
             machineIDs.add("All");
-            if ((ArrayList<String>) MessageHandler.getData() != null)  // ADDED
+            if (MessageHandler.getData() != null)  // ADDED
                 machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
             else{
                 super.alertHandler("Error importing machine IDs", true);
@@ -501,7 +503,7 @@ public class ProductManagementScreenController extends ScreenController implemen
             ClientUI.chat.accept(new Message(areaComboBox.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
             ArrayList<String> machineIDs = new ArrayList<>();
             machineIDs.add("All");
-            if ((ArrayList<String>) MessageHandler.getData() != null)  // ADDED
+            if (MessageHandler.getData() != null)  // ADDED
                 machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
             else{
                 super.alertHandler("Error importing machine IDs", true);
@@ -521,7 +523,7 @@ public class ProductManagementScreenController extends ScreenController implemen
                 ClientUI.chat.accept(new Message(areaComboBox.getValue(), MessageFromClient.REQUEST_MACHINE_IDS));
                 ArrayList<String> machineIDs = new ArrayList<>();
                 machineIDs.add("All");
-                if ((ArrayList<String>) MessageHandler.getData() != null)  // ADDED
+                if (MessageHandler.getData() != null)  // ADDED
                     machineIDs.addAll((ArrayList<String>) MessageHandler.getData());
                 else{
                     super.alertHandler("Error importing machine IDs", true);
