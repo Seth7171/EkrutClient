@@ -121,8 +121,6 @@ public class CustomerMainScreenController extends ScreenController implements In
     @FXML
     void NewOrder(Event event) {
     	ChatClient.currentOrder.setSupplyMethod("instant pickup");
-        //TODO need to change to NOT hard coded
-        //ChatClient.currentOrder.setMachineID("NOR1");
         Parent root = null;
         try {
     		if (ChatClient.isOL) {
