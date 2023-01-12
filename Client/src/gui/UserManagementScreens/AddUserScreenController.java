@@ -127,7 +127,7 @@ public class AddUserScreenController extends ScreenController{
     protected void goBack(MouseEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("../CustomerServiceEmployeeScreens/CustomerServiceEmployeeScreen.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/gui/CustomerServiceEmployeeScreens/CustomerServiceEmployeeScreen.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
