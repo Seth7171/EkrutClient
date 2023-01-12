@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import application.client.ChatClient;
 import application.client.ClientUI;
 import application.client.MessageHandler;
@@ -14,14 +13,12 @@ import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
 import gui.ScreenController;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -29,6 +26,15 @@ import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
+
+/**
+*
+* This class represents the controller of the delivery options screen, which allows the user to choose the delivery method and address.
+* It extends the ScreenController abstract class and implements the Initializable interface.
+* It also provides methods for handling the scene's buttons, such as exit and back buttons.
+* @author Nitsan & Ron
+* @version 1.0
+*/
 public class DeliveryOprtionsScreenController extends ScreenController implements Initializable{
 
 	@FXML
@@ -73,12 +79,23 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
     @FXML
     private ComboBox<String> machineID;
     
+    /**
+    *
+    * Initializes the screen by showing the machine location and machine ID options, and adding the states to the state combo box.
+    * @param arg0 The URL location of the FXML file.
+    * @param arg1 The resources used to localize the root object.
+    */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		showMachineLocationAndMachineID();
 		State.getItems().addAll("ISR/north","ISR/south", "UAE/uae");
 	}
 
+	/**
+    *
+	* This method shows the machine location and machine ID options,
+	*  and adds functionality to the location and machine ID combo boxes.
+	*/
 	private void showMachineLocationAndMachineID(){
         ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_ALL_MACHINE_LOCATIONS));
         ArrayList<String> Locations = new ArrayList<>();
@@ -97,12 +114,21 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
         	dynamicError.setVisible(false);
         });
 	}
-	
+	/**
+    *
+	* This method exits the program when the exit button is pressed.
+	* @param event The event that triggers the exit button.
+	*/
 	@FXML
     void exit(MouseEvent event) {
 		super.closeProgram(event, true);
     }
 	
+	/**
+    * 
+	* This method allows the user to go back to the previous screen when the back button is pressed.
+	* @param event The event that triggers the back button.
+	*/
     @FXML
     void goBack(MouseEvent event) {
         Parent root = null;
@@ -139,6 +165,11 @@ public class DeliveryOprtionsScreenController extends ScreenController implement
         }
     }
     
+    /**
+    *
+    * This method allows the user to proceed to the shop screen when the proceed to shop button is pressed.
+    * @param event The event that triggers the proceed to shop button.
+    */
 	@FXML
     void proceedToShop(MouseEvent event) {
 		Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
