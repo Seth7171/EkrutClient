@@ -83,6 +83,7 @@ public class PostPaymentController extends ScreenController implements Initializ
 	
 	@FXML
     void goBack(MouseEvent event) {
+		ChatClient.delay.stop();
 		ChatClient.cartList = new ArrayList<Product>();
 		ChatClient.rememberMyCart = new ListView<Object>();
         Parent root = null;

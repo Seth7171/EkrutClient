@@ -137,7 +137,8 @@ public class CustomerMainScreenController extends ScreenController implements In
         } catch (IOException e) {
             e.printStackTrace();
         }
-        super.switchScreen(event, root);
+        //super.switchScreen(event, root);
+        switchScreenWithTimer(event, root);
     }
     
     /**

@@ -13,6 +13,7 @@ import common.connectivity.User;
 import common.orders.Order;
 import common.orders.Product;
 import gui.ScreenController;
+import javafx.animation.PauseTransition;
 import javafx.scene.control.ListView;
 import ocsf.client.AbstractClient;
 
@@ -38,6 +39,7 @@ public class ChatClient extends AbstractClient
    * the display method in the client.
    */
 	ChatIF clientUI; 
+	 public static PauseTransition delay;
 	  public static String currentMachineID;
 	  public static User s1 = new User();
 	  public static ArrayList<User> subs = new ArrayList<>();
