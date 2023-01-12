@@ -81,7 +81,7 @@ public class AddSubscriberScreenController  extends ScreenController implements 
         customerStatusCol.setCellValueFactory   (new PropertyValueFactory<>("customerStatusBox"));
 
         // subscriber number column
-        subNumberCol.setCellValueFactory   (new PropertyValueFactory<>("subscriberNumber"));
+        subNumberCol.setCellValueFactory        (new PropertyValueFactory<>("subscriberNumber"));
     }
 
     private void loadCustomersToTable(){
@@ -91,7 +91,6 @@ public class AddSubscriberScreenController  extends ScreenController implements 
         ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_ALL_CUSTOMER_DATA));
 
         for (Customer customer : (ArrayList<Customer>) MessageHandler.getData()){
-            //if (custome)
             TableCustomer tableCustomer = new TableCustomer();
             tableCustomer.setId(customer.getId());
             tableCustomer.setFirstname(customer.getFirstname());

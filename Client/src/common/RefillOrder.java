@@ -1,10 +1,11 @@
 package common;
 
+import gui.ProductControlScreens.TableRefilOrder;
 import javafx.scene.control.ChoiceBox;
 
 import java.io.Serializable;
 
-public class RefillOrder implements Serializable {
+public class RefillOrder extends TableRefilOrder implements Serializable {
     private static final long serialVersionUID = 1L;
     private String orderID;
     private String ProductID;
@@ -13,7 +14,6 @@ public class RefillOrder implements Serializable {
     private int amountAtRequest;
     private int newAmount = 0;
     private String assignedEmployee;
-    ChoiceBox<String> assignedEmployeeBox;
 
     public RefillOrder() {
     }
@@ -74,13 +74,6 @@ public class RefillOrder implements Serializable {
         this.newAmount = newAmount;
     }
 
-    public ChoiceBox<String> getAssignedEmployeeBox() {
-        return assignedEmployeeBox;
-    }
-
-    public void setAssignedEmployeeBox(ChoiceBox<String> assignedEmployeeBox) {
-        this.assignedEmployeeBox = assignedEmployeeBox;
-    }
 
     @Override
     public String toString() {
