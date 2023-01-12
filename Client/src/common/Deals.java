@@ -14,10 +14,12 @@ public class Deals implements Serializable {
     private String Type; //  Drink | SNACKS | ALL
     private ChoiceBox<String> Area_co;  // North | South | UAE  -->> for Manager
     private ChoiceBox<String> Status_co; //Approved | Not Approved  -->> for Manager
-    private ChoiceBox<String> Active_co; //active | not active
     private String Area;     //-->> for Employee
     private String StatusString;
     private String active; //active | not active  <-- its like this in the database.
+
+    private String startDate;
+    private String endDate;
 
     public Deals() {
     }
@@ -42,6 +44,13 @@ public class Deals implements Serializable {
         this.dealID = dealID;
     }
 
+    public String getStatusString() {
+        return StatusString;
+    }
+
+    public void setStatusString(String statusString) {
+        StatusString = statusString;
+    }
 
     public String getDealName() {
         return DealName;
@@ -78,16 +87,17 @@ public class Deals implements Serializable {
     public ChoiceBox getArea() {
         return Area_co;
     }
-    public void setArea(ChoiceBox Area_co) {
-        this.Area_co=Area_co;
-    }
-    
-    public String getAreaS() {
-        return Area;
-    }
 
     public void setArea(String area) {
         Area = area;
+    }
+
+    public void setArea(ChoiceBox Area_co) {
+        this.Area_co=Area_co;
+    }
+
+    public String getAreaS() {
+        return Area;
     }
 
     public ChoiceBox getStatus() {
@@ -97,13 +107,6 @@ public class Deals implements Serializable {
     public void setStatus(ChoiceBox Status) {
         this.Status_co =Status;
     }
-    public String getStatusString() {
-        return StatusString;
-    }
-
-    public void setStatusString(String statusString) {
-        StatusString = statusString;
-    }
 
     public String getActive() {
         return active;
@@ -112,14 +115,22 @@ public class Deals implements Serializable {
     public void setActive(String active) {
         this.active = active;
     }
-    public ChoiceBox getActiveC() {
-        return Active_co;
+
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setActive(ChoiceBox active) {
-        this.Active_co = active;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
 
     @Override
     public String toString() {
