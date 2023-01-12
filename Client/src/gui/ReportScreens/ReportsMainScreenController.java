@@ -60,8 +60,6 @@ public class ReportsMainScreenController extends ScreenController implements Ini
     @FXML
     private Label welcomeReportsLabel;
     
-//    @FXML
-//    private Label errorLabel;
     
   
     /**
@@ -91,8 +89,8 @@ public class ReportsMainScreenController extends ScreenController implements Ini
 
     	welcomeReportsLabel.setText("Welcome Back " + UserController.getCurrentuser().getFirstname());
     	
-		MachineID.setVisible(false);//set machineID combobox unvisible
-		Location.setVisible(false);//set Location combobox unvisible
+		MachineID.setVisible(false);//set machineID comboBox  invisible
+		Location.setVisible(false);//set Location comboBox  invisible
 		
     	// Fill years and months in combo boxes
     	Year y = Year.now();
@@ -221,10 +219,6 @@ public class ReportsMainScreenController extends ScreenController implements Ini
      */
 	@FXML
     void clickShowReport(MouseEvent event) {
-		String reportType = null;
-		String LocationChoose= null;// location
-		String MonthChoose=null;//month
-		String YearChoose=null;//year
 		
 		// Check first for valid inputs
 		if (Month.getValue() == null) {
@@ -317,7 +311,7 @@ public class ReportsMainScreenController extends ScreenController implements Ini
 			                  root = FXMLLoader.load(getClass().getResource("ClientsReportScreen.fxml"));
 			                   break;
 	
-			                default://TODO: change default
+			                default:
 			                    System.out.println("Unknown!");
 		            }
 		 	}
