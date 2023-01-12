@@ -143,8 +143,9 @@ public class DeliveriesScreenController extends ScreenController implements Init
         // Send a request for orders by area to the server
         ClientUI.chat.accept(new Message(areaaofuser,MessageFromClient.REQUEST_ORDERS_BY_AREA)); 
         // Get the data from the server
-        if (MessageHandler.getData().toString().contains("error")) {
+        if (MessageHandler.getMessage().contains("Error")) {
         	alertHandler("You Dont Have Orders To Deliver !", true);
+        	return;
         }
         tempDeliveries = (ArrayList<Order>) MessageHandler.getData();
         // Iterate through the temporary list of deliveries
