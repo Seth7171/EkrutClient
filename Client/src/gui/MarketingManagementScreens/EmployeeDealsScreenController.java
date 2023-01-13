@@ -185,6 +185,7 @@ public class EmployeeDealsScreenController extends ScreenController implements I
 			dealToList.setActive(deal.getStatus().getValue().toString());
 			dealToList.toString();
 			ClientUI.chat.accept(new Message(dealToList,MessageFromClient.REQUEST_UPDATE_DEALS ));//send new DB
+			loadDeals();
 			super.alertHandler(MessageHandler.getMessage(), MessageHandler.getMessage().contains("Error"));
 
 		}
