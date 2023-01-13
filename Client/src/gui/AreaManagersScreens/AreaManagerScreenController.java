@@ -19,6 +19,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+/** Description of Area Manager Screen Controller.
+ * @author Ravid Goldin
+ * @author Ben Ben Baruch
+ */
+
 public class AreaManagerScreenController extends ScreenController implements Initializable {
 
 	@FXML
@@ -61,7 +66,11 @@ public class AreaManagerScreenController extends ScreenController implements Ini
     private Button viewReportsButton;
     @FXML
     private Text welcomeText;
-
+    
+    /**
+  	 * Open Manage Prdocuts Screen.
+  	 * @param event the mouse event that triggered the method call
+  	 */
     @FXML
     void openManageProductsScreen(MouseEvent event) {
         Parent root = null;
@@ -72,7 +81,11 @@ public class AreaManagerScreenController extends ScreenController implements Ini
         }
         super.switchScreen(event, root);
     }
-
+    
+    /**
+  	 * Open Refill Orders Screen.
+  	 * @param event the mouse event that triggered the method call
+  	 */
     @FXML
     void openRefilOrdersScreen(MouseEvent event) {
     	Parent root = null;
@@ -83,7 +96,11 @@ public class AreaManagerScreenController extends ScreenController implements Ini
         }
         super.switchScreen(event, root);
     }
-
+    
+    /**
+  	 * Open User Management Screen.
+  	 * @param event the mouse event that triggered the method call
+  	 */
     @FXML
     void openUserManagementScreen(MouseEvent event) {
     	 Parent root = null;
@@ -94,6 +111,11 @@ public class AreaManagerScreenController extends ScreenController implements Ini
          }
          super.switchScreen(event, root);
     }
+    
+    /**
+  	 * Open view reports screen.
+  	 * @param event the mouse event that triggered the method call
+  	 */
     @FXML
     void openViewReportsScreen(MouseEvent event) {
     	 Parent root = null;
@@ -104,12 +126,20 @@ public class AreaManagerScreenController extends ScreenController implements Ini
          }
          super.switchScreen(event, root);
     }
-
+    
+    /**
+  	 * exit application
+  	 * @param event the mouse event that triggered the method call
+  	 */
     @FXML
     void exit(MouseEvent event) {
     	super.closeProgram(event, true);
     }
-
+    
+    /**
+  	 * Log out from app and goes back to login screen.
+  	 * @param event the mouse event that triggered the method call
+  	 */
     @FXML
     void logOut(MouseEvent event) {
     	 ArrayList<String> cred = new ArrayList<String>();
@@ -125,6 +155,12 @@ public class AreaManagerScreenController extends ScreenController implements Ini
          super.switchScreen(event, root);
     }
     
+    /**
+     * Initializes the screen.
+     * Set all relevant texts to area manager screen.
+     * @param arg0 the location of the root object
+     * @param arg1 the resources used to localize the root object
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		welcomeText.setText("Welcome back " + capitalLetter(UserController.getCurrentuser().getFirstname()));
@@ -135,10 +171,20 @@ public class AreaManagerScreenController extends ScreenController implements Ini
 		phoneText.setText(UserController.getCurrentuser().getPhonenumber());
 	}
 	
+	/**
+	 * Make the string with capital letter first and all rest are lower-case letters. (yossi -> Yossi)
+	 * @param str String input
+	 * @return String with capital letter.
+	 */
 	public String capitalLetter(String str) {
 		return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 	}
 	
+	/**
+     * Helper method to extract the department of current logged in user.
+     * Example: marketing_employee_uae -> uae
+     * @return String department of current logged in user.
+     */
 	public String extractDepartment() {
 		String userDepartment = UserController.getCurrentuser().getDepartment();
 		return userDepartment.substring(userDepartment.lastIndexOf("_")+1);
