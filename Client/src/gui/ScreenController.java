@@ -144,7 +144,8 @@ public class ScreenController {
         // start of timer code
         ChatClient.delay = new PauseTransition(Duration.seconds(600));
         
-        ChatClient.delay.setOnFinished( event2 -> {        ClientUI.chat.accept("disconnect");
+        ChatClient.delay.setOnFinished( event2 -> {
+                                                // ClientUI.chat.accept("disconnect");
             									ArrayList<String> cred = new ArrayList<String>();
 
             									cred.add(UserController.getCurrentuser().getUsername());

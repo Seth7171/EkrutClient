@@ -53,19 +53,28 @@ public class RefillOrderScreenController extends ScreenController implements Ini
 
     @FXML
     private TableColumn<RefillOrder, String> productidColumn;
+
+    @FXML
+    private TableColumn<RefillOrder, String> productNameColumn;
+
     @FXML
     private Text refilOrderTXT;
 
     @FXML
     private TableView<RefillOrder> requestTable;
+
     @FXML
     private Button exitButton;
+
     @FXML
     private Button goBackButton;
+
     @FXML
     private Button updateButton;
 
+
     private ArrayList<RefillOrder> changesToBeMade;
+
     public static ObservableList<RefillOrder> requestList;
 
 
@@ -109,16 +118,19 @@ public class RefillOrderScreenController extends ScreenController implements Ini
      */
     private void initCols(){
         // order ID column
-        orderidColumn.setCellValueFactory       (new PropertyValueFactory<>("orderID"));
+        orderidColumn.setCellValueFactory           (new PropertyValueFactory<>("orderID"));
 
         // product ID column
-        productidColumn.setCellValueFactory     (new PropertyValueFactory<>("ProductID"));
+        productidColumn.setCellValueFactory         (new PropertyValueFactory<>("ProductID"));
+
+        // product name column
+        productNameColumn.setCellValueFactory       (new PropertyValueFactory<>("ProductName"));
 
         // machine ID column
-        machineidColumn.setCellValueFactory     (new PropertyValueFactory<>("MachineID"));
+        machineidColumn.setCellValueFactory         (new PropertyValueFactory<>("MachineID"));
 
         // creationDate column
-        creationDateColumn.setCellValueFactory  (new PropertyValueFactory<>("creationDate"));
+        creationDateColumn.setCellValueFactory      (new PropertyValueFactory<>("creationDate"));
 
         // hide column
         assignedEmployeeColumn.setVisible(false);

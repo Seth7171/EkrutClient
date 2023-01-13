@@ -14,6 +14,7 @@ public class RefillOrder extends TableRefilOrder implements Serializable {
     private int amountAtRequest;
     private int newAmount = 0;
     private String assignedEmployee;
+    private String productName;
 
     public RefillOrder() {
     }
@@ -74,6 +75,13 @@ public class RefillOrder extends TableRefilOrder implements Serializable {
         this.newAmount = newAmount;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
     @Override
     public String toString() {

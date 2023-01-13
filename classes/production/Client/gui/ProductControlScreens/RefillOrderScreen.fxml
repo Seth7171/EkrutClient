@@ -22,20 +22,21 @@
             <Font size="25.0" />
          </font>
       </Text>
-      <Button fx:id="updateButton" layoutX="411.0" layoutY="607.0" mnemonicParsing="false" onMouseClicked="#updateDataBase" prefHeight="44.0" prefWidth="129.0" text="update">
+      <Button fx:id="updateButton" layoutX="416.0" layoutY="700.0" mnemonicParsing="false" onMouseClicked="#updateDataBase" prefHeight="44.0" prefWidth="129.0" text="update">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <TableView fx:id="requestTable" layoutX="67.0" layoutY="167.0" prefHeight="425.0" prefWidth="818.0">
+      <TableView fx:id="requestTable" layoutX="71.0" layoutY="166.0" prefHeight="497.0" prefWidth="818.0">
         <columns>
-          <TableColumn fx:id="orderidColumn" prefWidth="134.0" text="Order id" />
-          <TableColumn fx:id="productidColumn" prefWidth="134.0" text="Product id" />
-            <TableColumn fx:id="machineidColumn" prefWidth="134.0" text="Machine id" />
-            <TableColumn fx:id="creationDateColumn" prefWidth="134.0" text="Creation date" />
-            <TableColumn fx:id="amountAtRequestColumn" prefWidth="120.0" text="Amount at request" />
-            <TableColumn fx:id="assignedEmployeeColumn" prefWidth="155.0" text="Assigned Employee" />
-            <TableColumn fx:id="newAmountColumn" prefWidth="155.0" text="New amount" />
+          <TableColumn fx:id="orderidColumn" prefWidth="90.0" text="Order id" />
+            <TableColumn fx:id="productNameColumn" prefWidth="165.0" text="Product name" />
+          <TableColumn fx:id="productidColumn" prefWidth="90.0" text="Product id" />
+            <TableColumn fx:id="machineidColumn" prefWidth="90.0" text="Machine id" />
+            <TableColumn fx:id="creationDateColumn" prefWidth="110.0" text="Creation date" />
+            <TableColumn fx:id="amountAtRequestColumn" prefWidth="115.0" text="Amount at request" />
+            <TableColumn fx:id="assignedEmployeeColumn" prefWidth="148.0" text="Assigned Employee" />
+            <TableColumn fx:id="newAmountColumn" prefWidth="140.0" text="New amount" />
         </columns>
       </TableView>
       <ImageView fitHeight="79.0" fitWidth="70.0" layoutX="295.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
