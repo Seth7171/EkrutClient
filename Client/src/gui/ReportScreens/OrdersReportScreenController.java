@@ -102,10 +102,10 @@ public class OrdersReportScreenController extends ScreenController implements In
     void ClickLogOutButton(MouseEvent event) {
     	super.closeProgram(event, true);
     }
-   // TODO: CHANGE HERE !!!	//making the PieChart from data for specific department : | SOUTH | NORTH | UAE      ->> (line 126)
     /**
      * Initializes the screen.
-     * Making BarChart for all areas that display total orders of all machines from a specific area (North, South, UAE).
+     * Making PieChart for area manager that display total orders of all machines from a specific area (North, South, UAE).
+     * Making BarChart for CEO that display total orders of all areas.
      * In addition, it finds and show: 
      * The best and worst area depends on sales.
      * The best and worst machine depends on sales.
