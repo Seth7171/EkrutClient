@@ -62,17 +62,8 @@ public class MarketingManagerScreenController extends ScreenController implement
 	void existingDeals(MouseEvent event) {// switch to ManagerDealsScreen.fxml
 		Parent root = null;
 		try {
-			switch (UserController.getCurrentuser().getDepartment()) {
-			case "marketing_manager":
 				root = FXMLLoader.load(getClass().getResource("ManagerDealsScreen.fxml"));
-				break;
-			case "marketing_employee_uae":
-				root = FXMLLoader.load(getClass().getResource("EmployeeDealsScreen.fxml"));
-				break;
-			default:
-				System.out.println("Unknown!");
-			}
-		} 
+			} 
 		catch (IOException e) {
 			throw new RuntimeException(e);
 		}

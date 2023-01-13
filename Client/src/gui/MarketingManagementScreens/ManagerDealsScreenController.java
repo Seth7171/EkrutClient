@@ -77,25 +77,15 @@ public class ManagerDealsScreenController extends ScreenController implements In
 	}
 
     /**
-     * Goes back to Marketing Manager Screen or CEO Main screen based on current logged-in user's department.
+     * Goes back to Marketing Manager Screen Main screen.
      * @param event the mouse event that triggered the method call
      */
 	@FXML
 	void goBackToMarketingManagerScreen(MouseEvent event) {
 		Parent root = null;
 		try {
-			switch (UserController.getCurrentuser().getDepartment()) {
-			case "marketing_manager":
 				root = FXMLLoader.load(getClass().getResource("MarketingManagerScreen.fxml"));
-				break;
-			case "ceo":
-				root = FXMLLoader.load(getClass().getResource("/gui/CEOScreens/CEOMainScreen.fxml"));
-				break;
-
-			default:
-				System.out.println("Unknown!");
-
-			} 	
+			 	
 		}catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -179,8 +169,9 @@ public class ManagerDealsScreenController extends ScreenController implements In
 				dealToList.setActive(deal.getActive());
 			dealToList.setDealID(deal.getDealID());
 
-
+			
 			ClientUI.chat.accept(new Message(dealToList,MessageFromClient.REQUEST_UPDATE_DEALS ));//send new DB
+			loadDeals();
 			super.alertHandler(MessageHandler.getMessage(), MessageHandler.getMessage().contains("Error"));
 		}
 
