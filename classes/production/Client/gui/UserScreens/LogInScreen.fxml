@@ -10,39 +10,54 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserScreens.LogInScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserScreens.LogInScreenController">
    <children>
       <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="187.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true" rotate="10.0">
          <image>
             <Image url="@../saltBae.png" />
          </image>
       </ImageView>
-      <TextField fx:id="userNameField" layoutX="255.0" layoutY="249.0" prefHeight="25.0" prefWidth="174.0" promptText="Username">
+      <TextField fx:id="userNameField" layoutX="288.0" layoutY="249.0" prefHeight="25.0" prefWidth="174.0" promptText="Username">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="passwordField" layoutX="255.0" layoutY="344.0" prefHeight="31.0" prefWidth="174.0" promptText="Password">
+      <PasswordField fx:id="passwordField" layoutX="290.0" layoutY="333.0" prefHeight="31.0" prefWidth="174.0" promptText="Password">
          <font>
             <Font size="16.0" />
          </font>
       </PasswordField>
-      <Button fx:id="loginButton" layoutX="309.0" layoutY="505.0" mnemonicParsing="false" onMouseClicked="#logIn" text="Log in">
+      <Button fx:id="loginButton" layoutX="312.0" layoutY="412.0" mnemonicParsing="false" onMouseClicked="#logIn" prefHeight="35.0" prefWidth="111.0" text="Log in">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="fastLoginButton" layoutX="450.0" layoutY="262.0" maxHeight="111.0" maxWidth="111.0" minHeight="90.0" minWidth="90.0" mnemonicParsing="false" onMouseClicked="#FastlogIn" prefHeight="111.0" prefWidth="111.0" />
-      <Label layoutX="255.0" layoutY="126.0" text="Log In" underline="true">
+      <Button fx:id="fastLoginButton" layoutX="495.0" layoutY="248.0" maxHeight="111.0" maxWidth="111.0" minHeight="90.0" minWidth="90.0" mnemonicParsing="false" onMouseClicked="#FastlogIn" prefHeight="111.0" prefWidth="111.0" />
+      <Label layoutX="288.0" layoutY="149.0" text="Log In" underline="true">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Text fx:id="errorMessage" fill="RED" layoutX="168.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="264.0">
+      <Text fx:id="errorMessage" fill="RED" layoutX="203.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="264.0">
          <font>
             <Font size="17.0" />
          </font>
       </Text>
       <Button layoutX="656.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="256.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@password.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="256.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@user.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="245.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@login.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
