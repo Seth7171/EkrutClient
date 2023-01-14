@@ -1,7 +1,6 @@
 package common;
 
 import gui.ProductControlScreens.TableRefilOrder;
-import javafx.scene.control.ChoiceBox;
 
 import java.io.Serializable;
 
