@@ -153,7 +153,7 @@ public class CheckoutScreenController extends ScreenController implements Initia
         		String TotalPriceDiss = totalPriceDiss.getText();
         		TotalPriceDiss = TotalPriceDiss.replace('\u20AA', '\0');
        		    totalprice = Float.parseFloat(TotalPriceDiss);
-       		    totalPriceDiss.setText(String.format("%.2f",(totalprice)) + "\u20AA" + " FIRST BUY \nSUBSCRIBER DISCOUNT!");
+       		    totalPriceDiss.setText(String.format("%.2f",(totalprice)) + "\u20AA" + " FIRST BUY SUBSCRIBER DISCOUNT!");
     		}
     	}
     }

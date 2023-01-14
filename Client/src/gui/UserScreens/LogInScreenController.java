@@ -132,6 +132,15 @@ public class LogInScreenController extends ScreenController implements Initializ
             MessageHandler.setMessage(null);
             return;
         }
+        
+        
+        if(!ChatClient.isOL && !UserController.getCurrentuser().getDepartment().equals("customer")) {
+        	alertHandler("Unauthorized account", true);
+			//errorMessage.setText("Unauthorized account");
+			 ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
+			 return;
+		}	
+        
 		CustomerController.setmachineID(ChatClient.currentMachineID);
         Parent root = loadRoot();
         super.switchScreen(event,root);
