@@ -72,7 +72,9 @@ public class RefillOrderScreenController extends ScreenController implements Ini
     @FXML
     private Button updateButton;
 
-
+    @FXML
+    private Button refresh;
+    
     private ArrayList<RefillOrder> changesToBeMade;
 
     public static ObservableList<RefillOrder> requestList;
@@ -169,7 +171,14 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         assignedEmployeeColumn.setCellValueFactory  (new PropertyValueFactory<>("assignedEmployeeBox"));
         assignedEmployeeColumn.setVisible(true);
     }
-
+    /**
+     * Refresh the table.
+     * @param event the mouse event that triggered the method call
+     */
+    @FXML
+	void Refresh(MouseEvent event) {
+    	loadData();
+	}
 
     /**
      * Method to load the data for the request table.
@@ -192,9 +201,12 @@ public class RefillOrderScreenController extends ScreenController implements Ini
             ChoiceBox<String> choiceB = new ChoiceBox<>();
             choiceB.getItems().add("not assigned");
             choiceB.setValue(refOrder.getAssignedEmployee());
+            if( choiceB.getValue().equals("not assigned"))
+            	choiceB.setStyle("-fx-background-color: rgb(255, 192, 203);");
             refOrder.setAssignedEmployeeBox(choiceB);
             for (User user :operationsList){
                refOrder.getAssignedEmployeeBox().getItems().add(user.getFirstname() + " " + user.getLastname());
+               
             }
         }
 
@@ -351,6 +363,7 @@ public class RefillOrderScreenController extends ScreenController implements Ini
         }
 
         super.alertHandler("Data successfully updated!", false);
+        loadData();
         changesToBeMade.clear();
     }
 
