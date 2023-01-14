@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.client.ClientUI;
+import application.client.MessageHandler;
 import application.user.UserController;
+import common.RefillOrder;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import common.connectivity.User;
 import gui.ScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,7 +69,7 @@ public class AreaManagerScreenController extends ScreenController implements Ini
     private Button viewReportsButton;
     @FXML
     private Text welcomeText;
-    
+
     /**
   	 * Open Manage Prdocuts Screen.
   	 * @param event the mouse event that triggered the method call
@@ -81,7 +84,61 @@ public class AreaManagerScreenController extends ScreenController implements Ini
         }
         super.switchScreen(event, root);
     }
-    
+
+
+    @FXML
+    private void showAlertData(){
+        int refillRequests = 0;
+
+        int unapprovedUsers = 0;
+
+        String unapprovedStr = "";
+        String requestStr = "";
+
+
+        ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_CUSTOMERS_FROM_USER_TABLE));
+
+        if (MessageHandler.getData() == null)
+            return;
+
+        for (User user :(ArrayList<User>)MessageHandler.getData()){
+            if (user.getStatus().equals("not approved"))
+                unapprovedUsers += 1;
+        }
+
+        ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_REFILL_ORDERS));
+        if (MessageHandler.getData() == null)
+            return;
+
+        for (RefillOrder order :(ArrayList<RefillOrder>)MessageHandler.getData()){
+            if (order.getMachineID().contains("NOR") && UserController.getCurrentuser().getDepartment().split("_")[2].equals("north") && order.getAssignedEmployee().equals("not assigned")){
+                refillRequests += 1;
+            }
+
+            if (order.getMachineID().contains("SOU") && UserController.getCurrentuser().getDepartment().split("_")[2].equals("south")&& order.getAssignedEmployee().equals("not assigned")){
+                refillRequests += 1;
+            }
+
+            if (order.getMachineID().contains("UAE") && UserController.getCurrentuser().getDepartment().split("_")[2].equals("uae")&& order.getAssignedEmployee().equals("not assigned")){
+                refillRequests += 1;
+            }
+        }
+
+        if (unapprovedUsers > 0)
+            unapprovedStr = unapprovedUsers + "";
+        else
+            unapprovedStr = "No";
+
+        if (refillRequests > 0)
+            requestStr = refillRequests + "";
+        else
+            requestStr = "No";
+
+        super.alertHandler("There are:\n" + unapprovedStr + " unapproved users.\n" + requestStr + " unassigned refill requests", false);
+    }
+
+
+
     /**
   	 * Open Refill Orders Screen.
   	 * @param event the mouse event that triggered the method call
