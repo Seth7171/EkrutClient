@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import javax.swing.text.Element;
+import javax.swing.text.TableView.TableRow;
+
 import application.client.ChatClient;
 import application.client.MessageHandler;
 import common.Reports.InventoryReport;
@@ -67,6 +71,9 @@ public class InventoryReportScreenController extends ScreenController implements
 
 	@FXML
 	private TableColumn<Product, String> IDColumn;
+	
+	@FXML
+	private TableColumn<Product, Float> PriceColumn;
 
 	@FXML
 	private TableView<Product> tbData;
@@ -93,6 +100,7 @@ public class InventoryReportScreenController extends ScreenController implements
 			productData.setDescription(p.getDescription());
 			productData.setAmount(p.getAmount());
 			productData.setNumOfTimesBelowCritical(p.getNumOfTimesBelowCritical());
+			productData.setPrice(p.getPrice());
 			tbData.getItems().add(productData);
 		}
 	}
@@ -143,6 +151,7 @@ public class InventoryReportScreenController extends ScreenController implements
 		ProductNameColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
 		AvailableColumn.setCellValueFactory(new PropertyValueFactory<>("Amount"));
 		CriticalTimesColumn.setCellValueFactory(new PropertyValueFactory<>("numOfTimesBelowCritical"));
+		PriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
 		tbData.setItems(observablesubs);
 		loadProducts();
 	}
