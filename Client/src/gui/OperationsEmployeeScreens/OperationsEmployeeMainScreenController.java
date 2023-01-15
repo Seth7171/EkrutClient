@@ -19,6 +19,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+* The class responsible for managing the main operations employee screen. 
+* Displays the user's information and allows the user to view refill orders, log out and exit the program. 
+*/
 public class OperationsEmployeeMainScreenController extends ScreenController implements Initializable {
 
     @FXML
@@ -51,11 +55,18 @@ public class OperationsEmployeeMainScreenController extends ScreenController imp
     @FXML
     private Text phoneText;
 
+
+    /**
+    * Handles the event of the exit button being clicked, exits the program.
+    */
     @FXML
     void exit(MouseEvent event) {
         super.closeProgram(event, true);
     }
 
+    /**
+    * Initializes the screen by setting the user's information, such as name, id, department, email and phone number.
+    */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         welcomeBackTXT.setText("Welcome back " + UserController.getCurrentuser().getFirstname());
@@ -66,6 +77,9 @@ public class OperationsEmployeeMainScreenController extends ScreenController imp
 		phoneText.setText(UserController.getCurrentuser().getPhonenumber());
     }
 
+    /**
+    * Handles the event of the log out button being clicked, logs the user out and returns them to the login screen.
+    */
     @FXML
     void logOut(MouseEvent event) {
         ArrayList<String> cred = new ArrayList<String>();
@@ -82,6 +96,9 @@ public class OperationsEmployeeMainScreenController extends ScreenController imp
         super.switchScreen(event, root);
     }
 
+    /**
+    * Handles the event of the view refill orders button being clicked, opens the refill orders screen.
+    */
     @FXML
     void openRefillOrdersScreen(MouseEvent event) {
         Parent root = null;
@@ -92,6 +109,12 @@ public class OperationsEmployeeMainScreenController extends ScreenController imp
         }
         super.switchScreen(event, root);
     }
+    
+    /**
+    * Capitalizes the first letter of a given string
+    * @param str the string to capitalize
+    * @return the capitalized string
+    */
     public String capitalLetter(String str) {
 		return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 	}
