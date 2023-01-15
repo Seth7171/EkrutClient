@@ -3,8 +3,15 @@ package common.orders;
 import java.io.Serializable;
 
 /**
- * @author Lior Jigalo, Nitsan Maman
- */
+*
+* The Product class represents a product in the vending machine system. 
+* It contains information such as the product's price, discount, name, description, type, productId, 
+* criticalAmount, machineID, numOfTimesBelowCritical, and file.
+* @author Lior Jigalo, Nitsan Maman, Ron Shahar
+* @version 1.0
+* @since 1.0
+*/
+
 public class Product implements Serializable {
     private float price;
     private float discount;
@@ -19,6 +26,9 @@ public class Product implements Serializable {
     private int numOfTimesBelowCritical;
     private byte[] file;
 
+    /**
+    Creates an empty Product object.
+    */
     public Product() {
         this.price = 0;
         this.discount = 0;
@@ -32,6 +42,19 @@ public class Product implements Serializable {
         this.machineID = null;
     }
 
+    /**
+    *Creates a Product object with the given parameters.
+    *@param price The price of the product.
+    *@param discount The discount of the product.
+    *@param name The name of the product.
+    *@param amount The amount of the product.
+    *@param description The description of the product.
+    *@param type The type of the product.
+    *@param productId The product ID of the product.
+    *@param file The file of the product.
+    *@param criticalAmount The critical amount of the product.
+    */
+    
     public Product(float price, float discount, String name, int amount, String description, String type, String productId, byte[] file, int criticalAmount) {
         this.price = price;
         this.discount = discount;
