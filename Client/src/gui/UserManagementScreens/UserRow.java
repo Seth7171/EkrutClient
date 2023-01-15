@@ -7,6 +7,7 @@ import javafx.scene.control.ChoiceBox;
 *
 * This class represents a row in a table of users, which contains the first name, last name, id and status of a user.
 * It contains getters and setters for each attribute, as well as a toString method for displaying the row's information.
+* @author Lior
 */
 public class UserRow {
     private String firstname;

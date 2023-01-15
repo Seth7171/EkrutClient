@@ -27,6 +27,7 @@ import java.util.ResourceBundle;
  * AddSubscriberScreenController class provides the functionality of the Add subscriber screen.
  * this class is responsible for displaying all the customers in the system and allows the user to change their status
  * to subscriber or not a subscriber.
+ * @author Lior
  */
 public class AddSubscriberScreenController  extends ScreenController implements Initializable {
 
