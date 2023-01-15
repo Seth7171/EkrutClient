@@ -27,6 +27,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+
+/**
+* The screen allows the user to add, edit and delete products.
+* It also allows the user to view products in the warehouse or in specific machines.
+*/
 public class ProductManagementScreenController extends ScreenController implements Initializable {
 
     @FXML
@@ -113,6 +118,12 @@ public class ProductManagementScreenController extends ScreenController implemen
     @FXML
     private Button uploadToDBButton;
 
+    
+    /**
+    * Initializes the product management screen. 
+    * @param location - the location of the FXML file
+    * @param resources - the resources used to localize the root object
+    */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         changesToBeMade = new ArrayList<>();
@@ -129,6 +140,13 @@ public class ProductManagementScreenController extends ScreenController implemen
         });
     }
 
+    /**
+    * Initializes the elements of the new product section.
+    * It sets the machine ID text and choicebox to be invisible by default.
+    * It also calls a request to the server to get all machine locations.
+    * These locations are added to the location choicebox.
+    * It also sets the comboboxes and locationbox.
+    */
     private void initNewProductElements(){
         machineIDTXT.setVisible(false);
         machineIDChoiceBox.setVisible(false);
@@ -212,6 +230,10 @@ public class ProductManagementScreenController extends ScreenController implemen
         productTypeChoiceBox.getItems().addAll(types);
     }
 
+    /**
+    * This method is used to add new product to the data base.
+    * @param event action event
+    */
     @FXML
     void addProductToDatabase(MouseEvent event) {
     	
@@ -297,6 +319,12 @@ public class ProductManagementScreenController extends ScreenController implemen
 
     }
 
+    /**
+    * Refreshes the product table data.
+    * It calls a request to the server to get the updated product data.
+    * The data is then added to the table.
+    * @param event - the mouse event that triggers the method
+    */
     @FXML
     void refreshTable(ActionEvent event) {
         changesToBeMade.clear();
@@ -345,6 +373,11 @@ public class ProductManagementScreenController extends ScreenController implemen
 
         warehouseProductsTable.setItems(dataTable);
     }
+    
+    /**
+    * Initializes the columns of the product table.
+    * It sets the cell value factory for each column to the appropriate field in the product object.
+    */
     @FXML
     private void initCols(){
         // user cannot change productID value
@@ -424,6 +457,11 @@ public class ProductManagementScreenController extends ScreenController implemen
         }
     }
 
+    /**
+     * Check the array list of changes to be made, and replaces the old product in the array list 
+     * with the new product if it already exist in the array list
+     * @param product the new product to be added or replace the old one
+     */
     private void checkAndReplace(Product product){
         if (changesToBeMade.isEmpty()){
             changesToBeMade.add(product);
@@ -449,6 +487,11 @@ public class ProductManagementScreenController extends ScreenController implemen
         changesToBeMade.add(product);
     }
 
+    /**
+     * This method is responsible for loading the data that is displayed in the table view of the products.
+     * It retrieves the data from the server and adds it to the observable list dataTable, which is then set as the items 
+     * of the table views.
+     */
     private void loadData(){
         dataTable = FXCollections.observableArrayList();
         //ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_ALL_MACHINE_PRODUCTS));
@@ -466,6 +509,11 @@ public class ProductManagementScreenController extends ScreenController implemen
         warehouseProductsTable.setItems(dataTable);
     }
 
+    /**
+    * Sets the items in the comboboxes.
+    * It calls a request to the server to get all the machine IDs and areas.
+    * These are then added to the appropriate comboboxes.
+    */
     private void setComboBoxes(){
         ArrayList<String> Locations;
         ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_ALL_MACHINE_LOCATIONS));
@@ -480,6 +528,11 @@ public class ProductManagementScreenController extends ScreenController implemen
         areaComboBox.setValue("All");
     }
 
+    /**
+    * Initializes the location choice box.
+    * It sets the default value to "New Product" and adds a listener to the choice box.
+    * The listener updates the visibility of the machine ID text and choicebox based on the selected location.
+    */
     void initLocationBox(){
         if (UserController.getCurrentuser().getDepartment().contains("manager")){
             areaComboBox.setValue(UserController.getCurrentuser().getDepartment().split("_")[2]);
@@ -537,6 +590,10 @@ public class ProductManagementScreenController extends ScreenController implemen
         });
     }
 
+    /**
+     * This method is used to upload changes made to the products to the database
+     * @param event this is the event that triggers the method 
+     */
     @FXML
     void uploadChangesToDataBase(MouseEvent event) {
         if (changesToBeMade.isEmpty()){
@@ -558,6 +615,10 @@ public class ProductManagementScreenController extends ScreenController implemen
         super.alertHandler("Data successfully updated!", false);
     }
 
+    /**
+     * Event handler for the exit button, prompts the user to confirm before exiting the application, if there are unsaved changes.
+     * @param event the event that triggers the method.
+     */
     @FXML
     void exit(MouseEvent event) {
         if (!changesToBeMade.isEmpty()){
@@ -571,6 +632,13 @@ public class ProductManagementScreenController extends ScreenController implemen
         super.closeProgram(event, true);
     }
 
+    /**
+     * This method is responsible for handling the event of the user clicking the "back" button.
+     * It navigates the user back to the main screen of the CEO if the user is the CEO
+     * or the main screen of the area manager if the user is an area manager.
+     * 
+     * @param event  The event of the user clicking the "back" button
+     */
     @FXML
     void goBackToCEOMainScreen(MouseEvent event) { // todo: fix going back to ceo screen...
         // Initialize the root node of the new scene to null
