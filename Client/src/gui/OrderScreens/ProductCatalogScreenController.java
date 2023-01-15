@@ -31,6 +31,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import java.io.ByteArrayInputStream;
@@ -230,7 +231,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
 
         // Create a tooltip to display the product description
         Tooltip tooltip = new Tooltip(product.getDescription());
-        tooltip.setShowDelay(null);
+        tooltip.setShowDelay(Duration.ZERO);
         detBtn.setTooltip(tooltip);
         detBtn.setStyle("-fx-background-color: transparent;");
 

@@ -25,6 +25,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 
@@ -101,7 +102,7 @@ public class PaymentScreenController extends ScreenController implements Initial
         Tooltip tooltip = new Tooltip();
         ImageView cvvimage = new ImageView("/gui/OrderScreens/cvvHelper.png");
         tooltip.setGraphic(cvvimage);
-        tooltip.setShowDelay(null);
+        tooltip.setShowDelay(Duration.ZERO);
         infoCvv.setTooltip(tooltip);
         infoCvv.setStyle("-fx-background-color: transparent;");
         
