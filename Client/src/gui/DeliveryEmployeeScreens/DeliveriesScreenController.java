@@ -110,12 +110,22 @@ public class DeliveriesScreenController extends ScreenController implements Init
 		loadDeliveries();
 	}
 	
+	/**
+	 * Closes the program when the exit button is pressed.
+	 * 
+	 * @param event the MouseEvent that triggers the exit method
+	 */
     @FXML
     void exit(MouseEvent event) {
     	super.closeProgram(event, true);
     }
 
   
+    /**
+     * Redirects the user to the previous screen, in this case the DeliveryEmployeeScreen.fxml 
+     * 
+     * @param event the MouseEvent that triggers the goBack method
+     */
     @FXML
     void goBack(MouseEvent event) {
     	Parent root = null;
@@ -183,11 +193,22 @@ public class DeliveriesScreenController extends ScreenController implements Init
         viewAllOrders.setItems(observableDeliveries);
     }
    
+    /**
+     * Refreshes the deliveries list by calling the loadDeliveries method.
+     * 
+     * @param event the MouseEvent that triggers the Refresh method
+     */
     @FXML
     void Refresh(MouseEvent event) {
     	loadDeliveries();
     }
     
+    /**
+     * Applies the changes made to the deliveries list and sends the updated information to the server.
+     * Also sends SMS/MAIL notification to the customer if the delivery is approved.
+     * 
+     * @param event the MouseEvent that triggers the Apply method
+     */
     @FXML
     void Apply(MouseEvent event) {
     	tempDeliveries.clear();
