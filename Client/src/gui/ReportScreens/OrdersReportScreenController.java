@@ -5,9 +5,12 @@ import java.net.URL;
 import java.util.*;
 import javafx.scene.chart.PieChart;
 import application.client.ChatClient;
+import application.client.ClientUI;
 import application.client.MessageHandler;
 import application.user.UserController;
 import common.Reports.OrderReport;
+import common.connectivity.Message;
+import common.connectivity.MessageFromClient;
 import gui.ScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,7 +41,7 @@ public class OrdersReportScreenController extends ScreenController implements In
 	
 	@FXML
 	private Label DateChooseLabel;
-	   @FXML
+	@FXML
 	private PieChart pieChart;
 	@FXML
 	private Button exitApp;
@@ -74,10 +77,10 @@ public class OrdersReportScreenController extends ScreenController implements In
 
 	@FXML
 	private Label worstArea;
-	 @FXML
-	    private Label valueLabel;
-	   @FXML
-	    private Label totalOrdersALLMachines;
+	@FXML
+	private Label valueLabel;
+	@FXML
+	private Label totalOrdersALLMachines;
 
 	    
 	/**
@@ -293,6 +296,36 @@ public class OrdersReportScreenController extends ScreenController implements In
 		totalNorth=(float)totalOrdersNorth/NorthMachinesAmount;
 		totalSouth=(float)totalOrdersSouth/SouthMachinesAmount;
 		totalUAE=(float)totalOrdersUAE/UAEMachinesAmount;
+		
+		// If one of the areas went NaN so make it zero and choose one of the machines as wrost seller
+		if(Float.isNaN(totalUAE))
+		{
+			totalUAE=0;
+			ClientUI.chat.accept(new Message("UAE", MessageFromClient.REQUEST_MACHINE_IDS));
+			ArrayList<String> machinesTemp = (ArrayList<String>)  MessageHandler.getData();
+			totalOrdersWrostSeller= 0;
+			strIDofWrostSeller = machinesTemp.get(0); //get ID of worst machine
+			strLocationOfWrost = "UAE";
+		}
+		if(Float.isNaN(totalNorth))
+		{
+			totalNorth=0;
+			ClientUI.chat.accept(new Message("North", MessageFromClient.REQUEST_MACHINE_IDS));
+			ArrayList<String> machinesTemp = (ArrayList<String>)  MessageHandler.getData();
+			totalOrdersWrostSeller= 0;
+			strIDofWrostSeller = machinesTemp.get(0); //get ID of worst machine
+			strLocationOfWrost = "North";
+		}
+		if(Float.isNaN(totalSouth))
+		{
+			totalSouth=0;
+			ClientUI.chat.accept(new Message("South", MessageFromClient.REQUEST_MACHINE_IDS));
+			ArrayList<String> machinesTemp = (ArrayList<String>)  MessageHandler.getData();
+			totalOrdersWrostSeller= 0;
+			strIDofWrostSeller = machinesTemp.get(0); //get ID of worst machine
+			strLocationOfWrost = "South";
+		}
+		
 		if((totalNorth>=totalSouth) && (totalSouth>totalUAE))//NORTH is best area + UAE is the worst
 		{strBestArea="North"; strWorstArea="UAE";System.out.println("1");}
 		if((totalNorth>=totalUAE) && (totalUAE>=totalSouth))//NORTH is best area + South is the worst
@@ -307,19 +340,19 @@ public class OrdersReportScreenController extends ScreenController implements In
 		{strBestArea="UAE"; strWorstArea="South";System.out.println("6");}
 		
 		for(XYChart.Series<String, Integer> series: OrdersChart.getData()) {//display the value on each bar
-		    for (XYChart.Data<String, Integer> data : series.getData()) {
-		        Node node = data.getNode();
-		            Pane pane = (Pane) node;
-		            Label label = new Label(Integer.toString((int) data.getYValue()));
-		            label.setTextFill(Color.WHITE);
-		            label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
-		            pane.getChildren().add(label);
-		    }
+			for (XYChart.Data<String, Integer> data : series.getData()) {
+				Node node = data.getNode();
+				Pane pane = (Pane) node;
+				Label label = new Label(Integer.toString((int) data.getYValue()));
+				label.setTextFill(Color.WHITE);
+				label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
+				pane.getChildren().add(label);
+			}
 		}
 		break;
-    default:
-     System.out.println("Unknown!");
-}
+           default:
+        	   System.out.println("Unknown!");
+	 }
 	 
 		//show analyze data on the screen (all screens)
 		DateChooseLabel.setText("*Report is relevant to " + ChatClient.returnMonthChoose + "/" + ChatClient.returnYearChoose);//show the date
@@ -335,7 +368,7 @@ public class OrdersReportScreenController extends ScreenController implements In
 			wrostLocationLabel.setText("Location: " + strLocationOfWrost);
 			bestArea.setText("The area with the MOST orders is: " + strBestArea);// show the Best area
 			worstArea.setText("The area with the LOWEST orders is: " + strWorstArea);// show the worst area
-			totalOrdersALLMachines.setText("Total orders number: "+ (totalOrdersUAE+totalOrdersNorth+totalOrdersSouth));
+			totalOrdersALLMachines.setText("Total orders: "+ (totalOrdersUAE+totalOrdersNorth+totalOrdersSouth));
 			
 		}
 	
