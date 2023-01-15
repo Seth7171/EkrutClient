@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 /**
 * The class responsible for managing the main operations employee screen. 
 * Displays the user's information and allows the user to view refill orders, log out and exit the program. 
+* @author Tarek
 */
 public class OperationsEmployeeMainScreenController extends ScreenController implements Initializable {
 
