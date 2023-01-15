@@ -31,6 +31,7 @@ import java.util.ResourceBundle;
 /**
 * The screen allows the user to add, edit and delete products.
 * It also allows the user to view products in the warehouse or in specific machines.
+* @author Lior
 */
 public class ProductManagementScreenController extends ScreenController implements Initializable {
 
