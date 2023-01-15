@@ -229,6 +229,11 @@ public class ScreenController {
         System.exit(0);
     }
     
+    /**
+     * Displays an alert dialog with the given message.
+     * @param event the event that triggered the alert
+     * @param message the message to be displayed in the alert dialog
+     */
     public void alertSMSMAIL(Event event, String message) {
 	    Alert alert = new Alert(Alert.AlertType.INFORMATION);
 	    alert.setTitle("Information Dialog");
@@ -237,6 +242,14 @@ public class ScreenController {
 	    alert.showAndWait();
     }
     
+    /**
+     * This method is used to display an alert message to the user. The method takes in two parameters,
+     * the first being the message to be displayed, and the second being a boolean value indicating
+     * whether the message is a warning or an error (isBad = true) or a confirmation (isBad = false).
+     * @param allertMessage String message to be displayed in the alert
+     * @param isBad boolean value indicating whether the message is a warning or an error (isBad = true)
+     * or a confirmation (isBad = false)
+     */
     public void alertHandler(String allertMessage , boolean isBad){
 	 // Create a new stage for the popup window
 	    Stage popupWindow = new Stage();
