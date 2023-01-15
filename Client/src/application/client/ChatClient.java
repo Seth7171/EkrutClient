@@ -76,7 +76,7 @@ public class ChatClient extends AbstractClient
    *
    * @param serverMessage The message from the server.
    */
-  public void handleMessageFromServer(Object serverMessage) { // TODO: optimize switch case.
+  public void handleMessageFromServer(Object serverMessage) { 
 	  subs = new ArrayList<>();
 	  System.out.println("--> handleMessageFromServer");
 	  System.out.println(serverMessage);
@@ -150,27 +150,6 @@ public class ChatClient extends AbstractClient
               MessageHandler.setMessage("user added successfully!");
               break;
 
-         /* case "IMPORT_MACHINE_PRODUCTS_SUCCESSFUL":
-              MessageHandler.setData(message.getData());  // @Lior, added this line because product catalog screen controller was searching for the product arraylist in message handler instead of productList
-              productList = (ArrayList<Product>)message.getData();
-              // TODO: decide if the below block is necessary.
-//              //TODO: you should take the following block and put it where you need it or you can even leave it here.
-//              //***********************************************************************
-//              byte[] inputFile;
-//              for (Product o : productList){
-//                  inputFile = o.getFile();
-//                  try {
-//                      FileOutputStream fos = new FileOutputStream("Client/src/gui/ProductImages/" + o.getName() + ".png");
-//                      fos.write(inputFile);
-//                      fos.close();
-//                  } catch (Exception e) {
-//                      e.printStackTrace();
-//                      throw new RuntimeException(e);
-//                  }
-//
-//              }
-//              //**********************************************************************
-              break;*/
 
           case "IMPORT_ORDER_BY_ORDER_ID_AND_CUSTOMER_ID_SUCCESSFUL":
               //currentOrder = (Order)message.getData();
