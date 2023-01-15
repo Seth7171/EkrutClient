@@ -23,11 +23,21 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The ClientConnectorController class is a JavaFX controller for the client connector screen.
+ * It extends the ScreenController class and is responsible for handling user interactions and
+ * connecting the client to the server.
+ * @author Lior Jigalo, Nitsan Maman, Ron Shahar
+ * @version 1.0
+ * @since 1.0
+ */
 public class ClientConnectorController extends ScreenController {
+	// fields to keep track of the connection state and user selections
 	private boolean choosen;
 	private boolean isEK;
 	private boolean isConnected;
 
+	// JavaFX GUI elements
 	@FXML
 	private Button btnExit = null;
 	@FXML
@@ -49,14 +59,29 @@ public class ClientConnectorController extends ScreenController {
 	@FXML
 	private TextField iptxt;
 	
+	// list to store machine IDs
 	ObservableList<String> list;
     double xoffset;
 	double yoffset;
+    /**
+     * Private helper method to get the IP address entered by the user.
+     * @return the IP address as a string
+     */
 	private String getip() {
 		return iptxt.getText();			
 	}
 	
+    /**
+     * Method called when the user clicks the "Done" button.
+     * It checks if the user has selected an EK or OL machine and displays an error message if not.
+     * It then attempts to connect to the server using the IP address entered by the user.
+     * If the connection is successful, it either requests a list of machine IDs from the server if
+     * the user selected EK or switch to LogInScreen.
+     * @param event the mouse event that triggered the method call
+     * @throws Exception 
+     */
 	public void Done(MouseEvent event) throws Exception {
+		// check if user has selected EK or OL
 		if (!choosen) {
 			super.alertHandler("Please Chooce One EK / OL", true);
 			//warningEKOL.setVisible(true);
@@ -119,7 +144,15 @@ public class ClientConnectorController extends ScreenController {
 		}
 		super.switchScreen(event, root);
 	}
-
+	
+	
+    /**
+     * Method to initialize the JavaFX application and create the user interface.
+     * It loads the FXML file "ClientConnector.fxml" which contains the layout and elements of the user interface,
+     * and sets an event handler for when the mouse is pressed on the scene to allow the user to drag and move the window.
+     * @param primaryStage the primary stage of the application
+     * @throws Exception
+     */
 	public void start(Stage primaryStage) throws Exception {	
 		Parent root = FXMLLoader.load(getClass().getResource("/gui/ConnectionScreens/ClientConnector.fxml"));
 				
@@ -187,48 +220,3 @@ public class ClientConnectorController extends ScreenController {
 		System.exit(0);
 	}
 }
-
-
-//	public void Done(ActionEvent event) throws Exception {
-//		String ip;
-//		FXMLLoader loader = new FXMLLoader();
-//
-//		ip=getip();
-//		if(ip.trim().isEmpty()) {
-//			System.out.println("You must enter a ip number");
-//		}
-//		else
-//		{
-//			try {
-//				ClientUI.chat = new ClientController(ip, 5555);
-//				ClientUI.chat.getClient().openConnection();
-//				((Node)event.getSource()).getScene().getWindow().hide(); //hiding primary window
-//				Stage primaryStage = new Stage();
-//				Pane root = loader.load(getClass().getResource("/gui/SubscriberEdit.fxml").openStream());
-//
-//				Scene scene = new Scene(root);
-//				scene.getStylesheets().add(getClass().getResource("/gui/SubscriberEdit.css").toExternalForm());
-//				// event handler for when the mouse is pressed on the scene to trigger the drag and move event
-//				root.setOnMousePressed(event1 -> {
-//					xoffset = event1.getSceneX();
-//					yoffset = event1.getSceneY();
-//				});
-//
-//				// event handler for when the mouse is pressed AND dragged to move the window
-//				root.setOnMouseDragged(event1 -> {
-//					primaryStage.setX(event1.getScreenX()-xoffset);
-//					primaryStage.setY(event1.getScreenY()-yoffset);
-//				});
-//				primaryStage.initStyle(StageStyle.UNDECORATED);
-//				primaryStage.setTitle("Client Editor");
-//
-//				primaryStage.setScene(scene);
-//
-//				primaryStage.show();
-//			}
-//			catch (Exception e) {
-//				iptxt.clear();
-//				warning.setVisible(true);
-//			}
-//		}
-//	}
