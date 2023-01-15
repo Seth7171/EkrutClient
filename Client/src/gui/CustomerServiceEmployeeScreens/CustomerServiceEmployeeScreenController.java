@@ -21,7 +21,11 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * @author Lior Jigalo
+ * The controller class for the Customer Service Employee screen, which allows the user to manage users, 
+ * view their personal information, and import users from external sources.
+ * 
+ * @author  Lior Jigalo
+ * @version 1.0
  */
 public class CustomerServiceEmployeeScreenController extends ScreenController implements Initializable {
     @FXML
@@ -55,6 +59,12 @@ public class CustomerServiceEmployeeScreenController extends ScreenController im
     @FXML
     private Text phoneText;
 
+    /**
+     * Initializes the screen by setting the welcome message, displaying the user's personal information and setting the department name.
+     * 
+     * @param location The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resources The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         welcomeText.setText("Welcome back " + capitalLetter(UserController.getCurrentuser().getFirstname()));
@@ -65,6 +75,11 @@ public class CustomerServiceEmployeeScreenController extends ScreenController im
 		phoneText.setText(UserController.getCurrentuser().getPhonenumber());
     }
 
+    /**
+     * Opens the add new user screen when the add new user button is pressed.
+     * 
+     * @param event The MouseEvent that triggers the openAddUserScreen method.
+     */
     @FXML
     protected void openAddUserScreen(MouseEvent event) {
         Parent root = null;
@@ -76,6 +91,11 @@ public class CustomerServiceEmployeeScreenController extends ScreenController im
         super.switchScreen(event, root);
     }
 
+    /**
+     * Opens the add new subscriber screen when the add new subscriber button is pressed.
+     * 
+     * @param event The MouseEvent that triggers the openAddSubscriberScreen method.
+     */
     @FXML
     void openAddSubscriberScreen(MouseEvent event) {
         Parent root = null;
@@ -87,11 +107,21 @@ public class CustomerServiceEmployeeScreenController extends ScreenController im
         super.switchScreen(event, root);
     }
 
+    /**
+     * Closes the program when the exit button is pressed.
+     * 
+     * @param event The MouseEvent that triggers the exit method.
+     */
     @FXML
     protected void exit(MouseEvent event) {
         super.closeProgram(event, true);
     }
 
+    /**
+     * Logs the user out and redirects to the login screen when the log out button is pressed.
+     * 
+     * @param event The MouseEvent that triggers the logOut method.
+     */
     @FXML
     protected void logOut(MouseEvent event) {
         ArrayList<String> cred = new ArrayList<String>();
@@ -107,14 +137,18 @@ public class CustomerServiceEmployeeScreenController extends ScreenController im
         super.switchScreen(event, root);
     }
 
-    
+    /**
+     * Opens the manage users screen when the manage users button is pressed.
+     * 
+     * @param event The MouseEvent that triggers the openManageUsersScreen method.
+     */
     @FXML
     protected void openManageUsersScreen(MouseEvent event) {
     }
     public String capitalLetter(String str) {
 		return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 	}
-
+    
     @FXML
     void importUsersFromExternalSource(MouseEvent event) {
         ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_IMPORT_USERS));
