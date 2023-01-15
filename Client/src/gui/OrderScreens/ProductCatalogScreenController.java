@@ -46,6 +46,8 @@ import java.util.ResourceBundle;
  * This class is responsible for showing the user the discounts, prices, quantities for each product.
  * also will enable the user to add to cart products and display the overall price he have to pay
  * It also communicates with the server to update the order.
+ * @author Nitsan & Ron & Lior
+ * @version 1.0
  */
 public class ProductCatalogScreenController extends ScreenController implements Initializable{
     // Declare variables to keep track of the number of items in the cart and the total price

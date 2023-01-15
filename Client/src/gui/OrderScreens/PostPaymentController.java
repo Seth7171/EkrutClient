@@ -35,6 +35,8 @@ import javafx.util.Duration;
  * updating the UI accordingly. It also communicates with the server to update the order status and
  * retrieve the order details to display on the screen. This class implements the Initializable interface
  * to handle the initialization of the FXML elements and sets up the necessary data for the screen.
+ * @author Nitsan & Ron
+ * @version 1.0
  */
 public class PostPaymentController extends ScreenController implements Initializable{
 
