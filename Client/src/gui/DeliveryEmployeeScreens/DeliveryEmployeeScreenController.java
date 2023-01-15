@@ -23,6 +23,8 @@ import javafx.scene.text.Text;
  * DeliveryEmployeeScreenController class is responsible for controlling the GUI for delivery employees.
  * It allows the delivery employee to log out, view their orders, and exit the program.
  * It also allows to displays the user's orders.
+ * @author Nitsan & Ron
+ * @version 1.0
  */
 public class DeliveryEmployeeScreenController extends ScreenController implements Initializable{
     

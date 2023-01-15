@@ -25,6 +25,8 @@ import javafx.scene.text.Text;
  * It provides functionality for the CheckoutScreen, including calculating the
  * total price of the products in the shopping cart and allowing the user to 
  * go back to the product catalog or exit the application.
+ * @author Nitsan & Ron
+ * @version 1.0
  */
 public class CheckoutScreenController extends ScreenController implements Initializable{
 
