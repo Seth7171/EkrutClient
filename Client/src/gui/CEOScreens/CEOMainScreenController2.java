@@ -18,6 +18,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * CEOMainScreenController2 class is a controller class for the CEO main screen
+ * It handles the actions and events that occur on the CEO main screen, and updates the corresponding views.
+ * This class extends the ScreenController class and implements the Initializable interface.
+ * @author Ravid Goldin
+ * @author Ben Ben Baruch
+ */
 public class CEOMainScreenController2 extends ScreenController implements Initializable {
 
 	 @FXML
