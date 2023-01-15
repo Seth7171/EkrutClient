@@ -33,6 +33,8 @@ import javafx.scene.input.MouseEvent;
  * responsible for handling the functionality and events of the deliveries screen.
  * It implements the Initializable interface and initializes the screen by setting up 
  * the table columns and populating the table with data.
+ * @author Nitsan & Ron
+ * @version 1.0
  */
 public class DeliveriesScreenController extends ScreenController implements Initializable{
  	@FXML
