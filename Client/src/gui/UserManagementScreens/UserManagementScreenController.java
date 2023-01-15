@@ -33,6 +33,7 @@ import java.util.ResourceBundle;
 * The class contains several FXML variables that are used to represent the different components of the screen such as
 * TableView, TableColumn, and Button. It also contains a static ObservableList of UserRow objects and an ArrayList of
 * UserRow objects.
+* @author Lior
 */
 public class UserManagementScreenController extends ScreenController implements Initializable {
     @FXML
