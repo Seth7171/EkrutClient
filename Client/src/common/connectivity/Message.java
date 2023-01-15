@@ -72,5 +72,4 @@ public class Message implements Serializable {
     public String toString() {
         return "Message [data=" + data + ", task=" + task + ", answer=" + answer + "]";
     }
-
 }

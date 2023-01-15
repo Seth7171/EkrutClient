@@ -21,9 +21,10 @@
       <TableView fx:id="tbData" layoutX="449.0" layoutY="199.0" prefHeight="467.0" prefWidth="499.0">
         <columns>
           <TableColumn fx:id="IDColumn" prefWidth="66.0" text="ID" />
-          <TableColumn fx:id="ProductNameColumn" prefWidth="252.0" text="Product Name" />
-            <TableColumn fx:id="AvailableColumn" prefWidth="80.6666259765625" text="Available" />
-            <TableColumn fx:id="CriticalTimesColumn" prefWidth="99.3333740234375" text="Critical Times" />
+          <TableColumn fx:id="ProductNameColumn" prefWidth="206.0" text="Product Name" />
+            <TableColumn fx:id="AvailableColumn" prefWidth="72.0" text="Available" />
+            <TableColumn fx:id="PriceColumn" prefWidth="69.0" text="Price" />
+            <TableColumn fx:id="CriticalTimesColumn" text="Critical Times" />
         </columns>
       </TableView>
       <Button fx:id="backButton" layoutX="15.0" layoutY="792.0" mnemonicParsing="false" onMouseClicked="#clickBackButton" prefHeight="44.0" prefWidth="129.0" text="Back">

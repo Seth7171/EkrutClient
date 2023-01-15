@@ -63,9 +63,8 @@ public class ScreenController {
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
 
-
         FadeTransition fadeTransition = new FadeTransition();
-        fadeTransition.setDuration(Duration.millis(300));
+        fadeTransition.setDuration(Duration.millis(500));
         fadeTransition.setNode(root);
         fadeTransition.setFromValue(0);
         fadeTransition.setToValue(1);
@@ -208,12 +207,12 @@ public class ScreenController {
             if (e instanceof NumberFormatException){
             }
         });
-        ClientUI.chat.accept("disconnect");
         if (needLogout){
             ArrayList<String> cred = new ArrayList<String>();
             cred.add(UserController.getCurrentuser().getUsername());
             ClientUI.chat.accept(new Message(cred, MessageFromClient.REQUEST_LOGOUT));
         }
+        ClientUI.chat.accept("disconnect");
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/gui/goodByeScreen.fxml"));
