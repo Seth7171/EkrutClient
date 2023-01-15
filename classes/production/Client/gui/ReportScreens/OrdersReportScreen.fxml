@@ -16,7 +16,7 @@
    <children>
       <Pane fx:id="asd" layoutX="39.0" layoutY="218.0" prefHeight="515.0" prefWidth="365.0" styleClass="background-blank">
          <children>
-            <Label fx:id="totalOrdersALLMachines" layoutX="3.0" layoutY="359.0" prefHeight="30.0" prefWidth="357.0" text="Total orders number: $total">
+            <Label fx:id="totalOrdersALLMachines" layoutX="40.0" layoutY="364.0" prefHeight="30.0" prefWidth="318.0" text="Total orders number: $total">
                <font>
                   <Font size="14.0" />
                </font>

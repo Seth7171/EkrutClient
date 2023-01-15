@@ -45,7 +45,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="306.0" layoutY="490.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" text="View/Send Messages">
+      <Button layoutX="306.0" layoutY="490.0" mnemonicParsing="false" opacity="0.0" prefHeight="30.0" prefWidth="153.0" text="View/Send Messages">
          <font>
             <Font size="14.0" />
          </font>
@@ -60,7 +60,7 @@
             <Image url="@user.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="248.0" layoutY="483.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="248.0" layoutY="483.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@message.png" />
          </image>
