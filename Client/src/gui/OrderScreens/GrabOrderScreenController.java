@@ -31,7 +31,8 @@ import javafx.scene.input.MouseEvent;
 *
 * This class is the controller class for the grab order screen,
 *  this class is responsible for the grab order screen's functions.
-*
+* @author Nitsan & Ron
+* @version 1.0
 */
 public class GrabOrderScreenController extends ScreenController implements Initializable{
 
