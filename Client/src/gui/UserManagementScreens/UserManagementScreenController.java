@@ -25,6 +25,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+*
+* The UserManagementScreenController class is a controller class that is responsible for handling the User Management screen.
+* It implements the Initializable interface and contains methods that handle the user interactions with the screen such as
+* loading the users data into the table, handling the back button, update and revert changes buttons, and exiting the program.
+* The class contains several FXML variables that are used to represent the different components of the screen such as
+* TableView, TableColumn, and Button. It also contains a static ObservableList of UserRow objects and an ArrayList of
+* UserRow objects.
+*/
 public class UserManagementScreenController extends ScreenController implements Initializable {
     @FXML
     private TableView<UserRow> UserManagementTable;
@@ -47,6 +56,13 @@ public class UserManagementScreenController extends ScreenController implements 
     public static ObservableList<UserRow> userList;
     ArrayList<UserRow> usersToUpdate;
 
+    /**
+     * Initializes the User Management screen, initializing the columns of the table and loading
+     * the users from the server to the table.
+     *
+     * @param location  The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resources The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usersToUpdate = new ArrayList<>();
@@ -54,6 +70,9 @@ public class UserManagementScreenController extends ScreenController implements 
         loadUsersToTable();
     }
 
+    /**
+     * Loads all of the users from the server to the table view.
+     */
     private void loadUsersToTable() {
         userList = FXCollections.observableArrayList();
         if (!userList.isEmpty())
@@ -75,6 +94,9 @@ public class UserManagementScreenController extends ScreenController implements 
         UserManagementTable.setItems(userList);
     }
 
+    /**
+     * Initializes the columns of the table view
+     */
     private void initCols() {
         // first name column
         firstNameColumn.setCellValueFactory (new PropertyValueFactory<>("firstname"));
@@ -89,16 +111,31 @@ public class UserManagementScreenController extends ScreenController implements 
         statusColumn.setCellValueFactory    (new PropertyValueFactory<>("status"));
     }
 
+    /**
+     * Resets the changes made to the user's status by reloading the data from the server.
+     *
+     * @param event The mouse event that triggered this method.
+     */
     @FXML
     void resetChanges(MouseEvent event) {
         loadUsersToTable();
     }
 
+    /**
+     * Exits the program.
+     *
+     * @param event The mouse event that triggered this method.
+     */
     @FXML
     void exit(MouseEvent event) {
         super.closeProgram(event, true);
     }
 
+    /**
+     * Goes back to the previous screen.
+     *
+     * @param event The mouse event that triggered this method.
+     */
     @FXML
     void goBack(MouseEvent event) {
         Parent root = null;
@@ -130,6 +167,11 @@ public class UserManagementScreenController extends ScreenController implements 
         }
     }
 
+    /**
+     * Updates the database with the changes made to the user's status.
+     *
+     * @param event The mouse event that triggered this method.
+     */
     @FXML
     void updateDataBase(MouseEvent event) {
         ArrayList<User> users = new ArrayList<>();

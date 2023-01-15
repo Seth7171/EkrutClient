@@ -16,6 +16,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * AddUserScreenController is a screen controller class that controls the actions and events of the Add User screen.
+ * It is responsible for handling the UI elements and validating the user input before sending it to the server.
  * @author Lior Jigalo
  */
 public class AddUserScreenController extends ScreenController{
@@ -43,6 +45,12 @@ public class AddUserScreenController extends ScreenController{
     @FXML
     private TextField userNameField;
 
+    
+    /**
+     * addUser is a method that gets called when the add user button is clicked.
+     * It validates the user input and creates a new user object to send to the server.
+     * @param event
+     */
     @FXML
     void addUser(MouseEvent event) {
         // check for empty fields
@@ -117,12 +125,21 @@ public class AddUserScreenController extends ScreenController{
         super.alertHandler(MessageHandler.getMessage(), MessageHandler.getMessage().contains("exists"));
     }
 
-
+    /**
+     * exit is a method that gets called when the exit button is clicked.
+     * It closes the program.
+     * @param event
+     */
     @FXML
     protected void exit(MouseEvent event) {
         super.closeProgram(event, true);
     }
 
+    /**
+     * goBack is a method that gets called when the back button is clicked.
+     * It navigates the user to the previous screen.
+     * @param event
+     */
     @FXML
     protected void goBack(MouseEvent event) {
         Parent root = null;

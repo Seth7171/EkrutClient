@@ -23,6 +23,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * AddSubscriberScreenController class provides the functionality of the Add subscriber screen.
+ * this class is responsible for displaying all the customers in the system and allows the user to change their status
+ * to subscriber or not a subscriber.
+ */
 public class AddSubscriberScreenController  extends ScreenController implements Initializable {
 
     @FXML
@@ -51,6 +56,9 @@ public class AddSubscriberScreenController  extends ScreenController implements 
     private Button updateUserButton;
     public static ObservableList<TableCustomer> customerList;
 
+    /**
+     * This method is responsible for initializing the columns in the table view and load the customers data to it.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initCols();
@@ -58,6 +66,9 @@ public class AddSubscriberScreenController  extends ScreenController implements 
 
     }
 
+    /**
+     * This method is responsible for initializing the columns in the table view.
+     */
     private void initCols() {
         // id column column
         idCol.setCellValueFactory               (new PropertyValueFactory<>("id"));
@@ -84,6 +95,9 @@ public class AddSubscriberScreenController  extends ScreenController implements 
         subNumberCol.setCellValueFactory        (new PropertyValueFactory<>("subscriberNumber"));
     }
 
+    /**
+     * This method is responsible for loading the customers data to the table view.
+     */
     private void loadCustomersToTable(){
         customerList = FXCollections.observableArrayList();
         if (!customerList.isEmpty())
@@ -127,6 +141,9 @@ public class AddSubscriberScreenController  extends ScreenController implements 
         customerTable.setItems(customerList);
     }
 
+    /**
+     * This method is responsible for handling the event of clicking the update user button.
+     */
     @FXML
     void updateCustomerInDatabase(MouseEvent event) {
         ArrayList<String> customerToUpdate = new ArrayList<>();
@@ -139,6 +156,9 @@ public class AddSubscriberScreenController  extends ScreenController implements 
         loadCustomersToTable();
     }
 
+    /**
+     * This method is responsible for handling the event of clicking the back button.
+     */
     @FXML
     void goBack(MouseEvent event) {
         Parent root = null;
@@ -150,6 +170,10 @@ public class AddSubscriberScreenController  extends ScreenController implements 
         //switchScreen(event, root);
         super.switchScreen(event, root);
     }
+    
+    /**
+     * This method is responsible for handling the event of clicking the exit button.
+     */
     @FXML
     void exit(MouseEvent event) {
         super.closeProgram(event, true);
