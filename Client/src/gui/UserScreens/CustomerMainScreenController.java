@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
+ * This class is responsible for the main menu of the Customer. It contains methods for initializing the view,
+ * handling events related to logging out, creating new orders, grabbing existing orders, and viewing deliveries.
  * @author Lior Jigalo
  */
 public class CustomerMainScreenController extends ScreenController implements Initializable {
@@ -67,10 +69,11 @@ public class CustomerMainScreenController extends ScreenController implements In
     double yoffset;
 
     /**
-     * @param location  The location used to resolve relative paths for the root object, or
-     *                  {@code null} if the location is not known.
-     * @param resources The resources used to localize the root object, or {@code null} if
-     *                  the root object was not localized.
+     * 
+     * Initializes the main menu view by setting the visibility of certain buttons, setting text fields to display information
+     * about the current user, and sending a message to the server to request customer data.
+     * @param location The location of the FXML file associated with this controller.
+     * @param resources The resources used to localize the root object.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -89,13 +92,19 @@ public class CustomerMainScreenController extends ScreenController implements In
         }
     }
     
+    /**
+     * Handles the event of the user clicking the "Exit" button. Closes the program.
+     * @param event The event of the mouse clicking the "Exit" button.
+     */
     @FXML
     void exit(MouseEvent event) {
 		super.closeProgram(event, true);
     }
 
     /**
-     * @param event
+     * Handles the event of the user clicking the "Log Out" button. Sends a message to the server to request log out,
+     * sets the current user and customer to null, and switches to the log in screen.
+     * @param event The event of the user clicking the "Log Out" button.
      */
     @FXML
     void logOut(Event event) {
@@ -116,7 +125,9 @@ public class CustomerMainScreenController extends ScreenController implements In
     }
 
     /**
-     * @param event
+     * Handles the event of the user clicking the "New Order" button. Sets the supply method of the current order to
+     * "instant pickup" and switches to the appropriate screen depending on whether the user is EK or OL.
+     * @param event The event of the user clicking the "New Order" button.
      */
     @FXML
     void NewOrder(Event event) {
@@ -137,7 +148,8 @@ public class CustomerMainScreenController extends ScreenController implements In
     }
     
     /**
-     * @param event
+     * Handles the event of the user clicking the "Grab Order" button. Switches to the "Grab Order" screen.
+     * @param event The event of the user clicking the "Grab Order" button.
      */
     @FXML
     void GrabOrder(Event event) {
@@ -151,7 +163,8 @@ public class CustomerMainScreenController extends ScreenController implements In
     }
     
     /**
-     * @param event
+     * Handles the event of the user clicking the "View Deliveries" button. Switches to the "View Deliveries" screen.
+     * @param event The event of the user clicking the "View Deliveries" button.
      */
     @FXML
     void ViewDeliveries(Event event) {
