@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
+ * This class is responsible for the log in screen of the application. It contains methods for initializing the view,
+ * handling events related to logging in, and exiting the program.
  * @author Lior Jigalo
  */
 public class LogInScreenController extends ScreenController implements Initializable {
@@ -43,7 +45,13 @@ public class LogInScreenController extends ScreenController implements Initializ
     private Button fastLoginButton;
     
 
-    
+    /**
+     *
+     * Initializes the log in screen by setting text fields and buttons, and adding event handlers for the "Enter" key
+     * to submit the log in form.
+     * @param location The location of the FXML file associated with this controller.
+     * @param resources The resources used to localize the root object.
+    */
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -73,17 +81,21 @@ public class LogInScreenController extends ScreenController implements Initializ
     }
 
     /**
-     * @param event
-     */
+    * 
+    * Handles the event of the user clicking the "Exit" button. Closes the program.
+    * @param event The event of the mouse clicking the "Exit" button.
+    */
     @FXML
     void exit(MouseEvent event) {
         super.closeProgram(event, false);
     }
 
     /**
-     * @param event
-     *This method opens the forgot password alert
-     */
+    * UNUSED IN FINAL FORM
+    * Handles the event of the user clicking the "Forgot Password" button. Shows an alert message that this functionality
+    * is not yet supported.
+    * @param event The event of the mouse clicking the "Forgot Password" button.
+    */
     @FXML
     void openForgotPasswordScreen(MouseEvent event) {
         Alert a = new Alert(Alert.AlertType.INFORMATION, "This functionality is not supported yet");
@@ -91,7 +103,12 @@ public class LogInScreenController extends ScreenController implements Initializ
         a.show();
     }
     
-    
+    /**
+    * TEMPORARY IMPLEMENTION will work later with EKT app.
+    * Handles the event of the user clicking the "Fast Login" button. Sends a message to the server to log in with predefined
+    * credentials "ron" and "123" and switches to the appropriate screen depending on the user's department and if EK or OL
+    * @param event The event of the user clicking the "Fast Login" button.
+    */
     @FXML
     private void FastlogIn(Event event){
         ArrayList<String> credentials = new ArrayList<String>();
@@ -117,7 +134,11 @@ public class LogInScreenController extends ScreenController implements Initializ
     
 
     /**
-     * @param event
+     *
+     * Handles the event of the user clicking the "Log In" button or pressing the "Enter" key in the username or password field.
+     * Sends a message to the server with the entered username and password, and switches to the appropriate screen depending
+     * on the user's department and if EK or OL.
+     * @param event The event of the user clicking the "Log In" button or pressing the "Enter" key in the username or password field.
      */
     @FXML
     private void logIn(Event event){
@@ -146,6 +167,11 @@ public class LogInScreenController extends ScreenController implements Initializ
         super.switchScreen(event,root);
     }
 
+    /**
+     *
+     * Loads the appropriate screen for the user based on their department, and sets the current customer if applicable.
+     * @return The Parent root of the appropriate screen.
+     */
     private Parent loadRoot(){
         Parent root = null;
         try {
@@ -204,7 +230,10 @@ public class LogInScreenController extends ScreenController implements Initializ
 
 
     /**
-     * @return
+     *
+     * Retrieves the username and password entered by the user and returns it in an ArrayList.
+     * If one of the fields is empty or contains spaces, an error message is displayed.
+     * @return ArrayList containing the username and password entered by the user, or null if the fields are empty or contain spaces.
      */
     private ArrayList<String> getUsernameAndPassword() {
         if(userNameField.getText().equals("") || passwordField.getText().equals("")){
