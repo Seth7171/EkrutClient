@@ -8,6 +8,7 @@ import application.client.ChatClient;
 import application.user.CustomerController;
 import common.orders.Product;
 import gui.ScreenController;
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +37,9 @@ public class CheckoutScreenController extends ScreenController implements Initia
     // FXML variables for the UI elements in the CheckoutScreen
     @FXML
     private Button exitButton;
+    
+    @FXML
+    private Button proceed;
 
     @FXML
     private Button backButton;
@@ -84,6 +88,10 @@ public class CheckoutScreenController extends ScreenController implements Initia
             }
          }
       });
+      if (ChatClient.productwascancled) {
+    	  proceed.setVisible(false);
+    	  ChatClient.productwascancled =false;
+      }
     }
     
     /**
@@ -118,7 +126,7 @@ public class CheckoutScreenController extends ScreenController implements Initia
             e.printStackTrace();
         }
         // Call the switchScreen method from the ScreenController class to switch to the ProductCatalogScreen
-        super.switchScreen(event, root);        
+        super.switchScreen(event, root); 
     }
     
     /**

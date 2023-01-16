@@ -35,12 +35,13 @@ public class ChatClient extends AbstractClient
    * The interface type variable.  It allows the implementation of 
    * the display method in the client.
    */
-	ChatIF clientUI; 
+	ChatIF clientUI;
 	 public static PauseTransition delay;
 	  public static String currentMachineID;
 	  public static User s1 = new User();
 	  public static ArrayList<User> subs = new ArrayList<>();
 	  public static boolean awaitResponse = false;
+	  public static boolean productwascancled = false;
 	  public static String servermsg = new String();
 	  public static ArrayList<Product> productList = new ArrayList<Product>();
 	  public static ArrayList<Product> cartList = new ArrayList<Product>();
