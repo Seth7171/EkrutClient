@@ -466,3 +466,34 @@
 	-fx-background-radius: 15px;
 }
 /**************************************************************************************************/
+
+.progress-bar {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 20px;
+    -fx-border-color: #00ff7f;
+    -fx-border-width: 5px;
+    -fx-background-image: 
+        linear-gradient(to right, 
+            derive(-fx-border-color, -20%), 
+            derive(-fx-border-color, -10%), 
+            -fx-border-color, 
+            derive(-fx-border-color, 10%), 
+            derive(-fx-border-color, 20%)
+        ),
+        linear-gradient(to bottom, 
+            derive(-fx-border-color, 20%), 
+            derive(-fx-border-color, 10%), 
+            -fx-border-color, 
+            derive(-fx-border-color, -10%), 
+            derive(-fx-border-color, -20%)
+        );
+    -fx-background-size: 100% 100%, 100% 100%;
+    -fx-background-repeat: no-repeat;
+}
+.progress-bar .bar {
+    -fx-background-color: #00ff7f;
+    -fx-background-insets: 0;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(gaussian, #b0e0e6, 20, 0.5, 0, 0);
+}
