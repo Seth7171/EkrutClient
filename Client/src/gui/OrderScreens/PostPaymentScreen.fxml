@@ -62,6 +62,6 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Text>
-      <ProgressBar layoutX="650.0" layoutY="87.0" prefHeight="18.0" prefWidth="234.0" progress="1.0" />
+      <ProgressBar layoutX="650.0" layoutY="70.0" prefHeight="15.0" prefWidth="230.0" progress="1.0" />
    </children>
 </Pane>
