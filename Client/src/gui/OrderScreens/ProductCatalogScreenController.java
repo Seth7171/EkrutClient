@@ -233,7 +233,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
 
         // Create a tooltip to display the product description
         Tooltip tooltip = new Tooltip(product.getDescription());
-        tooltip.setShowDelay(Duration.ZERO);
+        //tooltip.setShowDelay(Duration.ZERO);
         detBtn.setTooltip(tooltip);
         detBtn.setStyle("-fx-background-color: transparent;");
 
@@ -617,7 +617,7 @@ public class ProductCatalogScreenController extends ScreenController implements 
      */
     @FXML
     void goBack(MouseEvent event) {
-    	ChatClient.delay.stop();
+    	//ChatClient.delay.stop();
     	// Empty the cart
 		emptyMyCart(event);
 		// Initialize the root node of the new scene to null

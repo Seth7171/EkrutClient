@@ -144,7 +144,8 @@ public class CustomerMainScreenController extends ScreenController implements In
             e.printStackTrace();
         }
         //super.switchScreen(event, root);
-        switchScreenWithTimer(event, root);
+        switchScreen(event, root);
+        // switchScreenWithTimer(event, root);
     }
     
     /**

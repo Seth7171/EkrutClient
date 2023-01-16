@@ -102,7 +102,7 @@ public class PaymentScreenController extends ScreenController implements Initial
         Tooltip tooltip = new Tooltip();
         ImageView cvvimage = new ImageView("/gui/OrderScreens/cvvHelper.png");
         tooltip.setGraphic(cvvimage);
-        tooltip.setShowDelay(Duration.ZERO);
+        //tooltip.setShowDelay(Duration.ZERO);
         infoCvv.setTooltip(tooltip);
         infoCvv.setStyle("-fx-background-color: transparent;");
         
