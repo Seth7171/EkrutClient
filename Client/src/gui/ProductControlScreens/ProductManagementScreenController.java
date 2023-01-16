@@ -292,7 +292,7 @@ public class ProductManagementScreenController extends ScreenController implemen
             return;
         }
         product.setDescription(descriptionTextArea.getText());
-        product.setType(productTypeChoiceBox.getValue().toUpperCase()); //TODO: if i will change it in the database then i will need to delete the: toUppercase function
+        product.setType(productTypeChoiceBox.getValue().toUpperCase());
         if (locationChoiceBox.getValue() != null && !locationChoiceBox.getValue().equals("New Product")  && !locationChoiceBox.getValue().equals("Warehouse")){
             product.setMachineID(machineIDChoiceBox.getValue());
         }
