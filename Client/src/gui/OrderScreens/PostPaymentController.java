@@ -108,6 +108,7 @@ public class PostPaymentController extends ScreenController implements Initializ
     void goBack(MouseEvent event) {
 		//Stop the delay and reset the cart list and rememberMyCart list views
 		// ChatClient.delay.stop();
+		ChatClient.delay.pause();
 		ChatClient.cartList = new ArrayList<Product>();
 		ChatClient.rememberMyCart = new ListView<Object>();
         Parent root = null;
