@@ -273,6 +273,7 @@ public class ProductManagementScreenController extends ScreenController implemen
             super.alertHandler("file name length must be less than 40", true);
             return;
         }
+        product.setProductName(productImageTextField.getText());
         product.setName(productImageTextField.getText());
         try {
             product.setAmount(Integer.parseInt(availableAmountTextField.getText()));
