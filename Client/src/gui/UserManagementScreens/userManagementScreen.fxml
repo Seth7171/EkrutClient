@@ -28,7 +28,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="revertChangesButton" layoutX="301.0" layoutY="628.0" mnemonicParsing="false" onMouseClicked="#resetChanges" prefHeight="44.0" prefWidth="147.0" text="revert changes">
+      <Button fx:id="revertChangesButton" layoutX="301.0" layoutY="628.0" mnemonicParsing="false" onMouseClicked="#resetChanges" prefHeight="44.0" prefWidth="147.0" text="Refresh">
          <font>
             <Font size="18.0" />
          </font>
