@@ -114,6 +114,6 @@
          </children>
       </Pane>
       <Text fx:id="cartCounter" fill="WHITE" layoutX="-45.0" layoutY="642.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
-      <ProgressBar layoutX="624.0" layoutY="28.0" prefHeight="18.0" prefWidth="234.0" progress="0.25" />
+      <ProgressBar layoutX="620.0" layoutY="25.0" prefHeight="15.0" prefWidth="230.0" progress="0.25" />
    </children>
 </Pane>
