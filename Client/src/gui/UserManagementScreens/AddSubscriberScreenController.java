@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
  * @author Lior
  */
 public class AddSubscriberScreenController  extends ScreenController implements Initializable {
-
+	
     @FXML
     private TableView<TableCustomer> customerTable;
     @FXML
@@ -147,14 +147,26 @@ public class AddSubscriberScreenController  extends ScreenController implements 
      */
     @FXML
     void updateCustomerInDatabase(MouseEvent event) {
+    	String str ="";
         ArrayList<String> customerToUpdate = new ArrayList<>();
         for (TableCustomer tableCustomer : customerList){
             customerToUpdate.add(tableCustomer.getId());
+            if ((tableCustomer.isSub() && tableCustomer.getCustomerStatusBox().getValue().equals("not a subscriber")) ) {
+            	str += String.format("\nSMS/MAIL was send to Customer number %s that he is NO longer a Subscriber",tableCustomer.getId());
+            }
+            if (!tableCustomer.isSub() && tableCustomer.getCustomerStatusBox().getValue().equals("subscriber")) {
+            	str += String.format("\nSMS/MAIL was send to Customer number %s with his new Subscriber number",tableCustomer.getId());
+            }
             customerToUpdate.add(tableCustomer.getCustomerStatusBox().getValue());
             ClientUI.chat.accept(new Message(customerToUpdate, MessageFromClient.REQUEST_UPDATE_CUSTOMER_STATUS));
             customerToUpdate.clear();
         }
         loadCustomersToTable();
+        if (!str.equals(""))
+        	super.alertSMSMAIL(event, str);
+        else
+        	super.alertHandler("No Changes were made.", true);
+        
     }
 
     /**
