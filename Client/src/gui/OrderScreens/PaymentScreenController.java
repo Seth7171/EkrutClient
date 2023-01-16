@@ -9,11 +9,14 @@ import java.util.ResourceBundle;
 import java.util.UUID;
 import application.client.ChatClient;
 import application.client.ClientUI;
+import application.client.MessageHandler;
 import application.user.CustomerController;
 import application.user.UserController;
 import common.connectivity.Message;
 import common.connectivity.MessageFromClient;
+import common.orders.Product;
 import gui.ScreenController;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -42,6 +46,7 @@ It implements Initializable interface to initialize the PaymentScreen.
 */
 public class PaymentScreenController extends ScreenController implements Initializable{
 	private boolean remember = true;
+	private String str ="";
     @FXML
     private Text Subtotal;
     
@@ -179,7 +184,12 @@ public class PaymentScreenController extends ScreenController implements Initial
 	@FXML
     void delayPay(MouseEvent event) {
         ChatClient.currentOrder.setPaidWith("delayed payment");
-		generateInvoice(event, true);
+        if(checkCart(event)) {
+        	
+        	goBack(event);
+		}
+        else
+        	generateInvoice(event, true);
 	}
     
 	/**
@@ -206,8 +216,71 @@ public class PaymentScreenController extends ScreenController implements Initial
 			
 		
 		if(callCreditCardCompany(cardNumber, cardName ,cardYear, cardMonth, cardCVV, ChatClient.currentOrder.getOverallPrice())) {
+			if(checkCart(event)) {
+				goBack(event);
+				return;
+			}
 			generateInvoice(event, false);
 		}
+	}
+	
+	Boolean checkCart(MouseEvent event) {
+		if (CustomerController.isLogged()) {
+    		ArrayList<String> machine = new ArrayList<String>();
+    		if (ChatClient.currentOrder.getSupplyMethod().equals("delivery")){
+    			machine.add(null);
+        		machine.add("0");
+        		ClientUI.chat.accept(new Message(machine, MessageFromClient.REQUEST_WAREHOUSE_PRODUCTS));
+    		}
+    		else {
+    			machine.add(CustomerController.getmachineID());
+        		machine.add("0");
+        		ClientUI.chat.accept(new Message(machine, MessageFromClient.REQUEST_MACHINE_PRODUCTS));
+    		}
+    	}
+        // Request the list of products from the warehouse
+    	else
+    		ClientUI.chat.accept(new Message(null, MessageFromClient.REQUEST_WAREHOUSE_PRODUCTS));
+        // Iterate through the list of products received from the warehouse
+        Object data = MessageHandler.getData();
+        if (!(data instanceof ArrayList<?>)) {
+        	Platform.runLater(new Runnable() {
+        	    @Override
+        	    public void run() {
+                    alertHandler("There Are No Products In This EK Machince", true);
+        	    }
+        	});
+            return true;
+        }
+        ArrayList<Product> myOrder = new ArrayList<Product>(ChatClient.currentOrder.getProducts());
+        ListView<Object> myCart = new ListView<Object>(ChatClient.rememberMyCart.getItems());
+        for (Product product : (ArrayList<Product>) data) {
+        	for (Product productinorder : myOrder) {
+        		if(product.getName().equals(productinorder.getName())) {
+	        		if (product.getAmount()-productinorder.getAmount()<0) {
+	        			ChatClient.currentOrder.getProducts().remove(productinorder);
+	        			ChatClient.cartList.remove(productinorder);
+	        			//ChatClient.rememberMyCart.getItems().remove(productinorder);
+	        			str += productinorder.getName() +"Has removed from your cart due to lack of amount\n";
+	        		}
+        		}
+        	}
+        }
+        if (myOrder.isEmpty()) {
+        	str = "Your Cart Is Empty Go Back\n";
+        }
+        str += "Click Back To See The Changes In Your Cart";
+        if (!str.equals("Click Back To See The Changes In Your Cart")) {
+        	Platform.runLater(new Runnable() {
+        	    @Override
+        	    public void run() {
+                    alertSMSMAIL(event, str);
+        	    }
+        	});
+	    	ChatClient.productwascancled = true;   
+        	return true;
+        }
+        return false;
 	}
 	
 	/**
