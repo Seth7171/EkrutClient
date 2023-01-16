@@ -105,17 +105,17 @@ public class ClientConnectorController extends ScreenController {
 
 		catch (java.net.ConnectException e) {
 			super.alertHandler("Server Refused To Connect", true);
-			//e.printStackTrace();
+			// e.printStackTrace();
 			return;
 		}
 		catch (java.net.SocketException e) {
 			super.alertHandler("IP Is Unreachable", true);
-			e.printStackTrace();
+			// e.printStackTrace();
 			return;
 		}
 		catch (java.net.UnknownHostException e) {
 			super.alertHandler("Unknown Local Host", true);
-			e.printStackTrace();
+			// e.printStackTrace();
 			return;
 		}
 		isConnected = true;
