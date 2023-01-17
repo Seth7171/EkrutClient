@@ -9,6 +9,49 @@
 	-fx-color6: rgba(178, 178, 178, 0.9);
 }
 
+
+.circles{
+	-fx-background-radius: 50;
+	-fx-background-color: rgba(255, 228, 225, 0.66);
+	-fx-effect: dropshadow( one-pass-box , rgba(0, 0, 0, 0.37), 3, 1.0 , 2 , 3 );
+
+	-fx-pref-width: 35;
+	-fx-pref-height: 35;
+}
+.plank{
+	-fx-background-color: rgba(127, 255, 212, 0.59);
+}
+
+/*#circle1{*/
+
+/*}*/
+/*#circle2{*/
+
+/*}*/
+/*#circle3{*/
+
+/*}*/
+/*#circle4{*/
+
+/*}*/
+/*#circle5{*/
+
+/*}*/
+
+/*#bar1{*/
+
+/*}*/
+/*#bar2{*/
+
+/*}*/
+/*#bar3{*/
+
+/*}*/
+/*#bar4{*/
+
+/*}*/
+
+
 .text-field{
 	-fx-text-box-border: transparent;
 }
@@ -255,6 +298,7 @@
 #fastLoginButton:hover{
 	-fx-background-color: radial-gradient(center 50% 50%, radius 60%, rgba(243, 243, 243, 0.77), transparent);
 }
+
 /********************************************************************************************/
 
 
