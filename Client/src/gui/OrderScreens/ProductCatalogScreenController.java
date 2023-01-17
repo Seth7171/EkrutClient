@@ -258,6 +258,8 @@ public class ProductCatalogScreenController extends ScreenController implements 
 
         // Create a spinner to select the quantity of the product to add to the cart
         Spinner<Integer> SpinnerQuantity = new Spinner<>(0,product.getAmount(),0);
+
+        SpinnerQuantity.getStyleClass().add("spinner");
         
 
         // Check if the product is already in the cart

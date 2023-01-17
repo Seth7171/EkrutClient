@@ -510,3 +510,112 @@
 	-fx-background-radius: 15px;
 }
 /**************************************************************************************************/
+
+.tooltip {
+    -fx-background-color: #f5f5f5;
+    -fx-text-fill: #333333;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-color: #333333;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+}
+
+
+
+.spinner {
+	-fx-background-color: radial-gradient(center 50% 50%, radius 80%, rgba(143, 143, 143, 0.36) 10%, transparent);
+	/*-fx-border-color: rgba(93, 93, 93, 0.45);*/
+	-fx-background-radius: 10px;
+	/*-fx-border-width: 1px;*/
+	-fx-border-radius: 10px;
+	-fx-padding: 3px;
+	-fx-pref-height: 45px;
+}
+
+.spinner .text-field {
+	-fx-background-color: transparent;
+}
+
+.spinner .increment-arrow-button{
+	-fx-shape: "M 0 0 L 10 0 L 5 -10 Z";
+	-fx-background-color: radial-gradient(center 50% 50%, radius 70%, rgba(102, 255, 0, 0.67) 10%, transparent);
+	-fx-background-insets: 0 0 2 0;
+	-fx-border-color: linear-gradient(to bottom, rgba(98, 98, 98, 0.77), transparent);
+	-fx-border-insets: 0 0 2 0;
+	-fx-border-width: 1;
+
+}
+
+
+.spinner .increment-arrow-button:hover{
+	-fx-scale-y: 1.15;
+	-fx-scale-x: 1.15;
+}
+
+
+.spinner .decrement-arrow-button {
+	-fx-shape: "M 0 0 L 5 5 L 10 0 Z";
+	-fx-background-color: radial-gradient(center 50% 50%, radius 70%, rgba(255, 0, 0, 0.6) 10%, transparent);
+	-fx-background-insets: 2 0 0 0;
+	-fx-border-color: linear-gradient(to bottom, rgba(98, 98, 98, 0.77), transparent);
+	-fx-border-insets: 2 0 0 0;
+	-fx-border-width: 1;
+}
+
+.spinner .decrement-arrow-button:hover{
+	-fx-scale-y: 1.15;
+	-fx-scale-x: 1.15;
+}
+
+
+/*.spinner .increment-button{*/
+/*	-fx-background-color: rgba(0, 128, 0, 0.58);*/
+/*	-fx-background-radius: 10px;*/
+
+/*}*/
+
+/*.spinner .decrement-button{*/
+/*	-fx-background-color: rgba(255, 0, 0, 0.55);*/
+/*	-fx-background-radius: 10px;*/
+
+/*}*/
+
+
+/*-fx-spinner-arrow-button-shape: "M 0 0 L 5 5 L 10 0 Z";*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.spinner{*/
+/*	!*-fx-indeterminate-bar-length: 30;*!*/
+/*	!*-fx-indeterminate-bar-width: 5;*!*/
+/*	!*-fx-indeterminate-bar-gap: 2;*!*/
+/*	!*-fx-indeterminate-bar-animation-time: 2s;*!*/
+/*	-fx-progress-color: #0074D9;*/
+/*	-fx-background-color: white;*/
+/*	-fx-border-color: black;*/
+/*	-fx-border-width: 1px;*/
+/*	-fx-border-radius: 10px;*/
+/*	-fx-padding: 6px;*/
+/*}*/
+
+/*.spinner:selected{*/
+/*	-fx-progress-color: #0074D9;*/
+/*	-fx-background-color: white;*/
+/*	-fx-border-color: black;*/
+/*	-fx-border-width: 1px;*/
+/*	-fx-border-radius: 10px;*/
+/*	-fx-padding: 6px;*/
+/*}*/
