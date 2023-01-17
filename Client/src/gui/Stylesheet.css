@@ -9,6 +9,49 @@
 	-fx-color6: rgba(178, 178, 178, 0.9);
 }
 
+
+.circles{
+	-fx-background-radius: 50;
+	-fx-background-color: rgba(255, 228, 225, 0.66);
+	-fx-effect: dropshadow( one-pass-box , rgba(0, 0, 0, 0.37), 3, 1.0 , 2 , 3 );
+
+	-fx-pref-width: 35;
+	-fx-pref-height: 35;
+}
+.plank{
+	-fx-background-color: rgba(127, 255, 212, 0.59);
+}
+
+/*#circle1{*/
+
+/*}*/
+/*#circle2{*/
+
+/*}*/
+/*#circle3{*/
+
+/*}*/
+/*#circle4{*/
+
+/*}*/
+/*#circle5{*/
+
+/*}*/
+
+/*#bar1{*/
+
+/*}*/
+/*#bar2{*/
+
+/*}*/
+/*#bar3{*/
+
+/*}*/
+/*#bar4{*/
+
+/*}*/
+
+
 .text-field{
 	-fx-text-box-border: transparent;
 }
@@ -255,6 +298,7 @@
 #fastLoginButton:hover{
 	-fx-background-color: radial-gradient(center 50% 50%, radius 60%, rgba(243, 243, 243, 0.77), transparent);
 }
+
 /********************************************************************************************/
 
 
@@ -466,34 +510,3 @@
 	-fx-background-radius: 15px;
 }
 /**************************************************************************************************/
-
-.progress-bar {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-background-radius: 20px;
-    -fx-border-color: #00ff7f;
-    -fx-border-width: 5px;
-    -fx-background-image: 
-        linear-gradient(to right, 
-            derive(-fx-border-color, -20%), 
-            derive(-fx-border-color, -10%), 
-            -fx-border-color, 
-            derive(-fx-border-color, 10%), 
-            derive(-fx-border-color, 20%)
-        ),
-        linear-gradient(to bottom, 
-            derive(-fx-border-color, 20%), 
-            derive(-fx-border-color, 10%), 
-            -fx-border-color, 
-            derive(-fx-border-color, -10%), 
-            derive(-fx-border-color, -20%)
-        );
-    -fx-background-size: 100% 100%, 100% 100%;
-    -fx-background-repeat: no-repeat;
-}
-.progress-bar .bar {
-    -fx-background-color: #00ff7f;
-    -fx-background-insets: 0;
-    -fx-background-radius: 20px;
-    -fx-effect: dropshadow(gaussian, #b0e0e6, 20, 0.5, 0, 0);
-}

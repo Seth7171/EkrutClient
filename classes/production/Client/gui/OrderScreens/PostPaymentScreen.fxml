@@ -61,5 +61,36 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Text>
+      <Pane fx:id="bar1" layoutX="685.0" layoutY="82.0" prefHeight="3.0" prefWidth="20.0" styleClass="plank" />
+      <Pane fx:id="bar2" layoutX="741.0" layoutY="82.0" prefHeight="3.0" prefWidth="21.0" style="-fx-background-color: #7FFFD496;" styleClass="plank" />
+      <Pane fx:id="bar3" layoutX="797.0" layoutY="82.0" prefHeight="3.0" prefWidth="21.0" style="-fx-background-color: #7FFFD496;" styleClass="plank" />
+      <Pane fx:id="bar4" layoutX="852.0" layoutY="82.0" prefHeight="3.0" prefWidth="21.0" style="-fx-background-color: #7FFFD496;" styleClass="plank" />
+      <Text fx:id="cartCounter" fill="WHITE" layoutX="-15.0" layoutY="672.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
+      <Pane fx:id="circle1" layoutX="651.0" layoutY="64.0" prefHeight="71.0" prefWidth="71.0" style="-fx-background-color: #7FFFD496;" styleClass="circles">
+         <children>
+            <Text layoutX="11.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="circleTXT" text="0%" />
+         </children>
+      </Pane>
+      <Pane fx:id="circle2" layoutX="705.0" layoutY="64.0" prefHeight="71.0" prefWidth="71.0" style="-fx-background-color: #7FFFD496;" styleClass="circles">
+         <children>
+            <Text layoutX="7.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="circleTXT" text="25%" />
+         </children>
+      </Pane>
+      <Pane fx:id="circle3" layoutX="762.0" layoutY="64.0" prefHeight="71.0" prefWidth="71.0" style="-fx-background-color: #7FFFD496;" styleClass="circles">
+         <children>
+            <Text layoutX="7.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="circleTXT" text="50%" />
+         </children>
+      </Pane>
+      <Text layoutX="37.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="circleTXT" />
+      <Pane fx:id="circle4" layoutX="817.0" layoutY="64.0" prefHeight="71.0" prefWidth="71.0" style="-fx-background-color: #7FFFD496;" styleClass="circles">
+         <children>
+            <Text layoutX="7.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="circleTXT" text="75%" />
+         </children>
+      </Pane>
+      <Pane fx:id="circle5" layoutX="871.0" layoutY="64.0" prefHeight="71.0" prefWidth="71.0" style="-fx-background-color: #7FFFD496;" styleClass="circles">
+         <children>
+            <Text layoutX="4.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="circleTXT" text="100%" />
+         </children>
+      </Pane>
    </children>
 </Pane>

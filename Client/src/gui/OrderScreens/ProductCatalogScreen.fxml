@@ -113,7 +113,35 @@
             </Label>
          </children>
       </Pane>
+      <Pane fx:id="bar1" layoutX="655.0" layoutY="52.0" prefHeight="3.0" prefWidth="20.0" styleClass="plank" />
+      <Pane fx:id="bar2" layoutX="711.0" layoutY="52.0" prefHeight="3.0" prefWidth="21.0" style="-fx-background-color: #FFE4E1A8;" styleClass="plank" />
+      <Pane fx:id="bar3" layoutX="767.0" layoutY="52.0" prefHeight="3.0" prefWidth="21.0" style="-fx-background-color: #FFE4E1A8;" styleClass="plank" />
+      <Pane fx:id="bar4" layoutX="822.0" layoutY="52.0" prefHeight="3.0" prefWidth="21.0" style="-fx-background-color: #FFE4E1A8;" styleClass="plank" />
       <Text fx:id="cartCounter" fill="WHITE" layoutX="-45.0" layoutY="642.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="29.999992847442627" />
-      <ProgressBar layoutX="620.0" layoutY="25.0" prefHeight="15.0" prefWidth="230.0" progress="0.25" />
+      <Pane fx:id="circle1" layoutX="621.0" layoutY="34.0" prefHeight="71.0" prefWidth="71.0" style="-fx-background-color: #7FFFD496;" styleClass="circles">
+         <children>
+            <Text layoutX="11.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="circleTXT" text="0%" />
+         </children>
+      </Pane>
+      <Pane fx:id="circle2" layoutX="675.0" layoutY="34.0" prefHeight="71.0" prefWidth="71.0" style="-fx-background-color: #7FFFD496;" styleClass="circles">
+         <children>
+            <Text layoutX="7.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="circleTXT" text="25%" />
+         </children>
+      </Pane>
+      <Pane fx:id="circle3" layoutX="732.0" layoutY="34.0" prefHeight="71.0" prefWidth="71.0" styleClass="circles">
+         <children>
+            <Text layoutX="7.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="circleTXT" text="50%" />
+         </children>
+      </Pane>
+      <Pane fx:id="circle4" layoutX="787.0" layoutY="34.0" prefHeight="71.0" prefWidth="71.0" styleClass="circles">
+         <children>
+            <Text layoutX="7.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="circleTXT" text="75%" />
+         </children>
+      </Pane>
+      <Pane fx:id="circle5" layoutX="841.0" layoutY="34.0" prefHeight="71.0" prefWidth="71.0" styleClass="circles">
+         <children>
+            <Text layoutX="4.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="circleTXT" text="100%" />
+         </children>
+      </Pane>
    </children>
 </Pane>
