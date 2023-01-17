@@ -174,6 +174,7 @@ public class ViewDeliveriesScreenController extends ScreenController implements 
 	    		// If the order status is not "approved", disable the status choice box
 		    	if (!order.getOrderStatus().equals("approved")) {
 		    		status.setDisable(true);
+		    		status = new ChoiceBox<>(FXCollections.observableArrayList("approved","not approved", "awaiting approval","delivered"));
 		    	}
 		    	observableDeliveries.add(torder);
 	    	}
