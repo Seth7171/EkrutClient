@@ -128,7 +128,7 @@ public class CheckoutScreenController extends ScreenController implements Initia
         // Call the switchScreen method from the ScreenController class to switch to the ProductCatalogScreen
         super.switchScreen(event, root); 
     }
-    ///
+
     /**
      * Calculates the total price of the items in the shopping cart.
      * If the user is a subscriber and this is their first time buying as a subscriber,
