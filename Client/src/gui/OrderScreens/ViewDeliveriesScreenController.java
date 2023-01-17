@@ -167,15 +167,24 @@ public class ViewDeliveriesScreenController extends ScreenController implements 
     	// Add orders from tempDeliveries to observableDeliveries
 	    for (Order order : tempDeliveries) {
 	    	if (order.getSupplyMethod().equals("delivery")) {
-    	    	TableOrder torder = new TableOrder(order);
-    	    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("approved","not approved", "awaiting approval"));
-    	    	// Set the value of the ChoiceBox to the current status of the order
-    	    	status.setValue(order.getOrderStatus());
-    	    	torder.setStatus_co(status);
-    	    	status.setDisable(true);
+	    		TableOrder torder = new TableOrder(order);
+	    		ArrayList<String> stats = new ArrayList<String>();
+	    		if (!order.getOrderStatus().equals("approved")) {
+	    	    	ChoiceBox<String> status = new ChoiceBox<String>();
+	    	    	// Set the value of the ChoiceBox to the current status of the order
+	    	    	stats.add(order.getOrderStatus());
+	    	    	status.getItems().addAll(stats);
+	    	    	status.setValue(order.getOrderStatus());
+	    	    	torder.setStatus_co(status);
+	    	    	status.setDisable(true);
+	    	    	status.setPrefWidth(150);
+	    		}
 	    		// If the order status is not "approved", disable the status choice box
-		    	if (order.getOrderStatus().equals("approved")) {
-		    		status = new ChoiceBox<>(FXCollections.observableArrayList("collected","approved"));
+	    		else {
+		    		stats.add("collected");
+    	    		stats.add("approved");
+    	    		ChoiceBox<String> status = new ChoiceBox<>();
+    	    		status.getItems().addAll(stats);
 		    		status.setDisable(false);
 		    		torder.setStatus_co(status);
 		    		status.setValue(order.getOrderStatus());
