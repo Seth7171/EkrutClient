@@ -168,13 +168,13 @@ public class ViewDeliveriesScreenController extends ScreenController implements 
 	    for (Order order : tempDeliveries) {
 	    	if (order.getSupplyMethod().equals("delivery")) {
 		    	TableOrder torder = new TableOrder(order);
-		    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("collected"));
+		    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("collected","delivery"));
 	    		status.setValue(order.getOrderStatus());
 	    		torder.setStatus_co(status);
 	    		// If the order status is not "approved", disable the status choice box
 		    	if (!order.getOrderStatus().equals("approved")) {
 		    		status.setDisable(true);
-		    		status = new ChoiceBox<>(FXCollections.observableArrayList("approved","not approved", "awaiting approval","delivered"));
+		    		status.setValue(order.getOrderStatus());
 		    	}
 		    	observableDeliveries.add(torder);
 	    	}
