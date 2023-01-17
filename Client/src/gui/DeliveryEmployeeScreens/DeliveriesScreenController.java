@@ -171,21 +171,35 @@ public class DeliveriesScreenController extends ScreenController implements Init
         for (Order order : tempDeliveries) {
         	if (order.getSupplyMethod().equals("delivery")) {
     	    	TableOrder torder = new TableOrder(order);
-    	    	ChoiceBox<String> status = new ChoiceBox<>(FXCollections.observableArrayList("approved","not approved", "awaiting approval"));
-    	    	// Set the value of the ChoiceBox to the current status of the order
-    	    	status.setValue(order.getOrderStatus());
-    	    	torder.setStatus_co(status);
-    	    	if (!order.getOrderStatus().equals("awaiting approval")) {
-    	    		// If the order's status is "collected", create a new ChoiceBox with options "delivered" or "collected"
-    	    		torder = new TableOrder(order);
-    		    	status = new ChoiceBox<>(FXCollections.observableArrayList("delivered","collected"));
+    	    	ArrayList<String> stats = new ArrayList<String>();
+    	    	if (order.getOrderStatus().equals("awaiting approval")) {
+    	    		stats.add("approved");
+    	    		stats.add("not approved");
+    	    		stats.add("awaiting approval");
+    	    		ChoiceBox<String> status = new ChoiceBox<>();
+    	    		status.getItems().addAll(stats);
+        	    	// Set the value of the ChoiceBox to the current status of the order
+        	    	status.setValue(order.getOrderStatus());
+        	    	torder.setStatus_co(status);
+    	    	}
+    	    	else if (order.getOrderStatus().equals("collected")) {
+    	    		stats.add("delivered");
+    	    		stats.add("collected");
+    	    		ChoiceBox<String> status = new ChoiceBox<>();
+    	    		status.getItems().addAll(stats);
+    	    		status.setValue(order.getOrderStatus());
+    	    		torder.setStatus_co(status);
+    	    		// If the order's status is not "awaiting approval", disable the ChoiceBox
+    	    	}
+    	    	else {
+    	    		ChoiceBox<String> status = new ChoiceBox<>();
+	    	    	stats.add(order.getOrderStatus());
+	    	    	status.getItems().addAll(stats);
     	    		status.setValue(order.getOrderStatus());
     	    		torder.setStatus_co(status);
     	    		// If the order's status is not "awaiting approval", disable the ChoiceBox
     	    		status.setDisable(true);
-    	    	}
-    	    	if (order.getOrderStatus().equals("collected")) {
-    	    		status.setDisable(false);
+    	    		status.setPrefWidth(150);
     	    	}
     	    	// Add the TableOrder to the observableDeliveries list
     	    	observableDeliveries.add(torder);
