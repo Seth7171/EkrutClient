@@ -9,19 +9,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.ViewDeliveriesScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="950.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OrderScreens.ViewDeliveriesScreenController">
    <children>
       <TableView fx:id="viewAllOrders" layoutX="4.0" layoutY="167.0" prefHeight="425.0" prefWidth="940.0">
          <columns>
-            <TableColumn fx:id="customeridColumn" editable="false" prefWidth="76.0" resizable="false" text="Customer ID" />
-            <TableColumn fx:id="orderidColumn" editable="false" prefWidth="62.0" resizable="false" text="Order ID" />
-            <TableColumn fx:id="overallpriceColumn" editable="false" minWidth="5.0" prefWidth="38.0" resizable="false" text="Price" />
-            <TableColumn fx:id="productsColumn" editable="false" prefWidth="213.0" resizable="false" text="Products" />
+            <TableColumn fx:id="customeridColumn" editable="false" prefWidth="75.0" resizable="false" text="Customer ID" />
+            <TableColumn fx:id="orderidColumn" editable="false" resizable="false" text="Order ID" />
+            <TableColumn fx:id="overallpriceColumn" editable="false" minWidth="5.0" prefWidth="55.0" resizable="false" text="Price" />
+            <TableColumn fx:id="productsColumn" editable="false" prefWidth="140.0" resizable="false" text="Products" />
             <TableColumn fx:id="orderdateColumn" editable="false" prefWidth="78.0" resizable="false" text="Order Date" />
-            <TableColumn fx:id="addressColumn" editable="false" prefWidth="126.0" resizable="false" text="Address" />
+            <TableColumn fx:id="addressColumn" editable="false" prefWidth="150.0" resizable="false" text="Address" />
             <TableColumn fx:id="estimatedateColumn" editable="false" prefWidth="101.0" resizable="false" text="Estimated Date" />
             <TableColumn fx:id="confirmationdateColumn" editable="false" prefWidth="111.0" resizable="false" text="Confirmation Date" />
-            <TableColumn fx:id="orderstatusColumn" editable="false" prefWidth="128.0" resizable="false" text="Order Status" />
+            <TableColumn fx:id="orderstatusColumn" editable="false" prefWidth="150.0" resizable="false" text="Order Status" />
          </columns>
       </TableView>
       <Button fx:id="exitButton" layoutX="910.0" layoutY="9.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
@@ -33,12 +33,12 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Text layoutX="397.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Orders" wrappingWidth="156.39300537109375">
+      <Text layoutX="437.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Orders" underline="true" wrappingWidth="156.39300537109375">
          <font>
             <Font size="32.0" />
          </font>
       </Text>
-      <ImageView fitHeight="79.0" fitWidth="86.0" layoutX="308.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="79.0" fitWidth="86.0" layoutX="348.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@orders.png" />
          </image>
