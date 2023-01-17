@@ -157,6 +157,15 @@ public class DeliveriesScreenController extends ScreenController implements Init
         ClientUI.chat.accept(new Message(areaaofuser,MessageFromClient.REQUEST_ORDERS_BY_AREA)); 
         // Get the data from the server
         Object data = MessageHandler.getData();
+        if (data == null) {
+        	Platform.runLater(new Runnable() {
+        	    @Override
+        	    public void run() {
+                	alertHandler("You Dont Have Orders To Deliver!", true);
+        	    }
+        	});
+            return;
+        }
         if (!(data instanceof ArrayList<?>)) {
         	Platform.runLater(new Runnable() {
         	    @Override
