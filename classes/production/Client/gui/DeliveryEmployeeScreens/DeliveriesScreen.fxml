@@ -13,15 +13,15 @@
    <children>
       <TableView fx:id="viewAllOrders" layoutX="5.0" layoutY="167.0" prefHeight="425.0" prefWidth="940.0">
          <columns>
-            <TableColumn fx:id="orderidColumn" editable="false" prefWidth="62.0" text="Order ID" />
-            <TableColumn fx:id="customeridColumn" editable="false" prefWidth="76.0" text="Customer ID" />
-            <TableColumn fx:id="overallpriceColumn" editable="false" minWidth="5.0" prefWidth="38.0" text="Price" />
-            <TableColumn fx:id="productsColumn" editable="false" prefWidth="213.0" text="Products" />
+            <TableColumn fx:id="orderidColumn" editable="false" prefWidth="75.0" text="Order ID" />
+            <TableColumn fx:id="customeridColumn" editable="false" text="Customer ID" />
+            <TableColumn fx:id="overallpriceColumn" editable="false" minWidth="5.0" prefWidth="55.0" text="Price" />
+            <TableColumn fx:id="productsColumn" editable="false" prefWidth="140.0" text="Products" />
             <TableColumn fx:id="orderdateColumn" editable="false" prefWidth="78.0" text="Order Date" />
-            <TableColumn fx:id="addressColumn" editable="false" prefWidth="126.0" text="Address" />
+            <TableColumn fx:id="addressColumn" editable="false" prefWidth="150.0" text="Address" />
             <TableColumn fx:id="estimatedateColumn" editable="false" prefWidth="101.0" text="Estimated Date" />
             <TableColumn fx:id="confirmationdateColumn" editable="false" prefWidth="111.0" text="Confirmation Date" />
-            <TableColumn fx:id="orderstatusColumn" editable="false" prefWidth="133.0" text="Order Status" />
+            <TableColumn fx:id="orderstatusColumn" editable="false" prefWidth="150.0" text="Order Status" />
          </columns>
       </TableView>
       <Button fx:id="exitButton" layoutX="906.0" layoutY="14.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="ExitButton" />
