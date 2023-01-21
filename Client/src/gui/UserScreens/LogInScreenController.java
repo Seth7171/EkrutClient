@@ -142,17 +142,15 @@ public class LogInScreenController extends ScreenController implements Initializ
      */
     @FXML
     public String logIn(Event event){
-    	didntLogIn = false;
         ArrayList<String> credentials = null;
         credentials = getUsernameAndPassword();
         if(credentials == null)
             return "FillAllUserCredentials";
-        requestLogIn(credentials);
-        if(didntLogIn) {
+        if(!requestLogIn(credentials)){
         	return "WorngUserCredentials";
         }
-        if (!ChatClient.isOL){
-            switch (UserController.getCurrentuser().getDepartment()){
+        if (!isOL()){
+            switch (getUserDepartment()){
                 case "subscriber":
                 case "customer":
                     break;
@@ -160,33 +158,43 @@ public class LogInScreenController extends ScreenController implements Initializ
                 default:
                 	requestLogOut(credentials);
                     return "Unauthorized account";
-
             }
-
         }
         loadUserHomeScreen(event);
         return "LoggedIn";
     }
-    public void loadUserHomeScreen(Event event) {
+    
+    public boolean isOL() {
+    	return ChatClient.isOL;
+    }
+    
+    public String getUserDepartment() {
+    	return UserController.getCurrentuser().getDepartment();
+    }
+    
+    public boolean loadUserHomeScreen(Event event) {
 		CustomerController.setmachineID(ChatClient.currentMachineID);
         Parent root = loadRoot();
         super.switchScreen(event,root);
+        return true;
     }
     
-    public void requestLogIn( ArrayList<String> credentials) {
+    public boolean requestLogIn( ArrayList<String> credentials) {
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); 
         if(!UserController.isLogged()){
         	alertHandler(MessageHandler.getMessage(), true);
             //errorMessage.setText(MessageHandler.getMessage());
             MessageHandler.setMessage(null);
-            didntLogIn=true;
+            return false;
         }
+        return true;
     }
     
-    public void requestLogOut( ArrayList<String> credentials) {
+    public boolean requestLogOut( ArrayList<String> credentials) {
     	alertHandler("Unauthorized account", true);
         //errorMessage.setText("Unauthorized account");
         ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
+        return true;
     }
 
     /**
@@ -272,11 +280,5 @@ public class LogInScreenController extends ScreenController implements Initializ
         credentials.add(userNameField.getText());
         credentials.add(passwordField.getText());
         return credentials;
-    }
-    
-    public void setUsernameAndPassword(String username,String password) {
-        System.out.println("Aaaaaaa");
-    	userNameField.setText(username);
-        passwordField.setText(password);
     }
 }
