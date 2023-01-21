@@ -32,9 +32,9 @@ import java.util.ResourceBundle;
  */
 public class LogInScreenController extends ScreenController implements Initializable {
     @FXML
-    private TextField userNameField;
+    public TextField userNameField;
     @FXML
-    private PasswordField passwordField;
+    public PasswordField passwordField;
     @FXML
     private Text errorMessage;
     @FXML
@@ -141,7 +141,7 @@ public class LogInScreenController extends ScreenController implements Initializ
      * @param event The event of the user clicking the "Log In" button or pressing the "Enter" key in the username or password field.
      */
     @FXML
-    private void logIn(Event event){
+    public void logIn(Event event){
         ArrayList<String> credentials = getUsernameAndPassword();
         if(credentials == null)
             return;
