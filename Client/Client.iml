@@ -25,5 +25,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="mockito-all-2.0.2-beta" level="project" />
   </component>
 </module>
