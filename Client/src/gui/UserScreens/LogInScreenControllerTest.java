@@ -19,7 +19,6 @@ import javafx.event.Event;
 class LogInScreenControllerTest {
    private LogInScreenController mocklogInScreenController;
    private ActionEvent event;
-   private Method loginTest;
    
 
 	@BeforeEach
