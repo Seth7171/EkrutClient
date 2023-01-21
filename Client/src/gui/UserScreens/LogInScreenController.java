@@ -31,10 +31,11 @@ import java.util.ResourceBundle;
  * @author Lior Jigalo
  */
 public class LogInScreenController extends ScreenController implements Initializable {
+	private boolean didntLogIn = false;
     @FXML
-    public TextField userNameField;
+    private TextField userNameField;
     @FXML
-    public PasswordField passwordField;
+    private PasswordField passwordField;
     @FXML
     private Text errorMessage;
     @FXML
@@ -43,7 +44,7 @@ public class LogInScreenController extends ScreenController implements Initializ
     private Button loginButton;
     @FXML
     private Button fastLoginButton;
-    
+
 
     /**
      *
@@ -132,7 +133,6 @@ public class LogInScreenController extends ScreenController implements Initializ
         super.switchScreen(event,root);
     }
     
-
     /**
      *
      * Handles the event of the user clicking the "Log In" button or pressing the "Enter" key in the username or password field.
@@ -141,20 +141,16 @@ public class LogInScreenController extends ScreenController implements Initializ
      * @param event The event of the user clicking the "Log In" button or pressing the "Enter" key in the username or password field.
      */
     @FXML
-    public void logIn(Event event){
-        ArrayList<String> credentials = getUsernameAndPassword();
+    public String logIn(Event event){
+    	didntLogIn = false;
+        ArrayList<String> credentials = null;
+        credentials = getUsernameAndPassword();
         if(credentials == null)
-            return;
-        
-        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); 
-        if(!UserController.isLogged()){
-        	alertHandler(MessageHandler.getMessage(), true);
-            //errorMessage.setText(MessageHandler.getMessage());
-            MessageHandler.setMessage(null);
-            return;
+            return "FillAllUserCredentials";
+        requestLogIn(credentials);
+        if(didntLogIn) {
+        	return "WorngUserCredentials";
         }
-        
-
         if (!ChatClient.isOL){
             switch (UserController.getCurrentuser().getDepartment()){
                 case "subscriber":
@@ -162,18 +158,35 @@ public class LogInScreenController extends ScreenController implements Initializ
                     break;
 
                 default:
-                    alertHandler("Unauthorized account", true);
-                    //errorMessage.setText("Unauthorized account");
-                    ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
-                    return;
+                	requestLogOut(credentials);
+                    return "Unauthorized account";
 
             }
 
         }
-
+        loadUserHomeScreen(event);
+        return "LoggedIn";
+    }
+    public void loadUserHomeScreen(Event event) {
 		CustomerController.setmachineID(ChatClient.currentMachineID);
         Parent root = loadRoot();
         super.switchScreen(event,root);
+    }
+    
+    public void requestLogIn( ArrayList<String> credentials) {
+        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGIN)); 
+        if(!UserController.isLogged()){
+        	alertHandler(MessageHandler.getMessage(), true);
+            //errorMessage.setText(MessageHandler.getMessage());
+            MessageHandler.setMessage(null);
+            didntLogIn=true;
+        }
+    }
+    
+    public void requestLogOut( ArrayList<String> credentials) {
+    	alertHandler("Unauthorized account", true);
+        //errorMessage.setText("Unauthorized account");
+        ClientUI.chat.accept(new Message(credentials, MessageFromClient.REQUEST_LOGOUT));
     }
 
     /**
@@ -244,7 +257,7 @@ public class LogInScreenController extends ScreenController implements Initializ
      * If one of the fields is empty or contains spaces, an error message is displayed.
      * @return ArrayList containing the username and password entered by the user, or null if the fields are empty or contain spaces.
      */
-    private ArrayList<String> getUsernameAndPassword() {
+    public ArrayList<String> getUsernameAndPassword() {
         if(userNameField.getText().equals("") || passwordField.getText().equals("")){
         	alertHandler("Username AND Password\n\tMUST be filled", true);
             //errorMessage.setText("Username AND Password\nMUST be filled");
@@ -259,5 +272,11 @@ public class LogInScreenController extends ScreenController implements Initializ
         credentials.add(userNameField.getText());
         credentials.add(passwordField.getText());
         return credentials;
+    }
+    
+    public void setUsernameAndPassword(String username,String password) {
+        System.out.println("Aaaaaaa");
+    	userNameField.setText(username);
+        passwordField.setText(password);
     }
 }
